@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Harmiq - Analiza tu voz / Analyze Your Voice</title>
+  <meta name="description" content="Descubre a qué cantante te pareces con IA · Discover which singer your voice matches using AI">
+  <meta name="keywords" content="karaoke, voz, cantante, IA, voice, singer, AI, カラオケ, 卡拉OK, karaoké, Karaoke">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://harmiq.app/">
+  <meta property="og:title" content="Harmiq - ¿A qué cantante te pareces?">
+  <meta property="og:description" content="Analiza tu voz con IA gratis · Free AI voice analysis">
+  <meta property="og:image" content="https://harmiq.app/preview.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Harmiq - ¿A qué cantante te pareces?">
+  <meta name="twitter:description" content="Analiza tu voz con IA gratis">
+  <meta name="twitter:image" content="https://harmiq.app/preview.jpg">
+
+  <link rel="alternate" hreflang="es" href="https://harmiq.app/?lang=es">
+  <link rel="alternate" hreflang="ca" href="https://harmiq.app/?lang=ca">
+  <link rel="alternate" hreflang="en" href="https://harmiq.app/?lang=en">
+  <link rel="alternate" hreflang="ja" href="https://harmiq.app/?lang=ja">
+  <link rel="alternate" hreflang="zh" href="https://harmiq.app/?lang=zh">
+  <link rel="alternate" hreflang="ru" href="https://harmiq.app/?lang=ru">
+  <link rel="alternate" hreflang="uk" href="https://harmiq.app/?lang=uk">
+  <link rel="alternate" hreflang="fr" href="https://harmiq.app/?lang=fr">
+  <link rel="alternate" hreflang="de" href="https://harmiq.app/?lang=de">
+  <link rel="alternate" hreflang="it" href="https://harmiq.app/?lang=it">
+  <link rel="alternate" hreflang="pt" href="https://harmiq.app/?lang=pt">
+  <link rel="alternate" hreflang="x-default" href="https://harmiq.app/">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="navbar">🎤 HARMIQ</div>
+
+  <div class="lang-bar">
+    <select id="lang-select" onchange="changeLang(this.value)">
+      <option value="es">🇪🇸 Español</option>
+      <option value="ca">🏴 Català</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="zh">🇨🇳 中文</option>
+      <option value="ru">🇷🇺 Русский</option>
+      <option value="uk">🇺🇦 Українська</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="de">🇩🇪 Deutsch</option>
+      <option value="it">🇮🇹 Italiano</option>
+      <option value="pt">🇧🇷 Português</option>
+    </select>
+  </div>
+
+  <div class="container">
+
+    <p class="tagline" id="tagline"></p>
+
+    <select id="user-gender">
+      <option value="" id="opt-gender-default"></option>
+      <option value="male" id="opt-male"></option>
+      <option value="female" id="opt-female"></option>
+    </select>
+
+    <button id="record-btn" class="btn-main"></button>
+
+    <div id="status-msg" class="status-msg"></div>
+
+    <div id="results"></div>
+    <div id="mics-area"></div>
+    <div id="studio-area"></div>
+    <div id="pro-area"></div>
+    <div id="content-area"></div>
+    <div id="events-area"></div>
+
+    <footer>
+      <span id="footer-legal"></span>
+      &nbsp;|&nbsp;
+      <a href="#" id="footer-privacy" style="color:#aaa"></a>
+      &nbsp;|&nbsp;
+      <a href="#" id="footer-cookies" style="color:#aaa"></a>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

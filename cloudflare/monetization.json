@@ -1,0 +1,189 @@
+{
+  "voice_profiles": {
+
+    "Tenor": {
+      "artists": [
+        {
+          "name": "Freddie Mercury",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Freddie_Mercury_performing_The_Works_Tour_in_New_Zealand.jpg/220px-Freddie_Mercury_performing_The_Works_Tour_in_New_Zealand.jpg",
+          "songs": ["Bohemian Rhapsody", "We Are the Champions", "Don't Stop Me Now", "Somebody to Love"]
+        }
+      ],
+      "microphones": [
+        { "name": "Audio-Technica AT2035", "search": "Audio Technica AT2035", "comment": "Equilibrado y perfecto para voces agudas" },
+        { "name": "AKG P220",              "search": "AKG P220 microfono",    "comment": "Brillante y claro" },
+        { "name": "Rode NT1-A",            "search": "Rode NT1-A microfono",  "comment": "Muy limpio, ideal para home studio" }
+      ],
+      "pro_mics": [
+        { "name": "Neumann U87",          "note": "El estándar de los estudios profesionales" },
+        { "name": "Telefunken ELAM 251",  "note": "Ultra premium, usado por artistas top" }
+      ],
+      "home_studio": {
+        "fun":    ["Fifine K669B", "Auriculares básicos"],
+        "basic":  ["Rode NT-USB", "Filtro anti-pop"],
+        "medium": ["Scarlett 2i2", "AT2035", "Audio-Technica M50x"],
+        "pro":    ["Apollo Twin", "Neumann TLM 103", "Yamaha HS5"]
+      },
+      "characters": [
+        { "name": "Simba - El Rey León" },
+        { "name": "Jack Sparrow - Piratas del Caribe" },
+        { "name": "Tony Stark - Iron Man" }
+      ],
+      "media": [
+        {
+          "title": "Bohemian Rhapsody (2018)",
+          "image": "https://upload.wikimedia.org/wikipedia/en/4/4d/Bohemian_Rhapsody_film.png",
+          "search": "Bohemian Rhapsody pelicula",
+          "spotify": "Freddie Mercury",
+          "youtube": "Freddie Mercury karaoke"
+        },
+        {
+          "title": "Whitney Documentary",
+          "image": "https://upload.wikimedia.org/wikipedia/en/1/1e/Whitney_Houston_The_Bodyguard.png",
+          "search": "Whitney Houston documental",
+          "spotify": "Whitney Houston",
+          "youtube": "Whitney Houston karaoke"
+        }
+      ]
+    },
+
+    "Baritono": {
+      "artists": [
+        {
+          "name": "Frank Sinatra",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Frank_Sinatra_-_publicity.jpg/220px-Frank_Sinatra_-_publicity.jpg",
+          "songs": ["My Way", "Fly Me to the Moon", "New York New York", "The Best Is Yet to Come"]
+        }
+      ],
+      "microphones": [
+        { "name": "Shure SM7B",              "search": "Shure SM7B microfono",       "comment": "Perfecto para voces graves y cálidas" },
+        { "name": "Audio-Technica AT4040",   "search": "Audio Technica AT4040",      "comment": "Captura perfectamente el rango medio-bajo" },
+        { "name": "Rode NT2-A",              "search": "Rode NT2-A microfono",       "comment": "Gran versatilidad para voces profundas" }
+      ],
+      "pro_mics": [
+        { "name": "Neumann U87", "note": "El estándar de los estudios profesionales" },
+        { "name": "AKG C414",   "note": "Referencia absoluta para voces masculinas" }
+      ],
+      "home_studio": {
+        "fun":    ["Fifine K669B", "Auriculares básicos"],
+        "basic":  ["Shure MV7", "Filtro anti-pop"],
+        "medium": ["Scarlett 2i2", "SM7B", "Sony MDR-7506"],
+        "pro":    ["Apollo Twin", "Neumann U87", "Yamaha HS8"]
+      },
+      "characters": [
+        { "name": "Mufasa - El Rey León" },
+        { "name": "Gandalf - El Señor de los Anillos" },
+        { "name": "Darth Vader - Star Wars" }
+      ],
+      "media": [
+        {
+          "title": "Sinatra: All or Nothing at All",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Frank_Sinatra_-_publicity.jpg/220px-Frank_Sinatra_-_publicity.jpg",
+          "search": "Frank Sinatra documental",
+          "spotify": "Frank Sinatra",
+          "youtube": "Frank Sinatra karaoke"
+        },
+        {
+          "title": "Elvis (2022)",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Elvis_Presley_promoting_Jailhouse_Rock.jpg/220px-Elvis_Presley_promoting_Jailhouse_Rock.jpg",
+          "search": "Elvis Presley documental",
+          "spotify": "Elvis Presley",
+          "youtube": "Elvis Presley karaoke"
+        }
+      ]
+    },
+
+    "Soprano": {
+      "artists": [
+        {
+          "name": "Mariah Carey",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mariah_Carey_2019_by_Glenn_Francis.jpg/220px-Mariah_Carey_2019_by_Glenn_Francis.jpg",
+          "songs": ["Hero", "We Belong Together", "Always Be My Baby", "All I Want for Christmas Is You"]
+        }
+      ],
+      "microphones": [
+        { "name": "Rode NT1-A",         "search": "Rode NT1-A microfono",    "comment": "Captura perfectamente los agudos brillantes" },
+        { "name": "AKG C214",           "search": "AKG C214 microfono",      "comment": "Ideal para voces femeninas con proyección" },
+        { "name": "Neumann TLM 102",    "search": "Neumann TLM 102",         "comment": "Calidad profesional accesible para sopranos" }
+      ],
+      "pro_mics": [
+        { "name": "Neumann U87",      "note": "El estándar de los estudios profesionales" },
+        { "name": "Sennheiser MKH 40","note": "Captura matices extraordinarios en agudos" }
+      ],
+      "home_studio": {
+        "fun":    ["Fifine K669B", "Auriculares básicos"],
+        "basic":  ["Rode NT-USB", "Filtro anti-pop"],
+        "medium": ["Focusrite Scarlett Solo", "AKG C214", "Audio-Technica M50x"],
+        "pro":    ["Apollo Solo", "Neumann TLM 103", "Yamaha HS5"]
+      },
+      "characters": [
+        { "name": "Elsa - Frozen" },
+        { "name": "Ariel - La Sirenita" },
+        { "name": "Rapunzel - Enredados" }
+      ],
+      "media": [
+        {
+          "title": "Whitney Documentary",
+          "image": "https://upload.wikimedia.org/wikipedia/en/1/1e/Whitney_Houston_The_Bodyguard.png",
+          "search": "Whitney Houston documental",
+          "spotify": "Whitney Houston",
+          "youtube": "Whitney Houston karaoke"
+        },
+        {
+          "title": "I Am Celine Dion",
+          "image": "https://upload.wikimedia.org/wikipedia/en/9/9e/Celine_Dion_2012.jpg",
+          "search": "Celine Dion documental",
+          "spotify": "Celine Dion",
+          "youtube": "Celine Dion karaoke"
+        }
+      ]
+    },
+
+    "Mezzo": {
+      "artists": [
+        {
+          "name": "Amy Winehouse",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Amy_Winehouse_2007.jpg/220px-Amy_Winehouse_2007.jpg",
+          "songs": ["Rehab", "Valerie", "Back to Black", "Someone Like You"]
+        }
+      ],
+      "microphones": [
+        { "name": "Audio-Technica AT2020", "search": "Audio Technica AT2020", "comment": "Equilibrado para el rango medio femenino" },
+        { "name": "Rode NT1-A",            "search": "Rode NT1-A microfono",  "comment": "Cálido y detallado" },
+        { "name": "Shure SM27",            "search": "Shure SM27 microfono",  "comment": "Versátil y muy natural en el rango medio" }
+      ],
+      "pro_mics": [
+        { "name": "Neumann U87", "note": "El estándar de los estudios profesionales" },
+        { "name": "AKG C414",   "note": "Captura perfectamente la calidez del mezzo" }
+      ],
+      "home_studio": {
+        "fun":    ["Fifine K669B", "Auriculares básicos"],
+        "basic":  ["Rode NT-USB", "Filtro anti-pop"],
+        "medium": ["Scarlett 2i2", "AT2020", "Sony MDR-7506"],
+        "pro":    ["Apollo Twin", "AKG C414", "Yamaha HS5"]
+      },
+      "characters": [
+        { "name": "Mulán - Disney" },
+        { "name": "Moana - Vaiana" },
+        { "name": "Hermione Granger - Harry Potter" }
+      ],
+      "media": [
+        {
+          "title": "Amy (2015)",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Amy_Winehouse_2007.jpg/220px-Amy_Winehouse_2007.jpg",
+          "search": "Amy Winehouse documental",
+          "spotify": "Amy Winehouse",
+          "youtube": "Amy Winehouse karaoke"
+        },
+        {
+          "title": "Adele: One Night Only",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Adele_2016.jpg/220px-Adele_2016.jpg",
+          "search": "Adele documental",
+          "spotify": "Adele",
+          "youtube": "Adele karaoke"
+        }
+      ]
+    }
+
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "metadata": {
+    "version": "pro_ai_ready",
+    "total_canciones": 10,
+    "total_artistas": 16
+  },
+  "artistas": [
+    {
+      "nombre": "Oques Grasses",
+      "idioma": "CAT",
+      "genero": "pop"
+    },
+    {
+      "nombre": "The Tyets",
+      "idioma": "CAT",
+      "genero": "urban pop"
+    },
+    {
+      "nombre": "Figa Flawas",
+      "idioma": "CAT",
+      "genero": "urban"
+    },
+    {
+      "nombre": "Julieta",
+      "idioma": "CAT",
+      "genero": "pop"
+    },
+    {
+      "nombre": "Mushkaa",
+      "idioma": "CAT",
+      "genero": "urban"
+    },
+    {
+      "nombre": "Txarango",
+      "idioma": "CAT",
+      "genero": "fusion"
+    },
+    {
+      "nombre": "Manel",
+      "idioma": "CAT",
+      "genero": "indie"
+    },
+    {
+      "nombre": "Zetak",
+      "idioma": "EUS",
+      "genero": "electronic"
+    },
+    {
+      "nombre": "Berri Txarrak",
+      "idioma": "EUS",
+      "genero": "rock"
+    },
+    {
+      "nombre": "Tanxugueiras",
+      "idioma": "GAL",
+      "genero": "folk"
+    },
+    {
+      "nombre": "Bad Bunny",
+      "idioma": "ES",
+      "genero": "reggaeton"
+    },
+    {
+      "nombre": "Karol G",
+      "idioma": "ES",
+      "genero": "reggaeton"
+    },
+    {
+      "nombre": "Quevedo",
+      "idioma": "ES",
+      "genero": "trap"
+    },
+    {
+      "nombre": "Rosalía",
+      "idioma": "ES",
+      "genero": "experimental"
+    },
+    {
+      "nombre": "Taylor Swift",
+      "idioma": "EN",
+      "genero": "pop"
+    },
+    {
+      "nombre": "Drake",
+      "idioma": "EN",
+      "genero": "rap"
+    }
+  ],
+  "canciones": [
+    {
+      "titulo": "Boig per tu",
+      "artista": "The Tyets",
+      "idioma": "CAT",
+      "genero": "urban pop",
+      "features": {
+        "energy": 0.46,
+        "danceability": 0.75,
+        "valence": 0.64,
+        "acousticness": 0.24,
+        "tempo": 74
+      },
+      "karaoke": {
+        "dificultad_vocal": "media",
+        "rango_midi_min": 48,
+        "rango_midi_max": 67
+      },
+      "popularidad": 83
+    },
+    {
+      "titulo": "La gent que estimo",
+      "artista": "Rosalía",
+      "idioma": "ES",
+      "genero": "experimental",
+      "features": {
+        "energy": 0.71,
+        "danceability": 0.51,
+        "valence": 0.6,
+        "acousticness": 0.3,
+        "tempo": 158
+      },
+      "karaoke": {
+        "dificultad_vocal": "alta",
+        "rango_midi_min": 49,
+        "rango_midi_max": 83
+      },
+      "popularidad": 79
+    },
+    {
+      "titulo": "Al mar",
+      "artista": "Julieta",
+      "idioma": "CAT",
+      "genero": "pop",
+      "features": {
+        "energy": 0.8,
+        "danceability": 0.92,
+        "valence": 0.77,
+        "acousticness": 0.34,
+        "tempo": 149
+      },
+      "karaoke": {
+        "dificultad_vocal": "alta",
+        "rango_midi_min": 46,
+        "rango_midi_max": 65
+      },
+      "popularidad": 93
+    },
+    {
+      "titulo": "Jenifer",
+      "artista": "Mushkaa",
+      "idioma": "CAT",
+      "genero": "urban",
+      "features": {
+        "energy": 0.57,
+        "danceability": 0.68,
+        "valence": 0.32,
+        "acousticness": 0.12,
+        "tempo": 123
+      },
+      "karaoke": {
+        "dificultad_vocal": "alta",
+        "rango_midi_min": 51,
+        "rango_midi_max": 81
+      },
+      "popularidad": 97
+    },
+    {
+      "titulo": "Corren",
+      "artista": "Mushkaa",
+      "idioma": "CAT",
+      "genero": "urban",
+      "features": {
+        "energy": 0.76,
+        "danceability": 0.51,
+        "valence": 0.43,
+        "acousticness": 0.15,
+        "tempo": 146
+      },
+      "karaoke": {
+        "dificultad_vocal": "media",
+        "rango_midi_min": 51,
+        "rango_midi_max": 73
+      },
+      "popularidad": 95
+    },
+    {
+      "titulo": "Tití me preguntó",
+      "artista": "Taylor Swift",
+      "idioma": "EN",
+      "genero": "pop",
+      "features": {
+        "energy": 0.55,
+        "danceability": 0.55,
+        "valence": 0.88,
+        "acousticness": 0.46,
+        "tempo": 106
+      },
+      "karaoke": {
+        "dificultad_vocal": "media",
+        "rango_midi_min": 44,
+        "rango_midi_max": 72
+      },
+      "popularidad": 78
+    },
+    {
+      "titulo": "Bzrp Session",
+      "artista": "Manel",
+      "idioma": "CAT",
+      "genero": "indie",
+      "features": {
+        "energy": 0.46,
+        "danceability": 0.94,
+        "valence": 0.77,
+        "acousticness": 0.12,
+        "tempo": 145
+      },
+      "karaoke": {
+        "dificultad_vocal": "facil",
+        "rango_midi_min": 40,
+        "rango_midi_max": 67
+      },
+      "popularidad": 91
+    },
+    {
+      "titulo": "Flowers",
+      "artista": "Txarango",
+      "idioma": "CAT",
+      "genero": "fusion",
+      "features": {
+        "energy": 0.74,
+        "danceability": 0.61,
+        "valence": 0.39,
+        "acousticness": 0.41,
+        "tempo": 102
+      },
+      "karaoke": {
+        "dificultad_vocal": "media",
+        "rango_midi_min": 45,
+        "rango_midi_max": 74
+      },
+      "popularidad": 77
+    },
+    {
+      "titulo": "Anti-Hero",
+      "artista": "Berri Txarrak",
+      "idioma": "EUS",
+      "genero": "rock",
+      "features": {
+        "energy": 0.55,
+        "danceability": 0.72,
+        "valence": 0.75,
+        "acousticness": 0.14,
+        "tempo": 70
+      },
+      "karaoke": {
+        "dificultad_vocal": "alta",
+        "rango_midi_min": 41,
+        "rango_midi_max": 68
+      },
+      "popularidad": 93
+    },
+    {
+      "titulo": "Blinding Lights",
+      "artista": "Tanxugueiras",
+      "idioma": "GAL",
+      "genero": "folk",
+      "features": {
+        "energy": 0.6,
+        "danceability": 0.74,
+        "valence": 0.68,
+        "acousticness": 0.47,
+        "tempo": 73
+      },
+      "karaoke": {
+        "dificultad_vocal": "alta",
+        "rango_midi_min": 44,
+        "rango_midi_max": 77
+      },
+      "popularidad": 71
+    }
+  ]
+}
