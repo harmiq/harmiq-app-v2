@@ -1164,33 +1164,25 @@ async function renderResults({feat,vt,conf,matches,gender}) {
     </div>`;
   }).join("");
 
-// ── Botones Home Studio + Karaokes + Ko-fi ─────────────────────────────────────
-const extraBtnsHTML = `
+  // ── Botones Home Studio + Ko-fi ─────────────────────────────────────
+  const extraBtnsHTML = `
     <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;padding-top:.75rem;
-        border-top:1px solid rgba(255,255,255,.06)">
-        
-        <a href="/home-studio" onclick="route(event)" style="flex:1;min-width:140px;display:flex;align-items:center;
-            gap:.4rem;padding:.55rem .8rem;background:rgba(124,77,255,.1);
-            border:1px solid rgba(124,77,255,.25);border-radius:10px;text-decoration:none;
-            color:#A5B4FC;font-size:.8rem;font-weight:700;transition:opacity .2s"
-            onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
-            🎛️ Home Studio
-        </a>
-
-        <a href="/karaoke-eventos" onclick="route(event)" style="flex:1;min-width:140px;display:flex;align-items:center;
-            gap:.4rem;padding:.55rem .8rem;background:rgba(0,188,212,.1);
-            border:1px solid rgba(0,188,212,.25);border-radius:10px;text-decoration:none;
-            color:#80DEEA;font-size:.8rem;font-weight:700;transition:opacity .2s"
-            onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
-            🎤 Buscar Karaokes
-        </a>
-
-        <a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener"
-            style="display:flex;align-items:center;gap:.4rem;padding:.55rem .8rem;
-            background:rgba(255,94,91,.1);border:1px solid rgba(255,94,91,.25);border-radius:10px;
-            text-decoration:none;color:#ff9896;font-size:.8rem;font-weight:700;transition:opacity .2s"
-            onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
-            ☕ Apoyar
+      border-top:1px solid rgba(255,255,255,.06)">
+      <a href="/home-studio" style="flex:1;min-width:140px;display:flex;align-items:center;
+        gap:.4rem;padding:.55rem .8rem;background:rgba(124,77,255,.1);
+        border:1px solid rgba(124,77,255,.25);border-radius:10px;text-decoration:none;
+        color:#A5B4FC;font-size:.8rem;font-weight:700;transition:opacity .2s"
+        onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+        🎛️ Home Studio para tu voz
+      </a>
+      <a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener"
+        style="display:flex;align-items:center;gap:.4rem;padding:.55rem .8rem;
+        background:rgba(255,94,91,.1);border:1px solid rgba(255,94,91,.25);border-radius:10px;
+        text-decoration:none;color:#ff9896;font-size:.8rem;font-weight:700;transition:opacity .2s"
+        onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+        ☕ Apoya Harmiq (Ko-fi)
+      </a>
+    </div>`;
 
   // ── Canciones recomendadas de Spotify ────────────────────────────────
   const topMatch  = matches[0];
