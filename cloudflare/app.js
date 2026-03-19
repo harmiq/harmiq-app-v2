@@ -512,6 +512,89 @@ const MONO_IMGS = {
   "Mick Jagger":         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Mick_Jagger_2019.jpg/220px-Mick_Jagger_2019.jpg",
   "Julio Iglesias":      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Julio_Iglesias_1976.jpg/220px-Julio_Iglesias_1976.jpg",
   "Enrique Bunbury":     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Enrique_Bunbury_2012.jpg/220px-Enrique_Bunbury_2012.jpg",
+  // Artistas adicionales — todos los que aparecen en la DB
+  "Bob Marley":          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bob-Marley.jpg/220px-Bob-Marley.jpg",
+  "Stevie Wonder":       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Stevie_Wonder_at_NAMM_%28cropped%29.jpg/220px-Stevie_Wonder_at_NAMM_%28cropped%29.jpg",
+  "Ray Charles":         "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Ray_Charles_1988.jpg/220px-Ray_Charles_1988.jpg",
+  "James Brown":         "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/James_Brown_Live_Hamburg_1973_1.jpg/220px-James_Brown_Live_Hamburg_1973_1.jpg",
+  "Bruce Springsteen":   "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bruce_Springsteen_2012.jpg/220px-Bruce_Springsteen_2012.jpg",
+  "Robert Plant":        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Robert_Plant_2009.jpg/220px-Robert_Plant_2009.jpg",
+  "Jim Morrison":        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Jim_Morrison_1969.jpg/220px-Jim_Morrison_1969.jpg",
+  "Kurt Cobain":         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Kurt_Cobain_and_Krist_Novoselic_in_1991.jpg/220px-Kurt_Cobain_and_Krist_Novoselic_in_1991.jpg",
+  "Eddie Vedder":        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Eddie_vedder_%28cropped%29.jpg/220px-Eddie_vedder_%28cropped%29.jpg",
+  "Chris Martin":        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Chris_Martin_2015.jpg/220px-Chris_Martin_2015.jpg",
+  "Thom Yorke":          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Thom_Yorke_2013.jpg/220px-Thom_Yorke_2013.jpg",
+  "John Lennon":         "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/John_Lennon_1969_%28cropped%29.jpg/220px-John_Lennon_1969_%28cropped%29.jpg",
+  "Paul McCartney":      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Paul_McCartney_2.jpg/220px-Paul_McCartney_2.jpg",
+  "Mick Jagger":         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Mick_Jagger_2019.jpg/220px-Mick_Jagger_2019.jpg",
+  "Bono":                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Bono_3.jpg/220px-Bono_3.jpg",
+  "Roger Daltrey":       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Roger_Daltrey_2015.jpg/220px-Roger_Daltrey_2015.jpg",
+  "David Coverdale":     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/David_Coverdale%2C_Whitesnake.jpg/220px-David_Coverdale%2C_Whitesnake.jpg",
+  "Axl Rose":            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Axl_Rose_2016.jpg/220px-Axl_Rose_2016.jpg",
+  "Jon Bon Jovi":        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Jon_Bon_Jovi_2013_%28cropped%29.jpg/220px-Jon_Bon_Jovi_2013_%28cropped%29.jpg",
+  "Ronnie James Dio":    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Dio_at_Sweden_Rock_2004.jpg/220px-Dio_at_Sweden_Rock_2004.jpg",
+  "Harry Styles":        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Harry_Styles_2017_crop.jpg/220px-Harry_Styles_2017_crop.jpg",
+  "The Weeknd":          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/The_Weeknd_2018.jpg/220px-The_Weeknd_2018.jpg",
+  "Sam Smith":           "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Sam_Smith_2014.jpg/220px-Sam_Smith_2014.jpg",
+  "Dua Lipa":            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Dua_Lipa_2018_%28cropped%29.jpg/220px-Dua_Lipa_2018_%28cropped%29.jpg",
+  "Billie Eilish":       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Billie_Eilish_-_2019_by_Glenn_Francis.jpg/220px-Billie_Eilish_-_2019_by_Glenn_Francis.jpg",
+  "Olivia Rodrigo":      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Olivia_Rodrigo_2021.jpg/220px-Olivia_Rodrigo_2021.jpg",
+  "Miley Cyrus":         "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Miley_Cyrus_2019.jpg/220px-Miley_Cyrus_2019.jpg",
+  "Doja Cat":            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Doja_Cat_2020.jpg/220px-Doja_Cat_2020.jpg",
+  "SZA":                 "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/SZA_2022.jpg/220px-SZA_2022.jpg",
+  "Alicia Keys":         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Alicia_Keys_2019.jpg/220px-Alicia_Keys_2019.jpg",
+  "Nicki Minaj":         "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Nicki_Minaj_2013.jpg/220px-Nicki_Minaj_2013.jpg",
+  "Cardi B":             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Cardi_B_2018.jpg/220px-Cardi_B_2018.jpg",
+  "Karol G":             "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/KAROL_G_2022.jpg/220px-KAROL_G_2022.jpg",
+  "J Balvin":            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/J_Balvin_2018.jpg/220px-J_Balvin_2018.jpg",
+  "Rauw Alejandro":      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Rauw_Alejandro_2022.jpg/220px-Rauw_Alejandro_2022.jpg",
+  "Marc Anthony":        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Marc_Anthony_2015.jpg/220px-Marc_Anthony_2015.jpg",
+  "Romeo Santos":        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Romeo_Santos_2014.jpg/220px-Romeo_Santos_2014.jpg",
+  "Daddy Yankee":        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Daddy_Yankee_-_Atlantic_2019.jpg/220px-Daddy_Yankee_-_Atlantic_2019.jpg",
+  "Camilo":              "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Camilo_2020.jpg/220px-Camilo_2020.jpg",
+  "Maluma":              "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Maluma_2018.jpg/220px-Maluma_2018.jpg",
+  "Jhay Cortez":         "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Jhay_Cortez_2022.jpg/220px-Jhay_Cortez_2022.jpg",
+  "Myke Towers":         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Myke_Towers_2020.jpg/220px-Myke_Towers_2020.jpg",
+  "Anuel AA":            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Anuel_AA_2019.jpg/220px-Anuel_AA_2019.jpg",
+  "Peso Pluma":          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Peso_Pluma_2023.jpg/220px-Peso_Pluma_2023.jpg",
+  "Eros Ramazzotti":     "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Eros_Ramazzotti_2012.jpg/220px-Eros_Ramazzotti_2012.jpg",
+  "Laura Pausini":       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Laura_Pausini_2019.jpg/220px-Laura_Pausini_2019.jpg",
+  "Andrea Bocelli":      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/AndreaBocelli.jpg/220px-AndreaBocelli.jpg",
+  "Stromae":             "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Stromae_%28cropped%29.jpg/220px-Stromae_%28cropped%29.jpg",
+  "Edith Piaf":          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Edith_Piaf.jpg/220px-Edith_Piaf.jpg",
+  "Angèle":              "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Ang%C3%A8le_-_Musilac_2019_%28cropped%29.jpg/220px-Ang%C3%A8le_-_Musilac_2019_%28cropped%29.jpg",
+  "Alla Pugacheva":      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Alla_Pugacheva_2016.jpg/220px-Alla_Pugacheva_2016.jpg",
+  "Utada Hikaru":        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Hikaru_Utada_2018.jpg/220px-Hikaru_Utada_2018.jpg",
+  "IU":                  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/IU_%28Lee_Ji-eun%29_at_2019_Golden_Disc_Awards.jpg/220px-IU_%28Lee_Ji-eun%29_at_2019_Golden_Disc_Awards.jpg",
+  "BTS":                 "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/BTS_at_the_37th_Golden_Disc_Awards.jpg/220px-BTS_at_the_37th_Golden_Disc_Awards.jpg",
+  "Jungkook (BTS)":      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Jungkook_Kim_at_the_White_House_%28cropped%29.jpg/220px-Jungkook_Kim_at_the_White_House_%28cropped%29.jpg",
+  "PSY":                 "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/PSY_2012_MIC_05.jpg/220px-PSY_2012_MIC_05.jpg",
+  "Jay Chou":            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Jay_Chou_2013.jpg/220px-Jay_Chou_2013.jpg",
+  "Teresa Teng":         "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Teresa_Teng.jpg/220px-Teresa_Teng.jpg",
+  "Faye Wong":           "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Faye_Wong.jpg/220px-Faye_Wong.jpg",
+  "A.R. Rahman":         "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/AR_Rahman_2010.jpg/220px-AR_Rahman_2010.jpg",
+  "Lata Mangeshkar":     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Lata_Mangeshkar.jpg/220px-Lata_Mangeshkar.jpg",
+  "Cesária Évora":       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Cesaria_evora_festivaldelhumour.jpg/220px-Cesaria_evora_festivaldelhumour.jpg",
+  "Youssou N'Dour":      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Youssou_N%27Dour_2012.jpg/220px-Youssou_N%27Dour_2012.jpg",
+  "Miriam Makeba":       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Miriam_Makeba2.jpg/220px-Miriam_Makeba2.jpg",
+  "Amy Lee":             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Amy_Lee_of_Evanescence.jpg/220px-Amy_Lee_of_Evanescence.jpg",
+  "Gwen Stefani":        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Gwen_Stefani_2014_%28cropped%29.jpg/220px-Gwen_Stefani_2014_%28cropped%29.jpg",
+  "Sia":                 "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Sia_2016.jpg/220px-Sia_2016.jpg",
+  "Lorde":               "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Lorde_2017.jpg/220px-Lorde_2017.jpg",
+  "Grimes":              "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grimes_2016.jpg/220px-Grimes_2016.jpg",
+  "Björk":               "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Bjork-IMG_1317_%28cropped%29.jpg/220px-Bjork-IMG_1317_%28cropped%29.jpg",
+  "Donna Summer":        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Donna_Summer_1978.jpg/220px-Donna_Summer_1978.jpg",
+  "Cyndi Lauper":        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Cyndi_Lauper_2016_%28cropped%29.jpg/220px-Cyndi_Lauper_2016_%28cropped%29.jpg",
+  "Gloria Gaynor":       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Gloria_Gaynor_2009.jpg/220px-Gloria_Gaynor_2009.jpg",
+  "Aretha Franklin":     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Aretha_Franklin_1968.jpg/220px-Aretha_Franklin_1968.jpg",
+  "Lauryn Hill":         "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Lauryn_Hill.jpg/220px-Lauryn_Hill.jpg",
+  "Janis Joplin":        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Janis_Joplin_1970_%28cropped%29.jpg/220px-Janis_Joplin_1970_%28cropped%29.jpg",
+  "Patti Smith":         "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Patti_Smith_1976.jpg/220px-Patti_Smith_1976.jpg",
+  // Artistas catalanes
+  "Oques Grasses":       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oques_Grasses_2019.jpg/220px-Oques_Grasses_2019.jpg",
+  "The Tyets":           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/The_Tyets_2021.jpg/220px-The_Tyets_2021.jpg",
+  "Rosalía":             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Rosal%C3%ADa_%282019%29.jpg/220px-Rosal%C3%ADa_%282019%29.jpg",
+  "Alejandro Sanz":      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alejandro_Sanz_2019.jpg/220px-Alejandro_Sanz_2019.jpg",
 };
 
 // Generar avatar con iniciales si no hay foto
@@ -528,29 +611,19 @@ function getInitialsAvatar(name) {
 // ── Spotify token (Client Credentials) ──────────────────────────────────
 // Rellena con tus credenciales de Spotify Developer
 // https://developer.spotify.com/dashboard
-const SPOTIFY_CLIENT_ID     = "";  // ← Tu Client ID aquí
-const SPOTIFY_CLIENT_SECRET = "";  // ← Tu Client Secret aquí
-let _spToken = null, _spExpiry = 0;
+const HF_IMG_CACHE = {};  // cache imágenes vía backend HF
 
-async function getSpotifyToken() {
-  if (_spToken && Date.now() < _spExpiry) return _spToken;
-  if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET) return null;
+// Fotos de artistas vía backend HF — los secrets de Spotify están en HF, NUNCA aquí
+async function getSpotifyImageFromBackend(name) {
+  if (HF_IMG_CACHE[name]) return HF_IMG_CACHE[name];
   try {
-    const r = await fetch("https://accounts.spotify.com/api/token", {
-      method: "POST",
-      headers: {
-        "Content-Type":  "application/x-www-form-urlencoded",
-        "Authorization": "Basic " + btoa(SPOTIFY_CLIENT_ID + ":" + SPOTIFY_CLIENT_SECRET),
-      },
-      body: "grant_type=client_credentials",
-      signal: AbortSignal.timeout(5000),
+    const base = HF_API_URL.replace("/analyze", "");
+    const r = await fetch(`${base}/artist-image?name=${encodeURIComponent(name)}`, {
+      signal: AbortSignal.timeout(3500)
     });
+    if (!r.ok) return null;
     const d = await r.json();
-    if (d.access_token) {
-      _spToken  = d.access_token;
-      _spExpiry = Date.now() + (d.expires_in - 30) * 1000;
-      return _spToken;
-    }
+    if (d.url) { HF_IMG_CACHE[name] = d.url; return d.url; }
   } catch(_) {}
   return null;
 }
@@ -564,21 +637,9 @@ async function getArtistImage(name) {
     return MONO_IMGS[name];
   }
 
-  // 2. Spotify API (si hay credenciales configuradas)
-  const spToken = await getSpotifyToken();
-  if (spToken) {
-    try {
-      const q = encodeURIComponent(name);
-      const r = await fetch(
-        `https://api.spotify.com/v1/search?q=${q}&type=artist&limit=1`,
-        { headers:{"Authorization":"Bearer "+spToken}, signal: AbortSignal.timeout(4000) }
-      );
-      const d = await r.json();
-      const img = d.artists?.items?.[0]?.images?.[1]?.url   // 300px
-               || d.artists?.items?.[0]?.images?.[0]?.url;  // original
-      if (img) { imgCache[name] = img; return img; }
-    } catch(_) {}
-  }
+  // 2. Foto vía backend HF (Spotify seguro — secrets en HF, no en frontend)
+  const backendImg = await getSpotifyImageFromBackend(name);
+  if (backendImg) { imgCache[name] = backendImg; return backendImg; }
 
   // 3. Deezer API pública (no requiere auth, permite CORS)
   try {
@@ -1174,22 +1235,59 @@ async function renderResults({feat,vt,conf,matches,gender}) {
 
   // ── Botones Home Studio + Ko-fi ─────────────────────────────────────
   const extraBtnsHTML = `
-    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;padding-top:.75rem;
-      border-top:1px solid rgba(255,255,255,.06)">
-      <a href="/home-studio" style="flex:1;min-width:140px;display:flex;align-items:center;
-        gap:.4rem;padding:.55rem .8rem;background:rgba(124,77,255,.1);
-        border:1px solid rgba(124,77,255,.25);border-radius:10px;text-decoration:none;
-        color:#A5B4FC;font-size:.8rem;font-weight:700;transition:opacity .2s"
-        onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
-        🎛️ Home Studio para tu voz
-      </a>
-      <a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener"
-        style="display:flex;align-items:center;gap:.4rem;padding:.55rem .8rem;
-        background:rgba(255,94,91,.1);border:1px solid rgba(255,94,91,.25);border-radius:10px;
-        text-decoration:none;color:#ff9896;font-size:.8rem;font-weight:700;transition:opacity .2s"
-        onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
-        ☕ Apoya Harmiq (Ko-fi)
-      </a>
+    <div style="margin-bottom:1rem;padding-top:.75rem;border-top:1px solid rgba(255,255,255,.06)">
+      <div style="font-size:.68rem;color:#6B7280;text-transform:uppercase;letter-spacing:.06em;
+        font-weight:700;margin-bottom:.5rem">🔗 Explorar más</div>
+      <div style="display:flex;gap:.45rem;flex-wrap:wrap">
+        <a href="/home-studio"
+          style="display:inline-flex;align-items:center;gap:.35rem;padding:.48rem .85rem;
+          background:rgba(124,77,255,.12);border:1px solid rgba(124,77,255,.28);border-radius:10px;
+          text-decoration:none;color:#A5B4FC;font-size:.78rem;font-weight:700;transition:all .2s"
+          onmouseover="this.style.background='rgba(124,77,255,.22)'"
+          onmouseout="this.style.background='rgba(124,77,255,.12)'">
+          🎛️ Home Studio
+        </a>
+        <a href="/karaoke-eventos"
+          style="display:inline-flex;align-items:center;gap:.35rem;padding:.48rem .85rem;
+          background:rgba(255,79,163,.1);border:1px solid rgba(255,79,163,.25);border-radius:10px;
+          text-decoration:none;color:#FF9FCC;font-size:.78rem;font-weight:700;transition:all .2s"
+          onmouseover="this.style.background='rgba(255,79,163,.2)'"
+          onmouseout="this.style.background='rgba(255,79,163,.1)'">
+          🎤 Buscar Karaoke
+        </a>
+        <a href="/tipos-de-voz"
+          style="display:inline-flex;align-items:center;gap:.35rem;padding:.48rem .85rem;
+          background:rgba(6,214,160,.1);border:1px solid rgba(6,214,160,.25);border-radius:10px;
+          text-decoration:none;color:#06D6A0;font-size:.78rem;font-weight:700;transition:all .2s"
+          onmouseover="this.style.background='rgba(6,214,160,.2)'"
+          onmouseout="this.style.background='rgba(6,214,160,.1)'">
+          📖 Tipos de Voz
+        </a>
+        <a href="/ejercicios-de-canto"
+          style="display:inline-flex;align-items:center;gap:.35rem;padding:.48rem .85rem;
+          background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.25);border-radius:10px;
+          text-decoration:none;color:#FFD166;font-size:.78rem;font-weight:700;transition:all .2s"
+          onmouseover="this.style.background='rgba(255,209,102,.2)'"
+          onmouseout="this.style.background='rgba(255,209,102,.1)'">
+          🎯 Ejercicios de Canto
+        </a>
+        <a href="/modul-catala"
+          style="display:inline-flex;align-items:center;gap:.35rem;padding:.48rem .85rem;
+          background:rgba(207,20,43,.1);border:1px solid rgba(207,20,43,.25);border-radius:10px;
+          text-decoration:none;color:#ff8a94;font-size:.78rem;font-weight:700;transition:all .2s"
+          onmouseover="this.style.background='rgba(207,20,43,.2)'"
+          onmouseout="this.style.background='rgba(207,20,43,.1)'">
+          🏴 Música en Català
+        </a>
+        <a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:.35rem;padding:.48rem .85rem;
+          background:rgba(255,94,91,.1);border:1px solid rgba(255,94,91,.25);border-radius:10px;
+          text-decoration:none;color:#ff9896;font-size:.78rem;font-weight:700;transition:all .2s"
+          onmouseover="this.style.background='rgba(255,94,91,.2)'"
+          onmouseout="this.style.background='rgba(255,94,91,.1)'">
+          ☕ Apoya Harmiq
+        </a>
+      </div>
     </div>`;
 
   // ── Canciones recomendadas de Spotify ────────────────────────────────
@@ -2381,6 +2479,18 @@ function handleRoute() {
     loadStaticPage("/karaoke-eventos.html", "🎤 Karaoke & Eventos | Harmiq");
     return true;
   }
+  if (path === "/modul-catala") {
+    loadStaticPage("/modul-catala.html", "🏴 Mòdul Català | Harmiq");
+    return true;
+  }
+  if (path === "/tipos-de-voz") {
+    loadStaticPage("/tipos-de-voz.html", "📖 Tipos de Voz | Harmiq");
+    return true;
+  }
+  if (path === "/ejercicios-de-canto") {
+    loadStaticPage("/ejercicios-de-canto.html", "🎯 Ejercicios de Canto | Harmiq");
+    return true;
+  }
 
   // Rutas SEO de texto → redirigen al inicio con ancla
   if (path === "/que-tipo-de-voz-tengo" || path === "/que-cantante-soy") {
@@ -2397,7 +2507,7 @@ document.addEventListener("click", e => {
   const a = e.target.closest("a[href]");
   if (!a) return;
   const href = a.getAttribute("href");
-  const spaRoutes = ["/home-studio", "/karaoke-eventos"];
+  const spaRoutes = ["/home-studio", "/karaoke-eventos", "/modul-catala", "/tipos-de-voz", "/ejercicios-de-canto"];
   if (href?.startsWith("/voz/") || spaRoutes.includes(href)) {
     e.preventDefault();
     history.pushState({}, "", href);
