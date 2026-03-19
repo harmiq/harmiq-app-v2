@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Buscar Karaoke cerca de mí — Bares, Eventos y Canciones | Harmiq</title>
+<meta name="description" content="Encuentra karaokes, bares con open mic y eventos de canto cerca de ti. Busca por ciudad y descubre dónde cantar esta noche.">
+<link rel="canonical" href="https://harmiq.app/karaoke-eventos">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Buscar Karaoke","description":"Encuentra karaokes y eventos de canto cerca de ti","url":"https://harmiq.app/karaoke-eventos"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.6;min-height:100vh}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.kr-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;
+  background:rgba(13,13,26,.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:.5rem}
+.logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900;
+  background:linear-gradient(135deg,#FF4FA3,#7C4DFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{background:rgba(124,77,255,.15);color:#A5B4FC;border:1px solid rgba(124,77,255,.3);
+  padding:.45rem 1.1rem;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s}
+.nav-back:hover{background:rgba(124,77,255,.25)}
+
+/* HERO */
+.kr-hero{text-align:center;padding:3rem 1.5rem 2rem;
+  background:linear-gradient(135deg,rgba(255,79,163,.12),rgba(124,77,255,.06));
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.kr-hero h1{font-family:'Baloo 2',cursive;font-size:clamp(2rem,5vw,3rem);font-weight:900;margin-bottom:.8rem}
+.grad{background:linear-gradient(135deg,#FF4FA3,#FFD166,#7C4DFF);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.kr-hero p{color:var(--m);max-width:550px;margin:0 auto;font-size:1rem}
+
+/* BUSCADOR PRINCIPAL */
+.search-box{max-width:680px;margin:2.5rem auto;padding:0 1.5rem}
+.search-wrap{background:var(--card);border-radius:24px;padding:2rem;
+  border:1px solid rgba(124,77,255,.3);box-shadow:0 0 40px rgba(124,77,255,.1)}
+.search-wrap h2{font-family:'Baloo 2',cursive;font-size:1.4rem;text-align:center;margin-bottom:1.5rem}
+
+.search-row{display:flex;gap:.8rem;flex-wrap:wrap}
+.search-input{flex:1;min-width:200px;background:#0f0c1f;border:1px solid rgba(124,77,255,.4);
+  color:var(--t);padding:.8rem 1.2rem;border-radius:14px;font-size:1rem;font-family:'Nunito',sans-serif;
+  outline:none;transition:border-color .2s}
+.search-input:focus{border-color:#7C4DFF}
+.search-input::placeholder{color:#4B5563}
+.btn-search{background:linear-gradient(135deg,#FF4FA3,#7C4DFF);color:#fff;border:none;
+  padding:.8rem 1.6rem;border-radius:14px;font-weight:800;font-size:1rem;cursor:pointer;
+  font-family:'Nunito',sans-serif;white-space:nowrap;transition:transform .15s,opacity .2s}
+.btn-search:hover{transform:scale(1.03)}
+.btn-search:active{transform:scale(.97)}
+
+/* CIUDADES RÁPIDAS */
+.quick-cities{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.city-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  color:var(--m);padding:.3rem .9rem;border-radius:20px;font-size:.8rem;cursor:pointer;transition:all .2s}
+.city-chip:hover{background:rgba(124,77,255,.15);border-color:rgba(124,77,255,.4);color:var(--t)}
+
+/* RESULTADOS */
+.kr-results{max-width:900px;margin:0 auto;padding:0 1.5rem 3rem;display:none}
+.kr-results.visible{display:block}
+.results-title{font-family:'Baloo 2',cursive;font-size:1.3rem;text-align:center;
+  margin-bottom:1.5rem;color:#A5B4FC}
+
+.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+
+.link-card{background:var(--card);border-radius:18px;padding:1.5rem;
+  border:1px solid rgba(255,255,255,.07);transition:transform .2s,border-color .2s;
+  display:flex;flex-direction:column;gap:.8rem}
+.link-card:hover{transform:translateY(-3px);border-color:rgba(124,77,255,.3)}
+
+.link-icon{font-size:2.2rem}
+.link-card h3{font-family:'Baloo 2',cursive;font-size:1.1rem}
+.link-card p{font-size:.85rem;color:var(--m);flex-grow:1}
+
+.btn-link{display:block;padding:.7rem 1rem;border-radius:12px;font-weight:700;
+  font-size:.88rem;text-align:center;color:#fff;transition:opacity .2s;margin-top:auto}
+.btn-link:hover{opacity:.9}
+.btn-link.google{background:linear-gradient(135deg,#4285F4,#34A853)}
+.btn-link.maps{background:linear-gradient(135deg,#EA4335,#FBBC05)}
+.btn-link.instagram{background:linear-gradient(135deg,#E1306C,#833AB4,#FD1D1D)}
+.btn-link.tiktok{background:linear-gradient(135deg,#010101,#FF0050)}
+.btn-link.eventbrite{background:linear-gradient(135deg,#F05537,#F9A26C)}
+.btn-link.youtube{background:linear-gradient(135deg,#FF0000,#CC0000)}
+
+/* TIPS SECTION */
+.kr-tips{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.tips-title{font-family:'Baloo 2',cursive;font-size:1.5rem;text-align:center;margin-bottom:1.5rem}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.tip-card{background:var(--card);border-radius:16px;padding:1.2rem;
+  border:1px solid rgba(255,255,255,.06)}
+.tip-icon{font-size:1.8rem;margin-bottom:.5rem;display:block}
+.tip-card h4{font-family:'Baloo 2',cursive;font-size:.95rem;margin-bottom:.3rem}
+.tip-card p{font-size:.82rem;color:var(--m)}
+
+/* SONGS SECTION */
+.kr-songs{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.songs-title{font-family:'Baloo 2',cursive;font-size:1.5rem;text-align:center;margin-bottom:.5rem}
+.songs-sub{text-align:center;color:var(--m);font-size:.9rem;margin-bottom:1.5rem}
+.voice-tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.vtab{padding:.4rem 1rem;border-radius:20px;font-size:.82rem;font-weight:700;cursor:pointer;
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--m);transition:all .2s}
+.vtab.active,.vtab:hover{background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;border-color:transparent}
+.song-list{display:none}
+.song-list.active{display:block}
+.song-item{background:var(--card);border-radius:12px;padding:.8rem 1.2rem;margin-bottom:.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  border:1px solid rgba(255,255,255,.06);transition:border-color .2s}
+.song-item:hover{border-color:rgba(124,77,255,.3)}
+.song-info h4{font-size:.9rem;font-weight:700;margin-bottom:.1rem}
+.song-info p{font-size:.78rem;color:var(--m)}
+.diff-badge{padding:.2rem .7rem;border-radius:20px;font-size:.7rem;font-weight:700;
+  border:1px solid;white-space:nowrap}
+.diff-easy{color:#06D6A0;border-color:#06D6A0;background:rgba(6,214,160,.1)}
+.diff-medium{color:#FFD166;border-color:#FFD166;background:rgba(255,209,102,.1)}
+.diff-hard{color:#FF4FA3;border-color:#FF4FA3;background:rgba(255,79,163,.1)}
+
+/* CTA */
+.kr-cta{text-align:center;padding:3rem 1.5rem;
+  background:linear-gradient(135deg,rgba(124,77,255,.1),rgba(255,79,163,.06));
+  border-top:1px solid rgba(255,255,255,.06)}
+.kr-cta h2{font-family:'Baloo 2',cursive;font-size:1.8rem;margin-bottom:.8rem}
+.kr-cta p{color:var(--m);margin-bottom:1.5rem}
+.btn-cta{display:inline-block;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);
+  color:#fff;padding:.9rem 2.2rem;border-radius:50px;font-weight:800;font-size:1rem;
+  box-shadow:0 4px 20px rgba(124,77,255,.35);transition:transform .2s}
+.btn-cta:hover{transform:translateY(-3px)}
+
+footer{text-align:center;padding:1.5rem;color:var(--m);font-size:.78rem;
+  border-top:1px solid rgba(255,255,255,.06)}
+footer a{color:var(--m)}
+
+@media(max-width:600px){
+  .kr-nav{padding:.8rem 1rem}
+  .search-row{flex-direction:column}
+  .btn-search{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="kr-nav">
+  <a class="logo" href="/">🎙️ Harmiq</a>
+  <button class="nav-back" onclick="history.back()">← Volver</button>
+</nav>
+
+<!-- HERO -->
+<div class="kr-hero">
+  <h1>Encuentra <span class="grad">Karaoke</span> cerca de ti</h1>
+  <p>Bares con karaoke, open mics, concursos de canto y eventos musicales. Busca por ciudad y canta esta noche.</p>
+</div>
+
+<!-- BUSCADOR -->
+<div class="search-box">
+  <div class="search-wrap">
+    <h2>🔍 ¿Dónde quieres cantar?</h2>
+    <div class="search-row">
+      <input type="text" id="kr-city-input" class="search-input"
+        placeholder="Escribe tu ciudad... (ej: Barcelona, Madrid, Valencia)"
+        onkeydown="if(event.key==='Enter') searchKaraoke()">
+      <button class="btn-search" onclick="searchKaraoke()">🎤 Buscar</button>
+    </div>
+    <div class="quick-cities">
+      <span class="city-chip" onclick="quickSearch('Barcelona')">🏖️ Barcelona</span>
+      <span class="city-chip" onclick="quickSearch('Madrid')">🏙️ Madrid</span>
+      <span class="city-chip" onclick="quickSearch('Valencia')">🌊 Valencia</span>
+      <span class="city-chip" onclick="quickSearch('Sevilla')">💃 Sevilla</span>
+      <span class="city-chip" onclick="quickSearch('Bilbao')">🎭 Bilbao</span>
+      <span class="city-chip" onclick="quickSearch('Zaragoza')">🦁 Zaragoza</span>
+      <span class="city-chip" onclick="quickSearch('Málaga')">☀️ Málaga</span>
+      <span class="city-chip" onclick="quickSearch('Granada')">🏔️ Granada</span>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTADOS (ocultos hasta buscar) -->
+<div class="kr-results" id="kr-results">
+  <div class="results-title" id="results-title">Resultados para tu búsqueda</div>
+  <div class="links-grid">
+
+    <div class="link-card">
+      <div class="link-icon">🗺️</div>
+      <h3>Bares con Karaoke</h3>
+      <p>Locales con karaoke en directo cerca de tu ciudad. Consulta horarios y noches especiales.</p>
+      <a id="link-maps-bars" href="#" target="_blank" class="btn-link maps">📍 Ver en Google Maps</a>
+    </div>
+
+    <div class="link-card">
+      <div class="link-icon">🎙️</div>
+      <h3>Open Mic & Jam Sessions</h3>
+      <p>Noches abiertas donde cualquiera puede subir al escenario. Perfectas para practicar en directo.</p>
+      <a id="link-maps-mic" href="#" target="_blank" class="btn-link google">🔍 Buscar en Google</a>
+    </div>
+
+    <div class="link-card">
+      <div class="link-icon">🏆</div>
+      <h3>Concursos de Canto</h3>
+      <p>Competiciones y certámenes de canto en tu zona. Demuestra de lo que eres capaz.</p>
+      <a id="link-eventbrite" href="#" target="_blank" class="btn-link eventbrite">🎫 Ver en Eventbrite</a>
+    </div>
+
+    <div class="link-card">
+      <div class="link-icon">📸</div>
+      <h3>Karaoke en Instagram</h3>
+      <p>Descubre los mejores karaokes locales a través de sus fotos y reseñas en Instagram.</p>
+      <a id="link-instagram" href="#" target="_blank" class="btn-link instagram">📸 Ver en Instagram</a>
+    </div>
+
+    <div class="link-card">
+      <div class="link-icon">🎵</div>
+      <h3>Karaoke en TikTok</h3>
+      <p>Vídeos de karaoke en tu ciudad. Encuentra el ambiente y el local que más te gusta antes de ir.</p>
+      <a id="link-tiktok" href="#" target="_blank" class="btn-link tiktok">🎵 Ver en TikTok</a>
+    </div>
+
+    <div class="link-card">
+      <div class="link-icon">🎬</div>
+      <h3>Pistas de Karaoke YouTube</h3>
+      <p>Las mejores pistas instrumentales para practicar en casa antes de salir a cantar.</p>
+      <a id="link-youtube" href="#" target="_blank" class="btn-link youtube">▶️ Pistas en YouTube</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="kr-tips">
+  <div class="tips-title">💡 Consejos para brillar en el karaoke</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <span class="tip-icon">🎯</span>
+      <h4>Elige bien tu canción</h4>
+      <p>No elijas la canción más difícil. Elige una que controles al 100% — el público responde mejor a la seguridad que a la técnica.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🌡️</span>
+      <h4>Calienta la voz</h4>
+      <p>5 minutos de escalas vocales antes de entrar. Una voz caliente suena el doble de bien que una voz fría.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🎤</span>
+      <h4>Domina el micrófono</h4>
+      <p>Aléjalo en los agudos, acércalo en los graves. El micrófono de karaoke te ayuda — no luches contra él.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">💃</span>
+      <h4>El escenario importa</h4>
+      <p>Muévete, conecta con el público, sonríe. El karaoke es 50% voz y 50% actitud.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">💧</span>
+      <h4>Hidratación</h4>
+      <p>Bebe agua (no alcohol) antes de cantar. El alcohol reseca las cuerdas vocales y baja el rendimiento.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🎵</span>
+      <h4>Practica en casa primero</h4>
+      <p>Usa Harmiq para analizar tu voz y descubrir qué canciones van mejor con tu tipo de voz. Llega preparado.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CANCIONES POR TIPO DE VOZ -->
+<div class="kr-songs">
+  <div class="songs-title">🎵 Canciones de karaoke por tipo de voz</div>
+  <div class="songs-sub">Las más cantadas y aplaudidas en bares de karaoke de todo el mundo</div>
+
+  <div class="voice-tabs">
+    <div class="vtab active" onclick="showSongs('baritone',this)">🎭 Barítono</div>
+    <div class="vtab" onclick="showSongs('tenor',this)">🎤 Tenor</div>
+    <div class="vtab" onclick="showSongs('soprano',this)">✨ Soprano</div>
+    <div class="vtab" onclick="showSongs('mezzo',this)">🎶 Mezzo</div>
+  </div>
+
+  <!-- BARÍTONO -->
+  <div class="song-list active" id="songs-baritone">
+    <div class="song-item">
+      <div class="song-info"><h4>My Way</h4><p>Frank Sinatra · Jazz / Swing</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Angels</h4><p>Robbie Williams · Pop</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Sweet Home Chicago</h4><p>Blues Brothers · Blues</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Suspicious Minds</h4><p>Elvis Presley · Rock</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Piano Man</h4><p>Billy Joel · Rock</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Careless Whisper</h4><p>George Michael · Pop</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Corazón Partío</h4><p>Alejandro Sanz · Pop Latino</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Smells Like Teen Spirit</h4><p>Nirvana · Grunge</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+  </div>
+
+  <!-- TENOR -->
+  <div class="song-list" id="songs-tenor">
+    <div class="song-item">
+      <div class="song-info"><h4>Don't Stop Believin'</h4><p>Journey · Rock</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Livin' on a Prayer</h4><p>Bon Jovi · Rock</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Don't Stop Me Now</h4><p>Queen · Rock</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Hey Jude</h4><p>The Beatles · Pop</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Yellow</h4><p>Coldplay · Indie</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Mr. Brightside</h4><p>The Killers · Indie Rock</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Shape of You</h4><p>Ed Sheeran · Pop</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Bohemian Rhapsody</h4><p>Queen · Rock</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+  </div>
+
+  <!-- SOPRANO -->
+  <div class="song-list" id="songs-soprano">
+    <div class="song-item">
+      <div class="song-info"><h4>I Will Always Love You</h4><p>Whitney Houston · Pop</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>My Heart Will Go On</h4><p>Celine Dion · Pop</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Total Eclipse of the Heart</h4><p>Bonnie Tyler · Rock</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Thank U, Next</h4><p>Ariana Grande · Pop</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Defying Gravity</h4><p>Wicked Musical · Musical</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>True Colors</h4><p>Cyndi Lauper · Pop</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Malamente</h4><p>Rosalía · Flamenco Pop</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Let It Go</h4><p>Idina Menzel · Musical</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+  </div>
+
+  <!-- MEZZO -->
+  <div class="song-list" id="songs-mezzo">
+    <div class="song-item">
+      <div class="song-info"><h4>Rolling in the Deep</h4><p>Adele · Soul Pop</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Rehab</h4><p>Amy Winehouse · Soul</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Someone Like You</h4><p>Adele · Pop</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Killing Me Softly</h4><p>Lauryn Hill · Soul</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Chandelier</h4><p>Sia · Pop</p></div>
+      <span class="diff-badge diff-hard">Difícil</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>La Solitudine</h4><p>Laura Pausini · Pop Italiano</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Con Altura</h4><p>Rosalía · Urban</p></div>
+      <span class="diff-badge diff-medium">Media</span>
+    </div>
+    <div class="song-item">
+      <div class="song-info"><h4>Don't You Want Me</h4><p>Human League · Synth Pop</p></div>
+      <span class="diff-badge diff-easy">Fácil</span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="kr-cta">
+  <h2>¿Sabes qué tipo de voz tienes?</h2>
+  <p>Analiza tu voz con IA en 10 segundos para saber qué canciones de karaoke van mejor contigo.</p>
+  <a class="btn-cta" href="/#app">🎤 Analizar mi voz gratis</a>
+</div>
+
+<footer>
+  <p>Harmiq · Análisis vocal con IA · <a href="/">harmiq.app</a> · <a href="mailto:hola@harmiq.app">hola@harmiq.app</a></p>
+</footer>
+
+<script>
+function searchKaraoke() {
+  const city = document.getElementById('kr-city-input').value.trim();
+  if (!city) {
+    document.getElementById('kr-city-input').focus();
+    return;
+  }
+  const enc = encodeURIComponent(city);
+  const encKar = encodeURIComponent('karaoke ' + city);
+
+  document.getElementById('results-title').textContent = '🎤 Resultados para ' + city;
+  document.getElementById('link-maps-bars').href     = 'https://www.google.com/maps/search/karaoke+bar+' + enc;
+  document.getElementById('link-maps-mic').href      = 'https://www.google.com/search?q=open+mic+jam+session+' + enc;
+  document.getElementById('link-eventbrite').href    = 'https://www.eventbrite.es/d/' + enc + '/concurso-canto/';
+  document.getElementById('link-instagram').href     = 'https://www.instagram.com/explore/tags/karaoke' + enc.replace(/\s/g,'');
+  document.getElementById('link-tiktok').href        = 'https://www.tiktok.com/search?q=' + encKar;
+  document.getElementById('link-youtube').href       = 'https://www.youtube.com/results?search_query=karaoke+pista+' + enc;
+
+  const res = document.getElementById('kr-results');
+  res.classList.add('visible');
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function quickSearch(city) {
+  document.getElementById('kr-city-input').value = city;
+  searchKaraoke();
+}
+
+function showSongs(type, el) {
+  document.querySelectorAll('.song-list').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.vtab').forEach(t => t.classList.remove('active'));
+  document.getElementById('songs-' + type)?.classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

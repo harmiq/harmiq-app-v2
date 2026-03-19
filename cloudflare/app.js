@@ -2303,6 +2303,35 @@ function renderVozPage(slug) {
   return true;
 }
 
+// ── Cargador de páginas estáticas SPA ────────────────────────────────────────
+async function loadStaticPage(url, title) {
+  try {
+    document.title = title || "Harmiq";
+    const main = document.querySelector("main") || document.body;
+    main.innerHTML = `<div style="text-align:center;padding:4rem;color:#A5B4FC;">
+      <div style="font-size:2rem;margin-bottom:1rem">⏳</div>
+      <div>Cargando...</div>
+    </div>`;
+    const r = await fetch(url);
+    if (!r.ok) throw new Error("404");
+    const html = await r.text();
+    // Extraer solo el body
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const bodyContent = doc.body.innerHTML;
+    main.innerHTML = bodyContent;
+    // Re-ejecutar scripts inline
+    main.querySelectorAll("script").forEach(old => {
+      const s = document.createElement("script");
+      s.textContent = old.textContent;
+      old.replaceWith(s);
+    });
+  } catch(e) {
+    // Si falla la carga dinámica, navegar normalmente
+    location.href = url;
+  }
+}
+
 // ── Router SPA ─────────────────────────────────────────────────────────────────
 function handleRoute() {
   const path = location.pathname;
@@ -2321,8 +2350,17 @@ function handleRoute() {
     return true;
   }
 
-  // Ruta home studio → dejar pasar (es un archivo HTML estático)
-  if (path === "/home-studio") return false;
+  // Ruta home studio → cargar dinámicamente sin recargar
+  if (path === "/home-studio") {
+    loadStaticPage("/home-studio.html", "🎛️ Home Studio | Harmiq");
+    return true;
+  }
+
+  // Ruta karaoke-eventos → cargar dinámicamente sin recargar
+  if (path === "/karaoke-eventos") {
+    loadStaticPage("/karaoke-eventos.html", "🎤 Karaoke & Eventos | Harmiq");
+    return true;
+  }
 
   // Rutas SEO de texto → redirigen al inicio con ancla
   if (path === "/que-tipo-de-voz-tengo" || path === "/que-cantante-soy") {
@@ -2334,12 +2372,13 @@ function handleRoute() {
   return false;
 }
 
-// Interceptar clicks en links /voz/*
+// Interceptar clicks en links SPA (/voz/*, /home-studio, /karaoke-eventos)
 document.addEventListener("click", e => {
   const a = e.target.closest("a[href]");
   if (!a) return;
   const href = a.getAttribute("href");
-  if (href?.startsWith("/voz/")) {
+  const spaRoutes = ["/home-studio", "/karaoke-eventos"];
+  if (href?.startsWith("/voz/") || spaRoutes.includes(href)) {
     e.preventDefault();
     history.pushState({}, "", href);
     handleRoute();
