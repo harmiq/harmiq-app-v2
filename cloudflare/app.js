@@ -1,6 +1,6 @@
 /**
- * app.js — Harmiq PRODUCCIÓN v6
- * SEGURIDAD + LEGAL: HF_API_URL, GDPR banner, aviso audio
+ * app.js — Harmiq PRODUCCIÓN v7
+ * FIX: botones género visual, auto-selección, HF_API_URL, GDPR
  * Un solo archivo. No requiere analyzer.js.
  *
  * FIXES v5:
@@ -24,9 +24,7 @@
 const AMAZON_DOMAINS = { ES:"es",US:"com",MX:"com.mx",UK:"co.uk",DE:"de",FR:"fr",IT:"it",CA:"ca",BR:"com.br",JP:"co.jp" };
 const AFFILIATE_ID   = "harmiqapp-20";
 const DB_PATH        = "/harmiq_db_vectores.json";
-
-// Backend HuggingFace — secrets de Spotify en variables de entorno HF, NUNCA aquí
-const HF_API_URL = "https://hamiq-harmiq-backend1.hf.space/analyze";
+const HF_API_URL     = "https://hamiq-harmiq-backend1.hf.space/analyze";
 
 // Plataformas musicales por país (geolocalización)
 const MUSIC_PLATFORM = {
@@ -615,8 +613,10 @@ function getInitialsAvatar(name) {
   return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="120" height="120" rx="60" fill="${color}"/><text x="60" y="75" font-family="Arial" font-weight="bold" font-size="42" fill="white" text-anchor="middle">${initials}</text></svg>`)}`;
 }
 
-// Cache de imágenes vía backend HF (Spotify seguro — secrets en HF env vars)
-const HF_IMG_CACHE = {};
+// ── Spotify token (Client Credentials) ──────────────────────────────────
+// Rellena con tus credenciales de Spotify Developer
+// https://developer.spotify.com/dashboard
+const HF_IMG_CACHE = {};  // cache imágenes vía backend HF
 
 // Fotos de artistas vía backend HF — los secrets de Spotify están en HF, NUNCA aquí
 async function getSpotifyImageFromBackend(name) {
@@ -702,12 +702,38 @@ function injectUI() {
   specWrap.style.cssText = "display:none;margin:.8rem 0;";
   specWrap.innerHTML = `<canvas id="_spec_canvas" style="width:100%;height:72px;border-radius:12px;background:rgba(255,255,255,.04);display:block;"></canvas>`;
 
+  // ── Botones género visuales ───────────────────────────────────────────
+  const genderBtns = document.createElement("div");
+  genderBtns.style.cssText = "display:flex;gap:.6rem;margin-bottom:1.2rem;";
+  genderBtns.innerHTML = `
+    <button onclick="_setGender('male',this)" style="flex:1;padding:.65rem;border-radius:12px;
+      border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#9CA3AF;
+      font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s"
+      id="_gbtn_male">
+      🎭 Hombre
+    </button>
+    <button onclick="_setGender('female',this)" style="flex:1;padding:.65rem;border-radius:12px;
+      border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#9CA3AF;
+      font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s"
+      id="_gbtn_female">
+      ✨ Mujer
+    </button>
+    <button onclick="_setGender('auto',this)" style="flex:1;padding:.65rem;border-radius:12px;
+      border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#9CA3AF;
+      font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s"
+      id="_gbtn_auto">
+      🎤 Auto
+    </button>`;
+
   // ── Insertar en el DOM ─────────────────────────────────────────────────
   const genderRow = document.querySelector("[id='user-gender']")?.closest("div");
   const recRow    = document.getElementById("record-btn")?.closest("div");
   if (genderRow && recRow) {
-    genderRow.parentNode.insertBefore(tipDiv,    genderRow);
-    genderRow.parentNode.insertBefore(uploadWrap, recRow);
+    // Ocultar el select original (lo mantenemos para compatibilidad)
+    if (genderRow) genderRow.style.display = "none";
+    genderRow.parentNode.insertBefore(tipDiv,      genderRow);
+    genderRow.parentNode.insertBefore(genderBtns,  genderRow);
+    genderRow.parentNode.insertBefore(uploadWrap,  recRow);
     recRow.parentNode.insertBefore(specWrap, recRow.nextSibling);
   }
 
@@ -726,6 +752,21 @@ function injectUI() {
 
   // ── Filtro de épocas (se añade después del resultado) ─────────────────
   // Se inyecta en renderResults()
+}
+
+function _setGender(val, btn) {
+  // Actualizar select oculto
+  const sel = document.getElementById("user-gender");
+  if (sel) sel.value = val;
+  // Actualizar botones visuales
+  ["male","female","auto"].forEach(v => {
+    const b = document.getElementById(`_gbtn_${v}`);
+    if (!b) return;
+    const active = v === val;
+    b.style.borderColor   = active ? "#7C4DFF" : "rgba(255,255,255,.12)";
+    b.style.background    = active ? "rgba(124,77,255,.2)" : "rgba(255,255,255,.04)";
+    b.style.color         = active ? "#A5B4FC" : "#9CA3AF";
+  });
 }
 
 function setFile(f) {
@@ -798,14 +839,12 @@ function stopSpectrum() {
 async function toggleRecording() {
   const btn  = document.getElementById("record-btn");
   const txt  = document.getElementById("btn-record-text");
-  const gender = document.getElementById("user-gender")?.value;
-  if (!gender) { showStatus(tr("_err_gender"), "err"); return; }
-
-  // Aviso privacidad audio — primera vez por sesión
-  if (!sessionStorage.getItem("harmiq_audio_ok") && !isRec) {
-    sessionStorage.setItem("harmiq_audio_ok", "1");
-    showStatus("🔒 Tu audio se analiza localmente y NO se almacena en ningún servidor.");
-    await new Promise(r => setTimeout(r, 2000));
+  let gender = document.getElementById("user-gender")?.value;
+  if (!gender) {
+    gender = "auto";
+    const sel = document.getElementById("user-gender");
+    if (sel) sel.value = "auto";
+    _setGender("auto", document.getElementById("_gbtn_auto"));
   }
 
   if (!isRec) {
@@ -2574,38 +2613,21 @@ async function loadDB() {
   }
 }
 
-
-// ── Cookie banner GDPR/RGPD ──────────────────────────────────────────────────
-function showCookieBanner() {
-  if (localStorage.getItem("harmiq_consent") === "1") return;
-  if (document.getElementById("_cookie_banner")) return;
-  const b = document.createElement("div");
-  b.id = "_cookie_banner";
-  b.style.cssText = "position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#0f0c1f;border-top:1px solid rgba(124,77,255,.4);padding:.9rem 1.5rem;display:flex;align-items:center;flex-wrap:wrap;gap:.75rem;justify-content:space-between;box-shadow:0 -4px 20px rgba(0,0,0,.5);font-family:'Nunito',sans-serif;";
-  b.innerHTML = `
-    <p style="flex:1;min-width:240px;font-size:.78rem;color:#D1D5DB;margin:0;line-height:1.5">
-      🍪 Usamos <em>localStorage</em> solo para guardar tu idioma y último resultado vocal.
-      Tu audio <strong style="color:#06D6A0">no se almacena</strong> nunca.
-      IP procesada por <a href="https://ipapi.co/privacy" target="_blank" style="color:#A5B4FC">ipapi.co</a>
-      para detectar tu país.
-      <a href="/politica-privacidad" style="color:#A5B4FC;text-decoration:underline">Política de privacidad</a>
-    </p>
-    <button id="_cookie_accept" style="background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;border:none;padding:.5rem 1.1rem;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer;white-space:nowrap;font-family:'Nunito',sans-serif">
-      ✓ Entendido
-    </button>`;
-  document.body.appendChild(b);
-  document.getElementById("_cookie_accept").addEventListener("click", () => {
-    localStorage.setItem("harmiq_consent", "1");
-    b.style.transition = "opacity .3s"; b.style.opacity = "0";
-    setTimeout(() => b.remove(), 300);
-  });
-}
-
 // ═══════════════════════════════════════════════════════════════════════════════
 // 14. INIT
 // ═══════════════════════════════════════════════════════════════════════════════
+
+function showCookieBanner() {
+  if (localStorage.getItem("harmiq_consent")==="1") return;
+  if (document.getElementById("_cookie_banner")) return;
+  const b=document.createElement("div");b.id="_cookie_banner";
+  b.style.cssText="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#0f0c1f;border-top:1px solid rgba(124,77,255,.4);padding:.8rem 1.4rem;display:flex;align-items:center;flex-wrap:wrap;gap:.6rem;justify-content:space-between;font-family:'Nunito',sans-serif;";
+  b.innerHTML=`<p style="flex:1;min-width:220px;font-size:.76rem;color:#D1D5DB;margin:0">🍪 Usamos localStorage solo para tus preferencias. Tu audio <strong style="color:#06D6A0">no se almacena</strong>. <a href="/politica-privacidad" style="color:#A5B4FC">Privacidad</a></p><button id="_ca" style="background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;border:none;padding:.45rem 1rem;border-radius:8px;font-weight:700;font-size:.78rem;cursor:pointer;font-family:'Nunito',sans-serif">✓ Entendido</button>`;
+  document.body.appendChild(b);
+  document.getElementById("_ca").onclick=()=>{localStorage.setItem("harmiq_consent","1");b.style.opacity="0";setTimeout(()=>b.remove(),300);};
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
-  // Banner cookies GDPR
   showCookieBanner();
 
   // Idioma
@@ -2631,8 +2653,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   const btn = document.getElementById("record-btn");
   if (btn) {
     btn.onclick = async () => {
-      const gender = document.getElementById("user-gender")?.value;
-      if (!gender) { showStatus(tr("_err_gender"),"err"); return; }
+      // Si no eligió género, auto-seleccionar "auto" silenciosamente
+      const sel = document.getElementById("user-gender");
+      if (sel && !sel.value) {
+        sel.value = "auto";
+        _setGender("auto", document.getElementById("_gbtn_auto"));
+      }
       if (!isRec && audioBlob) {
         await analyzeAudio();
       } else {
