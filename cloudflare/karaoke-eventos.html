@@ -144,7 +144,7 @@ footer a{color:var(--m)}
 <!-- NAV -->
 <nav class="kr-nav">
   <a class="logo" href="/">🎙️ Harmiq</a>
-  <button class="nav-back" onclick="history.back()">← Volver</button>
+  <button class="nav-back" onclick="location.href='/'">← Volver</button>
 </nav>
 
 <!-- HERO -->
@@ -428,43 +428,7 @@ footer a{color:var(--m)}
 </div>
 
 <footer>
-  <p>Harmiq · Análisis vocal con IA · <a href="/">harmiq.app</a> · <a href="mailto:hola@harmiq.app">hola@harmiq.app</a></p>
+  <p>Harmiq · Análisis vocal con IA · hola@harmiq.app
 </footer>
-
-<script>
-function searchKaraoke() {
-  const city = document.getElementById('kr-city-input').value.trim();
-  if (!city) {
-    document.getElementById('kr-city-input').focus();
-    return;
-  }
-  const enc = encodeURIComponent(city);
-  const encKar = encodeURIComponent('karaoke ' + city);
-
-  document.getElementById('results-title').textContent = '🎤 Resultados para ' + city;
-  document.getElementById('link-maps-bars').href     = 'https://www.google.com/maps/search/karaoke+bar+' + enc;
-  document.getElementById('link-maps-mic').href      = 'https://www.google.com/search?q=open+mic+jam+session+' + enc;
-  document.getElementById('link-eventbrite').href    = 'https://www.eventbrite.es/d/' + enc + '/concurso-canto/';
-  document.getElementById('link-instagram').href     = 'https://www.instagram.com/explore/tags/karaoke' + enc.replace(/\s/g,'');
-  document.getElementById('link-tiktok').href        = 'https://www.tiktok.com/search?q=' + encKar;
-  document.getElementById('link-youtube').href       = 'https://www.youtube.com/results?search_query=karaoke+pista+' + enc;
-
-  const res = document.getElementById('kr-results');
-  res.classList.add('visible');
-  res.scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function quickSearch(city) {
-  document.getElementById('kr-city-input').value = city;
-  searchKaraoke();
-}
-
-function showSongs(type, el) {
-  document.querySelectorAll('.song-list').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.vtab').forEach(t => t.classList.remove('active'));
-  document.getElementById('songs-' + type)?.classList.add('active');
-  el.classList.add('active');
-}
-</script>
 </body>
 </html>

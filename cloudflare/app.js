@@ -1037,14 +1037,17 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
   if(filters.country_code)   pool=pool.filter(s=>s.country_code===filters.country_code);
 
   // Si pool muy pequeño tras filtros, relajar solo era/género pero mantener gender
-  if(pool.length<3 && (filters.era||filters.genre_category||filters.country_code)) {
-    pool = gender ? singersDb.filter(s=>s.gender===gender) : singersDb;
+  // Si pool muy pequeño, relajar filtros pero mantener género
+  if(pool.length<3) {
+    var poolG = gender ? singersDb.filter(s=>s.gender===gender) : singersDb;
     if(filters.country_code) {
-      const cp = pool.filter(s=>s.country_code===filters.country_code);
-      if(cp.length>=3) pool=cp;
+      var poolC = poolG.filter(s=>s.country_code===filters.country_code);
+      pool = poolC.length>=3 ? poolC : poolG;
+    } else {
+      pool = poolG;
     }
   }
-  if(pool.length<3) pool=singersDb;
+  if(pool.length<2) pool=singersDb;
 
   // Score base de popularidad por país del usuario
   const countryBonus = (s) => s.country_code === userCountry ? 1.03 : 1.0;
