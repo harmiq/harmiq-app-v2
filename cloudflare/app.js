@@ -2464,11 +2464,11 @@ function renderVozPage(slug) {
 }
 
 // ── Cargador de páginas SPA con preservación de resultado ─────────────────────
-async function loadStaticPage(url, title) {
-  // Guardar resultado actual en sessionStorage antes de navegar
+function loadStaticPage(url, title) {
+  // Guardar resultado en sessionStorage para restaurarlo al volver
   if (lastResult?.matches?.length) {
     try {
-      const toSave = {
+      sessionStorage.setItem("harmiq_result", JSON.stringify({
         vt: lastResult.vt, conf: lastResult.conf, gender: lastResult.gender,
         feat: lastResult.feat,
         matches: lastResult.matches.map(m => ({
@@ -2476,34 +2476,11 @@ async function loadStaticPage(url, title) {
           genre_category:m.genre_category, country_code:m.country_code,
           era:m.era, score:m.score, reference_songs:m.reference_songs?.slice(0,3)||[]
         }))
-      };
-      sessionStorage.setItem("harmiq_result", JSON.stringify(toSave));
+      }));
     } catch(_) {}
   }
-  try {
-    document.title = title || "Harmiq";
-    // Mostrar spinner
-    const wrap = document.getElementById("app") || document.querySelector(".app-box")?.closest("section");
-    if (wrap) wrap.innerHTML = `<div style="text-align:center;padding:4rem;color:#A5B4FC">
-      <div style="font-size:2.5rem;margin-bottom:1rem">⏳</div><div>Cargando...</div></div>`;
-    const r = await fetch(url);
-    if (!r.ok) { location.href = url; return; }
-    const html = await r.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-    // Reemplazar body manteniendo scripts de app.js
-    document.body.innerHTML = doc.body.innerHTML;
-    document.title = doc.title || title;
-    // Re-ejecutar scripts inline del nuevo HTML
-    document.body.querySelectorAll("script:not([src])").forEach(old => {
-      const s = document.createElement("script");
-      s.textContent = old.textContent;
-      old.replaceWith(s);
-    });
-    window.scrollTo(0,0);
-  } catch(e) {
-    location.href = url;
-  }
+  // Navegar directamente — cada página tiene su propio CSS completo
+  location.href = url;
 }
 
 // ── Router SPA ─────────────────────────────────────────────────────────────────
@@ -2545,6 +2522,10 @@ function handleRoute() {
     loadStaticPage("/ejercicios-de-canto.html", "🎯 Ejercicios de Canto | Harmiq");
     return true;
   }
+  if (path === "/exitos-decada") {
+    loadStaticPage("/exitos-decada.html", "🎵 Éxitos por Década | Harmiq");
+    return true;
+  }
 
   // Rutas SEO de texto → redirigen al inicio con ancla
   if (path === "/que-tipo-de-voz-tengo" || path === "/que-cantante-soy") {
@@ -2561,7 +2542,7 @@ document.addEventListener("click", e => {
   const a = e.target.closest("a[href]");
   if (!a) return;
   const href = a.getAttribute("href");
-  const spaRoutes = ["/home-studio", "/karaoke-eventos", "/modul-catala", "/tipos-de-voz", "/ejercicios-de-canto"];
+  const spaRoutes = ["/home-studio", "/karaoke-eventos", "/modul-catala", "/tipos-de-voz", "/ejercicios-de-canto", "/exitos-decada"];
   if (href?.startsWith("/voz/") || spaRoutes.includes(href)) {
     e.preventDefault();
     history.pushState({}, "", href);

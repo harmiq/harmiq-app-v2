@@ -37,16 +37,23 @@
 <nav>
   <a class="logo" href="/">🎙️ Harmiq</a>
   <ul class="nav-links">
-    <li><a href="/voz/baritono">Barítono</a></li>
-    <li><a href="/voz/tenor">Tenor</a></li>
-    <li><a href="/voz/soprano">Soprano</a></li>
-    <li><a href="/que-tipo-de-voz-tengo">Test vocal</a></li>
-    <li><a href="/que-cantante-soy">¿Qué cantante soy?</a></li>
-    <li><a href="/home-studio">🎛️ Home Studio</a></li>
+    <li style="position:relative" onmouseenter="this.querySelector('.vdrop').style.display='block'" onmouseleave="this.querySelector('.vdrop').style.display='none'">
+      <a href="/tipos-de-voz" style="display:flex;align-items:center;gap:.3rem">🎤 Voces ▾</a>
+      <div class="vdrop" style="display:none;position:absolute;top:100%;left:0;background:#130F2A;border:1px solid rgba(124,77,255,.3);border-radius:10px;padding:.4rem 0;min-width:140px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+        <a href="/voz/baritono" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🎭 Barítono</a>
+        <a href="/voz/tenor" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🎤 Tenor</a>
+        <a href="/voz/soprano" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">✨ Soprano</a>
+        <a href="/voz/mezzo-soprano" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🎶 Mezzo</a>
+        <a href="/voz/contralto" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🌿 Contralto</a>
+        <a href="/voz/bajo" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🎸 Bajo</a>
+        <a href="/tipos-de-voz" style="display:block;padding:.4rem 1rem;color:#A5B4FC;font-size:.82rem;border-top:1px solid rgba(255,255,255,.06);margin-top:.3rem">📖 Guía completa</a>
+      </div>
+    </li>
+    <li><a href="/exitos-decada">🎵 Éxitos</a></li>
+    <li><a href="/home-studio">🎛️ Studio</a></li>
     <li><a href="/karaoke-eventos">🎤 Karaoke</a></li>
-    <li><a href="/modul-catala" style="color:#ff8a94">🏴 Català</a></li>
-  </ul>
-  <div style="display:flex;align-items:center;gap:.8rem">
+    <li><a href="/modul-catala" style="color:#ff8a94;font-weight:800">🏴 Català</a></li>
+  </ul>  <div style="display:flex;align-items:center;gap:.8rem">
     <select id="lang-select" onchange="changeLang(this.value)" class="lang-sel">
       <option value="es">🇪🇸 ES</option>
       <option value="ca">🏴 CA</option>
@@ -119,6 +126,14 @@
       onmouseover="this.style.background='rgba(255,209,102,.22)'"
       onmouseout="this.style.background='rgba(255,209,102,.1)'">
       🎯 Ejercicios
+    </a>
+    <a href="/exitos-decada"
+      style="display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;
+      background:rgba(29,185,84,.1);border:1px solid rgba(29,185,84,.25);border-radius:20px;
+      text-decoration:none;color:#1DB954;font-size:.78rem;font-weight:700;white-space:nowrap;transition:all .2s"
+      onmouseover="this.style.background='rgba(29,185,84,.22)'"
+      onmouseout="this.style.background='rgba(29,185,84,.1)'">
+      🎵 Éxitos por Década
     </a>
     <a href="/modul-catala"
       style="display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;
@@ -268,9 +283,7 @@
     <a href="/ejercicios-de-canto">Ejercicios</a>
     <a href="/modul-catala">🏴 Català</a>
     <a href="/politica-privacidad">Privacidad</a>
-    <a href="https://ko-fi.com/harmiq" target="_blank">☕ Apoya Harmiq</a>
-  </div>
-  <p>© 2025 Harmiq · Análisis vocal con IA · <a href="mailto:hola@harmiq.app">hola@harmiq.app</a>
+    <a href="mailto:hola@harmiq.app">hola@harmiq.app</a>
   </p>
 </footer>
 
