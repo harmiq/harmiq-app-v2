@@ -621,18 +621,17 @@ const HF_IMG_CACHE = {};  // cache imágenes vía backend HF
 // Fotos de artistas vía backend HF — los secrets de Spotify están en HF, NUNCA aquí
 async function getSpotifyImageFromBackend(name) {
   if (HF_IMG_CACHE[name]) return HF_IMG_CACHE[name];
-  // Intentar 2 veces con timeout mayor (el Space HF puede estar arrancando)
-  for (let attempt = 0; attempt < 2; attempt++) {
+  const base = HF_API_URL.replace("/analyze", "");
+  for (let i = 0; i < 2; i++) {
     try {
-      const base = HF_API_URL.replace("/analyze", "");
       const r = await fetch(`${base}/artist-image?name=${encodeURIComponent(name)}`, {
-        signal: AbortSignal.timeout(attempt === 0 ? 4000 : 7000)
+        signal: AbortSignal.timeout(i===0 ? 5000 : 9000)
       });
       if (!r.ok) continue;
       const d = await r.json();
       if (d.url) { HF_IMG_CACHE[name] = d.url; return d.url; }
     } catch(_) {
-      if (attempt === 0) await new Promise(r => setTimeout(r, 1000));
+      if (i===0) await new Promise(r=>setTimeout(r,1500));
     }
   }
   return null;
@@ -1037,17 +1036,15 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
   if(filters.genre_category) pool=pool.filter(s=>s.genre_category===filters.genre_category);
   if(filters.country_code)   pool=pool.filter(s=>s.country_code===filters.country_code);
 
-  // Si los filtros de era/género dejan muy poco, ampliar solo por género/gender
-  // NO resetear a toda la DB - eso ignora los filtros del usuario
-  if(pool.length<2 && (filters.era || filters.genre_category)) {
-    // Solo quitar el filtro más restrictivo, mantener género/país si lo hay
-    const poolGenre = filters.country_code 
-      ? singersDb.filter(s=>s.country_code===filters.country_code)
-      : (gender ? singersDb.filter(s=>s.gender===gender) : singersDb);
-    if(poolGenre.length >= 2) pool = poolGenre;
-    else pool = gender ? singersDb.filter(s=>s.gender===gender) : singersDb;
+  // Si pool muy pequeño tras filtros, relajar solo era/género pero mantener gender
+  if(pool.length<3 && (filters.era||filters.genre_category||filters.country_code)) {
+    pool = gender ? singersDb.filter(s=>s.gender===gender) : singersDb;
+    if(filters.country_code) {
+      const cp = pool.filter(s=>s.country_code===filters.country_code);
+      if(cp.length>=3) pool=cp;
+    }
   }
-  if(pool.length<2) pool = singersDb;
+  if(pool.length<3) pool=singersDb;
 
   // Score base de popularidad por país del usuario
   const countryBonus = (s) => s.country_code === userCountry ? 1.03 : 1.0;
@@ -2217,13 +2214,13 @@ function renderVozPage(slug) {
 
   // Canciones con karaoke
   const songsHTML = data.songs.map(s => {
-    const sTitle = typeof s === 'object' ? (s.title || s.name || JSON.stringify(s)) : String(s);
+    const sTitle = typeof s === 'object' ? (s.title||s.name||'') : String(s||'');
     const yt = `https://www.youtube.com/results?search_query=${encodeURIComponent(sTitle+' karaoke')}`;
     const sp = `https://open.spotify.com/search/${encodeURIComponent(sTitle)}`;
     return `<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.7rem 1rem;
       display:flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.06)">
       <span style="color:${data.color}">🎵</span>
-      <span style="font-weight:600;font-size:.9rem;flex:1">${sTitle}</span>
+      <span style="font-weight:600;font-size:.9rem;flex:1">${s}</span>
       <a href="${yt}" target="_blank" rel="noopener"
         style="background:rgba(255,0,0,.12);color:#ff4444;font-size:.7rem;font-weight:700;
         padding:.2rem .55rem;border-radius:20px;text-decoration:none;border:1px solid rgba(255,0,0,.2)">
@@ -2476,11 +2473,11 @@ function renderVozPage(slug) {
 }
 
 // ── Cargador de páginas SPA con preservación de resultado ─────────────────────
-function loadStaticPage(url, title) {
-  // Guardar resultado en sessionStorage para restaurarlo al volver
+async function loadStaticPage(url, title) {
+  // Guardar resultado actual en sessionStorage antes de navegar
   if (lastResult?.matches?.length) {
     try {
-      sessionStorage.setItem("harmiq_result", JSON.stringify({
+      const toSave = {
         vt: lastResult.vt, conf: lastResult.conf, gender: lastResult.gender,
         feat: lastResult.feat,
         matches: lastResult.matches.map(m => ({
@@ -2488,11 +2485,34 @@ function loadStaticPage(url, title) {
           genre_category:m.genre_category, country_code:m.country_code,
           era:m.era, score:m.score, reference_songs:m.reference_songs?.slice(0,3)||[]
         }))
-      }));
+      };
+      sessionStorage.setItem("harmiq_result", JSON.stringify(toSave));
     } catch(_) {}
   }
-  // Navegar directamente — cada página tiene su propio CSS completo
-  location.href = url;
+  try {
+    document.title = title || "Harmiq";
+    // Mostrar spinner
+    const wrap = document.getElementById("app") || document.querySelector(".app-box")?.closest("section");
+    if (wrap) wrap.innerHTML = `<div style="text-align:center;padding:4rem;color:#A5B4FC">
+      <div style="font-size:2.5rem;margin-bottom:1rem">⏳</div><div>Cargando...</div></div>`;
+    const r = await fetch(url);
+    if (!r.ok) { location.href = url; return; }
+    const html = await r.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    // Reemplazar body manteniendo scripts de app.js
+    document.body.innerHTML = doc.body.innerHTML;
+    document.title = doc.title || title;
+    // Re-ejecutar scripts inline del nuevo HTML
+    document.body.querySelectorAll("script:not([src])").forEach(old => {
+      const s = document.createElement("script");
+      s.textContent = old.textContent;
+      old.replaceWith(s);
+    });
+    window.scrollTo(0,0);
+  } catch(e) {
+    location.href = url;
+  }
 }
 
 // ── Router SPA ─────────────────────────────────────────────────────────────────
