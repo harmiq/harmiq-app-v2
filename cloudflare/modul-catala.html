@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Música Catalana — Artistes i Karaoke | Harmiq</title>
 <meta name="description" content="Oques Grasses, The Tyets, Sau, Mushkaa i 26 artistes més. Karaoke en català i recursos culturals.">
+<link rel="canonical" href="https://harmiq.app/modul-catala">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -12,49 +13,33 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.6;min-height:100vh}
 a{text-decoration:none;color:inherit}
-.mc-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;
-  background:rgba(13,13,26,.97);backdrop-filter:blur(12px);border-bottom:3px solid var(--cv);
-  position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:.6rem}
-.mc-logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900;
-  background:linear-gradient(135deg,#FF4FA3,#7C4DFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-back{background:rgba(207,20,43,.15);color:#ff6b7a;border:1px solid rgba(207,20,43,.3);
-  padding:.45rem 1.1rem;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer}
-.mc-hero{text-align:center;padding:2.5rem 1.5rem 2rem;
-  background:linear-gradient(135deg,rgba(207,20,43,.12),rgba(252,221,9,.05),rgba(124,77,255,.08));
-  border-bottom:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden}
-.mc-hero::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;
-  background:repeating-linear-gradient(90deg,var(--cv) 0,var(--cv) 60px,var(--cg) 60px,var(--cg) 120px)}
-.mc-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(207,20,43,.12);
-  border:1px solid rgba(207,20,43,.3);color:#ff8a94;border-radius:50px;
-  padding:.35rem 1.1rem;font-size:.8rem;font-weight:700;margin-bottom:1rem}
+.mc-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(13,13,26,.97);backdrop-filter:blur(12px);border-bottom:3px solid var(--cv);position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:.6rem}
+.mc-logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#FF4FA3,#7C4DFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{background:rgba(207,20,43,.15);color:#ff6b7a;border:1px solid rgba(207,20,43,.3);padding:.45rem 1.1rem;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer}
+.mc-hero{text-align:center;padding:2.5rem 1.5rem 2rem;background:linear-gradient(135deg,rgba(207,20,43,.12),rgba(252,221,9,.05),rgba(124,77,255,.08));border-bottom:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden}
+.mc-hero::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:repeating-linear-gradient(90deg,var(--cv) 0,var(--cv) 60px,var(--cg) 60px,var(--cg) 120px)}
+.mc-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(207,20,43,.12);border:1px solid rgba(207,20,43,.3);color:#ff8a94;border-radius:50px;padding:.35rem 1.1rem;font-size:.8rem;font-weight:700;margin-bottom:1rem}
 .mc-hero h1{font-family:'Baloo 2',cursive;font-size:clamp(2rem,5vw,3rem);font-weight:900;margin-bottom:.5rem}
 .cat-grad{background:linear-gradient(135deg,var(--cv),var(--cg),#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .mc-hero p{color:var(--m);max-width:560px;margin:0 auto 1rem;font-size:.96rem}
 .mc-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:1rem}
 .mc-stat{text-align:center}
-.mc-sn{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:900;
-  background:linear-gradient(135deg,var(--cv),var(--cg));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mc-sn{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--cv),var(--cg));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .mc-sl{font-size:.72rem;color:var(--m);text-transform:uppercase;letter-spacing:.5px}
 .mc-search-bar{max-width:660px;margin:0 auto;padding:1.2rem 1.5rem 0}
-.mc-search-wrap{display:flex;gap:.6rem;background:var(--card);border:1px solid rgba(207,20,43,.3);
-  border-radius:14px;padding:.6rem .6rem .6rem 1rem;align-items:center}
+.mc-search-wrap{display:flex;gap:.6rem;background:var(--card);border:1px solid rgba(207,20,43,.3);border-radius:14px;padding:.6rem .6rem .6rem 1rem;align-items:center}
 .mc-search-input{flex:1;background:none;border:none;color:var(--t);font-size:.95rem;font-family:'Nunito',sans-serif;outline:none}
 .mc-search-input::placeholder{color:#4B5563}
-.mc-search-btn{background:linear-gradient(135deg,var(--cv),#FF4FA3);color:#fff;border:none;
-  padding:.55rem 1.2rem;border-radius:10px;font-weight:800;font-size:.88rem;cursor:pointer;font-family:'Nunito',sans-serif}
-.mc-tabs{display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;
-  padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);max-width:1040px;margin:0 auto}
-.mc-tab{padding:.45rem 1.1rem;border-radius:22px;font-size:.82rem;font-weight:700;
-  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--m);transition:all .2s;cursor:pointer;text-decoration:none;display:inline-block}
+.mc-search-btn{background:linear-gradient(135deg,var(--cv),#FF4FA3);color:#fff;border:none;padding:.55rem 1.2rem;border-radius:10px;font-weight:800;font-size:.88rem;cursor:pointer;font-family:'Nunito',sans-serif}
+.mc-tabs{display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);max-width:1040px;margin:0 auto}
+.mc-tab{padding:.45rem 1.1rem;border-radius:22px;font-size:.82rem;font-weight:700;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--m);transition:all .2s;cursor:pointer;text-decoration:none;display:inline-block}
 .mc-tab.active,.mc-tab:hover{background:linear-gradient(135deg,var(--cv),#FF4FA3);color:#fff;border-color:transparent}
 .mc-content{max-width:1040px;margin:0 auto;padding:2rem 1.5rem 3rem}
-.mc-section{display:none}
-.mc-section.active{display:block}
+.mc-section{display:none}.mc-section.active{display:block}
 .mc-st{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900;margin-bottom:.3rem}
 .mc-ss{color:var(--m);font-size:.88rem;margin-bottom:1.3rem}
 .top-list{display:flex;flex-direction:column;gap:.55rem;margin-bottom:2rem}
-.top-item{display:flex;align-items:center;gap:.9rem;background:var(--card);border-radius:13px;
-  padding:.8rem 1.1rem;border:1px solid rgba(255,255,255,.07);transition:all .18s;cursor:pointer}
+.top-item{display:flex;align-items:center;gap:.9rem;background:var(--card);border-radius:13px;padding:.8rem 1.1rem;border:1px solid rgba(255,255,255,.07);transition:all .18s;cursor:pointer}
 .top-item:hover{border-color:rgba(207,20,43,.3);transform:translateX(3px)}
 .top-rank{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:900;min-width:32px;text-align:center}
 .top-info{flex:1;min-width:0}
@@ -62,70 +47,50 @@ a{text-decoration:none;color:inherit}
 .top-meta{font-size:.76rem;color:var(--m)}
 .top-pop{font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:900;color:#FF4FA3;white-space:nowrap}
 .like-btn{background:none;border:none;font-size:1.1rem;cursor:pointer;padding:.2rem}
-.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:1.5rem}
-.art-card{background:var(--card);border-radius:16px;padding:1.2rem;border:1px solid rgba(255,255,255,.07);
-  cursor:pointer;transition:all .2s}
+.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem}
+.art-card{background:var(--card);border-radius:16px;padding:1.2rem;border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:all .2s}
 .art-card:hover{border-color:rgba(207,20,43,.35);transform:translateY(-3px);box-shadow:0 8px 20px rgba(207,20,43,.1)}
-.art-av{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-family:'Baloo 2',cursive;font-weight:900;font-size:1.2rem;color:#fff;margin-bottom:.7rem}
+.art-av-wrap{width:56px;height:56px;position:relative;margin-bottom:.7rem}
+.art-av{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-weight:900;font-size:1.2rem;color:#fff}
 .art-nom{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:900;margin-bottom:.25rem}
 .art-gen{font-size:.76rem;color:var(--m);margin-bottom:.5rem}
-.art-bio{font-size:.8rem;color:#9CA3AF;line-height:1.5;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.em-badge{display:inline-block;background:linear-gradient(135deg,var(--cg),#FF9F1C);
-  color:#000;padding:.15rem .55rem;border-radius:10px;font-size:.68rem;font-weight:800;margin-bottom:.4rem}
+.art-bio{font-size:.8rem;color:#9CA3AF;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.em-badge{display:inline-block;background:linear-gradient(135deg,var(--cg),#FF9F1C);color:#000;padding:.15rem .55rem;border-radius:10px;font-size:.68rem;font-weight:800;margin-bottom:.4rem}
 .sp-box{background:rgba(29,185,84,.06);border:1px solid rgba(29,185,84,.2);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem}
-.sp-box h3{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:900;margin-bottom:.8rem;color:#1DB954}
-.sp-link-big{display:flex;align-items:center;gap:1rem;background:rgba(29,185,84,.1);border:1px solid rgba(29,185,84,.3);
-  border-radius:14px;padding:1.2rem;text-decoration:none;color:var(--t);transition:all .2s;margin-bottom:.8rem}
+.sp-box h3{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:900;margin-bottom:.8rem;color:#1DB954}
+.sp-link-big{display:flex;align-items:center;gap:1rem;background:rgba(29,185,84,.1);border:1px solid rgba(29,185,84,.3);border-radius:14px;padding:1rem;text-decoration:none;color:var(--t);transition:all .2s;margin-bottom:.8rem}
 .sp-link-big:hover{background:rgba(29,185,84,.18);transform:translateY(-2px)}
-.sp-icon{width:52px;height:52px;background:#1DB954;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
-.sp-info h4{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;margin-bottom:.2rem}
-.sp-info p{font-size:.8rem;color:var(--m)}
+.sp-icon{width:48px;height:48px;background:#1DB954;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.sp-info h4{font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;margin-bottom:.2rem}
+.sp-info p{font-size:.78rem;color:var(--m)}
 .yt-ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1rem}
 .yt-ch{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1rem;text-align:center}
 .yt-ch h4{font-family:'Baloo 2',cursive;font-size:.9rem;margin:.4rem 0 .3rem}
 .yt-ch p{font-size:.76rem;color:var(--m);margin-bottom:.6rem}
-.btn-yt{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,0,0,.15);
-  border:1px solid rgba(255,0,0,.3);color:#ff6b6b;padding:.35rem .85rem;border-radius:18px;font-size:.76rem;font-weight:700;text-decoration:none}
-.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
-.rec-card{background:var(--card);border-radius:14px;padding:1.2rem;border:1px solid rgba(255,255,255,.07);
-  display:flex;flex-direction:column;gap:.6rem;transition:all .2s}
+.btn-yt{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,0,0,.15);border:1px solid rgba(255,0,0,.3);color:#ff6b6b;padding:.35rem .85rem;border-radius:18px;font-size:.76rem;font-weight:700;text-decoration:none}
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem}
+.rec-card{background:var(--card);border-radius:14px;padding:1.1rem;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;gap:.5rem;transition:all .2s}
 .rec-card:hover{border-color:rgba(207,20,43,.3);transform:translateY(-3px)}
-.rec-name{font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800}
-.rec-desc{font-size:.78rem;color:var(--m);flex:1}
-.rec-a{display:inline-flex;align-items:center;gap:.3rem;font-size:.76rem;font-weight:700;
-  padding:.3rem .8rem;border-radius:18px}
-.com-box{background:rgba(124,77,255,.06);border:1px solid rgba(124,77,255,.2);border-radius:14px;padding:1.3rem;margin-bottom:1.5rem}
+.rec-name{font-family:'Baloo 2',cursive;font-size:.9rem;font-weight:800}
+.rec-desc{font-size:.76rem;color:var(--m);flex:1}
+.rec-a{display:inline-flex;align-items:center;gap:.3rem;font-size:.74rem;font-weight:700;padding:.28rem .7rem;border-radius:16px;text-decoration:none}
+.com-box{background:rgba(124,77,255,.06);border:1px solid rgba(124,77,255,.2);border-radius:14px;padding:1.2rem;margin-bottom:1.5rem}
 .com-box h4{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;margin-bottom:.7rem;color:#A5B4FC}
 .com-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem}
-.com-chip{padding:.35rem .85rem;border-radius:18px;font-size:.78rem;font-weight:700;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--m);cursor:pointer;transition:all .2s}
+.com-chip{padding:.35rem .85rem;border-radius:18px;font-size:.78rem;font-weight:700;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--m);cursor:pointer;transition:all .2s}
 .com-chip:hover,.com-chip.sel{background:rgba(124,77,255,.2);border-color:rgba(124,77,255,.4);color:#A5B4FC}
 .com-res{background:rgba(255,255,255,.04);border-radius:10px;padding:.9rem;font-size:.83rem;display:none;line-height:1.6;margin-top:.5rem}
 .com-res.vis{display:block}
-.mc-modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;
-  align-items:center;justify-content:center;padding:1rem}
+.mc-modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;align-items:center;justify-content:center;padding:1rem}
 .mc-modal-ov.open{display:flex}
-.mc-modal{background:var(--card2);border-radius:22px;padding:1.8rem;max-width:560px;width:100%;
-  border:1px solid rgba(207,20,43,.3);position:relative;max-height:90vh;overflow-y:auto}
-.mc-modal-x{position:absolute;top:.9rem;right:.9rem;background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);color:var(--m);width:30px;height:30px;border-radius:50%;
-  cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
-.mc-cta{text-align:center;background:linear-gradient(135deg,rgba(207,20,43,.08),rgba(252,221,9,.04));
-  border:1px solid rgba(207,20,43,.2);border-radius:18px;padding:2rem;margin-top:2.5rem}
+.mc-modal{background:var(--card2);border-radius:22px;padding:1.8rem;max-width:560px;width:100%;border:1px solid rgba(207,20,43,.3);position:relative;max-height:90vh;overflow-y:auto}
+.mc-modal-x{position:absolute;top:.9rem;right:.9rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--m);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
+.mc-cta{text-align:center;background:linear-gradient(135deg,rgba(207,20,43,.08),rgba(252,221,9,.04));border:1px solid rgba(207,20,43,.2);border-radius:18px;padding:2rem;margin-top:2.5rem}
 .mc-cta h2{font-family:'Baloo 2',cursive;font-size:1.4rem;margin-bottom:.6rem}
 .mc-cta p{color:var(--m);margin-bottom:1.2rem;font-size:.9rem}
-.btn-cta{display:inline-block;background:linear-gradient(135deg,var(--cv),#FF4FA3);color:#fff;
-  padding:.8rem 1.8rem;border-radius:50px;font-weight:800;font-size:.9rem}
+.btn-cta{display:inline-block;background:linear-gradient(135deg,var(--cv),#FF4FA3);color:#fff;padding:.8rem 1.8rem;border-radius:50px;font-weight:800;font-size:.9rem;text-decoration:none}
 .cerca-empty{text-align:center;padding:2.5rem;color:var(--m)}
-mc-footer{display:block;text-align:center;padding:1.3rem;color:var(--m);font-size:.76rem;border-top:1px solid rgba(255,255,255,.06)}
-@media(max-width:640px){
-  .mc-nav{padding:.8rem 1rem}
-  .art-grid{grid-template-columns:1fr}
-  .yt-ch-grid{grid-template-columns:1fr}
-  .rec-grid{grid-template-columns:1fr}
-}
+@media(max-width:640px){.mc-nav{padding:.8rem 1rem}.art-grid{grid-template-columns:1fr}.yt-ch-grid{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -143,18 +108,16 @@ mc-footer{display:block;text-align:center;padding:1.3rem;color:var(--m);font-siz
 <header class="mc-hero">
   <div class="mc-badge">🏴 Enciclopèdia del Talent Català · Harmiq</div>
   <h1><span class="cat-grad">Música Catalana</span></h1>
-  <p>Oques Grasses, The Tyets, Sau, Mushkaa, Julieta i molt més. Tot el talent en català en un sol lloc.</p>
+  <p>Oques Grasses, The Tyets, Sau, Mushkaa, Julieta i molt més.</p>
   <div class="mc-stats">
     <div class="mc-stat"><div class="mc-sn">30</div><div class="mc-sl">Artistes</div></div>
     <div class="mc-stat"><div class="mc-sn">30</div><div class="mc-sl">Cançons</div></div>
-    <div class="mc-stat"><div class="mc-sn" id="sp">0</div><div class="mc-sl">Reproduccions</div></div>
   </div>
 </header>
 <div class="mc-search-bar">
   <div class="mc-search-wrap">
     <span style="font-size:1.1rem">🔍</span>
-    <input type="text" class="mc-search-input" id="si"
-      placeholder="Cerca artistes, cançons, gèneres..." oninput="sd(this.value)">
+    <input type="text" class="mc-search-input" id="si" placeholder="Cerca artistes, cançons, gèneres..." oninput="sd(this.value)">
     <button class="mc-search-btn" onclick="sc(document.getElementById('si').value)">Cerca</button>
   </div>
 </div>
@@ -184,89 +147,37 @@ mc-footer{display:block;text-align:center;padding:1.3rem;color:var(--m);font-siz
     <div class="art-grid" id="eg"></div>
   </section>
   <section class="mc-section" id="tab-kar">
-    <div class="mc-st">🎤 Karaoke en Català</div>
-    <div class="mc-ss">Canta en la teva llengua. Accedeix als millors canals.</div>
+    <div class="mc-st">🎤 Karaoke i Novedades</div>
+    <div class="mc-ss">Accedeix als millors canals de karaoke i novedades musicals.</div>
     <div class="sp-box">
       <h3>🎵 Novedades — Spotify</h3>
       <a class="sp-link-big" href="https://open.spotify.com/playlist/37i9dQZF1DX6PYajiT4pAf" target="_blank" rel="noopener">
-        <div class="sp-icon">🎵</div>
-        <div class="sp-info">
-          <h4>Novedades del Viernes España</h4>
-          <p>Los estrenos musicales de cada viernes en España. Actualizada cada semana.</p>
-        </div>
+        <div class="sp-icon">🇪🇸</div>
+        <div class="sp-info"><h4>Novedades del Viernes España</h4><p>Estrenos musicales cada viernes en España.</p></div>
       </a>
       <a class="sp-link-big" href="https://open.spotify.com/playlist/3OpGsHf8ZR9V4F2mTh22Uz" target="_blank" rel="noopener">
         <div class="sp-icon">🌍</div>
-        <div class="sp-info">
-          <h4>Novedades del Viernes Global</h4>
-          <p>Los estrenos musicales globales de cada viernes. Toda la música nueva del mundo.</p>
-        </div>
+        <div class="sp-info"><h4>Novedades del Viernes Global</h4><p>Los estrenos musicales globales de cada viernes.</p></div>
       </a>
     </div>
     <div style="background:rgba(255,0,0,.04);border:1px solid rgba(255,0,0,.15);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem">
       <h3 style="font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:900;margin-bottom:.8rem">📺 Canals de Karaoke en Català</h3>
       <div class="yt-ch-grid">
-        <div class="yt-ch">
-          <div style="font-size:2rem">🎤</div>
-          <h4>Karaoke en Català</h4>
-          <p>Canal especialitzat amb cançons catalanes amb lletra.</p>
-          <a href="https://www.youtube.com/@KaraokeEnCatala" target="_blank" rel="noopener" class="btn-yt">▶ Obrir canal</a>
-        </div>
-        <div class="yt-ch">
-          <div style="font-size:2rem">🎵</div>
-          <h4>Karaoke a Girona</h4>
-          <p>Canal de karaoke en català de Girona.</p>
-          <a href="https://www.youtube.com/@karaokeagirona1060" target="_blank" rel="noopener" class="btn-yt">▶ Obrir canal</a>
-        </div>
-      </div>
-      <div style="margin-top:1rem;text-align:center">
-        <a href="https://www.youtube.com/results?search_query=karaoke+en+catala" target="_blank" rel="noopener"
-          style="font-size:.82rem;color:#ff4444;background:rgba(255,0,0,.08);border:1px solid rgba(255,0,0,.2);padding:.5rem 1.2rem;border-radius:10px;text-decoration:none;display:inline-block">
-          🔍 Buscar tots els karaokes en català a YouTube
-        </a>
+        <div class="yt-ch"><div style="font-size:2rem">🎤</div><h4>Karaoke en Català</h4><p>Canal amb cançons catalanes amb lletra.</p><a href="https://www.youtube.com/@KaraokeEnCatala" target="_blank" rel="noopener" class="btn-yt">▶ Obrir canal</a></div>
+        <div class="yt-ch"><div style="font-size:2rem">🎵</div><h4>Karaoke a Girona</h4><p>Canal de karaoke en català de Girona.</p><a href="https://www.youtube.com/@karaokeagirona1060" target="_blank" rel="noopener" class="btn-yt">▶ Obrir canal</a></div>
       </div>
     </div>
   </section>
   <section class="mc-section" id="tab-rec">
     <div class="mc-st">🏛️ Recursos Culturals</div>
-    <div class="mc-ss">Eines oficials per trobar concerts, assajos i events.</div>
+    <div class="mc-ss">Eines oficials per trobar concerts i events.</div>
     <div class="rec-grid">
-      <div class="rec-card">
-        <div style="font-size:1.8rem">🗂️</div>
-        <div class="rec-name">Dades Obertes Catalunya</div>
-        <div class="rec-desc">Equipaments culturals i agendes municipals de la Generalitat.</div>
-        <a href="https://dadesobertes.gencat.cat/ca/cercador/?q=equipaments+culturals" target="_blank" class="rec-a" style="background:rgba(207,20,43,.12);color:#ff8a94;border:1px solid rgba(207,20,43,.25)">🗂️ Obrir</a>
-      </div>
-      <div class="rec-card">
-        <div style="font-size:1.8rem">🏛️</div>
-        <div class="rec-name">Diputació Barcelona</div>
-        <div class="rec-desc">Agenda cultura i festes majors de la província de Barcelona.</div>
-        <a href="https://www.diba.cat/es/web/cultura/activitats" target="_blank" class="rec-a" style="background:rgba(124,77,255,.12);color:#A5B4FC;border:1px solid rgba(124,77,255,.25)">🏛️ Agenda BCN</a>
-      </div>
-      <div class="rec-card">
-        <div style="font-size:1.8rem">🌊</div>
-        <div class="rec-name">Diputació Girona</div>
-        <div class="rec-desc">Festes majors i concerts de les comarques gironines.</div>
-        <a href="https://www.ddgi.cat/web/cultura/" target="_blank" class="rec-a" style="background:rgba(6,214,160,.12);color:#06D6A0;border:1px solid rgba(6,214,160,.25)">🌊 Girona</a>
-      </div>
-      <div class="rec-card">
-        <div style="font-size:1.8rem">☀️</div>
-        <div class="rec-name">Diputació Tarragona</div>
-        <div class="rec-desc">Cultura del Camp de Tarragona i les Terres de l'Ebre.</div>
-        <a href="https://www.diputaciodetarragona.cat/web/cultura" target="_blank" class="rec-a" style="background:rgba(255,159,28,.12);color:#FFD166;border:1px solid rgba(255,159,28,.25)">☀️ Tarragona</a>
-      </div>
-      <div class="rec-card">
-        <div style="font-size:1.8rem">🏘️</div>
-        <div class="rec-name">Centres Cívics BCN</div>
-        <div class="rec-desc">Karaokes populars, concursos de veu i activitats de barri.</div>
-        <a href="https://ajuntament.barcelona.cat/centrescivics/ca/" target="_blank" class="rec-a" style="background:rgba(255,79,163,.12);color:#FF9FCC;border:1px solid rgba(255,79,163,.25)">🏘️ Centres Cívics</a>
-      </div>
-      <div class="rec-card">
-        <div style="font-size:1.8rem">📅</div>
-        <div class="rec-name">Agenda Gencat</div>
-        <div class="rec-desc">Agenda oficial de la Generalitat de Catalunya.</div>
-        <a href="https://cultura.gencat.cat/ca/actualitat/agenda/" target="_blank" class="rec-a" style="background:rgba(207,20,43,.12);color:#ff8a94;border:1px solid rgba(207,20,43,.25)">📅 Agenda</a>
-      </div>
+      <div class="rec-card"><div style="font-size:1.6rem">🗂️</div><div class="rec-name">Dades Obertes Cat.</div><div class="rec-desc">Equipaments culturals de la Generalitat.</div><a href="https://dadesobertes.gencat.cat/ca/cercador/?q=equipaments+culturals" target="_blank" class="rec-a" style="background:rgba(207,20,43,.12);color:#ff8a94;border:1px solid rgba(207,20,43,.25)">🗂️ Obrir</a></div>
+      <div class="rec-card"><div style="font-size:1.6rem">🏛️</div><div class="rec-name">Diputació BCN</div><div class="rec-desc">Agenda cultura i festes majors de Barcelona.</div><a href="https://www.diba.cat/es/web/cultura/activitats" target="_blank" class="rec-a" style="background:rgba(124,77,255,.12);color:#A5B4FC;border:1px solid rgba(124,77,255,.25)">🏛️ Agenda</a></div>
+      <div class="rec-card"><div style="font-size:1.6rem">🌊</div><div class="rec-name">Diputació Girona</div><div class="rec-desc">Festes majors i concerts gironines.</div><a href="https://www.ddgi.cat/web/cultura/" target="_blank" class="rec-a" style="background:rgba(6,214,160,.12);color:#06D6A0;border:1px solid rgba(6,214,160,.25)">🌊 Girona</a></div>
+      <div class="rec-card"><div style="font-size:1.6rem">☀️</div><div class="rec-name">Diputació Tarragona</div><div class="rec-desc">Cultura del Camp de Tarragona.</div><a href="https://www.diputaciodetarragona.cat/web/cultura" target="_blank" class="rec-a" style="background:rgba(255,159,28,.12);color:#FFD166;border:1px solid rgba(255,159,28,.25)">☀️ Tarragona</a></div>
+      <div class="rec-card"><div style="font-size:1.6rem">🏘️</div><div class="rec-name">Centres Cívics BCN</div><div class="rec-desc">Karaokes populars i activitats de barri.</div><a href="https://ajuntament.barcelona.cat/centrescivics/ca/" target="_blank" class="rec-a" style="background:rgba(255,79,163,.12);color:#FF9FCC;border:1px solid rgba(255,79,163,.25)">🏘️ Centres</a></div>
+      <div class="rec-card"><div style="font-size:1.6rem">📅</div><div class="rec-name">Agenda Gencat</div><div class="rec-desc">Agenda oficial de la Generalitat.</div><a href="https://cultura.gencat.cat/ca/actualitat/agenda/" target="_blank" class="rec-a" style="background:rgba(207,20,43,.12);color:#ff8a94;border:1px solid rgba(207,20,43,.25)">📅 Agenda</a></div>
     </div>
     <div class="com-box">
       <h4>🗺️ Cerca per comarca</h4>
@@ -300,181 +211,8 @@ mc-footer{display:block;text-align:center;padding:1.3rem;color:var(--m);font-siz
   </div>
 </div>
 <div style="text-align:center;padding:1.3rem;color:var(--m);font-size:.76rem;border-top:1px solid rgba(255,255,255,.06)">
-  🏴 Enciclopèdia del Talent Català · <a href="/" style="color:var(--m)">Harmiq</a> · hola@harmiq.app
+  🏴 Mòdul Català · <a href="/" style="color:var(--m)">Harmiq</a> · hola@harmiq.app
 </div>
-<script>
-var D={"meta":{"versio":"1.0","total_artistes":30,"total_cancons":30,"descripcio":"Base de dades de música en català per al Mòdul Català de Harmiq","llicencia":"Creative Commons - Ús educatiu i cultural"},"artistes":[{"id":"oques_grasses","nom":"Oques Grasses","genere":"pop-indie","origen":"Barcelona","emergent":false,"bio":"Grup de pop-indie barceloní conegut per lletres introspectives i melodies enganxoses. Un dels grups més escoltats en català de la seva generació.","cancons":["La gent que estimo","L'agressió","Vull ballar","El dia que em vulguis","No et moc"]},{"id":"the_tyets","nom":"The Tyets","genere":"urban-pop","origen":"Lleida","emergent":false,"bio":"Duo lleidatà que ha revolucionat el pop urbà en català. Artistes de referència per a les generacions joves que escolten música en català.","cancons":["Boig per tu","Bona colla","M'estimes gens","T'estimo i prou","El fred"]},{"id":"julieta","nom":"Julieta","genere":"pop-dance","origen":"Barcelona","emergent":false,"bio":"Cantant barcelonina de pop electrònic que connecta amb les generacions joves amb temes enganxosos i positius en català.","cancons":["Al mar","Fàcil","Dimarts","Nit de dissabte","Tu i jo"]},{"id":"mushkaa","nom":"Mushkaa","genere":"urban-trap","origen":"Barcelona","emergent":false,"bio":"Artista urbana catalana que barreja trap, pop i r&b en català. Una de les veus més originals i autèntiques de l'escena urbana catalana.","cancons":["Jenifer","Corren","Bèstia","No m'interessa","Pell"]},{"id":"txarango","nom":"Txarango","genere":"fusion-reggae","origen":"Les Preses","emergent":false,"bio":"Grup de fusió que combina rumba, reggae i elements tradicionals catalans. Reconeguts per la seva energia en directe i el seu compromís cultural.","cancons":["Ai Dolors","Flowers","L'últim glop","Som-hi","Vull viure"]},{"id":"manel","nom":"Manel","genere":"indie-pop","origen":"Barcelona","emergent":false,"bio":"Grup referent de l'indie en català des de 2007. Poètics, originals i ineludibles per entendre la música catalana contemporània.","cancons":["Boig per tu","10 milles per veure una bona armadura","Nit de la lluna","El miquel","Captatio benevolentiae"]},{"id":"els_pets","nom":"Els Pets","genere":"pop-rock","origen":"Constantí","emergent":false,"bio":"Grup pioner del rock en català des dels anys 80. Referent generacional i un dels grups amb més trajectòria de la música catalana.","cancons":["Bon dia","La meva mare","No trobo a faltar res","Allà on l'arc de Sant Martí","L'amor és cec"]},{"id":"obrint_pas","nom":"Obrint Pas","genere":"ska-rock","origen":"València","emergent":false,"bio":"Grup referent del rock radical en català i valencià. Compromesos socialment i políticament, referents de l'activisme cultural.","cancons":["La flama","Volem viure","Un país sense","Que paguin ells","Empenta"]},{"id":"laxnbusto","nom":"Lax'n'Busto","genere":"pop-rock","origen":"Barcelona","emergent":false,"bio":"Grup de pop-rock que va marcar una generació als anys 90 amb temes inoblidables. Un dels grups més venuts de la música catalana.","cancons":["Llença't","Estimar-te","Una llàgrima","El color del cel","Sense tu"]},{"id":"sau","nom":"Sau","genere":"rock","origen":"Manresa","emergent":false,"bio":"Llegenda del rock català. Amb Pep Sala i Carles Sabater van crear clàssics atemporals que continuen emocionant cada generació.","cancons":["Boig per tu","Quina sort","Roses i espines","Cançó de bressol","Jo et prometo"]},{"id":"stay_homas","nom":"Stay Homas","genere":"indie-folk","origen":"Barcelona","emergent":false,"bio":"Trio format durant el confinament del 2020 que va conquerir el món amb sessions de terrat en català. Símbol de resistència cultural.","cancons":["Quédate en casa","Tant de bo","Freedom","No et puc veure","Bon dia"]},{"id":"gossos","nom":"Gossos","genere":"pop-rock","origen":"Sabadell","emergent":false,"bio":"Grup de pop-rock sabadellenc, coneguts per la seva energia en directe i per portar el català als escenaris de tot el país.","cancons":["Corren","Gira el món","Et miro","La vida és ara","Tota la nit"]},{"id":"miki_nunez","nom":"Miki Núñez","genere":"pop","origen":"Mollet del Vallès","emergent":false,"bio":"Artista de pop en català i castellà, representant d'Espanya a Eurovisió 2019 amb 'La venda', un himne en català.","cancons":["La venda","Escriurem","L'Àguila","Qualsevol nit","El que tinc"]},{"id":"figa_flawas","nom":"Figa Flawas","genere":"urban","origen":"Barcelona","emergent":true,"bio":"Artista emergent del hip-hop i trap en català. Veu nova i autèntica de la Barcelona urbana que porta el català al rap.","cancons":["Colors","MCB","Tardor","Nit","El carrer"]},{"id":"brams","nom":"Brams","genere":"reggae-rock","origen":"Manresa","emergent":false,"bio":"Grup de reggae en català, referents de la música alternativa als anys 90 i 2000. Pionera en portar el reggae a la llengua catalana.","cancons":["El cel","La lluna","Viu i deixa viure","Som","El camí"]},{"id":"mishima","nom":"Mishima","genere":"indie","origen":"Barcelona","emergent":false,"bio":"Grup indie barceloní de gran qualitat literària i musical. Culte però rellevant, admirats per crítica i públic exigent.","cancons":["Sense tu","La balada del diví","Adéu amor","Gràcies per tot","La por"]},{"id":"zoo","nom":"Zoo","genere":"rap-rock","origen":"Burjassot","emergent":false,"bio":"Grup valencià de rap i rock en català i valencià. Compromesos socialment, una de les bandes més contundents de l'escena en català.","cancons":["Bacallà","Tot és fals","País nou","El gran engany","Fem"]},{"id":"nova_escola","nom":"Nova Escola","genere":"hip-hop","origen":"Barcelona","emergent":true,"bio":"Col·lectiu emergent de hip-hop que porta el rap en català a nous territoris. Veu fresca i autèntica de la nova Barcelona.","cancons":["Versos","La nova","El barri","Temps","La veu"]},{"id":"smoking_souls","nom":"Smoking Souls","genere":"indie-rock","origen":"Barcelona","emergent":true,"bio":"Grup emergent d'indie-rock amb lletres poètiques en català. Representen una nova onada de rock alternatiu en la llengua pròpia.","cancons":["Fum","Les coses","Quan plou","La nit","Temps perdut"]},{"id":"cesk_freixas","nom":"Cesk Freixas","genere":"cantautor","origen":"Barcelona","emergent":false,"bio":"Cantautor compromès, veu clara i lletres profundes sobre la realitat social catalana. Un dels cantautors més respectats del país.","cancons":["Ara és l'hora","L'arbre","Germà","El camí","La llum"]},{"id":"albert_pla","nom":"Albert Pla","genere":"cantautor","origen":"Sabadell","emergent":false,"bio":"Artista provocador i únic, inclassificable i sempre polèmic. Un dels artistes catalans més singulars i influents de les últimes dècades.","cancons":["Qualsevol nit","L'hereu Riera","La filla del marxant","La cançó de la Maria","Bala perduda"]},{"id":"la_iaia","nom":"La Iaia","genere":"folk-pop","origen":"Barcelona","emergent":true,"bio":"Artista emergent de folk-pop en català. Veu fresca i autèntica de la nova generació que reivindica la llengua amb música contemporània.","cancons":["Arrels","La terra","Cel·les","Tardor","Nit de lluna"]},{"id":"pavvla","nom":"Pavvla","genere":"indie-pop","origen":"Barcelona","emergent":true,"bio":"Artista indie-pop emergent amb un so característic i lletra personal en català. Una de les propostes més interessants de la nova escena.","cancons":["Les mans","El temps","Aire","Llum","La tarda"]},{"id":"joana_serrat","nom":"Joana Serrat","genere":"folk-americana","origen":"Ribes de Freser","emergent":false,"bio":"Cantautora catalana amb influències americanes, reconeguda internacionalment. Demostra que la música en català pot triomfar arreu del món.","cancons":["El cor","La muntanya","Camins","Pluja","La llar"]},{"id":"clusters","nom":"Clüsters","genere":"indie-pop","origen":"Barcelona","emergent":true,"bio":"Grup emergent de synth-pop en català. Frescos, moderns i amb una producció cuidada que els diferencia de la resta.","cancons":["Neons","La nit","Digital","Ones","El futur"]},{"id":"la_troba_kung_fu","nom":"La Troba Kung-Fú","genere":"fusion","origen":"Barcelona","emergent":false,"bio":"Grup de fusió que barreja rumba catalana, reggae, ska i música del món. Referents de la festa i la diversitat cultural catalana.","cancons":["La rumba","El carrer","Festa major","L'amor","La gent"]},{"id":"marta_gomez_cat","nom":"Marta Gómez","genere":"pop-cantautora","origen":"Barcelona","emergent":true,"bio":"Cantautora emergent de pop amb lletres intimistes sobre el dia a dia en català. Representa la nova cançó catalana del s. XXI.","cancons":["Petits moments","La casa","El temps","L'amor petit","Demà"]},{"id":"jansky","nom":"Jansky","genere":"electro-pop","origen":"Manresa","emergent":true,"bio":"Artista emergent d'electro-pop en català, fusionant música electrònica i tradició. Una aposta audaç per la modernitat en català.","cancons":["Partícules","L'espai","Temps digital","Ones","La senyal"]},{"id":"l_ham_de_foc","nom":"L'Ham de Foc","genere":"folk-mediterrani","origen":"València","emergent":false,"bio":"Grup de folk mediterrani en català i valencià. Música arrelada a la terra i la tradició del Mediterrani.","cancons":["Mar i cel","La cançó del mar","Vents","Arrels","La nit mediterrània"]},{"id":"uc","nom":"UC","genere":"pop-rock","origen":"Berga","emergent":false,"bio":"Grup de pop-rock de la Catalunya Central, populars als anys 90 i 2000. Part essencial de la memòria col·lectiva musical catalana.","cancons":["L'amor és un repte","Temps","La nit","El ritme","Som aquí"]}],"cancons":[{"id":"c001","titol":"La gent que estimo","artista":"Oques Grasses","artista_id":"oques_grasses","genere":"pop-indie","any":2019,"idioma":"CAT","durada":"3:42","popularitat":95,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=La+gent+que+estimo+Oques+Grasses+karaoke"},{"id":"c002","titol":"Boig per tu (The Tyets)","artista":"The Tyets","artista_id":"the_tyets","genere":"urban-pop","any":2021,"idioma":"CAT","durada":"3:15","popularitat":98,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Boig+per+tu+Tyets+karaoke"},{"id":"c003","titol":"Al mar","artista":"Julieta","artista_id":"julieta","genere":"pop-dance","any":2022,"idioma":"CAT","durada":"2:58","popularitat":93,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Al+mar+Julieta+karaoke+català"},{"id":"c004","titol":"Jenifer","artista":"Mushkaa","artista_id":"mushkaa","genere":"urban-trap","any":2022,"idioma":"CAT","durada":"3:10","popularitat":97,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Jenifer+Mushkaa+karaoke"},{"id":"c005","titol":"Ai Dolors","artista":"Txarango","artista_id":"txarango","genere":"fusion-reggae","any":2015,"idioma":"CAT","durada":"4:02","popularitat":88,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Ai+Dolors+Txarango+karaoke"},{"id":"c006","titol":"Boig per tu","artista":"Sau","artista_id":"sau","genere":"rock","any":1992,"idioma":"CAT","durada":"4:28","popularitat":99,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Boig+per+tu+Sau+karaoke"},{"id":"c007","titol":"Bon dia","artista":"Els Pets","artista_id":"els_pets","genere":"pop-rock","any":1995,"idioma":"CAT","durada":"3:35","popularitat":91,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Bon+dia+Els+Pets+karaoke"},{"id":"c008","titol":"La flama","artista":"Obrint Pas","artista_id":"obrint_pas","genere":"ska-rock","any":2001,"idioma":"CAT","durada":"3:50","popularitat":87,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=La+flama+Obrint+Pas+karaoke"},{"id":"c009","titol":"Llença't","artista":"Lax'n'Busto","artista_id":"laxnbusto","genere":"pop-rock","any":1997,"idioma":"CAT","durada":"4:05","popularitat":89,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Llença't+Lax+Busto+karaoke"},{"id":"c010","titol":"Tant de bo","artista":"Stay Homas","artista_id":"stay_homas","genere":"indie-folk","any":2020,"idioma":"CAT","durada":"3:22","popularitat":92,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Tant+de+bo+Stay+Homas+karaoke"},{"id":"c011","titol":"La venda","artista":"Miki Núñez","artista_id":"miki_nunez","genere":"pop","any":2019,"idioma":"CAT","durada":"3:05","popularitat":90,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=La+venda+Miki+Nunez+karaoke"},{"id":"c012","titol":"L'agressió","artista":"Oques Grasses","artista_id":"oques_grasses","genere":"pop-indie","any":2021,"idioma":"CAT","durada":"3:55","popularitat":88,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=L+agressio+Oques+Grasses+karaoke"},{"id":"c013","titol":"Bona colla","artista":"The Tyets","artista_id":"the_tyets","genere":"urban-pop","any":2022,"idioma":"CAT","durada":"3:08","popularitat":94,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Bona+colla+Tyets+karaoke"},{"id":"c014","titol":"Fàcil","artista":"Julieta","artista_id":"julieta","genere":"pop-dance","any":2023,"idioma":"CAT","durada":"2:45","popularitat":86,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Facil+Julieta+karaoke+català"},{"id":"c015","titol":"Corren","artista":"Mushkaa","artista_id":"mushkaa","genere":"urban-trap","any":2023,"idioma":"CAT","durada":"3:05","popularitat":91,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Corren+Mushkaa+karaoke"},{"id":"c016","titol":"Flowers","artista":"Txarango","artista_id":"txarango","genere":"fusion-reggae","any":2018,"idioma":"CAT","durada":"3:48","popularitat":85,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Flowers+Txarango+karaoke"},{"id":"c017","titol":"10 milles per veure una bona armadura","artista":"Manel","artista_id":"manel","genere":"indie-pop","any":2008,"idioma":"CAT","durada":"5:10","popularitat":92,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=10+milles+Manel+karaoke"},{"id":"c018","titol":"Quédate en casa","artista":"Stay Homas","artista_id":"stay_homas","genere":"indie-folk","any":2020,"idioma":"CAT","durada":"3:45","popularitat":93,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Quedate+en+casa+Stay+Homas+karaoke"},{"id":"c019","titol":"Corren","artista":"Gossos","artista_id":"gossos","genere":"pop-rock","any":2003,"idioma":"CAT","durada":"3:40","popularitat":84,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Corren+Gossos+karaoke"},{"id":"c020","titol":"Colors","artista":"Figa Flawas","artista_id":"figa_flawas","genere":"urban","any":2023,"idioma":"CAT","durada":"2:55","popularitat":82,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Colors+Figa+Flawas+karaoke"},{"id":"c021","titol":"Escriurem","artista":"Miki Núñez","artista_id":"miki_nunez","genere":"pop","any":2020,"idioma":"CAT","durada":"3:18","popularitat":85,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Escriurem+Miki+Nunez+karaoke"},{"id":"c022","titol":"Vull ballar","artista":"Oques Grasses","artista_id":"oques_grasses","genere":"pop-indie","any":2022,"idioma":"CAT","durada":"3:28","popularitat":87,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Vull+ballar+Oques+Grasses+karaoke"},{"id":"c023","titol":"Versos","artista":"Nova Escola","artista_id":"nova_escola","genere":"hip-hop","any":2023,"idioma":"CAT","durada":"3:12","popularitat":75,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Versos+Nova+Escola+karaoke"},{"id":"c024","titol":"Fum","artista":"Smoking Souls","artista_id":"smoking_souls","genere":"indie-rock","any":2024,"idioma":"CAT","durada":"3:30","popularitat":72,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Fum+Smoking+Souls+karaoke"},{"id":"c025","titol":"Arrels","artista":"La Iaia","artista_id":"la_iaia","genere":"folk-pop","any":2024,"idioma":"CAT","durada":"3:55","popularitat":70,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Arrels+La+Iaia+karaoke"},{"id":"c026","titol":"Partícules","artista":"Jansky","artista_id":"jansky","genere":"electro-pop","any":2024,"idioma":"CAT","durada":"3:20","popularitat":71,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Particules+Jansky+karaoke"},{"id":"c027","titol":"Les mans","artista":"Pavvla","artista_id":"pavvla","genere":"indie-pop","any":2023,"idioma":"CAT","durada":"3:38","popularitat":74,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Les+mans+Pavvla+karaoke"},{"id":"c028","titol":"Petits moments","artista":"Marta Gómez","artista_id":"marta_gomez_cat","genere":"pop-cantautora","any":2024,"idioma":"CAT","durada":"3:48","popularitat":68,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Petits+moments+Marta+Gomez+karaoke"},{"id":"c029","titol":"Neons","artista":"Clüsters","artista_id":"clusters","genere":"indie-pop","any":2024,"idioma":"CAT","durada":"3:15","popularitat":73,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Neons+Clustres+karaoke"},{"id":"c030","titol":"Bacallà","artista":"Zoo","artista_id":"zoo","genere":"rap-rock","any":2017,"idioma":"CAT","durada":"3:55","popularitat":83,"plays":0,"likes":0,"karaoke_url":"https://www.youtube.com/results?search_query=Bacalla+Zoo+karaoke"}]};
-var lk={},pl={};
-var AV=["linear-gradient(135deg,#CF142B,#FF4FA3)","linear-gradient(135deg,#7C4DFF,#FF4FA3)",
-"linear-gradient(135deg,#FCDD09,#FF9F1C)","linear-gradient(135deg,#06D6A0,#118AB2)",
-"linear-gradient(135deg,#CF142B,#7C4DFF)","linear-gradient(135deg,#FF9F1C,#FF4FA3)"];
-function av(n){return AV[n.charCodeAt(0)%AV.length];}
-function ai(n){var p=n.trim().split(/\s+/);return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():n.substring(0,2).toUpperCase();}
-function ex(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-
-// TABS
-function st(id,el){
-  document.querySelectorAll(".mc-section").forEach(function(s){s.classList.remove("active");});
-  document.querySelectorAll(".mc-tab").forEach(function(t){t.classList.remove("active");});
-  var sec=document.getElementById("tab-"+id);
-  if(sec) sec.classList.add("active");
-  if(el) el.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
-  if(id==="art") ra("ag",false);
-  if(id==="em") ra("eg",true);
-}
-
-// TOP CANÇONS
-function rt(){
-  var el=document.getElementById("tl");
-  if(!el) return;
-  var sorted=D.cancons.slice().sort(function(a,b){return (b.popularitat||0)-(a.popularitat||0);});
-  var rk=["🥇","🥈","🥉"];
-  var rc=["","",""];
-  el.innerHTML=sorted.map(function(c,i){
-    var liked=lk[c.id];
-    var yt="https://www.youtube.com/results?search_query="+encodeURIComponent(c.titol+" "+c.artista+" karaoke catala");
-    var sp="https://open.spotify.com/search/"+encodeURIComponent(c.titol+" "+c.artista);
-    var rank=i<3?rk[i]:(i+1);
-    return '<div class="top-item" onclick="oc(''+c.id+'')">'
-      +'<div class="top-rank">'+rank+'</div>'
-      +'<div class="top-info"><div class="top-title">'+ex(c.titol)+'</div>'
-      +'<div class="top-meta">'+ex(c.artista)+" · "+ex(c.genere||"")+" · "+(c.any||"")+'</div></div>'
-      +'<div class="top-pop">'+Math.round(c.popularitat||0)+'</div>'
-      +'<button class="like-btn" onclick="event.stopPropagation();tl2(''+c.id+'',this)">'+(liked?"❤️":"🤍")+'</button>'
-      +'</div>';
-  }).join("");
-}
-
-// ARTISTES
-function ra(cid,em){
-  var el=document.getElementById(cid);
-  if(!el) return;
-  var list=D.artistes.filter(function(a){return em?a.emergent:!a.emergent;});
-  if(!list.length){el.innerHTML="<p style='color:var(--m);text-align:center;padding:2rem'>Cap artista</p>";return;}
-  el.innerHTML=list.map(function(a){
-    var em2=a.emergent?"<span class='em-badge'>⭐ Emergent</span><br>":"";
-    return '<div class="art-card" onclick="oa(''+a.id+'')">'
-      +em2
-      +'<div class="art-av" style="background:'+av(a.nom)+'">'+ai(a.nom)+'</div>'
-      +'<div class="art-nom">'+ex(a.nom)+'</div>'
-      +'<div class="art-gen">📍 '+ex(a.origen||"")+" · "+ex(a.genere||"")+'</div>'
-      +'<div class="art-bio">'+ex((a.bio||"").substring(0,130))+'...</div>'
-      +'</div>';
-  }).join("");
-}
-
-// MODAL CANÇÓ
-function oc(id){
-  var c=D.cancons.find(function(x){return x.id===id;});
-  if(!c) return;
-  var yt="https://www.youtube.com/results?search_query="+encodeURIComponent(c.titol+" "+c.artista+" karaoke");
-  var sp="https://open.spotify.com/search/"+encodeURIComponent(c.titol+" "+c.artista);
-  document.getElementById("mb").innerHTML=
-    '<div style="font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:900;margin-bottom:.3rem">'+ex(c.titol)+'</div>'
-    +'<div style="color:var(--m);font-size:.85rem;margin-bottom:1rem">'+ex(c.artista)+" · "+ex(c.genere||"")+" · "+(c.any||"")+'</div>'
-    +'<div style="display:flex;gap:.5rem;flex-wrap:wrap">'
-    +'<a href="'+sp+'" target="_blank" style="background:rgba(29,185,84,.12);color:#1DB954;border:1px solid rgba(29,185,84,.25);padding:.4rem .9rem;border-radius:12px;font-size:.82rem;font-weight:700;text-decoration:none">🎵 Spotify</a>'
-    +'<a href="'+yt+'" target="_blank" style="background:rgba(255,0,0,.12);color:#ff4444;border:1px solid rgba(255,0,0,.2);padding:.4rem .9rem;border-radius:12px;font-size:.82rem;font-weight:700;text-decoration:none">▶ Karaoke YouTube</a>'
-    +'</div>';
-  document.getElementById("mm").classList.add("open");
-}
-
-// MODAL ARTISTA
-function oa(id){
-  var a=D.artistes.find(function(x){return x.id===id;});
-  if(!a) return;
-  var cans=D.cancons.filter(function(c){return c.artista_id===id;}).slice(0,4);
-  var sp="https://open.spotify.com/search/"+encodeURIComponent(a.nom);
-  var yt="https://www.youtube.com/results?search_query="+encodeURIComponent(a.nom+" catala");
-  document.getElementById("mb").innerHTML=
-    '<div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem">'
-    +'<div style="width:60px;height:60px;border-radius:50%;background:'+av(a.nom)+';display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:900;color:#fff;flex-shrink:0">'+ai(a.nom)+'</div>'
-    +'<div><div style="font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:900">'+ex(a.nom)+'</div>'
-    +'<div style="color:var(--m);font-size:.8rem">📍 '+ex(a.origen||"")+" · "+ex(a.genere||"")+'</div></div></div>'
-    +'<p style="font-size:.85rem;color:var(--m);margin-bottom:1rem;line-height:1.5">'+ex(a.bio||"")+'</p>'
-    +(cans.length?'<div style="font-family:'Baloo 2',cursive;font-weight:800;margin-bottom:.5rem">🎵 Cançons</div>'
-      +cans.map(function(c){return '<div style="background:rgba(255,255,255,.04);border-radius:9px;padding:.5rem .9rem;margin-bottom:.3rem;font-size:.85rem">🎵 '+ex(c.titol)+'</div>';}).join("")
-    :"")
-    +'<div style="display:flex;gap:.5rem;margin-top:1rem">'
-    +'<a href="'+sp+'" target="_blank" style="background:rgba(29,185,84,.12);color:#1DB954;border:1px solid rgba(29,185,84,.25);padding:.4rem .9rem;border-radius:12px;font-size:.82rem;font-weight:700;text-decoration:none">🎵 Spotify</a>'
-    +'<a href="'+yt+'" target="_blank" style="background:rgba(255,0,0,.1);color:#ff4444;border:1px solid rgba(255,0,0,.2);padding:.4rem .9rem;border-radius:12px;font-size:.82rem;font-weight:700;text-decoration:none">▶ YouTube</a>'
-    +'</div>';
-  document.getElementById("mm").classList.add("open");
-}
-
-function cm(){document.getElementById("mm").classList.remove("open");}
-document.addEventListener("keydown",function(e){if(e.key==="Escape")cm();});
-
-function tl2(id,btn){lk[id]=!lk[id];btn.textContent=lk[id]?"❤️":"🤍";}
-
-// COMARCA
-var COM={
-  barcelones:{n:"El Barcelonès",w:"https://ajuntament.barcelona.cat/centrescivics/ca/",r:["Centres Cívics Barcelona","Agenda Cultural Ajuntament BCN","Institut de Cultura ICUB"]},
-  girones:{n:"El Gironès",w:"https://www.girona.cat/cultura/",r:["Espai Cívic de Girona","Temporada Alta Festival","Agenda cultural Girona"]},
-  emporda:{n:"L'Empordà",w:"https://www.ccbaixemporda.cat/cultura",r:["Festival Cap Roig Calella","Festes Majors Costa Brava","Karaoke bars de Figueres"]},
-  valles:{n:"El Vallès",w:"https://www.sabadell.cat/ca/cultura",r:["Centre Cultural Terrassa","Agenda de Sabadell Cultura","Festivals de Rubí i Cerdanyola"]},
-  penedes:{n:"El Penedès",w:"https://www.vilafranca.cat/cultura/",r:["Agenda Vilafranca del Penedès","Festes de la Verema","Karaokes de Sant Sadurní"]},
-  tarragones:{n:"El Tarragonès",w:"https://www.tarragona.cat/cultura/",r:["Agenda Cultural de Tarragona","Karaokes al Serrallo","Festivals Amphitheatre"]},
-  lleida:{n:"El Segrià",w:"https://www.paeria.cat/cat/actualitat/agenda-cultural.asp",r:["La Llotja Teatre i Auditori","Festes de la Tardor","Agenda Cultural Lleida"]},
-  osona:{n:"Osona",w:"https://www.ccosona.cat/ca/cultura",r:["Teatre Atlàntida de Vic","Mercat Música Viva de Vic","Karaokes de Manlleu"]},
-};
-function sc2(id,el){
-  document.querySelectorAll(".com-chip").forEach(function(c){c.classList.remove("sel");});
-  if(el) el.classList.add("sel");
-  var c=COM[id];if(!c)return;
-  var res=document.getElementById("cr");
-  res.innerHTML="<strong style='color:var(--t)'>"+c.n+"</strong><br>"
-    +"<ul style='margin:.4rem 0 .6rem 1.2rem;color:var(--m)'>"
-    +c.r.map(function(r){return "<li>"+r+"</li>";}).join("")+"</ul>"
-    +'<a href="'+c.w+'" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;color:#A5B4FC;background:rgba(124,77,255,.1);border:1px solid rgba(124,77,255,.2);padding:.3rem .8rem;border-radius:8px;text-decoration:none">🌐 Web oficial →</a>';
-  res.classList.add("vis");
-}
-
-// CERCA
-var ct=null;
-function sd(v){clearTimeout(ct);ct=setTimeout(function(){sc(v);},300);}
-function sc(q){
-  q=(q||"").toLowerCase().trim();
-  if(q.length<2) return;
-  var tb=document.getElementById("tbc");
-  if(tb){tb.style.display="block";}
-  st("cer",tb);
-  var art=D.artistes.filter(function(a){
-    return (a.nom||"").toLowerCase().includes(q)||(a.genere||"").toLowerCase().includes(q)||(a.origen||"").toLowerCase().includes(q)||(a.bio||"").toLowerCase().includes(q);
-  });
-  var can=D.cancons.filter(function(c){
-    return (c.titol||"").toLowerCase().includes(q)||(c.artista||"").toLowerCase().includes(q)||(c.genere||"").toLowerCase().includes(q);
-  });
-  var el=document.getElementById("ce");
-  if(!art.length&&!can.length){el.innerHTML="<div class='cerca-empty'>Cap resultat per \""+q+"\"</div>";return;}
-  var h="";
-  if(art.length){
-    h+="<div style='font-family:"Baloo 2",cursive;font-weight:800;margin-bottom:.7rem'>🎤 Artistes ("+art.length+")</div>";
-    h+="<div class='art-grid'>"+art.map(function(a){
-      return '<div class="art-card" onclick="oa(''+a.id+'')">'
-        +'<div class="art-av" style="background:'+av(a.nom)+'">'+ai(a.nom)+'</div>'
-        +'<div class="art-nom">'+ex(a.nom)+'</div>'
-        +'<div class="art-gen">'+ex(a.genere||"")+'</div></div>';
-    }).join("")+"</div>";
-  }
-  if(can.length){
-    h+="<div style='font-family:"Baloo 2",cursive;font-weight:800;margin:.9rem 0 .7rem'>🎵 Cançons ("+can.length+")</div>";
-    h+="<div class='top-list'>"+can.slice(0,8).map(function(c){
-      var yt="https://www.youtube.com/results?search_query="+encodeURIComponent(c.titol+" "+c.artista+" karaoke");
-      return '<div class="top-item"><div class="top-info"><div class="top-title">'+ex(c.titol)+'</div>'
-        +'<div class="top-meta">'+ex(c.artista)+'</div></div>'
-        +'<a href="'+yt+'" target="_blank" onclick="event.stopPropagation()" style="background:rgba(255,0,0,.12);color:#ff4444;border:1px solid rgba(255,0,0,.2);padding:.3rem .7rem;border-radius:10px;font-size:.76rem;font-weight:700;text-decoration:none">▶ Karaoke</a>'
-        +'</div>';
-    }).join("")+"</div>";
-  }
-  el.innerHTML=h;
-}
-
-// INIT
-rt();
-ra("ag",false);
-ra("eg",true);
-</script>
+<script src="/modul-catala-v3.js"></script>
 </body>
 </html>
