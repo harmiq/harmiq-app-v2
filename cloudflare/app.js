@@ -2663,9 +2663,19 @@ async function loadStaticPage(url, title) {
     const html = await r.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
+    
+    // Inyectar estilos del nuevo head
+    document.querySelectorAll("style.spa-injected, link.spa-injected").forEach(el => el.remove());
+    doc.head.querySelectorAll("style, link[rel='stylesheet']").forEach(el => {
+      const clone = el.cloneNode(true);
+      clone.classList.add("spa-injected");
+      document.head.appendChild(clone);
+    });
+
     // Reemplazar body manteniendo scripts de app.js
     document.body.innerHTML = doc.body.innerHTML;
     document.title = doc.title || title;
+    
     // Re-ejecutar scripts inline del nuevo HTML
     document.body.querySelectorAll("script:not([src])").forEach(old => {
       const s = document.createElement("script");
