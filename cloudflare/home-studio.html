@@ -30,15 +30,15 @@
         .tab{flex-shrink:0;padding:.8rem 1.8rem;border-radius:50px;font-weight:800;cursor:pointer;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);transition:0.4s;white-space:nowrap;color:var(--m)}
         .tab.active{color:#fff;border-color:transparent}
         
-        /* Gradient Tab Color Sequence */
-        .tab-1.active{background:linear-gradient(135deg, #7C4DFF, #B338FF); box-shadow:0 0 20px rgba(124,77,255,0.4)}
-        .tab-2.active{background:linear-gradient(135deg, #B338FF, #FF4FA3); box-shadow:0 0 20px rgba(179,56,255,0.4)}
-        .tab-3.active{background:linear-gradient(135deg, #FF4FA3, #FF6B6B); box-shadow:0 0 20px rgba(255,79,163,0.4)}
-        .tab-4.active{background:linear-gradient(135deg, #FF6B6B, #FF9F1C); box-shadow:0 0 20px rgba(255,107,107,0.4)}
-        .tab-5.active{background:linear-gradient(135deg, #FF9F1C, #FFD166); box-shadow:0 0 20px rgba(255,159,28,0.4)}
-        .tab-6.active{background:linear-gradient(135deg, #FFD166, #06D6A0); box-shadow:0 0 20px rgba(255,209,102,0.4)}
-        .tab-7.active{background:linear-gradient(135deg, #06D6A0, #00AAFF); box-shadow:0 0 20px rgba(6,214,160,0.4)}
-        .tab.active{background:linear-gradient(135deg,var(--p),var(--a));color:#fff;border-color:transparent;box-shadow:0 0 20px rgba(124,77,255,0.4)}
+        .tab.active{color:#fff;border-color:transparent;box-shadow:0 0 20px rgba(124,77,255,0.4)}
+        /* numbered tabs override the generic one — these must come AFTER */
+        .tab-1.active{background:linear-gradient(135deg, #7C4DFF, #B338FF);box-shadow:0 0 20px rgba(124,77,255,0.5)}
+        .tab-2.active{background:linear-gradient(135deg, #B338FF, #FF4FA3);box-shadow:0 0 20px rgba(179,56,255,0.5)}
+        .tab-3.active{background:linear-gradient(135deg, #FF4FA3, #FF6B6B);box-shadow:0 0 20px rgba(255,79,163,0.5)}
+        .tab-4.active{background:linear-gradient(135deg, #FF6B6B, #FF9F1C);box-shadow:0 0 20px rgba(255,107,107,0.5)}
+        .tab-5.active{background:linear-gradient(135deg, #FF9F1C, #FFD166);box-shadow:0 0 20px rgba(255,159,28,0.5)}
+        .tab-6.active{background:linear-gradient(135deg, #FFD166, #06D6A0);box-shadow:0 0 20px rgba(255,209,102,0.5)}
+        .tab-7.active{background:linear-gradient(135deg, #06D6A0, #00AAFF);box-shadow:0 0 20px rgba(6,214,160,0.5)}
 
         .content-section{max-width:1250px;margin:0 auto;padding:4rem 5%;display:none;animation:slideUp 0.6s ease-out}
         .content-section.active{display:block}
@@ -48,8 +48,12 @@
         .prod-card{background:var(--card);border-radius:28px;border:1px solid rgba(255,255,255,0.06);overflow:hidden;transition:0.4s;display:flex;flex-direction:column}
         .prod-card:hover{transform:translateY(-10px);border-color:var(--p);box-shadow:0 20px 40px rgba(0,0,0,0.6)}
         
-        .img-wrap{height:240px;padding:2rem;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.01)}
-        .img-wrap img{max-height:100%;filter:drop-shadow(0 15px 30px rgba(0,0,0,0.5))}
+        .img-wrap{height:240px;padding:2rem;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.01);position:relative;min-height:220px}
+        .img-wrap img{max-height:100%;max-width:90%;object-fit:contain;filter:drop-shadow(0 15px 30px rgba(0,0,0,0.5));transition:.3s}
+        .img-wrap img.broken{display:none}
+        .img-placeholder{width:100%;height:100%;display:none;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;color:var(--m);font-size:.8rem}
+        .img-placeholder-icon{font-size:3rem}
+        .img-wrap img[src=''] + .img-placeholder, .img-wrap .show-placeholder{display:flex}
 
         .info-body{padding:2rem;flex-grow:1}
         .tag-row{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap}
@@ -63,6 +67,10 @@
         .btn-amz:hover{filter:brightness(1.1);transform:scale(1.02)}
 
         @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        
+        /* Ko-Fi float button */
+        .kofi-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:linear-gradient(135deg,#FF5E5B,#FF9F1C);color:#fff;border-radius:50px;padding:.7rem 1.4rem;font-weight:900;font-size:.88rem;box-shadow:0 8px 25px rgba(255,94,91,.45);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:transform .2s}
+        .kofi-btn:hover{transform:translateY(-3px) scale(1.04)}
     </style>
 </head>
 <body>
@@ -98,7 +106,12 @@
         <div class="prod-grid">
             <!-- PRO PACK -->
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/71R2o5-aYUL._AC_SL1500_.jpg" alt="Rode NT1"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/547949-1536687997-1565885851.jpg" 
+                         alt="Rode NT1" 
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎤</span>Rode NT1</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--p)">🔥 Pro</span></div>
                     <h2 class="card-title">Rode NT1 (Pro)</h2>
@@ -112,7 +125,12 @@
 
             <!-- MID PACK -->
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/610h3FhZ-ZL._AC_SL1500_.jpg" alt="AT2035"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/AT2035-1537461840.jpg"
+                         alt="AT2035"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎤</span>AT2035</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--a)">🎙 Medio</span><span class="tag" style="background:var(--amber); color:#000">Todas las voces</span></div>
                     <h2 class="card-title">Audio-Technica AT2035</h2>
@@ -125,7 +143,12 @@
             </div>
 
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/71KxU1841nL._AC_SL1500_.jpg" alt="AKG P220"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/P220-1537543897.jpg"
+                         alt="AKG P220"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎤</span>AKG P220</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--a)">🎙 Medio</span></div>
                     <h2 class="card-title">AKG P220</h2>
@@ -136,7 +159,12 @@
 
             <!-- ECONOMIC PACK -->
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/71j2D+q-MGL._AC_SL1500_.jpg" alt="AT2020"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/AT2020-1537461763.jpg"
+                         alt="AT2020"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎤</span>AT2020</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--blue)">💰 Económico</span></div>
                     <h2 class="card-title">Audio-Technica AT2020</h2>
@@ -150,7 +178,12 @@
 
             <!-- BASIC PACK -->
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/61I2l4K+MGL._AC_SL1500_.jpg" alt="Fifine K669B"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/K669B-1560189073.jpg"
+                         alt="Fifine K669B"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎤</span>Fifine K669B</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--green); color:#000">🎧 Básico (USB)</span><span class="tag" style="background:var(--m)">Principiantes</span></div>
                     <h2 class="card-title">Fifine K669B</h2>
@@ -161,7 +194,12 @@
 
             <!-- PODCAST MODE -->
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/61NlO2vE-pL._AC_SL1500_.jpg" alt="Samson Q2U"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/Q2U-1536783022.jpg"
+                         alt="Samson Q2U"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎤</span>Samson Q2U</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--p)">Podcast</span></div>
                     <h2 class="card-title">Samson Q2U</h2>
@@ -180,7 +218,12 @@
     <section id="sec-interfaz" class="content-section">
         <div class="prod-grid">
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/612W6+R8OUL._AC_SL1500_.jpg" alt="Focusrite 2i2"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/Scarlett2i2Studio3rdGen-1558547019.jpg"
+                         alt="Focusrite 2i2"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎤</span>Focusrite 2i2</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--a)">🎙 Medio</span></div>
                     <h2 class="card-title">Focusrite Scarlett 2i2</h2>
@@ -189,7 +232,12 @@
                 <a href="#" class="btn-amz" data-asin="B0C6ZSSWYF">Ver en Amazon</a>
             </div>
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/51wU+B9aExL._AC_SL1500_.jpg" alt="Audient iD4"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/iD4MkII-1627407069.jpg"
+                         alt="Audient iD4"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎣</span>Audient iD4</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--p)">🔥 Pro / Medio</span></div>
                     <h2 class="card-title">Audient iD4 MkII</h2>
@@ -198,7 +246,12 @@
                 <a href="#" class="btn-amz" data-asin="B08SBRQ8W6">Ver en Amazon</a>
             </div>
             <div class="prod-card">
-                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/81Ue42R+mXL._AC_SL1500_.jpg" alt="M-Track Solo"></div>
+                <div class="img-wrap">
+                    <img src="https://images.sweetwater.com/contentimages/products/headGallery/450/MTrackSolo-1612388701.jpg"
+                         alt="M-Track Solo"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder"><span class="img-placeholder-icon">🎣</span>M-Track Solo</div>
+                </div>
                 <div class="info-body">
                     <div class="tag-row"><span class="tag" style="background:var(--blue)">💰 Económico</span></div>
                     <h2 class="card-title">M-Audio M-Track Solo</h2>
