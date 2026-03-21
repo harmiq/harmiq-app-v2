@@ -1,97 +1,257 @@
 {
+  "version": "harmiq_pro_v1",
   "config": {
     "affiliate_id": "harmiqapp-20",
     "base_search_url": "https://www.amazon.es/s?k=",
     "default_region": "ES",
     "currency": "EUR"
   },
+  "affiliate": {
+    "amazon_tag": "harmiqapp-20",
+    "domain_map": {
+      "ES": "es",
+      "US": "com",
+      "MX": "com.mx",
+      "UK": "co.uk",
+      "DE": "de",
+      "FR": "fr",
+      "IT": "it"
+    }
+  },
   "global_keywords": {
     "essentials": ["filtro anti-pop", "brazo articulado microfono", "interfaz de audio", "auriculares estudio"],
     "top_brands": ["Rode", "Audio-Technica", "Shure", "AKG", "Focusrite", "Neumann", "Sennheiser"]
   },
-  "voice_profiles": {
-    "Tenor": {
-      "characteristics": "Voces agudas y brillantes. Necesitan calidez en el registro superior.",
-      "search_filters": "microfono+condensador+voces+agudas",
-      "artists": [
-        {
-          "name": "Freddie Mercury",
-          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Freddie_Mercury_performing_The_Works_Tour_in_New_Zealand.jpg/220px-Freddie_Mercury_performing_The_Works_Tour_in_New_Zealand.jpg",
-          "amazon_search": "Queen+Freddie+Mercury+vinyl+collection"
-        },
-        {
-          "name": "Josep Carreras",
-          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Josep_Carreras_2011.jpg/220px-Josep_Carreras_2011.jpg",
-          "amazon_search": "Josep+Carreras+opera+best+of"
-        }
-      ],
-      "curated_hardware": [
-        { "name": "Audio-Technica AT2035", "id": "B002T45X1G", "comment": "Controla sibilancias en agudos" },
-        { "name": "AKG P220", "id": "B003TM9A5G", "comment": "Gran cuerpo para tenores" },
-        { "name": "Rode NT1-A", "id": "B0002PSCQM", "comment": "Pack completo para home studio" }
-      ],
-      "dynamic_links": {
-        "mics": "microfono+estudio+profesional+tenor",
-        "books": "tecnica+vocal+bel+canto+libro",
-        "gear": "interfaz+audio+focusrite+scarlett"
+  "logic": {
+    "voice_profiles": {
+      "Tenor": {
+        "characteristics": "Voces agudas y brillantes. Necesitan calidez en el registro superior.",
+        "search_filters": "microfono+condensador+voces+agudas",
+        "mic_preference": ["bright", "detailed"],
+        "recommended_models": ["AT2035", "Rode NT1-A"]
+      },
+      "Barítono": {
+        "characteristics": "Voces cálidas y profundas. Requieren definición en medios-bajos.",
+        "search_filters": "microfono+dinamico+voces+graves+calidas",
+        "mic_preference": ["warm", "body"],
+        "recommended_models": ["AKG P220", "SM7B"]
+      },
+      "Bajo": {
+        "characteristics": "Timbre muy denso. Necesita control de graves.",
+        "mic_preference": ["controlled", "low"],
+        "recommended_models": ["SM7B", "RE20"]
+      },
+      "Soprano": {
+        "characteristics": "Rango agudo extenso. Requieren micros con respuesta suave.",
+        "search_filters": "microfono+condensador+soprano+cristalino",
+        "mic_preference": ["bright", "airy"],
+        "recommended_models": ["NT1-A", "AT2035"]
+      },
+      "Mezzosoprano": {
+        "characteristics": "Equilibrio entre graves y agudos.",
+        "search_filters": "microfono+condensador+mezzo+equilibrado",
+        "mic_preference": ["balanced"],
+        "recommended_models": ["AT2035", "AKG P220"]
+      },
+      "Contralto": {
+        "characteristics": "Femenina grave y profunda.",
+        "mic_preference": ["warm", "soft"],
+        "recommended_models": ["AKG P220"]
       }
     },
-    "Baritono": {
-      "characteristics": "Voces cálidas y profundas. Requieren definición en medios-bajos.",
-      "search_filters": "microfono+dinamico+voces+graves+calidas",
-      "artists": [
-        {
-          "name": "Frank Sinatra",
-          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Frank_Sinatra_-_publicity.jpg/220px-Frank_Sinatra_-_publicity.jpg",
-          "amazon_search": "Frank+Sinatra+Ultimate+Vinyl"
-        },
-        {
-          "name": "Joan Manuel Serrat",
-          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Serrat_en_2015.jpg/220px-Serrat_en_2015.jpg",
-          "amazon_search": "Serrat+Mediterraneo+disco+vinilo"
-        }
-      ],
-      "curated_hardware": [
-        { "name": "Shure SM7B", "id": "B0002E4Z8M", "comment": "El rey de las voces graves" },
-        { "name": "Audio-Technica AT4040", "id": "B0002D0HYI", "comment": "Captura armónicos medios perfectos" },
-        { "name": "Shure MV7", "id": "B08G7RG9ML", "comment": "Híbrido USB/XLR de alta calidad" }
-      ],
-      "dynamic_links": {
-        "mics": "microfono+dinamico+profesional+baritono",
-        "vinyls": "serrat+pack+vinilos",
-        "audio": "preamplificador+microfono+valvulas"
+    "usage_modes": {
+      "singing": {
+        "mic_type": "condenser",
+        "description": "Captura detalle y armónicos de la voz"
+      },
+      "podcast": {
+        "mic_type": "dynamic",
+        "description": "Reduce ruido ambiente y mejora claridad de voz hablada"
+      },
+      "hobby": {
+        "mic_type": "usb",
+        "description": "Plug & play sin configuración"
       }
     },
-    "Soprano / Mezzo": {
-      "characteristics": "Rango agudo extenso. Requieren micros con respuesta suave en altas frecuencias.",
-      "search_filters": "microfono+condensador+soprano+cristalino",
-      "artists": [
+    "budget_tiers": {
+      "basic": { "range": "50-120" },
+      "economic": { "range": "120-250" },
+      "mid": { "range": "250-600" },
+      "pro": { "range": "600-1500" }
+    }
+  },
+  "packs": {
+    "basic": {
+      "title": "🎧 Home Studio Básico",
+      "description": "Para empezar sin complicaciones, plug & play",
+      "microphones": [
         {
-          "name": "Montserrat Caballé",
-          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Montserrat_Caballe_1969.jpg/220px-Montserrat_Caballe_1969.jpg",
-          "amazon_search": "Montserrat+Caballe+Barcelona+CD+Vinyl"
+          "name": "Fifine K669B",
+          "search": "Fifine K669B USB microphone",
+          "why": "Muy barato y sorprendentemente usable",
+          "best_for": "principiantes",
+          "avoid_if": "quieres sonido profesional"
         },
         {
-          "name": "Rosalía",
-          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Rosal%C3%ADa_at_Grammy_Museum_2022.jpg/220px-Rosal%C3%ADa_at_Grammy_Museum_2022.jpg",
-          "amazon_search": "Rosalia+Motomami+merchandising"
+          "name": "TONOR TC30",
+          "search": "TONOR TC30 kit mic",
+          "why": "Incluye brazo y filtro, listo para usar",
+          "best_for": "comodidad total"
         },
         {
-          "name": "Mariah Carey",
-          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mariah_Carey_2019_by_Glenn_Francis.jpg/220px-Mariah_Carey_2019_by_Glenn_Francis.jpg",
-          "amazon_search": "Mariah+Carey+Butterfly+Vinyl"
+          "name": "Maono AU-A04",
+          "search": "Maono AU-A04",
+          "why": "Sonido más cálido que otros USB",
+          "best_for": "voz hablada"
         }
       ],
-      "curated_hardware": [
-        { "name": "Neumann TLM 102", "id": "B00339R9OE", "comment": "Calidad elite para voces femeninas" },
-        { "name": "AKG C214", "id": "B00167S97A", "comment": "Brillo profesional y nitidez" },
-        { "name": "Focusrite Scarlett Solo", "id": "B07QR6Z1JB", "comment": "Interfaz ideal para empezar" }
+      "extras": [
+        {
+          "name": "Pop filter básico",
+          "why": "Evita sonidos explosivos (P y B)"
+        }
+      ]
+    },
+    "economic": {
+      "title": "💰 Home Studio Económico",
+      "microphones": [
+        {
+          "name": "Audio-Technica AT2020",
+          "search": "Audio Technica AT2020",
+          "why": "Estándar mundial para empezar",
+          "best_for": "voces claras",
+          "avoid_if": "voz muy grave"
+        },
+        {
+          "name": "Behringer B-1",
+          "search": "Behringer B1 microphone",
+          "why": "Muy barato para ser XLR"
+        },
+        {
+          "name": "Maono PM500",
+          "search": "Maono PM500",
+          "why": "Equilibrio calidad/precio"
+        }
       ],
-      "dynamic_links": {
-        "mics": "microfono+voz+femenina+estudio",
-        "merch": "rosalia+motomami+official",
-        "training": "curso+canto+soprano+ejercicios"
-      }
+      "interfaces": [
+        {
+          "name": "Behringer UMC22",
+          "search": "Behringer UMC22",
+          "why": "La más barata funcional"
+        },
+        {
+          "name": "M-Audio M-Track Solo",
+          "search": "M-Audio M Track Solo",
+          "why": "Más estable"
+        },
+        {
+          "name": "Focusrite Solo",
+          "search": "Focusrite Scarlett Solo",
+          "why": "Calidad superior"
+        }
+      ]
+    },
+    "mid": {
+      "title": "🎙 Home Studio Medio",
+      "microphones": [
+        {
+          "name": "AT2035",
+          "search": "Audio Technica AT2035",
+          "why": "Equilibrio perfecto",
+          "best_for": "todo tipo de voces"
+        },
+        {
+          "name": "Rode NT1-A",
+          "search": "Rode NT1A",
+          "why": "Ultra limpio",
+          "best_for": "voces agudas"
+        },
+        {
+          "name": "AKG P220",
+          "search": "AKG P220",
+          "why": "Más cálido",
+          "best_for": "voces graves"
+        }
+      ],
+      "interfaces": [
+        { "name": "Focusrite 2i2", "search": "Focusrite Scarlett 2i2" },
+        { "name": "Audient iD4", "search": "Audient iD4" },
+        { "name": "Motu M2", "search": "Motu M2 interface" }
+      ],
+      "monitors": [
+        { "name": "Presonus Eris 3.5", "search": "Presonus Eris 3.5" },
+        { "name": "Mackie CR3-X", "search": "Mackie CR3X" },
+        { "name": "JBL 305P", "search": "JBL 305P MkII" }
+      ]
+    },
+    "pro": {
+      "title": "🔥 Home Studio Pro",
+      "microphones": [
+        {
+          "name": "Rode NT1",
+          "search": "Rode NT1 microphone",
+          "why": "Ultra limpio y moderno"
+        },
+        {
+          "name": "AKG C214",
+          "search": "AKG C214",
+          "why": "Sonido profesional"
+        },
+        {
+          "name": "Warm Audio WA47jr",
+          "search": "Warm Audio WA47jr",
+          "why": "Sonido vintage tipo Neumann"
+        }
+      ],
+      "interfaces": [
+        { "name": "Audient iD14", "search": "Audient iD14" },
+        { "name": "SSL2", "search": "SSL2 interface" },
+        { "name": "Motu M4", "search": "Motu M4" }
+      ]
+    }
+  },
+  "extra": {
+    "podcast_mode": {
+      "microphones": [
+        {
+          "name": "Samson Q2U",
+          "search": "Samson Q2U",
+          "why": "Mejor barato para podcast"
+        },
+        {
+          "name": "ATR2100",
+          "search": "ATR2100 microphone"
+        },
+        {
+          "name": "Shure MV7",
+          "search": "Shure MV7"
+        }
+      ]
+    },
+    "songs_by_voice": {
+      "Barítono": [
+        "Perfect - Ed Sheeran",
+        "Hallelujah - Leonard Cohen"
+      ],
+      "Tenor": [
+        "Blinding Lights - The Weeknd"
+      ]
+    },
+    "content": {
+      "Tenor": [
+        {
+          "artist": "Freddie Mercury",
+          "title": "Bohemian Rhapsody",
+          "search": "Bohemian Rhapsody movie"
+        }
+      ],
+      "Barítono": [
+        {
+          "artist": "Johnny Cash",
+          "title": "Walk the Line",
+          "search": "Johnny Cash movie"
+        }
+      ]
     }
   }
 }

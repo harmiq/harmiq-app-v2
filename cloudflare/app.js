@@ -1149,19 +1149,21 @@ async function analyzeAudio() {
  * Devuelve "" si monetizationDb no está cargada o no hay perfil para el tipo.
  */
 function getAmazonHtml(voiceType) {
-  if (!monetizationDb) return "";
-  // El JSON usa claves capitalizadas: "Tenor", "Soprano", etc.
-  const vtKey = voiceType.charAt(0).toUpperCase() + voiceType.slice(1).toLowerCase();
-  const profile = monetizationDb.voice_profiles?.[vtKey];
-  if (!profile) return "";
+  if (!monetizationDb || !monetizationDb.logic || !monetizationDb.logic.voice_profiles) return "";
+  const profiles = monetizationDb.logic.voice_profiles;
+  let profile = null; let vtKey = "";
+  for (let k in profiles) {
+    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
+      profile = profiles[k]; vtKey = k; break;
+    }
+  }
+  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return "";
 
-  const mic      = profile.microphones?.[0];
-  if (!mic) return "";
-
-  const amzDomain= getAmazonDomain();
-  const currency = getCurrencySymbol();
-  const amzLink  = `https://www.${amzDomain}/s?k=${encodeURIComponent(mic.search)}&tag=${AFFILIATE_ID}`;
-  const vtName   = trV("_vt_names", voiceType);
+  const micName = profile.recommended_models[0];
+  const amzTag  = monetizationDb.config?.affiliate_id || "harmiqapp-20";
+  const currency= "€";
+  const amzLink = `https://www.amazon.es/s?k=${encodeURIComponent(micName + " microphone")}&tag=${amzTag}`;
+  const vtName  = trV("_vt_names", voiceType) || vtKey;
 
   return `
     <div style="margin:1rem 0;padding:1.1rem;border-radius:16px;
@@ -1174,12 +1176,12 @@ function getAmazonHtml(voiceType) {
             Micrófono recomendado para ${vtName}
           </div>
           <div style="font-size:.75rem;color:#9CA3AF">
-            Selección personalizada para tu tipo de voz
+            Selección personalizada para tu perfil vocal
           </div>
         </div>
       </div>
-      <div style="font-size:.85rem;color:#D1D5DB;font-weight:600">${mic.name}</div>
-      ${mic.reason ? `<div style="font-size:.78rem;color:#9CA3AF;line-height:1.5">${mic.reason}</div>` : ""}
+      <div style="font-size:.85rem;color:#D1D5DB;font-weight:600">${micName}</div>
+      <div style="font-size:.78rem;color:#9CA3AF;line-height:1.5">${profile.characteristics}</div>
       <a href="${amzLink}" target="_blank" rel="noopener sponsored"
         style="display:inline-block;align-self:flex-start;
         background:linear-gradient(135deg,#FF9F1C,#FF6B35);color:#fff;
@@ -1192,38 +1194,37 @@ function getAmazonHtml(voiceType) {
 
 /**
  * getAmazonAffiliateLink(voiceType)
- * Versión ligera que devuelve solo la URL de afiliado Amazon para el tipo de
- * voz indicado. Útil para inyectar links en cualquier parte del HTML sin
- * necesidad de renderizar el bloque completo de getAmazonHtml().
- * Devuelve null si monetizationDb no está disponible o no hay perfil.
+ * Versión ligera que devuelve solo la URL de afiliado Amazon para el tipo de voz
  */
 function getAmazonAffiliateLink(voiceType) {
-  if (!monetizationDb) return null;
-  const vtKey  = voiceType.charAt(0).toUpperCase() + voiceType.slice(1).toLowerCase();
-  const profile = monetizationDb.voice_profiles?.[vtKey];
-  if (!profile) return null;
-  const mic    = profile.microphones?.[0];
-  if (!mic) return null;
-  const domain = AMAZON_DOMAINS[userCountry] || "com";
-  return `https://www.amazon.${domain}/s?k=${encodeURIComponent(mic.search)}&tag=${AFFILIATE_ID}`;
+  if (!monetizationDb || !monetizationDb.logic) return null;
+  const profiles = monetizationDb.logic.voice_profiles;
+  let profile = null;
+  for (let k in profiles) {
+    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
+      profile = profiles[k]; break;
+    }
+  }
+  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return null;
+  return `https://www.amazon.es/s?k=${encodeURIComponent(profile.recommended_models[0])}&tag=${monetizationDb.config?.affiliate_id||"harmiqapp-20"}`;
 }
 
 /**
  * getAmazonBox(voiceType)
  * Alias público de getAmazonHtml() con la firma exacta del diseño v8.
- * Genera el bloque HTML de recomendación de micrófono para el resultado
- * principal. Usa AMAZON_DOMAINS + AFFILIATE_ID + monetizationDb.
- * Devuelve "" si monetizationDb no está disponible o no hay perfil.
  */
 function getAmazonBox(voiceType) {
-  if (!monetizationDb) return "";
-  const vtKey   = voiceType.charAt(0).toUpperCase() + voiceType.slice(1).toLowerCase();
-  const profile = monetizationDb.voice_profiles?.[vtKey];
-  if (!profile) return "";
-  const mic    = profile.microphones?.[0];
-  if (!mic) return "";
-  const domain = AMAZON_DOMAINS[userCountry] || "es";
-  const link   = `https://www.amazon.${domain}/s?k=${encodeURIComponent(mic.search)}&tag=${AFFILIATE_ID}`;
+  if (!monetizationDb || !monetizationDb.logic) return "";
+  const profiles = monetizationDb.logic.voice_profiles;
+  let profile = null; let vtKey = "";
+  for (let k in profiles) {
+    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
+      profile = profiles[k]; vtKey = k; break;
+    }
+  }
+  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return "";
+  const micName = profile.recommended_models[0];
+  const link = `https://www.amazon.es/s?k=${encodeURIComponent(micName)}&tag=${monetizationDb.config?.affiliate_id||"harmiqapp-20"}`;
   return `
     <div class="cta-box" style="border:2px solid var(--gold,#FFD700);margin-top:20px;
       padding:1.1rem;border-radius:16px;background:rgba(255,215,0,.05)">
@@ -1231,8 +1232,8 @@ function getAmazonBox(voiceType) {
         🎤 Recomendación para tu voz
       </h3>
       <p style="font-size:.88rem;margin-bottom:.75rem">
-        Como ${trV("_vt_names", voiceType)}, tu micro ideal es el <b>${mic.name}</b>.
-        ${mic.reason ? `<br><span style="color:#9CA3AF;font-size:.8rem">${mic.reason}</span>` : ""}
+        Como ${trV("_vt_names", voiceType) || vtKey}, tu micro ideal es el <b>${micName}</b>.
+        <br><span style="color:#9CA3AF;font-size:.8rem">${profile.characteristics}</span>
       </p>
       <a href="${link}" target="_blank" rel="noopener sponsored"
         style="display:inline-block;background:#FF9900;color:#fff;font-weight:700;
