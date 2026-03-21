@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ejercicios de Canto — Rutinas Vocales Interactiva | Harmiq</title>
+<meta name="description" content="Los mejores ejercicios de canto para mejorar tu voz: calentamiento vocal, técnica, extensión de rango, vibrato y más. Guía completa con videos y rutinas diarias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280;--sp-green:#1DB954}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.7}
+a{text-decoration:none;color:inherit}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;
+  background:rgba(13,13,26,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.07);
+  position:sticky;top:0;z-index:100}
+.logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900;
+  background:linear-gradient(135deg,#FF4FA3,#7C4DFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-back{background:rgba(124,77,255,.15);color:#A5B4FC;border:1px solid rgba(124,77,255,.3);
+  padding:.45rem 1.1rem;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s}
+
+.hero{text-align:center;padding:3.5rem 1.5rem 2.5rem;
+  background:linear-gradient(135deg,rgba(124,77,255,.12),rgba(255,79,163,.06));
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.badge{display:inline-block;background:rgba(124,77,255,.15);color:#A5B4FC;
+  border:1px solid rgba(124,77,255,.3);border-radius:50px;padding:.3rem 1rem;
+  font-size:.8rem;font-weight:700;margin-bottom:1rem}
+.hero h1{font-family:'Baloo 2',cursive;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:900;margin-bottom:.8rem}
+.grad{background:linear-gradient(135deg,#FF4FA3,#FFD166,#06D6A0,#7C4DFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* TABS */
+.tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;
+  padding:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.tab{padding:.5rem 1.2rem;border-radius:24px;font-size:.85rem;font-weight:700;
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
+  color:var(--m);transition:all .2s;cursor:pointer}
+.tab.active{background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;border-color:transparent}
+
+.content{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem}
+
+/* SECCIONES */
+.ex-section{display:none}
+.ex-section.active{display:block}
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+.ex-card{background:var(--card);border-radius:16px;padding:1.4rem;border:1px solid rgba(255,255,255,.07)}
+.ex-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
+.ex-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
+.ex-duration{color:#06D6A0;font-weight:800;font-size:.8rem;margin-top:10px;cursor:pointer;display:inline-block;padding:5px 10px;background:rgba(6,214,160,0.1);border-radius:8px}
+.timer-active{background:var(--a)!important;color:white!important;animation:pulse 1.5s infinite}
+@keyframes pulse {0%{opacity:1}50%{opacity:0.7}100%{opacity:1}}
+
+/* SPOTIFY CARD */
+.spotify-practice-card {
+    background: linear-gradient(135deg, rgba(29, 185, 84, 0.1), rgba(124, 77, 255, 0.1));
+    border: 1px solid var(--sp-green); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 20px;
+}
+.spotify-practice-card img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+
+/* RUTINA BOX */
+.routine-box{background:rgba(6,214,160,.06);border:1px solid rgba(6,214,160,.2);border-radius:16px;padding:1.5rem}
+.routine-step{display:flex;gap:1rem;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0}
+
+/* VIDEOS */
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.video-card{border-radius:14px;overflow:hidden;background:#0d0d1a;border:1px solid rgba(255,255,255,.07);cursor:pointer}
+.video-thumb{position:relative;aspect-ratio:16/9}
+.video-thumb img{width:100%;height:100%;object-fit:cover}
+.play-circle{width:52px;height:52px;background:rgba(255,0,0,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">🎙️ Harmiq</a>
+  <button class="nav-back" onclick="window.location.href='/'">← Volver al Buscador</button>
+</nav>
+
+<div class="hero">
+  <div class="badge" id="vocal-badge">🎯 Guía 2026 · Analizando Voz...</div>
+  <h1><span class="grad">Ejercicios de Canto</span> Interactivos</h1>
+  <p>Entrena tu voz con rutinas profesionales. Haz clic en los tiempos para iniciar cronómetros reales.</p>
+</div>
+
+<div class="content">
+    <div id="spotify-suggestion" style="display:none;" class="spotify-practice-card">
+        <img id="sp-thumb" src="" alt="Hit">
+        <div>
+            <span style="color:var(--sp-green); font-size:0.7rem; font-weight:800;">🔥 TENDENCIA DE HOY</span>
+            <h4 id="sp-song-name" style="font-family:'Baloo 2'">Cargando canción...</h4>
+            <p id="sp-tip" style="font-size:0.8rem; color:var(--m)">Usa este hit para practicar tu agilidad vocal.</p>
+        </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="showSection('calentamiento',this)">🔥 Calentamiento</div>
+      <div class="tab" onclick="showSection('tecnica',this)">🎯 Técnica</div>
+      <div class="tab" onclick="showSection('rango',this)">📈 Rango</div>
+      <div class="tab" onclick="showSection('vibrato',this)">🌊 Vibrato</div>
+      <div class="tab" onclick="showSection('rutina',this)">📋 Rutina</div>
+      <div class="tab" onclick="showSection('videos',this)">🎬 Videos</div>
+    </div>
+
+    <div class="ex-section active" id="sec-calentamiento">
+        <div class="ex-grid">
+            <div class="ex-card">
+                <div class="ex-header"><div class="ex-num" style="background:#7C4DFF;color:#fff">1</div><h3>Lip Trills</h3></div>
+                <p>Haz vibrar tus labios mientras cantas escalas. Relaja la laringe.</p>
+                <div class="ex-duration" onclick="startTimer(180, this)">⏱️ INICIAR 3 MIN</div>
+            </div>
+            <div class="ex-card">
+                <div class="ex-header"><div class="ex-num" style="background:#FF4FA3;color:#fff">2</div><h3>Sirenas</h3></div>
+                <p>Desliza de agudos a graves sin cortar el aire.</p>
+                <div class="ex-duration" onclick="startTimer(120, this)">⏱️ INICIAR 2 MIN</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ex-section" id="sec-rutina">
+        <div class="routine-box">
+            <div class="routine-step">
+                <div class="step-num">1</div>
+                <div><h4>Calentamiento de Diafragma</h4><p>Inhala 4, mantén 4, exhala 8.</p></div>
+            </div>
+            <div class="routine-step">
+                <div class="step-num">2</div>
+                <div><h4>Escalas en "Nay"</h4><p>Trabaja tu voz mixta sin esfuerzo.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ex-section" id="sec-videos">
+        <div class="videos-grid" id="videos-container"></div>
+    </div>
+</div>
+
+<script>
+// --- TEMPORIZADOR ---
+function startTimer(duration, element) {
+    if(element.classList.contains('timer-active')) return;
+    let timer = duration;
+    element.classList.add('timer-active');
+    const interval = setInterval(() => {
+        let mins = Math.floor(timer / 60);
+        let secs = timer % 60;
+        element.innerText = `⏳ ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        if (--timer < 0) {
+            clearInterval(interval);
+            element.innerText = "✅ ¡HECHO!";
+            element.classList.remove('timer-active');
+            new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg').play();
+        }
+    }, 1000);
+}
+
+// --- TABS ---
+function showSection(id, el) {
+    document.querySelectorAll('.ex-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('sec-' + id).classList.add('active');
+    el.classList.add('active');
+    if (id === 'videos') renderVideos();
+}
+
+// --- VIDEOS ---
+const VIDEOS = [
+    {id:"QXSY_FiLBYk", title:"Calentamiento Completo", channel:"Cheryl Porter"},
+    {id:"BjpEZ2f1j6E", title:"Técnicas Pro", channel:"Brett Manning"}
+];
+function renderVideos() {
+    const container = document.getElementById('videos-container');
+    if(container.innerHTML !== "") return;
+    container.innerHTML = VIDEOS.map(v => `
+        <div class="video-card" onclick="playVideo(this,'${v.id}')">
+            <div class="video-thumb"><img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg"><div class="play-circle">▶</div></div>
+            <div class="video-info"><h4>${v.title}</h4><p>${v.channel}</p></div>
+        </div>
+    `).join('');
+}
+function playVideo(card, id) {
+    card.querySelector('.video-thumb').innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" style="width:100%;height:100%" frameborder="0" allowfullscreen></iframe>`;
+}
+
+// --- CONEXIÓN BACKEND SPOTIFY ---
+async function loadSpotifyHit() {
+    try {
+        // CAMBIA ESTA URL por la de tu Hugging Face cuando la tengas
+        const res = await fetch('http://localhost:3000/spotify/search?q=top%20tracks%20Spain');
+        const data = await res.json();
+        const hit = data.tracks.items[0];
+        if(hit) {
+            document.getElementById('spotify-suggestion').style.display = 'flex';
+            document.getElementById('sp-thumb').src = hit.album.images[0].url;
+            document.getElementById('sp-song-name').innerText = hit.name + " - " + hit.artists[0].name;
+        }
+    } catch(e) { console.log("Backend offline."); }
+}
+
+window.onload = () => {
+    loadSpotifyHit();
+    const type = localStorage.getItem('harmiq_vocal_type') || 'Cantante';
+    document.getElementById('vocal-badge').innerText = `🎯 Perfil Harmiq: ${type}`;
+};
+</script>
+</body>
+</html>

@@ -1,601 +1,252 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Guía Home Studio 2026 — Equipo para tu tipo de voz | Harmiq</title>
-<meta name="description" content="La guía definitiva para montar tu home studio según tu tipo de voz. Desde 50€ hasta nivel profesional. Con historias de artistas y afiliados Amazon.">
-<link rel="canonical" href="https://harmiq.app/home-studio">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Guía Home Studio 2026","description":"La guía definitiva para montar tu home studio según tu tipo de voz","url":"https://harmiq.app/home-studio","publisher":{"@type":"Organization","name":"Harmiq"}}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280;--green:#06D6A0;--amber:#FFD166}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.6}
-a{text-decoration:none;color:inherit}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Master Home Studio 2026 | Harmiq - Tu ADN Vocal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#9CA3AF;--green:#06D6A0;--amber:#FFD166;--amazon:#FF9900;--blue:#00AAFF}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.6;scroll-behavior:smooth}
+        
+        /* Navegación */
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:rgba(10,8,24,0.95);backdrop-filter:blur(15px);position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,0.08)}
+        .logo{font-family:'Baloo 2';font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+        
+        /* Hero */
+        .hero{text-align:center;padding:5rem 5% 3rem;background:radial-gradient(circle at center, rgba(124,77,255,0.15) 0%, var(--dark) 70%)}
+        .hero h1{font-family:'Baloo 2';font-size:clamp(2.5rem, 6vw, 4rem);line-height:1.1;margin-bottom:1.5rem}
+        .hero p{max-width:800px;margin:0 auto;color:var(--m);font-size:1.1rem}
 
-/* NAV */
-.hs-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;
-  background:rgba(13,13,26,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.07);
-  position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:.5rem}
-.logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900;
-  background:linear-gradient(135deg,#FF4FA3,#7C4DFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-back{background:rgba(124,77,255,.15);color:#A5B4FC;border:1px solid rgba(124,77,255,.3);
-  padding:.45rem 1.1rem;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;
-  transition:all .2s}
-.nav-back:hover{background:rgba(124,77,255,.25)}
+        /* Tabs con Scroll */
+        .tabs-wrapper{position:sticky;top:70px;background:var(--dark);z-index:900;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+        .tabs-container{display:flex;gap:1rem;justify-content:center;overflow-x:auto;padding:0 5%;scrollbar-width:none}
+        .tab{padding:.8rem 1.8rem;border-radius:50px;font-weight:800;cursor:pointer;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);transition:0.4s;white-space:nowrap;color:var(--m)}
+        .tab.active{background:linear-gradient(135deg,var(--p),var(--a));color:#fff;border-color:transparent;box-shadow:0 0 20px rgba(124,77,255,0.4)}
 
-/* HERO */
-.hs-hero{text-align:center;padding:3.5rem 1.5rem 2.5rem;background:linear-gradient(135deg,rgba(124,77,255,.12),rgba(255,79,163,.06));
-  border-bottom:1px solid rgba(255,255,255,.06)}
-.hs-hero h1{font-family:'Baloo 2',cursive;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:.8rem}
-.grad{background:linear-gradient(135deg,#FF4FA3,#FFD166,#06D6A0,#7C4DFF);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hs-hero p{color:var(--m);max-width:600px;margin:0 auto 2rem;font-size:1rem}
-.hs-badge{display:inline-block;background:rgba(124,77,255,.15);color:#A5B4FC;
-  border:1px solid rgba(124,77,255,.3);border-radius:50px;padding:.3rem 1rem;font-size:.8rem;font-weight:700;margin-bottom:1rem}
+        .content-section{max-width:1250px;margin:0 auto;padding:4rem 5%;display:none;animation:slideUp 0.6s ease-out}
+        .content-section.active{display:block}
 
-/* NAVIGATION TABS */
-.level-tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;padding:1.5rem;
-  border-bottom:1px solid rgba(255,255,255,.06)}
-.tab{padding:.55rem 1.3rem;border-radius:30px;font-size:.85rem;font-weight:700;cursor:pointer;
-  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--m);transition:all .2s}
-.tab:hover{border-color:rgba(124,77,255,.4);color:var(--t)}
-.tab.active{background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;border-color:transparent}
+        /* Grid y Cards */
+        .prod-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:2.5rem}
+        .prod-card{background:var(--card);border-radius:28px;border:1px solid rgba(255,255,255,0.06);overflow:hidden;transition:0.4s;display:flex;flex-direction:column}
+        .prod-card:hover{transform:translateY(-10px);border-color:var(--p);box-shadow:0 20px 40px rgba(0,0,0,0.6)}
+        
+        .img-wrap{height:240px;padding:2rem;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.01)}
+        .img-wrap img{max-height:100%;filter:drop-shadow(0 15px 30px rgba(0,0,0,0.5))}
 
-/* CONTENT */
-.hs-content{max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem}
-.level-section{display:none}
-.level-section.active{display:block}
+        .info-body{padding:2rem;flex-grow:1}
+        .tag-row{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap}
+        .tag{padding:.3rem .8rem;border-radius:8px;font-size:.65rem;font-weight:800;text-transform:uppercase}
+        
+        .pro-fact{background:rgba(6,214,160,0.05);border-left:4px solid var(--green);padding:1rem;border-radius:0 12px 12px 0;margin-bottom:1rem;font-size:0.85rem}
+        .history-box{background:rgba(255,79,163,0.05);border-left:4px solid var(--a);padding:1rem;border-radius:0 12px 12px 0;font-size:0.85rem}
+        .expert-tip-box{background:rgba(124,77,255,0.1);border:1px dashed var(--p);padding:1.5rem;border-radius:20px;margin-top:2rem}
 
-.level-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding:1.5rem;
-  border-radius:20px;border:1px solid rgba(255,255,255,.08)}
-.level-icon{font-size:2.5rem}
-.level-header h2{font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:900}
-.level-header p{color:var(--m);font-size:.9rem;margin-top:.2rem}
-.level-price{margin-left:auto;text-align:right}
-.price-tag{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:900;
-  background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.price-label{font-size:.72rem;color:var(--m)}
+        .btn-amz{background:var(--amazon);color:#000;text-align:center;padding:1.1rem;font-weight:900;text-decoration:none;margin:0 2rem 2rem;border-radius:18px;transition:0.3s}
+        .btn-amz:hover{filter:brightness(1.1);transform:scale(1.02)}
 
-/* PRODUCT GRID */
-.prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:2.5rem}
-
-.prod-card{background:var(--card);border-radius:20px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.07);transition:transform .25s,border-color .25s;display:flex;flex-direction:column}
-.prod-card:hover{transform:translateY(-5px);border-color:rgba(124,77,255,.35)}
-.prod-card.featured{border:2px solid var(--p);box-shadow:0 0 25px rgba(124,77,255,.2)}
-
-.prod-brand{padding:.8rem 1.2rem;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
-.brand-name{font-weight:700;color:#A5B4FC}
-.brand-flag{font-size:1.1rem}
-
-.prod-body{padding:1.5rem;flex-grow:1}
-.voice-badge{display:inline-block;padding:.25rem .8rem;border-radius:20px;font-size:.72rem;font-weight:700;
-  margin-bottom:.8rem;color:#fff}
-.prod-body h3{font-family:'Baloo 2',cursive;font-size:1.25rem;font-weight:800;margin-bottom:.3rem}
-.prod-img{width:100%;height:180px;object-fit:contain;margin:.8rem 0;
-  filter:drop-shadow(0 4px 12px rgba(124,77,255,.2))}
-.prod-desc{font-size:.88rem;color:var(--m);margin-bottom:1rem}
-
-.secret-box{background:rgba(255,217,102,.08);border:1px solid rgba(255,217,102,.25);
-  border-left:3px solid var(--amber);border-radius:12px;padding:1rem;margin:.8rem 0}
-.secret-box h5{display:flex;align-items:center;gap:.4rem;color:var(--amber);font-size:.82rem;margin-bottom:.4rem}
-.secret-box p{font-size:.82rem;color:#D1D5DB}
-
-.prod-why{font-size:.82rem;color:var(--t);background:rgba(255,255,255,.04);
-  border-radius:10px;padding:.7rem;margin-top:.8rem}
-.prod-why strong{color:#A5B4FC}
-
-.btn-amazon{display:block;margin:1.2rem;padding:.9rem;border-radius:12px;
-  background:linear-gradient(135deg,#FF9F1C,#FF4FA3);color:#fff;
-  font-weight:800;font-size:.92rem;text-align:center;
-  transition:opacity .2s,transform .1s}
-.btn-amazon:hover{opacity:.9;transform:scale(1.01)}
-
-/* DAW SECTION */
-.daw-section{background:var(--card);border-radius:20px;padding:2rem;
-  border:1px solid rgba(255,255,255,.07);margin-bottom:2rem}
-.daw-section h3{font-family:'Baloo 2',cursive;font-size:1.4rem;margin-bottom:1.5rem;text-align:center}
-.daw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
-.daw-card{background:rgba(255,255,255,.04);border-radius:14px;padding:1.2rem;
-  border:1px solid rgba(255,255,255,.07);text-align:center}
-.daw-icon{font-size:2rem;margin-bottom:.5rem;display:block}
-.daw-card h4{font-family:'Baloo 2',cursive;font-size:1rem;margin-bottom:.3rem}
-.daw-card p{font-size:.78rem;color:var(--m)}
-.daw-price{font-size:.72rem;font-weight:700;color:#06D6A0;margin-top:.4rem}
-
-/* GUIDE SECTION */
-.guide-box{background:rgba(124,77,255,.08);border:1px solid rgba(124,77,255,.2);
-  border-radius:16px;padding:1.5rem;margin-bottom:2rem}
-.guide-box h3{font-family:'Baloo 2',cursive;font-size:1.2rem;color:#A5B4FC;margin-bottom:1rem}
-.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.guide-item h4{font-size:.9rem;font-weight:700;color:var(--t);margin-bottom:.3rem}
-.guide-item p{font-size:.82rem;color:var(--m)}
-
-/* CTA */
-.hs-cta{text-align:center;padding:3rem 1.5rem;background:linear-gradient(135deg,rgba(124,77,255,.1),rgba(255,79,163,.06));
-  border-top:1px solid rgba(255,255,255,.06);margin-top:3rem}
-.hs-cta h2{font-family:'Baloo 2',cursive;font-size:1.8rem;margin-bottom:.8rem}
-.hs-cta p{color:var(--m);margin-bottom:1.5rem}
-.btn-cta{display:inline-block;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);
-  color:#fff;padding:.9rem 2.2rem;border-radius:50px;font-weight:800;font-size:1rem;
-  box-shadow:0 4px 20px rgba(124,77,255,.35);transition:transform .2s,box-shadow .2s}
-.btn-cta:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(124,77,255,.5)}
-
-/* FOOTER */
-.hs-footer{text-align:center;padding:1.5rem;color:var(--m);font-size:.78rem;
-  border-top:1px solid rgba(255,255,255,.06)}
-.hs-footer a{color:var(--m)}
-
-/* RESPONSIVE */
-@media(max-width:640px){
-  .hs-nav{padding:.8rem 1rem}
-  .guide-grid{grid-template-columns:1fr}
-  .level-header{flex-direction:column;text-align:center}
-  .level-price{margin-left:0}
-}
-</style>
+        @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="hs-nav">
-  <a class="logo" href="/">🎙️ Harmiq</a>
-  <button class="nav-back" onclick="location.href='/'">← Volver</button>
+<nav>
+    <a href="/" class="logo">🎙️ Harmiq</a>
+    <div style="font-size:0.7rem; color:var(--m); font-weight:800">HOME STUDIO MASTER GUIDE 2026</div>
 </nav>
 
-<!-- HERO -->
-<div class="hs-hero">
-  <div class="hs-badge">🎛️ Harmiq Studio Academy 2026</div>
-  <h1>Monta tu <span class="grad">Home Studio</span> perfecto</h1>
-  <p>No compres solo un micrófono. Compra tu identidad sonora. Equipo seleccionado para cada tipo de voz y presupuesto.</p>
+<header class="hero">
+    <h1>Tu Voz, Tu <span style="color:var(--p)">Legado</span></h1>
+    <p>Desde el micro de Michael Jackson hasta el software gratuito más potente de Windows. Todo analizado por expertos.</p>
+</header>
+
+<div class="tabs-wrapper">
+    <div class="tabs-container">
+        <div class="tab active" onclick="showSec('micro')">🎤 Micrófonos</div>
+        <div class="tab" onclick="showSec('interfaz')">🎛️ Interfaces & Previos</div>
+        <div class="tab" onclick="showSec('midi')">🎹 MIDI & VST</div>
+        <div class="tab" onclick="showSec('headphones')">🎧 Auriculares</div>
+        <div class="tab" onclick="showSec('daw')">💻 Software/DAW</div>
+        <div class="tab" onclick="showSec('karaoke')">🎉 Karaoke & Fiesta</div>
+        <div class="tab" onclick="showSec('gear')">🔊 Acústica & Monitores</div>
+    </div>
 </div>
 
-<!-- TABS -->
-<div class="level-tabs">
-  <div class="tab active" onclick="showLevel('starter')">🌱 Starter</div>
-  <div class="tab" onclick="showLevel('creator')">🎵 Creator</div>
-  <div class="tab" onclick="showLevel('advanced')">🔥 Advanced</div>
-  <div class="tab" onclick="showLevel('pro')">💎 Pro Studio</div>
-  <div class="tab" onclick="showLevel('daw')">💻 Software (DAW)</div>
-  <div class="tab" onclick="showLevel('guide')">📖 Guía por Voz</div>
-</div>
+<main class="hs-content">
 
-<div class="hs-content">
+    <section id="sec-micro" class="content-section active">
+        <div class="prod-grid">
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/sm7b.jpg" alt="SM7B"></div>
+                <div class="info-body">
+                    <div class="tag-row"><span class="tag" style="background:var(--p)">Gama Pro</span><span class="tag" style="background:var(--green)">Rap / Rock</span></div>
+                    <h2 class="card-title">Shure SM7B</h2>
+                    <p class="analysis-text">Dinámico. Ignora el ruido de tu habitación. El micro de Michael Jackson en Thriller.</p>
+                    <div class="history-box"><b>🎤 Historia:</b> Diseñado originalmente para radio, se convirtió en leyenda por su calidez analógica.</div>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B0002E4Z8M">Ver en Amazon</a>
+            </div>
 
-  <!-- STARTER -->
-  <div class="level-section active" id="level-starter">
-    <div class="level-header" style="background:linear-gradient(135deg,rgba(6,214,160,.08),rgba(6,214,160,.03))">
-      <div class="level-icon">🌱</div>
-      <div>
-        <h2>Starter Pack</h2>
-        <p>Para empezar hoy mismo sin complicaciones técnicas. Perfecto si no tienes nada.</p>
-      </div>
-      <div class="level-price">
-        <div class="price-tag">50–120€</div>
-        <div class="price-label">Presupuesto total</div>
-      </div>
-    </div>
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/tlm103.jpg" alt="TLM103"></div>
+                <div class="info-body">
+                    <div class="tag-row"><span class="tag" style="background:var(--a)">Elite</span><span class="tag" style="background:var(--amber); color:#000">Sopranos / Pop</span></div>
+                    <h2 class="card-title">Neumann TLM 103</h2>
+                    <p class="analysis-text">Condensador alemán. El sonido más nítido y "caro" del mundo.</p>
+                    <div class="pro-fact"><b>🔬 Análisis:</b> Ruido propio casi inexistente (7dB). Capta hasta el último suspiro.</div>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B0002H0R94">Ver en Amazon</a>
+            </div>
 
-    <div class="prod-grid">
-      <div class="prod-card">
-        <div class="prod-brand">
-          <span class="brand-name">FIFINE (Shenzhen, 2009)</span>
-          <span class="brand-flag">🇨🇳</span>
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/sex1.jpg" alt="sE X1"></div>
+                <div class="info-body">
+                    <div class="tag-row"><span class="tag" style="background:var(--blue)">Gama Media</span></div>
+                    <h2 class="card-title">sE Electronics X1 S</h2>
+                    <p class="analysis-text">Cápsula artesanal. Brillo natural sin sibilancias molestas.</p>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B01M16K9B7">Ver en Amazon</a>
+            </div>
         </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#06D6A0">Todas las voces · Plug & Play</span>
-          <h3>Fifine K669B</h3>
-          <img src="https://m.media-amazon.com/images/I/61-IG3VMVAL._AC_SL1200_.jpg" class="prod-img" alt="Fifine K669B" onerror="this.style.display='none'">
-          <p class="prod-desc">El micro USB más vendido para empezar. Sin drivers, sin interfaz. Solo enchufar y cantar.</p>
-          <div class="secret-box">
-            <h5>✨ ¿Por qué lo usan YouTubers de millones de suscriptores?</h5>
-            <p>La calidad de grabación es 10 veces mejor que el micro del portátil. Para empezar a analizar tu voz en Harmiq, es perfecto.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Tienes un presupuesto ajustado y quieres empezar ya sin configuraciones.</div>
+        <div class="expert-tip-box">
+            <h3 style="color:var(--p)">💡 Pro Tip: El Efecto Proximidad</h3>
+            <p style="font-size:0.9rem">Si quieres una voz íntima y profunda, acércate a 5cm. Para un sonido Pop natural, mantente a 20cm del micro.</p>
         </div>
-        <a href="https://www.amazon.es/s?k=Fifine+K669B&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
+    </section>
 
-      <div class="prod-card">
-        <div class="prod-brand">
-          <span class="brand-name">RODE (Sydney, 1967)</span>
-          <span class="brand-flag">🇦🇺</span>
+    <section id="sec-interfaz" class="content-section">
+        <div class="prod-grid">
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/scarlett-solo.jpg" alt="Scarlett"></div>
+                <div class="info-body">
+                    <h2 class="card-title">Scarlett Solo 4th Gen</h2>
+                    <p class="analysis-text">Convertidores de 192kHz. Incluye el modo "Air" para dar brillo analógico a la voz.</p>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B0C6Z6T996">Ver en Amazon</a>
+            </div>
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/cloudlifter.jpg" alt="Cloudlifter"></div>
+                <div class="info-body">
+                    <div class="tag-row"><span class="tag" style="background:var(--blue)">Indispensable</span></div>
+                    <h2 class="card-title">Cloudlifter CL-1</h2>
+                    <p class="analysis-text">Si usas el SM7B necesitas esto. Da +25dB de ganancia limpia sin ruido de fondo.</p>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B004MQSV04">Ver en Amazon</a>
+            </div>
         </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#7C4DFF">Tenor · Soprano · Home Studio</span>
-          <h3>Rode NT-USB Mini</h3>
-          <img src="https://m.media-amazon.com/images/I/71I0lJqSgLL._AC_SL1500_.jpg" class="prod-img" alt="Rode NT-USB Mini" onerror="this.style.display='none'">
-          <p class="prod-desc">La calidad de Rode en formato compacto. Con auriculares para monitoreo en tiempo real.</p>
-          <div class="secret-box">
-            <h5>✨ El secreto de los podcasters de élite</h5>
-            <p>Rode es la marca de referencia en Australia. Este micro captura los matices de agudos con una claridad que impresiona para su precio.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Quieres calidad de estudio sin montar un estudio. El mejor relación calidad/precio del nivel Starter.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Rode+NT-USB+Mini&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- CREATOR -->
-  <div class="level-section" id="level-creator">
-    <div class="level-header" style="background:linear-gradient(135deg,rgba(124,77,255,.1),rgba(124,77,255,.04))">
-      <div class="level-icon">🎵</div>
-      <div>
-        <h2>Creator Pack</h2>
-        <p>Para cantantes serios que quieren resultados profesionales en casa. El salto de calidad real.</p>
-      </div>
-      <div class="level-price">
-        <div class="price-tag">200–450€</div>
-        <div class="price-label">Presupuesto total</div>
-      </div>
-    </div>
+    <section id="sec-midi" class="content-section">
+        <div class="prod-grid">
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/akaimini.jpg" alt="Akai"></div>
+                <div class="info-body">
+                    <h2 class="card-title">Akai MPK Mini MK3</h2>
+                    <p class="analysis-text">Teclado y Pads. El cerebro de los productores de Trap y Urbano.</p>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B0886S1SWH">Ver en Amazon</a>
+            </div>
+        </div>
+        <div style="margin-top:3rem; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1.5rem">
+            <div style="background:rgba(255,255,255,0.05); padding:1.5rem; border-radius:15px; text-align:center">
+                <h4 style="color:var(--a)">Auto-Tune Pro</h4>
+                <p style="font-size:0.8rem">El sonido del éxito moderno.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05); padding:1.5rem; border-radius:15px; text-align:center">
+                <h4 style="color:var(--p)">Serum VST</h4>
+                <p style="font-size:0.8rem">Sintetizadores infinitos.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="prod-grid">
-      <div class="prod-card featured">
-        <div class="prod-brand">
-          <span class="brand-name">AUDIO-TECHNICA (Tokio, 1962)</span>
-          <span class="brand-flag">🇯🇵</span>
+    <section id="sec-headphones" class="content-section">
+        <div class="prod-grid">
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/dt770.jpg" alt="DT770"></div>
+                <div class="info-body">
+                    <h2 class="card-title">Beyerdynamic DT 770 Pro</h2>
+                    <p class="analysis-text">Cerrados. Perfectos para grabar voces sin que el sonido se cuele en el micro.</p>
+                    <div class="pro-fact"><b>🌟 Comodidad:</b> Almohadillas de terciopelo para sesiones maratónicas.</div>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B0016MNAAI">Ver en Amazon</a>
+            </div>
         </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#FF4FA3">⭐ Más recomendado · Todas las voces</span>
-          <h3>Audio-Technica AT2020</h3>
-          <img src="https://m.media-amazon.com/images/I/71eTbWmyBCL._AC_SL1500_.jpg" class="prod-img" alt="AT2020" onerror="this.style.display='none'">
-          <p class="prod-desc">El condensador de referencia para home studio. Captura cada matiz de tu voz con una fidelidad asombrosa.</p>
-          <div class="secret-box">
-            <h5>✨ El micro de los Grammy modernos</h5>
-            <p>Artistas como <strong>Billie Eilish</strong> empezaron grabando en su habitación con micros de condensador similares. La clave no está en el micro de miles de euros, sino en la técnica y el espacio.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Tienes una habitación relativamente silenciosa y quieres capturar tu voz tal como es, sin coloración artificial.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Audio+Technica+AT2020&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
+    </section>
 
-      <div class="prod-card">
-        <div class="prod-brand">
-          <span class="brand-name">FOCUSRITE (Oxford, 1985)</span>
-          <span class="brand-flag">🇬🇧</span>
+    <section id="sec-daw" class="content-section">
+        <div class="prod-grid">
+            <div class="prod-card" style="border: 2px solid var(--green)">
+                <div class="info-body">
+                    <div class="tag-row"><span class="tag" style="background:var(--green); color:#000">Gratis (Windows)</span></div>
+                    <h2 class="card-title">Cakewalk by BandLab</h2>
+                    <p class="analysis-text">Un DAW profesional completo, gratis. Ideal si estás empezando en Windows.</p>
+                </div>
+                <a href="https://www.bandlab.com/products/cakewalk" class="btn-amz" style="background:#fff">Descargar Gratis</a>
+            </div>
+            <div class="prod-card">
+                <div class="info-body">
+                    <h2 class="card-title">FL Studio / Ableton</h2>
+                    <p class="analysis-text">Los reyes de la producción urbana y electrónica.</p>
+                </div>
+            </div>
         </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#06D6A0">Interfaz de audio esencial</span>
-          <h3>Focusrite Scarlett Solo (4ª gen)</h3>
-          <img src="https://m.media-amazon.com/images/I/71HfJMHuFGL._AC_SL1500_.jpg" class="prod-img" alt="Scarlett Solo" onerror="this.style.display='none'">
-          <p class="prod-desc">Si usas micro XLR (no USB), necesitas esta interfaz. La más vendida del mundo durante 10 años consecutivos.</p>
-          <div class="secret-box">
-            <h5>✨ El estándar de la industria indie</h5>
-            <p>El Scarlett Solo ha aparecido en más álbumes independientes que cualquier otro dispositivo. Sus previos de micrófono son casi idénticos a los de estudios que cobran 200€/hora.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Quieres usar micros XLR profesionales y necesitas la mejor conversión analógico-digital para el precio.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Focusrite+Scarlett+Solo+4th&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
+    </section>
 
-      <div class="prod-card">
-        <div class="prod-brand">
-          <span class="brand-name">AUDIO-TECHNICA (Tokio, 1962)</span>
-          <span class="brand-flag">🇯🇵</span>
+    <section id="sec-karaoke" class="content-section">
+        <div class="prod-grid">
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/jbl-party.jpg" alt="JBL"></div>
+                <div class="info-body">
+                    <h2 class="card-title">JBL PartyBox Encore</h2>
+                    <p class="analysis-text">Altavoz con 2 micros inalámbricos. La fiesta empieza aquí.</p>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B0D6F6V2YZ">Ver en Amazon</a>
+            </div>
         </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#7C4DFF">Auriculares de monitoreo</span>
-          <h3>Audio-Technica ATH-M50x</h3>
-          <img src="https://m.media-amazon.com/images/I/61XT4BPGWIL._AC_SL1200_.jpg" class="prod-img" alt="ATH-M50x" onerror="this.style.display='none'">
-          <p class="prod-desc">El referente mundial en auriculares de estudio. Escucha tu voz exactamente como la grabas.</p>
-          <div class="secret-box">
-            <h5>✨ Usados en los estudios de Abbey Road</h5>
-            <p>Estos auriculares tienen una respuesta plana que no "embellece" el sonido. Si algo suena bien con estos cascos, sonará bien en cualquier sistema.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Quieres escuchar tu grabación sin coloración para saber realmente cómo suenas.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Audio+Technica+ATH+M50x&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- ADVANCED -->
-  <div class="level-section" id="level-advanced">
-    <div class="level-header" style="background:linear-gradient(135deg,rgba(255,79,163,.1),rgba(255,79,163,.03))">
-      <div class="level-icon">🔥</div>
-      <div>
-        <h2>Advanced Pack</h2>
-        <p>Para voces que quieren diferenciarse. Equipo usado por artistas con contrato discográfico.</p>
-      </div>
-      <div class="level-price">
-        <div class="price-tag">600–1200€</div>
-        <div class="price-label">Presupuesto total</div>
-      </div>
-    </div>
+    <section id="sec-gear" class="content-section">
+        <div class="prod-grid">
+            <div class="prod-card">
+                <div class="img-wrap"><img src="img/yamaha-hs5.jpg" alt="HS5"></div>
+                <div class="info-body">
+                    <h2 class="card-title">Yamaha HS5</h2>
+                    <p class="analysis-text">El estándar del cono blanco. Escucha la verdad de tu mezcla.</p>
+                </div>
+                <a href="#" class="btn-amz" data-asin="B00C0XEA8E">Ver en Amazon</a>
+            </div>
+            <div class="prod-card">
+                <div class="info-body">
+                    <h2 class="card-title">Tratamiento Acústico</h2>
+                    <p class="analysis-text">Filtros antipop y paneles de espuma. Lo que separa un audio de baño de un audio de estudio.</p>
+                </div>
+                <a href="https://www.amazon.es/s?k=acustica+estudio" class="btn-amz">Ver en Amazon</a>
+            </div>
+        </div>
+    </section>
 
-    <div class="prod-grid">
-      <div class="prod-card featured">
-        <div class="prod-brand">
-          <span class="brand-name">SHURE (Chicago, 1925)</span>
-          <span class="brand-flag">🇺🇸</span>
-        </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#FF4FA3">⭐ Barítono · Rock · Rap · Podcast</span>
-          <h3>Shure SM7B</h3>
-          <img src="https://m.media-amazon.com/images/I/610v-R6PjQL._AC_SL1500_.jpg" class="prod-img" alt="Shure SM7B" onerror="this.style.display='none'">
-          <p class="prod-desc">El micro dinámico más icónico de la historia. Rechaza el ruido ambiente como ningún otro.</p>
-          <div class="secret-box">
-            <h5>✨ El micro de Thriller y Joe Rogan</h5>
-            <p>Quincy Jones lo eligió para <strong>Michael Jackson</strong> en 'Thriller' porque querían que MJ pudiera moverse mientras cantaba sin ruidos extraños. Hoy es el micro de <strong>Joe Rogan</strong> y los mejores podcasters del planeta.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Tienes voz grave/media, grabas sin cabina y tu habitación tiene reverb. El SM7B ignora casi todo el ruido ambiente.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Shure+SM7B&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-brand">
-          <span class="brand-name">AKG (Viena, 1947)</span>
-          <span class="brand-flag">🇦🇹</span>
-        </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#7C4DFF">Versatilidad total · Todas las voces</span>
-          <h3>AKG C214</h3>
-          <img src="https://m.media-amazon.com/images/I/71uK87vYDSL._AC_SL1500_.jpg" class="prod-img" alt="AKG C214" onerror="this.style.display='none'">
-          <p class="prod-desc">La navaja suiza del estudio. Captura tu voz tal como es, sin mentiras ni adornos.</p>
-          <div class="secret-box">
-            <h5>✨ La herencia de Sinatra</h5>
-            <p>AKG se hizo famosa por sus cápsulas de latón vienesas. <strong>Frank Sinatra</strong> exigía micrófonos con esta tecnología para que su voz de barítono no perdiera la calidez aterciopelada que lo hizo inmortal.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Quieres una grabación fiel que luego puedas trabajar en producción. Es el micrófono más honesto de esta lista.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=AKG+C214&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-brand">
-          <span class="brand-name">BEYERDYNAMIC (Heilbronn, 1924)</span>
-          <span class="brand-flag">🇩🇪</span>
-        </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#06D6A0">Auriculares profesionales</span>
-          <h3>Beyerdynamic DT 770 Pro</h3>
-          <img src="https://m.media-amazon.com/images/I/41j7IDDAUQL._AC_SL1200_.jpg" class="prod-img" alt="DT 770 Pro" onerror="this.style.display='none'">
-          <p class="prod-desc">Los auriculares cerrados de referencia. Aislamiento total del exterior para grabar limpio.</p>
-          <div class="secret-box">
-            <h5>✨ Fabricados a mano en Alemania</h5>
-            <p>Cada unidad está ensamblada a mano en la fábrica de Heilbronn. Su respuesta en graves es legendaria — captura el rango de bajos y barítonos con una fidelidad que justifica su precio.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Grabas en un entorno con ruido exterior y necesitas aislamiento para mantener la concentración y no filtrar sonido al micro.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Beyerdynamic+DT+770+Pro&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRO -->
-  <div class="level-section" id="level-pro">
-    <div class="level-header" style="background:linear-gradient(135deg,rgba(255,217,102,.1),rgba(255,217,102,.03))">
-      <div class="level-icon">💎</div>
-      <div>
-        <h2>Pro Studio</h2>
-        <p>El equipo que usan los artistas en los mejores estudios del mundo. Sin compromisos.</p>
-      </div>
-      <div class="level-price">
-        <div class="price-tag">2.000€+</div>
-        <div class="price-label">Inversión total</div>
-      </div>
-    </div>
-
-    <div class="prod-grid">
-      <div class="prod-card featured">
-        <div class="prod-brand">
-          <span class="brand-name">NEUMANN (Berlín, 1928)</span>
-          <span class="brand-flag">🇩🇪</span>
-        </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:linear-gradient(135deg,#FFD166,#FF4FA3)">💎 El estándar absoluto</span>
-          <h3>Neumann TLM 103</h3>
-          <img src="https://m.media-amazon.com/images/I/61NfNAtpLXL._AC_SL1500_.jpg" class="prod-img" alt="Neumann TLM 103" onerror="this.style.display='none'">
-          <p class="prod-desc">El sucesor del legendario U87. El sonido "de radio" que todos reconocen pero pocos tienen.</p>
-          <div class="secret-box">
-            <h5>✨ El micro que inventó el sonido moderno</h5>
-            <p>Neumann inventó el primer condensador comercial en 1928. El TLM 103 captura los susurros de <strong>Billie Eilish</strong> con la misma claridad fantasmal que hizo de 'Bad Guy' un fenómeno global. Si tu voz es pequeña y suave, este micro la hará sonar inmensa.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal para:</strong> Sopranos y voces con aire. La respuesta en frecuencias altas es simplemente inigualable.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Neumann+TLM+103&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-brand">
-          <span class="brand-name">UNIVERSAL AUDIO (Santa Cruz, 1958)</span>
-          <span class="brand-flag">🇺🇸</span>
-        </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#7C4DFF">Interfaz + Procesamiento</span>
-          <h3>Apollo Twin X DUO</h3>
-          <img src="https://m.media-amazon.com/images/I/71Ts2LPmpXL._AC_SL1500_.jpg" class="prod-img" alt="Apollo Twin" onerror="this.style.display='none'">
-          <p class="prod-desc">Procesamiento DSP en tiempo real. Plugins de Neve, SSL y Studer directamente en el hardware.</p>
-          <div class="secret-box">
-            <h5>✨ El mismo previo que Abbey Road</h5>
-            <p>El Apollo emula el previo de micrófono del Neve 1073, el mismo que se usó para grabar a <strong>The Beatles</strong>. Antes costaba £50.000. Ahora cabe en tu escritorio.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Quieres el color sonoro de los grandes estudios en tiempo real, sin latencia, mientras grabas.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Universal+Audio+Apollo+Twin+X&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-brand">
-          <span class="brand-name">YAMAHA (Hamamatsu, 1887)</span>
-          <span class="brand-flag">🇯🇵</span>
-        </div>
-        <div class="prod-body">
-          <span class="voice-badge" style="background:#06D6A0">Monitores de campo cercano</span>
-          <h3>Yamaha HS5</h3>
-          <img src="https://m.media-amazon.com/images/I/61lO+d5MTKL._AC_SL1200_.jpg" class="prod-img" alt="Yamaha HS5" onerror="this.style.display='none'">
-          <p class="prod-desc">El cono blanco más reconocido del mundo. La referencia para mezcla en home studio profesional.</p>
-          <div class="secret-box">
-            <h5>✨ "Si suena bien en NS-10, suena bien en todo"</h5>
-            <p>El HS5 es el sucesor del legendario NS-10 que reinó en cada sala de mezcla de los 80s y 90s. Los ingenieros de <strong>Daft Punk</strong> y <strong>Kanye West</strong> los usan para verificar que sus mezclas traducen bien a cualquier sistema.</p>
-          </div>
-          <div class="prod-why"><strong>Ideal si:</strong> Quieres escuchar la verdad de tu mezcla sin embellecimiento y que tu producción suene igual en cualquier sistema.</div>
-        </div>
-        <a href="https://www.amazon.es/s?k=Yamaha+HS5&tag=harmiqapp-20" target="_blank" class="btn-amazon">Ver precio en Amazon →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DAW -->
-  <div class="level-section" id="level-daw">
-    <div class="level-header" style="background:linear-gradient(135deg,rgba(6,214,160,.08),rgba(6,214,160,.03))">
-      <div class="level-icon">💻</div>
-      <div>
-        <h2>Software (DAW)</h2>
-        <p>El lienzo donde pintas con tu voz. Elige según tu nivel y objetivo.</p>
-      </div>
-    </div>
-
-    <div class="daw-section">
-      <h3>🆓 Gratis — Empieza hoy</h3>
-      <div class="daw-grid">
-        <div class="daw-card">
-          <span class="daw-icon">🌐</span>
-          <h4>BandLab</h4>
-          <p>Online, sin instalar. Graba, mezcla y publica directamente.</p>
-          <div class="daw-price">100% Gratis</div>
-        </div>
-        <div class="daw-card">
-          <span class="daw-icon">🎙️</span>
-          <h4>Audacity</h4>
-          <p>El clásico de código abierto. Perfecto para grabación y edición básica.</p>
-          <div class="daw-price">100% Gratis</div>
-        </div>
-        <div class="daw-card">
-          <span class="daw-icon">🎛️</span>
-          <h4>GarageBand</h4>
-          <p>Solo Mac/iPhone. Calidad profesional totalmente gratis.</p>
-          <div class="daw-price">Gratis (Apple)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="daw-section">
-      <h3>💰 De pago — El siguiente nivel</h3>
-      <div class="daw-grid">
-        <div class="daw-card">
-          <span class="daw-icon">🎹</span>
-          <h4>FL Studio</h4>
-          <p>El más rápido para beats y producción. Licencia de por vida.</p>
-          <div class="daw-price">~99€ — Licencia perpetua</div>
-        </div>
-        <div class="daw-card">
-          <span class="daw-icon">🎸</span>
-          <h4>Ableton Live</h4>
-          <p>El estándar para cantautores y productores. Vista de sesión única.</p>
-          <div class="daw-price">~99€/año o ~449€</div>
-        </div>
-        <div class="daw-card">
-          <span class="daw-icon">🏆</span>
-          <h4>Logic Pro</h4>
-          <p>El DAW de Apple. Lo usan la mayoría de artistas de pop y urbano.</p>
-          <div class="daw-price">~249€ — Solo Mac</div>
-        </div>
-        <div class="daw-card">
-          <span class="daw-icon">🎚️</span>
-          <h4>Pro Tools</h4>
-          <p>El estándar de la industria. Todos los estudios del mundo lo usan.</p>
-          <div class="daw-price">~33€/mes</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- GUIDE -->
-  <div class="level-section" id="level-guide">
-    <div class="level-header" style="background:linear-gradient(135deg,rgba(255,79,163,.1),rgba(124,77,255,.06))">
-      <div class="level-icon">📖</div>
-      <div>
-        <h2>Guía por Tipo de Voz</h2>
-        <p>El micro correcto depende de tu tipo de voz. Aquí tienes las recomendaciones de Harmiq.</p>
-      </div>
-    </div>
-
-    <div class="guide-box">
-      <h3>🎭 Barítono y Bajo</h3>
-      <div class="guide-grid">
-        <div class="guide-item">
-          <h4>¿Qué necesitas?</h4>
-          <p>Micros dinámicos o condensadores con respuesta controlada en graves. El efecto de proximidad puede saturar si no tienes el micro adecuado.</p>
-        </div>
-        <div class="guide-item">
-          <h4>Recomendación Harmiq</h4>
-          <p><strong>Shure SM7B</strong><a href="https://www.amazon.es/s?k=Shure+SM7B&tag=harmiqapp-20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.3rem;background:linear-gradient(135deg,#FF9F1C,#FF6B35);color:#fff;padding:.25rem .7rem;border-radius:8px;font-size:.72rem;font-weight:700;text-decoration:none;margin-left:.4rem">🛒 Amazon</a> para habitaciones sin tratar. <strong>AKG C214</strong><a href="https://www.amazon.es/s?k=AKG+C214&tag=harmiqapp-20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.3rem;background:linear-gradient(135deg,#FF9F1C,#FF6B35);color:#fff;padding:.25rem .7rem;border-radius:8px;font-size:.72rem;font-weight:700;text-decoration:none;margin-left:.4rem">🛒 Amazon</a> si tienes algo de tratamiento acústico. Evita los micros con realce de presencia agresivo.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="guide-box">
-      <h3>🎤 Tenor y Contratenor</h3>
-      <div class="guide-grid">
-        <div class="guide-item">
-          <h4>¿Qué necesitas?</h4>
-          <p>Micros con buena respuesta en medios y sin realce excesivo en agudos. Los tenores ya tienen brillo natural — no necesitan más.</p>
-        </div>
-        <div class="guide-item">
-          <h4>Recomendación Harmiq</h4>
-          <p><strong>Audio-Technica AT2020</strong><a href="https://www.amazon.es/s?k=Audio+Technica+AT2020&tag=harmiqapp-20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.3rem;background:linear-gradient(135deg,#FF9F1C,#FF6B35);color:#fff;padding:.25rem .7rem;border-radius:8px;font-size:.72rem;font-weight:700;text-decoration:none;margin-left:.4rem">🛒 Amazon</a> es ideal. <strong>Rode NT1-A</strong><a href="https://www.amazon.es/s?k=Rode+NT1-A&tag=harmiqapp-20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.3rem;background:linear-gradient(135deg,#FF9F1C,#FF6B35);color:#fff;padding:.25rem .7rem;border-radius:8px;font-size:.72rem;font-weight:700;text-decoration:none;margin-left:.4rem">🛒 Amazon</a> si buscas más calidez. El Neumann TLM 103 para tenores operísticos que quieren preservar cada armónico.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="guide-box">
-      <h3>✨ Soprano y Mezzosoprano</h3>
-      <div class="guide-grid">
-        <div class="guide-item">
-          <h4>¿Qué necesitas?</h4>
-          <p>Micros que capturen el rango completo sin distorsionar en los agudos extremos. La presión sonora de una soprano puede saturar micros de gama baja.</p>
-        </div>
-        <div class="guide-item">
-          <h4>Recomendación Harmiq</h4>
-          <p><strong>Neumann TLM 103</strong> para el nivel más alto. <strong>AKG C214</strong> como opción intermedia excelente. Evita micros USB de bajo coste — distorsionarán en los agudos.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="guide-box">
-      <h3>🌿 Contralto</h3>
-      <div class="guide-grid">
-        <div class="guide-item">
-          <h4>¿Qué necesitas?</h4>
-          <p>Micros con respuesta cálida en el rango medio-bajo. Las contraltos tienen una riqueza armónica que muchos micros "brillantes" no capturan bien.</p>
-        </div>
-        <div class="guide-item">
-          <h4>Recomendación Harmiq</h4>
-          <p><strong>Rode NT1-A</strong> para capturar la calidez natural. <strong>Shure SM27</strong> como alternativa. El AKG C414 para producciones profesionales de contralto.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /hs-content -->
-
-<!-- CTA -->
-<div class="hs-cta">
-  <h2>¿No sabes qué tipo de voz tienes?</h2>
-  <p>Analiza tu voz con IA en 10 segundos y Harmiq te dirá qué equipo es perfecto para ti.</p>
-  <a class="btn-cta" href="/#app">🎤 Analizar mi voz gratis</a>
-</div>
-
-<footer class="hs-footer">
-  <p>* Links de afiliado Amazon · Harmiq recibe una pequeña comisión sin coste adicional para ti · <a href="/">harmiq.app</a></p>
-</footer>
+</main>
 
 <script>
-function showLevel(id) {
-  document.querySelectorAll('.level-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('level-' + id)?.classList.add('active');
-  event.target.classList.add('active');
-  window.scrollTo({top: 0, behavior: 'smooth'});
-}
+    function showSec(id) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('sec-' + id).classList.add('active');
+        event.currentTarget.classList.add('active');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    // Automatización de Amazon ID
+    document.addEventListener('DOMContentLoaded', () => {
+        const amzId = 'harmiqapp-20'; // Cambia esto por tu ID real
+        document.querySelectorAll('.btn-amz').forEach(btn => {
+            const asin = btn.getAttribute('data-asin');
+            if(asin) btn.href = `https://www.amazon.es/dp/${asin}/?tag=${amzId}`;
+        });
+    });
 </script>
 </body>
 </html>

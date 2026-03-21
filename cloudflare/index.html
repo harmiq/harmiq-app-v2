@@ -1,289 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Harmiq — Analiza tu voz con IA y descubre qué cantante eres</title>
-<meta name="description" content="Harmiq analiza tu voz con IA en 10 segundos y te dice qué cantante famoso tienes dentro. Gratis. Sin registro. 12.000 artistas de todo el mundo.">
-<meta name="keywords" content="analizar voz, tipo de voz, qué cantante soy, vocal range test, analisis vocal IA, voice analyzer, 声の分析, 목소리 분석">
-<meta property="og:title" content="Harmiq — Analiza tu voz con IA y descubre qué cantante eres">
-<meta property="og:description" content="Canta 10 segundos. La IA analiza tu voz y te dice qué cantante famoso coincide contigo. Gratis.">
-<meta property="og:url" content="https://harmiq.app/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://harmiq.app/preview.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Harmiq — ¿A qué cantante te pareces?">
-<meta name="twitter:description" content="Analiza tu voz con IA gratis en 10 segundos">
-<meta name="twitter:image" content="https://harmiq.app/preview.jpg">
-<link rel="canonical" href="https://harmiq.app/">
-<link rel="alternate" hreflang="es" href="https://harmiq.app/?lang=es">
-<link rel="alternate" hreflang="en" href="https://harmiq.app/?lang=en">
-<link rel="alternate" hreflang="ja" href="https://harmiq.app/?lang=ja">
-<link rel="alternate" hreflang="zh" href="https://harmiq.app/?lang=zh">
-<link rel="alternate" hreflang="fr" href="https://harmiq.app/?lang=fr">
-<link rel="alternate" hreflang="de" href="https://harmiq.app/?lang=de">
-<link rel="alternate" hreflang="pt" href="https://harmiq.app/?lang=pt">
-<link rel="alternate" hreflang="x-default" href="https://harmiq.app/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Harmiq","url":"https://harmiq.app","description":"Analiza tu voz con IA y descubre qué cantante famoso tienes dentro","applicationCategory":"MusicApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo sé qué tipo de voz tengo?","acceptedAnswer":{"@type":"Answer","text":"Canta unos segundos en Harmiq y la IA analiza tu frecuencia fundamental, timbre y rango vocal para clasificarte como soprano, mezzo, tenor, barítono, bajo o contralto."}},{"@type":"Question","name":"¿Es gratis Harmiq?","acceptedAnswer":{"@type":"Answer","text":"Sí, completamente gratis y sin registro. Solo necesitas un micrófono."}},{"@type":"Question","name":"¿Cuántos artistas tiene Harmiq?","acceptedAnswer":{"@type":"Answer","text":"Más de 12.000 artistas de todo el mundo, desde pop y rock hasta k-pop, j-pop, flamenco, salsa y ópera."}}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Harmiq — Analiza tu voz con IA y descubre qué cantante eres</title>
+    <meta name="description" content="Harmiq analiza tu voz con IA en 10 segundos y te dice qué cantante famoso tienes dentro. Gratis. Sin registro. 12.000 artistas de todo el mundo.">
+    <meta name="keywords" content="analizar voz, tipo de voz, qué cantante soy, vocal range test, analisis vocal IA, voice analyzer">
+    <link rel="canonical" href="https://harmiq.app/">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.6}
+        a{text-decoration:none;color:inherit}
+        
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:rgba(10,8,24,0.8);backdrop-filter:blur(10px);position:sticky;top:0;z-index:1000}
+        .logo{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .nav-links{display:flex;list-style:none;gap:1.5rem}
+        .nav-links a{font-weight:600;font-size:0.95rem;transition:color 0.2s}
+        .nav-links a:hover{color:var(--a)}
+
+        .hero{padding:4rem 5%;text-align:center;max-width:900px;margin:0 auto}
+        h1{font-family:'Baloo 2',cursive;font-size:3rem;line-height:1.1;margin-bottom:1.5rem}
+        .app-container{background:var(--card);border-radius:2rem;padding:1.5rem;min-height:550px;border:2px dashed rgba(124,77,255,0.3);margin:2rem 0;overflow:hidden}
+        
+        .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;padding:4rem 5%;max-width:1100px;margin:0 auto}
+        .feat-card{background:rgba(255,255,255,0.03);padding:2rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,0.05)}
+        .feat-card h3{font-family:'Baloo 2';color:var(--a);margin-bottom:1rem;font-size:1.4rem}
+
+        .faq-section{padding:4rem 5%;max-width:800px;margin:0 auto}
+        .faq{margin-bottom:2rem}
+        .faq h3{font-family:'Baloo 2';color:var(--p);margin-bottom:0.5rem}
+
+        footer{padding:3rem 5%;background:#05040d;text-align:center;border-top:1px solid rgba(255,255,255,0.05)}
+        .fl{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem;list-style:none}
+        .fl a{color:var(--m);font-size:0.85rem}
+        
+        @media (max-width:768px){ h1{font-size:2.2rem} .nav-links{display:none} }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a class="logo" href="/">🎙️ Harmiq</a>
-  <ul class="nav-links">
-    <li style="position:relative" onmouseenter="this.querySelector('.vdrop').style.display='block'" onmouseleave="this.querySelector('.vdrop').style.display='none'">
-      <a href="/tipos-de-voz" style="display:flex;align-items:center;gap:.3rem">🎤 Voces ▾</a>
-      <div class="vdrop" style="display:none;position:absolute;top:100%;left:0;background:#130F2A;border:1px solid rgba(124,77,255,.3);border-radius:10px;padding:.4rem 0;min-width:140px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.4)">
-        <a href="/voz/baritono" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🎭 Barítono</a>
-        <a href="/voz/tenor" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🎤 Tenor</a>
-        <a href="/voz/soprano" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">✨ Soprano</a>
-        <a href="/voz/mezzo-soprano" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🎶 Mezzo</a>
-        <a href="/voz/contralto" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🌿 Contralto</a>
-        <a href="/voz/bajo" style="display:block;padding:.4rem 1rem;color:#9CA3AF;font-size:.85rem">🎸 Bajo</a>
-        <a href="/tipos-de-voz" style="display:block;padding:.4rem 1rem;color:#A5B4FC;font-size:.82rem;border-top:1px solid rgba(255,255,255,.06);margin-top:.3rem">📖 Guía completa</a>
-      </div>
-    </li>
-    <li><a href="/exitos-decada">🎵 Éxitos</a></li>
-    <li><a href="/home-studio">🎛️ Studio</a></li>
-    <li><a href="/karaoke-eventos">🎤 Karaoke</a></li>
-    <li><a href="/modul-catala" style="color:#ff8a94;font-weight:800">🏴 Català</a></li>
-  </ul>  <div style="display:flex;align-items:center;gap:.8rem">
-    <select id="lang-select" onchange="changeLang(this.value)" class="lang-sel">
-      <option value="es">🇪🇸 ES</option>
-      <option value="ca">🏴 CA</option>
-      <option value="en">🇬🇧 EN</option>
-      <option value="ja">🇯🇵 JP</option>
-      <option value="zh">🇨🇳 ZH</option>
-      <option value="ru">🇷🇺 RU</option>
-      <option value="uk">🇺🇦 UA</option>
-      <option value="fr">🇫🇷 FR</option>
-      <option value="de">🇩🇪 DE</option>
-      <option value="it">🇮🇹 IT</option>
-      <option value="pt">🇧🇷 PT</option>
-    </select>
-    <a class="btn" href="#app">🎤 <span id="nav-cta">Analizar mi voz</span></a>
-  </div>
+    <a href="/" class="logo">Harmiq</a>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/exitos-decada">Éxitos</a></li>
+        <li><a href="/home-studio">Home Studio</a></li>
+        <li><a href="/tipos-de-voz">Tipos de Voz</a></li>
+        <li><a href="/modul-catala" style="color:#FF4FA3;font-weight:800;">🏴 Català</a></li>
+    </ul>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="badge">✨ <span id="hero-badge">Análisis vocal con IA · 12.000 artistas · 100% Gratis</span></div>
-  <h1>Descubre qué <span class="grad" id="hero-grad">cantante famoso</span> <span id="hero-title-rest">vive en tu voz</span></h1>
-  <p id="hero-desc">Canta 10 segundos. La IA analiza tu tono, timbre y rango vocal y te dice con qué artista famoso coincides.</p>
-  <div class="btns">
-    <a class="btn" href="#app" id="btn-main">🎤 Analizar mi voz — gratis</a>
-    <a class="btn-out" href="#como-funciona" id="btn-how">Ver cómo funciona</a>
-  </div>
-  <p style="margin-top:1rem;font-size:.78rem;color:#6B7280" id="hero-sub">Sin registro · Sin instalar nada · Funciona en móvil</p>
-</div>
+<main class="hero">
+    <h1>¿A qué cantante famoso se parece tu voz?</h1>
+    <p>Nuestra Inteligencia Artificial analiza tu timbre y rango vocal para compararte con más de 12,000 artistas de todo el mundo.</p>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stat"><div class="sn">12K+</div><div class="sl" id="stat1">Artistas de todo el mundo</div></div>
-  <div class="stat"><div class="sn">10</div><div class="sl" id="stat2">Idiomas</div></div>
-  <div class="stat"><div class="sn">10s</div><div class="sl" id="stat3">Para tu resultado</div></div>
-  <div class="stat"><div class="sn">100%</div><div class="sl" id="stat4">Gratis siempre</div></div>
-</div>
-
-<!-- BARRA DE ACCESO RÁPIDO -->
-<div style="background:#0f0c1f;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:.85rem 1.5rem;overflow-x:auto">
-  <div style="display:flex;gap:.5rem;align-items:center;min-width:max-content;margin:0 auto;max-width:1040px">
-    <span style="font-size:.72rem;color:#4B5563;font-weight:700;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;margin-right:.3rem">Explorar:</span>
-    <a href="/home-studio"
-      style="display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;
-      background:rgba(124,77,255,.1);border:1px solid rgba(124,77,255,.25);border-radius:20px;
-      text-decoration:none;color:#A5B4FC;font-size:.78rem;font-weight:700;white-space:nowrap;transition:all .2s"
-      onmouseover="this.style.background='rgba(124,77,255,.22)'"
-      onmouseout="this.style.background='rgba(124,77,255,.1)'">
-      🎛️ Home Studio
-    </a>
-    <a href="/karaoke-eventos"
-      style="display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;
-      background:rgba(255,79,163,.1);border:1px solid rgba(255,79,163,.25);border-radius:20px;
-      text-decoration:none;color:#FF9FCC;font-size:.78rem;font-weight:700;white-space:nowrap;transition:all .2s"
-      onmouseover="this.style.background='rgba(255,79,163,.22)'"
-      onmouseout="this.style.background='rgba(255,79,163,.1)'">
-      🎤 Buscar Karaoke
-    </a>
-    <a href="/tipos-de-voz"
-      style="display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;
-      background:rgba(6,214,160,.1);border:1px solid rgba(6,214,160,.25);border-radius:20px;
-      text-decoration:none;color:#06D6A0;font-size:.78rem;font-weight:700;white-space:nowrap;transition:all .2s"
-      onmouseover="this.style.background='rgba(6,214,160,.22)'"
-      onmouseout="this.style.background='rgba(6,214,160,.1)'">
-      📖 Tipos de Voz
-    </a>
-    <a href="/ejercicios-de-canto"
-      style="display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;
-      background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.25);border-radius:20px;
-      text-decoration:none;color:#FFD166;font-size:.78rem;font-weight:700;white-space:nowrap;transition:all .2s"
-      onmouseover="this.style.background='rgba(255,209,102,.22)'"
-      onmouseout="this.style.background='rgba(255,209,102,.1)'">
-      🎯 Ejercicios
-    </a>
-    <a href="/exitos-decada"
-      style="display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;
-      background:rgba(29,185,84,.1);border:1px solid rgba(29,185,84,.25);border-radius:20px;
-      text-decoration:none;color:#1DB954;font-size:.78rem;font-weight:700;white-space:nowrap;transition:all .2s"
-      onmouseover="this.style.background='rgba(29,185,84,.22)'"
-      onmouseout="this.style.background='rgba(29,185,84,.1)'">
-      🎵 Éxitos por Década
-    </a>
-    <a href="/modul-catala"
-      style="display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;
-      background:rgba(207,20,43,.1);border:1px solid rgba(207,20,43,.25);border-radius:20px;
-      text-decoration:none;color:#ff8a94;font-size:.78rem;font-weight:700;white-space:nowrap;transition:all .2s"
-      onmouseover="this.style.background='rgba(207,20,43,.22)'"
-      onmouseout="this.style.background='rgba(207,20,43,.1)'">
-      🏴 Música en Català
-    </a>
-  </div>
-</div>
-
-<!-- APP PRINCIPAL -->
-<section id="app" style="padding:3rem 1.5rem">
-  <div class="app-box">
-    <h2 style="text-align:center;margin-bottom:.4rem" id="app-title">Analiza tu voz</h2>
-    <p style="text-align:center;color:#6B7280;margin-bottom:2rem;font-size:.9rem" id="app-desc">Selecciona tu voz y pulsa el botón</p>
-    <div style="display:flex;gap:1rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap">
-      <select id="user-gender" class="gender-sel">
-        <option value="" id="opt-default">Selecciona tu voz</option>
-        <option value="male" id="opt-male">Voz masculina</option>
-        <option value="female" id="opt-female">Voz femenina</option>
-      </select>
+    <div class="app-container" id="app">
+        <div id="hf-player">
+            <p style="padding-top:150px; color:var(--m)">Conectando con el motor de IA Harmiq...</p>
+        </div>
     </div>
-    <div style="text-align:center;margin-bottom:1.5rem">
-      <button id="record-btn" class="btn btn-record">🎤 <span id="btn-record-text">Analizar mi voz</span></button>
+</main>
+
+<section class="features">
+    <div class="feat-card">
+        <h3>1. Canta 10 segundos</h3>
+        <p>No necesitas ser profesional. Canta cualquier canción y nuestra IA capturará tu esencia vocal única.</p>
     </div>
-    <div id="status-msg" class="status-msg"></div>
-    <div id="results"></div>
-    <div id="mics-area"></div>
-    <div id="studio-area"></div>
-    <div id="pro-area"></div>
-    <div id="content-area"></div>
-    <div id="events-area"></div>
-  </div>
-</section>
-
-<!-- CÓMO FUNCIONA -->
-<section id="como-funciona">
-  <h2 id="how-title">Cómo funciona</h2>
-  <p class="sub" id="how-sub">Tres pasos. Sin registro. Sin instalar nada.</p>
-  <div class="grid3">
-    <div class="card"><div style="font-size:2rem;margin-bottom:.7rem">🎙️</div><h3 id="step1-t">1. Canta unos segundos</h3><p id="step1-d">Sube un audio o usa el micrófono. Solo necesitas 5-10 segundos de tu voz.</p></div>
-    <div class="card"><div style="font-size:2rem;margin-bottom:.7rem">🧠</div><h3 id="step2-t">2. La IA analiza tu voz</h3><p id="step2-d">Detectamos tu frecuencia fundamental, timbre, rango vocal y patrón de resonancia.</p></div>
-    <div class="card"><div style="font-size:2rem;margin-bottom:.7rem">🌟</div><h3 id="step3-t">3. Descubre tu cantante</h3><p id="step3-d">Te decimos qué artista famoso tiene una voz más parecida a la tuya, con % de coincidencia.</p></div>
-  </div>
-</section>
-
-<!-- TIPOS DE VOZ -->
-<section>
-  <h2 id="voices-title">Descubre tu tipo de voz</h2>
-  <p class="sub" id="voices-sub">Cada tipo de voz tiene sus canciones y artistas ideales.</p>
-  <div class="grid6">
-    <a class="vcard" href="/voz/baritono" style="border-top:3px solid #7C4DFF"><div class="ic">🎭</div><h3>Barítono</h3><p>G2 – G4</p></a>
-    <a class="vcard" href="/voz/tenor" style="border-top:3px solid #118AB2"><div class="ic">🎤</div><h3>Tenor</h3><p>C3 – C5</p></a>
-    <a class="vcard" href="/voz/soprano" style="border-top:3px solid #FF4FA3"><div class="ic">✨</div><h3>Soprano</h3><p>C4 – C6</p></a>
-    <a class="vcard" href="/voz/mezzo-soprano" style="border-top:3px solid #FF9F1C"><div class="ic">🎶</div><h3>Mezzosoprano</h3><p>A3 – A5</p></a>
-    <a class="vcard" href="/voz/contralto" style="border-top:3px solid #80B918"><div class="ic">🌿</div><h3>Contralto</h3><p>F3 – F5</p></a>
-    <a class="vcard" href="/voz/bajo" style="border-top:3px solid #1E3A5F"><div class="ic">🎸</div><h3>Bajo</h3><p>E2 – C4</p></a>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section>
-  <h2 id="feat-title">Todo lo que incluye Harmiq</h2>
-  <p class="sub" id="feat-sub">Mucho más que un simple test de voz.</p>
-  <div class="grid2">
-    <div class="card"><div class="ic2">🌍</div><h3 id="f1-t">12.000 artistas globales</h3><p id="f1-d">De US, UK, Japón, Corea, Brasil, España, Italia, Francia y mucho más.</p></div>
-    <div class="card"><div class="ic2">🎵</div><h3 id="f2-t">Canciones para tu voz</h3><p id="f2-d">Recibe canciones adaptadas a tu rango vocal exacto y tus géneros favoritos.</p></div>
-    <div class="card"><div class="ic2">🗺️</div><h3 id="f3-t">Artistas por país</h3><p id="f3-d">Filtra por región y descubre artistas locales que coinciden con tu tipo de voz.</p></div>
-    <div class="card"><div class="ic2">📲</div><h3 id="f4-t">Comparte tu resultado</h3><p id="f4-d">Comparte en WhatsApp, Twitter, LINE, VK o Weibo según tu región.</p></div>
-    <div class="card"><div class="ic2">🔍</div><h3 id="f5-t">Busca tu artista favorito</h3><p id="f5-d">Compara tu voz con cualquier artista de nuestra base de datos.</p></div>
-    <div class="card"><div class="ic2">🔒</div><h3 id="f6-t">Privacidad garantizada</h3><p id="f6-d">Tu audio se analiza y se borra inmediatamente. No guardamos ninguna grabación.</p></div>
-  </div>
-</section>
-
-<!-- HOME STUDIO -->
-<section style="padding:3.5rem 1.5rem">
-  <h2>🎙️ Monta tu Home Studio</h2>
-  <p class="sub">Equipo optimizado para mejores resultados en Harmiq · Links con descuento</p>
-  <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:2rem">
-    <div class="studio-card">
-      <div class="studio-badge" style="background:linear-gradient(135deg,#7C4DFF,#FF4FA3)">Económico</div>
-      <h3>Starter Pack</h3><p class="studio-sub">Bajo presupuesto</p>
-      <ul class="studio-list">
-        <li><strong style="color:#7C4DFF">Micro:</strong> Fifine K669B (USB)</li>
-        <li><strong style="color:#7C4DFF">Filtro:</strong> Antipop de malla estándar</li>
-        <li><strong style="color:#7C4DFF">Extra:</strong> Trípode de mesa incluido</li>
-      </ul>
-      <a href="https://www.amazon.es/s?k=Fifine+K669B&tag=harmiqapp-20" target="_blank" class="studio-btn" style="background:linear-gradient(135deg,#7C4DFF,#FF4FA3)">Ver en Amazon →</a>
+    <div class="feat-card">
+        <h3>2. Análisis por IA</h3>
+        <p>Procesamos tu frecuencia fundamental, armónicos y vibrato para crear tu huella vocal digital.</p>
     </div>
-    <div class="studio-card featured">
-      <div class="studio-badge" style="background:linear-gradient(135deg,#FF4FA3,#FFD166)">⭐ Más popular</div>
-      <h3>Pro Creator</h3><p class="studio-sub">Calidad / Precio</p>
-      <ul class="studio-list">
-        <li><strong style="color:#FF4FA3">Micro:</strong> Audio-Technica AT2020 USB</li>
-        <li><strong style="color:#FF4FA3">Auriculares:</strong> OneOdio A70</li>
-        <li><strong style="color:#FF4FA3">Soporte:</strong> Brazo articulado profesional</li>
-      </ul>
-      <a href="https://www.amazon.es/s?k=Audio-Technica+AT2020+USB&tag=harmiqapp-20" target="_blank" class="studio-btn" style="background:linear-gradient(135deg,#FF4FA3,#7C4DFF)">Ver en Amazon →</a>
+    <div class="feat-card">
+        <h3>3. Resultados</h3>
+        <p>Descubre si eres Soprano, Tenor o Barítono y mira qué artistas famosos comparten tu mismo ADN vocal.</p>
     </div>
-    <div class="studio-card">
-      <div class="studio-badge" style="background:linear-gradient(135deg,#06D6A0,#118AB2)">Estudio Real</div>
-      <h3>Elite Studio</h3><p class="studio-sub">Nivel Profesional</p>
-      <ul class="studio-list">
-        <li><strong style="color:#06D6A0">Micro:</strong> Shure SM7B o Rode NT1</li>
-        <li><strong style="color:#06D6A0">Interfaz:</strong> Focusrite Scarlett Solo</li>
-        <li><strong style="color:#06D6A0">Cascos:</strong> Beyerdynamic DT 770 Pro</li>
-      </ul>
-      <a href="https://www.amazon.es/s?k=Shure+SM7B&tag=harmiqapp-20" target="_blank" class="studio-btn" style="background:linear-gradient(135deg,#06D6A0,#118AB2)">Ver en Amazon →</a>
-    </div>
-  </div>
-  <p style="text-align:center;margin-top:1.5rem;font-size:.78rem;color:#4B5563">* Links de afiliado Amazon · Harmiq recibe una pequeña comisión sin coste adicional para ti</p>
 </section>
 
-<!-- FAQ -->
-<section>
-  <h2>Preguntas frecuentes</h2>
-  <p class="sub">Todo lo que necesitas saber sobre Harmiq</p>
-  <div style="max-width:700px;margin:0 auto">
-    <div class="faq"><h3>¿Cómo sé qué tipo de voz tengo?</h3><p>Canta unos segundos y la IA analiza tu frecuencia fundamental, timbre y rango para clasificarte automáticamente.</p></div>
-    <div class="faq"><h3>¿Es gratis Harmiq?</h3><p>Sí, completamente gratis y sin registro. Solo necesitas un micrófono o auriculares con micro.</p></div>
-    <div class="faq"><h3>¿Cuántos artistas tiene Harmiq?</h3><p>Más de 12.000 artistas de todo el mundo, desde pop y rock hasta k-pop, j-pop, flamenco, salsa y ópera.</p></div>
-    <div class="faq"><h3>¿Funciona en móvil?</h3><p>Sí, funciona en cualquier dispositivo con navegador moderno — iPhone, Android, PC o Mac.</p></div>
-    <div class="faq"><h3>¿Guardan mi voz?</h3><p>No. Tu audio se analiza en tiempo real y se borra inmediatamente. No guardamos ninguna grabación.</p></div>
-  </div>
+<section class="faq-section">
+    <h2 style="font-family:'Baloo 2'; text-align:center; font-size:2rem; margin-bottom:3rem">Preguntas Frecuentes</h2>
+    <div class="faq">
+        <h3>¿Cómo funciona la IA de Harmiq?</h3>
+        <p>Utilizamos modelos de machine learning entrenados con miles de voces para identificar patrones de frecuencia, timbre y rango para clasificarte automáticamente.</p>
+    </div>
+    <div class="faq">
+        <h3>¿Es gratis Harmiq?</h3>
+        <p>Sí, completamente gratis y sin registro. Solo necesitas un micrófono o auriculares con micro.</p>
+    </div>
+    <div class="faq">
+        <h3>¿Guardan mi voz?</h3>
+        <p>No. Tu audio se analiza en tiempo real y se borra inmediatamente. Privacidad 100% garantizada.</p>
+    </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-box">
-  <h2 id="cta-title">Descubre tu tipo de voz ahora</h2>
-  <p id="cta-desc">Análisis gratuito en 10 segundos. Sin registro. 12.000 artistas de todo el mundo.</p>
-  <a class="btn" href="#app" id="cta-btn">🎤 Analizar mi voz gratis</a>
-  &nbsp;&nbsp;
-  <a class="kofi" href="https://ko-fi.com/harmiq" target="_blank">☕ Apoya Harmiq</a>
-</div>
-
-<!-- FOOTER -->
 <footer>
-  <div class="fl">
-    <a href="/">Inicio</a>
-    <a href="/que-tipo-de-voz-tengo">Test vocal</a>
-    <a href="/que-cantante-soy">¿Qué cantante soy?</a>
-    <a href="/home-studio">🎛️ Home Studio</a>
-    <a href="/karaoke-eventos">🎤 Karaoke</a>
-    <a href="/tipos-de-voz">Tipos de voz</a>
-    hola@harmiq.app
-  </p>
+    <ul class="fl">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/exitos-decada">Éxitos</a></li>
+        <li><a href="/home-studio">Home Studio</a></li>
+        <li><a href="/ejercicios-de-canto">Ejercicios</a></li>
+        <li><a href="/politica-privacidad">Privacidad</a></li>
+    </ul>
+    <p style="color:var(--m); font-size:0.75rem; margin-top:1rem">© 2026 Harmiq — Análisis Vocal con IA</p>
 </footer>
 
-<script src="/app.js"></script>
+<script src="config.js"></script>
+<script>
+    window.addEventListener('load', function() {
+        const player = document.getElementById('hf-player');
+        if (typeof CONFIG !== 'undefined' && CONFIG.HF_BASE) {
+            player.innerHTML = `<iframe src="${CONFIG.HF_BASE}" frameborder="0" width="100%" height="600" allow="microphone"></iframe>`;
+        } else {
+            player.innerHTML = `<p style="color:var(--a); padding-top:150px;">Error: No se ha podido cargar config.js o falta la URL del backend.</p>`;
+        }
+    });
+</script>
 </body>
 </html>

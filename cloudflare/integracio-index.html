@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Harmiq — El Portal de la Música Catalana</title>
+
+<script src="config.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* Refuerzo de estilos específicos para la integración cultural */
+:root { --gold: #FFD700; }
+.tab-cat { border: 2px solid var(--gold) !important; color: var(--gold) !important; font-weight: 900; box-shadow: 0 0 15px rgba(255,215,0,0.1); }
+.flag-strip { 
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; 
+    background: repeating-linear-gradient(90deg, #FFD700, #FFD700 20px, #E60000 20px, #E60000 40px);
+}
+.yt-section {
+    max-width: 1100px; margin: 2rem auto; padding: 2.5rem;
+    background: rgba(13, 11, 38, 0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: 35px;
+    backdrop-filter: blur(10px);
+}
+.hero-mini { font-size: 0.9rem; color: var(--m); letter-spacing: 2px; text-transform: uppercase; font-weight: 800; }
+</style>
+</head>
+<body>
+
+<nav>
+    <a class="logo" href="/">🎙️ Harmiq</a>
+    <div style="display:flex; align-items:center; gap:15px">
+        <span id="legal-version" style="font-size:0.7rem; color:var(--m); background:rgba(255,255,255,0.05); padding:3px 8px; border-radius:5px"></span>
+    </div>
+    <div class="flag-strip"></div>
+</nav>
+
+<div class="hero">
+    <p class="hero-mini">Projecte de Patrimoni Vocal</p>
+    <h1>Canta el teu <span style="color:var(--gold)">Llegat</span></h1>
+    <p>La primera IA que connecta la teva veu amb la cultura musical de casa nostra.</p>
+</div>
+
+<section class="yt-section">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem">
+        <h2 style="font-family:'Baloo 2'; font-size:1.5rem">📺 Karaoke Comunitari</h2>
+        <span style="color:var(--a); font-size:0.8rem; font-weight:800">Directe des de YouTube</span>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:2rem">
+        <div style="position:relative; padding-bottom:56.25%; height:0; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.1)">
+            <iframe id="yt-player" style="position:absolute; width:100%; height:100%; border:0" src="" allowfullscreen></iframe>
+        </div>
+        <div id="yt-list" style="display:flex; flex-direction:column; gap:1rem">
+            </div>
+    </div>
+</section>
+
+<div style="overflow-x:auto; padding:1.5rem; margin-bottom:1rem">
+    <div style="display:flex; gap:1.2rem; justify-content:center; min-width:max-content">
+        <div class="tab tab-cat" onclick="loadCatalan(this)">🎗️ Llegat Català</div>
+        <div class="tab active" onclick="load('historics', this)">🏛️ Històrics</div>
+        <div class="tab" onclick="load('exit', this)">🏆 Èxits</div>
+        <div class="tab" onclick="load('emergent', this)">🌱 Emergents</div>
+    </div>
+</div>
+
+<main class="main-content">
+    <div id="artist-grid" class="artist-grid">
+        </div>
+</main>
+
+<section style="max-width:900px; margin:4rem auto; padding:0 1.5rem">
+    <h2 style="text-align:center; font-family:'Baloo 2'; margin-bottom:2rem">Com funciona Harmiq?</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem">
+        <div class="faq">
+            <h3>1. Escaneig Vocal</h3>
+            <p>La nostra IA analitza 27 variables de la teva veu per entendre el teu timbre i rang.</p>
+        </div>
+        <div class="faq">
+            <h3>2. Match Cultural</h3>
+            <p>Et connectem amb artistes del nostre patrimoni que comparteixen el teu ADN vocal.</p>
+        </div>
+        <div class="faq">
+            <h3>3. Recomanació Pro</h3>
+            <p>T'indiquem quin micròfon i quina configuració necessites segons el teu perfil.</p>
+        </div>
+    </div>
+</section>
+
+<div class="cta-box">
+    <h2>Vols analitzar la teva veu ara?</h2>
+    <p>Puja un àudio i descobreix el teu perfil vocal amb la nostra tecnologia biovocal.</p>
+    <a href="/analitzar" class="btn-main" style="display:inline-block; margin-bottom:1.5rem">🚀 Començar Anàlisi</a>
+    <br>
+    <a href="https://ko-fi.com" class="kofi" target="_blank">☕ Ajuda al projecte</a>
+</div>
+
+<footer class="footer">
+    <div class="social-links" id="social-footer" style="display:flex; justify-content:center; gap:2.5rem; margin-bottom:1.5rem"></div>
+    <p style="font-size:0.85rem; color:var(--m)">
+        © 2026 <strong>Harmiq</strong> · <a id="privacy-link" href="#" style="color:var(--p)">Privacitat i Termes</a>
+    </p>
+</footer>
+
+<script>
+function applyConfig() {
+    if (typeof CONFIG === 'undefined') return;
+    const root = document.documentElement.style;
+    root.setProperty('--p', CONFIG.THEME.PRIMARY);
+    root.setProperty('--a', CONFIG.THEME.ACCENT);
+    root.setProperty('--gold', CONFIG.THEME.GOLD);
+    root.setProperty('--dark', CONFIG.THEME.DARK_BG);
+    root.setProperty('--card', CONFIG.THEME.CARD_BG);
+
+    document.getElementById('yt-player').src = CONFIG.YOUTUBE_CHANNELS.DEFAULT_PLAYLIST;
+    const ytList = document.getElementById('yt-list');
+    ytList.innerHTML = `
+        <div class="channel-link" style="background:var(--card); padding:1.2rem; border-radius:15px; cursor:pointer; border:1px solid rgba(255,255,255,0.05)" onclick="changeVideo(CONFIG.YOUTUBE_CHANNELS.KARAOKE_CATALA)">
+            <h4 style="font-size:1rem; color:var(--gold)">🎤 Karaoke en Català</h4><p style="font-size:0.75rem; color:var(--m)">La llista més completa del país</p>
+        </div>
+        <div class="channel-link" style="background:var(--card); padding:1.2rem; border-radius:15px; cursor:pointer; border:1px solid rgba(255,255,255,0.05)" onclick="changeVideo(CONFIG.YOUTUBE_CHANNELS.KARAOKE_GIRONA)">
+            <h4 style="font-size:1rem">🎼 Karaoke Girona</h4><p style="font-size:0.75rem; color:var(--m)">Projecte col·laborador local</p>
+        </div>
+    `;
+
+    document.getElementById('legal-version').innerText = "Build: " + CONFIG.SETTINGS.VERSION;
+    document.getElementById('privacy-link').href = CONFIG.ROUTES.PRIVACY;
+    
+    const footerSocial = document.getElementById('social-footer');
+    footerSocial.innerHTML = `
+        <a href="${CONFIG.SOCIAL.INSTAGRAM}" target="_blank" style="color:var(--m)">Instagram</a>
+        <a href="${CONFIG.SOCIAL.TIKTOK}" target="_blank" style="color:var(--m)">TikTok</a>
+        <a href="mailto:${CONFIG.SOCIAL.EMAIL_SUPPORT}" style="color:var(--m)">Suport Tècnic</a>
+    `;
+}
+
+function changeVideo(url) { document.getElementById('yt-player').src = url; }
+
+async function loadCatalan(el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const grid = document.getElementById('artist-grid');
+    grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:5rem; color:var(--gold)">Recuperant arxius del llegat vocal...</div>';
+
+    try {
+        const res = await fetch('catala_data.json');
+        const data = await res.json();
+        grid.innerHTML = data.artistes.map(art => `
+            <div class="artist-card" style="border-top: 3px solid var(--gold)">
+                <div class="card-body">
+                    <small style="color:var(--gold); font-weight:800; letter-spacing:1px">PATRIMONI CAT</small>
+                    <h3 style="font-size:1.4rem; margin:8px 0">${art.nom}</h3>
+                    <p style="font-size:0.85rem; color:var(--m); margin-bottom:1.2rem">${art.bio.substring(0, 100)}...</p>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.5rem">
+                        ${art.cancons.slice(0,3).map(c => `<span style="font-size:0.7rem; background:rgba(255,255,255,0.07); padding:4px 10px; border-radius:8px">🎵 ${c}</span>`).join('')}
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=karaoke+${art.nom}" target="_blank" class="btn-sp" style="background:var(--gold); color:#000; font-weight:900">Cantar Karaoke</a>
+                </div>
+            </div>
+        `).join('');
+    } catch(e) { grid.innerHTML = "<p>Error carregant catala_data.json</p>"; }
+}
+
+async function load(cat, el) {
+    if(el) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+    }
+    const grid = document.getElementById('artist-grid');
+    grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:5rem">Connectant amb l\'API...</div>';
+    try {
+        const res = await fetch(`${CONFIG.HF_BASE}/decade-tracks?decade=${cat}`);
+        const data = await res.json();
+        grid.innerHTML = data.tracks.map(t => `
+            <div class="artist-card">
+                <div class="card-img"><img src="${t.image}" alt="${t.title}" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>${t.artist}</h3>
+                    <p style="font-size:0.85rem; margin-bottom:1.2rem">${t.title}</p>
+                    <a href="${t.spotify_url}" target="_blank" class="btn-sp">Spotify</a>
+                </div>
+            </div>
+        `).join('');
+    } catch(e) { grid.innerHTML = "<p style='grid-column:1/-1; text-align:center; padding:5rem; color:var(--m)'>Servidor en repòs. Utilitza el 'Llegat Català' per a veure contingut local.</p>"; }
+}
+
+window.onload = () => { applyConfig(); load('historics'); };
+</script>
+</body>
+</html>

@@ -3,41 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Política de Privacidad y Aviso Legal | Harmiq</title>
-<meta name="description" content="Política de privacidad, aviso legal, uso de cookies y condiciones de uso de Harmiq.app — análisis vocal con IA.">
-<link rel="canonical" href="https://harmiq.app/politica-privacidad">
-<meta name="robots" content="noindex,follow">
+<title>Privacidad y Términos Globales — Harmiq</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
 <style>
-.legal-wrap { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-.legal-wrap h1 { font-family:'Baloo 2',sans-serif; font-size:2rem; font-weight:900; margin-bottom:.5rem;
-  background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
-.legal-wrap h2 { font-family:'Baloo 2',sans-serif; font-size:1.2rem; font-weight:800;
-  color:#A5B4FC; margin:2rem 0 .75rem; border-bottom:1px solid rgba(124,77,255,.2); padding-bottom:.4rem; }
-.legal-wrap h3 { font-size:1rem; font-weight:700; color:#E5E7EB; margin:1.25rem 0 .4rem; }
-.legal-wrap p, .legal-wrap li { font-size:.88rem; color:#9CA3AF; line-height:1.75; margin-bottom:.6rem; }
-.legal-wrap ul { padding-left:1.25rem; margin-bottom:.75rem; }
-.legal-wrap a { color:#A5B4FC; }
-.legal-wrap table { width:100%; border-collapse:collapse; font-size:.82rem; margin:1rem 0; }
-.legal-wrap th { background:rgba(124,77,255,.15); color:#A5B4FC; text-align:left;
-  padding:.5rem .75rem; border:1px solid rgba(255,255,255,.08); }
-.legal-wrap td { padding:.45rem .75rem; border:1px solid rgba(255,255,255,.06); color:#9CA3AF;
-  vertical-align:top; }
-.highlight-box { background:rgba(124,77,255,.08); border:1px solid rgba(124,77,255,.2);
-  border-radius:12px; padding:1rem 1.25rem; margin:1rem 0; }
-.highlight-box p { color:#D1D5DB; margin:0; }
-.updated { font-size:.78rem; color:#6B7280; margin-bottom:2rem; }
+:root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#9CA3AF;--blue-eu:#003399;--red-us:#bf0a30}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.7;padding-bottom:5rem}
+.container{max-width:900px;margin:0 auto;padding:2rem}
+.nav-simple{padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:3rem;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,#FF4FA3,#7C4DFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+
+h1{font-family:'Baloo 2';font-size:2.8rem;margin-bottom:1rem;color:#fff;line-height:1.1}
+h2{font-family:'Baloo 2';font-size:1.8rem;margin-top:2.5rem;margin-bottom:1rem;color:var(--p);border-bottom:1px solid rgba(124,77,255,0.2);display:inline-block;padding-right:50px}
+h3{font-size:1.2rem;color:var(--a);margin-top:1.5rem}
+p{margin-bottom:1.2rem;color:var(--t);font-size:1.05rem}
+ul{margin-bottom:1.5rem;padding-left:1.5rem;list-style-type: square}
+li{margin-bottom:0.6rem}
+
+/* Cajas de Jurisdicción */
+.jurisdiction-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0}
+.jurisdiction-box{background:var(--card);padding:1.8rem;border-radius:24px;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden}
+.jurisdiction-box::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%}
+.box-eu::before{background:var(--blue-eu)}
+.box-us::before{background:var(--red-us)}
+
+.badge{display:inline-block;padding:4px 12px;border-radius:8px;font-size:0.7rem;font-weight:900;text-transform:uppercase;margin-bottom:15px;letter-spacing:1px}
+.eu-tag{background:rgba(0,51,153,0.1);color:#5d8cff;border:1px solid var(--blue-eu)}
+.us-tag{background:rgba(191,10,48,0.1);color:#ff5e7e;border:1px solid var(--red-us)}
+
+.footer-back{text-align:center;margin-top:5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1)}
+.btn-back{background:linear-gradient(135deg,var(--p),var(--a));color:#fff;padding:14px 40px;border-radius:50px;text-decoration:none;font-weight:800;box-shadow:0 10px 20px rgba(124,77,255,0.3);transition:0.3s}
+.btn-back:hover{transform:translateY(-3px);box-shadow:0 15px 25px rgba(124,77,255,0.4)}
+
+@media (max-width:768px){ .jurisdiction-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="logo" href="/">🎙️ Harmiq</a>
-  <ul class="nav-links">
-    <li><a href="/#app">🎤 Analizar mi voz</a></li>
-    <li>hola@harmiq.app
-</footer>
+<div class="container">
+    <nav class="nav-simple">
+        <a href="/" class="logo">🎙️ Harmiq</a>
+        <span style="font-size:0.8rem; color:var(--m)">Global Privacy Standard v2.1</span>
+    </nav>
+
+    <h1>Política de Privacidad <span style="color:var(--p)">Global</span></h1>
+    <p>Harmiq es una plataforma global diseñada para amantes del canto de todo el mundo. Nos comprometemos a proteger tu privacidad y tu identidad vocal independientemente de dónde te encuentres.</p>
+
+    <h2>1. Datos de Voz e IA</h2>
+    <p>El núcleo de Harmiq es el análisis vocal. Así es como manejamos tu información más personal:</p>
+    <ul>
+        <li><strong>Análisis en Local/Nube:</strong> Procesamos las ondas de audio para extraer frecuencias (Hz). No almacenamos grabaciones de voz íntegras a menos que crees un perfil de usuario para seguir tu progreso.</li>
+        <li><strong>No somos datos biométricos de acceso:</strong> No utilizamos tu voz para identificarte legalmente, solo para fines artísticos y musicales.</li>
+        <li><strong>IA Ética:</strong> Los algoritmos de Harmiq no comparten patrones de voz con terceros para entrenamiento de modelos de síntesis de voz sin permiso.</li>
+    </ul>
+
+    <div class="jurisdiction-grid">
+        <div class="jurisdiction-box box-eu">
+            <span class="badge eu-tag">Europa (GDPR)</span>
+            <h3>Tus Derechos en la UE</h3>
+            <p style="font-size:0.9rem">Cumplimos estrictamente con el Reglamento General de Protección de Datos:</p>
+            <ul style="font-size:0.85rem">
+                <li><strong>Derecho al Acceso:</strong> Puedes pedir una copia de tus análisis vocales.</li>
+                <li><strong>Derecho al Olvido:</strong> Eliminamos todos tus datos al cerrar la cuenta.</li>
+                <li><strong>Control de Cookies:</strong> Solo usamos las estrictamente necesarias para el funcionamiento.</li>
+            </ul>
+        </div>
+
+        <div class="jurisdiction-box box-us">
+            <span class="badge us-tag">Estados Unidos (CCPA)</span>
+            <h3>Privacidad en EE. UU.</h3>
+            <p style="font-size:0.9rem">Cumplimos con la Ley de Privacidad del Consumidor de California:</p>
+            <ul style="font-size:0.85rem">
+                <li><strong>No Venta de Datos:</strong> Harmiq no vende tu información personal a brokers de datos.</li>
+                <li><strong>Transparencia:</strong> Listamos todos los socios tecnológicos (Spotify, Google) claramente.</li>
+                <li><strong>COPPA:</strong> Protección especial para usuarios menores de 13 años.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>2. Ubicación y Mapas</h2>
+    <p>Para mostrarte Karaokes y eventos cercanos, solicitamos tu permiso de geolocalización. Esta información se usa exclusivamente para el filtrado en el mapa y no se guarda un historial de tus ubicaciones pasadas.</p>
+
+    <h2>3. Integraciones de Terceros</h2>
+    <p>Al utilizar Harmiq, interactúas con servicios líderes que tienen sus propias políticas:</p>
+    <ul>
+        <li><strong>Spotify API:</strong> Para mostrarte carátulas y canciones de éxito.</li>
+        <li><strong>YouTube API:</strong> Para la reproducción de vídeos de karaoke.</li>
+        <li><strong>Hugging Face:</strong> Donde reside nuestra inteligencia artificial de procesamiento.</li>
+    </ul>
+
+    <h2>4. Seguridad Internacional</h2>
+    <p>Implementamos protocolos de seguridad estándar de la industria (TLS/SSL) para asegurar que la comunicación entre tu micrófono y nuestros servidores sea privada y segura.</p>
+
+    <h2>5. Contacto Legal</h2>
+    <p>Si tienes preguntas sobre cómo Harmiq maneja tus datos o quieres ejercer tus derechos globales, escríbenos a:</p>
+    <p style="font-weight:700; color:#fff">legal@harmiq.app</p>
+
+    <div class="footer-back">
+        <a href="/" class="btn-back">Entendido, volver a cantar</a>
+    </div>
+</div>
+
 </body>
 </html>

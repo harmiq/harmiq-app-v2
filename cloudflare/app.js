@@ -358,18 +358,20 @@ const T = {
 };
 
 // ── Estado ───────────────────────────────────────────────────────────────────
-let lang       = "es";
-let singersDb  = [];
-let audioBlob  = null;
-let isRec      = false;
-let mRec       = null;
-let chunks     = [];
-let analyser   = null;
-let actx       = null;
-let rafId      = null;
-let lastResult = null;
-let userCountry= "ES";
-let imgCache   = {};  // cache de imágenes iTunes
+let lang          = "es";
+let singersDb     = [];
+let monetizationDb= null;  // monetization.json — perfiles de voz + micros Amazon
+let catalaDb      = null;  // catala_data.json — boost cultural catalán
+let audioBlob     = null;
+let isRec         = false;
+let mRec          = null;
+let chunks        = [];
+let analyser      = null;
+let actx          = null;
+let rafId         = null;
+let lastResult    = null;
+let userCountry   = "ES";
+let imgCache      = {};  // cache de imágenes iTunes
 
 // ── Helpers de traducción ─────────────────────────────────────────────────────
 const tr  = k => T[lang]?.[k]       ?? T.es[k]       ?? k;
@@ -1002,24 +1004,46 @@ function classifyVT(pm, pr, gender) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// 8. MATCHING
+// 8. MATCHING — Similitud del coseno sobre 27 dimensiones (librosa)
 // ═══════════════════════════════════════════════════════════════════════════════
-const VTS ={bass:1,"bass-baritone":2,baritone:3,tenor:4,countertenor:5,contralto:3,"mezzo-soprano":4,soprano:6};
-const VTP =[1,.92,.82,.74,.68,.62];
-const SWN =[.28,.07,.12,.20,.08,.05,.05].map((w,_,a)=>w/a.reduce((s,v)=>s+v));
 
-function score(uVec,sVec,uvt,svt) {
-  if(!uVec||!sVec||uVec.length!==sVec.length) return 0;
-  const su=uVec.slice(0,7),ss=sVec.slice(0,7),mu=uVec.slice(7),ms=sVec.slice(7);
-  let wdSq=0;
-  for(let i=0;i<7;i++){ const d=su[i]-ss[i]; if(isFinite(d)) wdSq+=SWN[i]*d*d; }
-  let dot=0,nU=0,nS=0;
-  for(let i=0;i<mu.length;i++){ dot+=mu[i]*ms[i];nU+=mu[i]**2;nS+=ms[i]**2; }
-  const cos=(nU>1e-8&&nS>1e-8)?dot/(Math.sqrt(nU)*Math.sqrt(nS)):.5;
-  let sim=.35*cos+.65*Math.exp(-3*Math.sqrt(wdSq));
-  const u=VTS[uvt]||0,s2=VTS[svt]||0;
-  if(u&&s2) sim*=(VTP[Math.abs(u-s2)]??0.60);
-  return Math.max(0,Math.min(100,sim*100));
+// Tabla de penalización por distancia entre tipos vocales
+// (preserva la calidad de resultados cuando los vectores son muy similares
+//  entre tipos adyacentes: ej. barítono que bordea tenor)
+const VTS = {bass:1,"bass-baritone":2,baritone:3,tenor:4,countertenor:5,contralto:3,"mezzo-soprano":4,soprano:6};
+const VTP = [1,.92,.82,.74,.68,.62];
+
+/**
+ * calculateCosineSimilarity(vecA, vecB)
+ * Similitud del coseno sobre las 27 dimensiones extraídas por librosa:
+ *   [0–6]   → 7 features acústicos (pitch_mean, pitch_std, pitch_range,
+ *              spectral_centroid, energy_rms, zcr, spectral_rolloff)
+ *   [7–18]  → 12 MFCCs normalizados
+ *   [19–26] → 8 features adicionales (chroma, tonnetz, spectral_contrast…)
+ */
+function calculateCosineSimilarity(vecA, vecB) {
+  if (!vecA || !vecB || vecA.length < 27 || vecB.length < 27) return 0;
+  let dot = 0, mA = 0, mB = 0;
+  for (let i = 0; i < 27; i++) {
+    dot += vecA[i] * vecB[i];
+    mA  += vecA[i] * vecA[i];
+    mB  += vecB[i] * vecB[i];
+  }
+  const denom = Math.sqrt(mA) * Math.sqrt(mB);
+  return denom > 1e-10 ? dot / denom : 0;
+}
+
+/**
+ * score(uVec, sVec, uvt, svt)
+ * Wrapper interno: coseno 27D × penalizador de tipo vocal.
+ * Devuelve un valor 0–100 listo para mostrar como porcentaje.
+ */
+function score(uVec, sVec, uvt, svt) {
+  const cos = calculateCosineSimilarity(uVec, sVec);
+  const u   = VTS[uvt] || 0;
+  const s2  = VTS[svt] || 0;
+  const vtPenalty = (u && s2) ? (VTP[Math.abs(u - s2)] ?? 0.60) : 1.0;
+  return Math.max(0, Math.min(100, cos * vtPenalty * 100));
 }
 
 function getMatches(vec,vt,gender,filters={},topN=5) {
@@ -1052,10 +1076,16 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
   // Score base de popularidad por país del usuario
   const countryBonus = (s) => s.country_code === userCountry ? 1.03 : 1.0;
 
+  // Boost cultural catalán — solo si el usuario navega en catalán y catalaDb está disponible
+  const catalaBonus = (s) => {
+    if (lang !== "ca" || !catalaDb?.artistes) return 1.0;
+    return catalaDb.artistes.some(a => a.nom.toLowerCase() === s.name.toLowerCase()) ? 1.15 : 1.0;
+  };
+
   const scored=pool
     .map(s=>({
       ...s,
-      score:Math.round(score(vec,s.vector,vt,s.voice_type)*countryBonus(s)*10)/10
+      score:Math.round(score(vec,s.vector,vt,s.voice_type)*countryBonus(s)*catalaBonus(s)*10)/10
     }))
     .sort((a,b)=>b.score-a.score);
 
@@ -1110,7 +1140,132 @@ async function analyzeAudio() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// 10. RENDERIZAR RESULTADOS
+// 10. BLOQUE AMAZON — recomendación de micro para el resultado principal
+// ═══════════════════════════════════════════════════════════════════════════════
+/**
+ * getAmazonHtml(voiceType)
+ * Usa monetizationDb (monetization.json) para mostrar una recomendación de
+ * micrófono personalizada por tipo de voz, con enlace de afiliado Amazon.
+ * Devuelve "" si monetizationDb no está cargada o no hay perfil para el tipo.
+ */
+function getAmazonHtml(voiceType) {
+  if (!monetizationDb) return "";
+  // El JSON usa claves capitalizadas: "Tenor", "Soprano", etc.
+  const vtKey = voiceType.charAt(0).toUpperCase() + voiceType.slice(1).toLowerCase();
+  const profile = monetizationDb.voice_profiles?.[vtKey];
+  if (!profile) return "";
+
+  const mic      = profile.microphones?.[0];
+  if (!mic) return "";
+
+  const amzDomain= getAmazonDomain();
+  const currency = getCurrencySymbol();
+  const amzLink  = `https://www.${amzDomain}/s?k=${encodeURIComponent(mic.search)}&tag=${AFFILIATE_ID}`;
+  const vtName   = trV("_vt_names", voiceType);
+
+  return `
+    <div style="margin:1rem 0;padding:1.1rem;border-radius:16px;
+      border:1px solid rgba(255,165,0,.3);background:rgba(255,165,0,.05);
+      display:flex;flex-direction:column;gap:.65rem">
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <span style="font-size:1.3rem">🎙️</span>
+        <div>
+          <div style="font-weight:800;font-size:.95rem;color:#FFB74D">
+            Micrófono recomendado para ${vtName}
+          </div>
+          <div style="font-size:.75rem;color:#9CA3AF">
+            Selección personalizada para tu tipo de voz
+          </div>
+        </div>
+      </div>
+      <div style="font-size:.85rem;color:#D1D5DB;font-weight:600">${mic.name}</div>
+      ${mic.reason ? `<div style="font-size:.78rem;color:#9CA3AF;line-height:1.5">${mic.reason}</div>` : ""}
+      <a href="${amzLink}" target="_blank" rel="noopener sponsored"
+        style="display:inline-block;align-self:flex-start;
+        background:linear-gradient(135deg,#FF9F1C,#FF6B35);color:#fff;
+        font-size:.8rem;font-weight:700;padding:.45rem 1rem;border-radius:10px;
+        text-decoration:none;letter-spacing:.02em">
+        🛒 Ver precio en Amazon ${currency} →
+      </a>
+    </div>`;
+}
+
+/**
+ * getAmazonAffiliateLink(voiceType)
+ * Versión ligera que devuelve solo la URL de afiliado Amazon para el tipo de
+ * voz indicado. Útil para inyectar links en cualquier parte del HTML sin
+ * necesidad de renderizar el bloque completo de getAmazonHtml().
+ * Devuelve null si monetizationDb no está disponible o no hay perfil.
+ */
+function getAmazonAffiliateLink(voiceType) {
+  if (!monetizationDb) return null;
+  const vtKey  = voiceType.charAt(0).toUpperCase() + voiceType.slice(1).toLowerCase();
+  const profile = monetizationDb.voice_profiles?.[vtKey];
+  if (!profile) return null;
+  const mic    = profile.microphones?.[0];
+  if (!mic) return null;
+  const domain = AMAZON_DOMAINS[userCountry] || "com";
+  return `https://www.amazon.${domain}/s?k=${encodeURIComponent(mic.search)}&tag=${AFFILIATE_ID}`;
+}
+
+/**
+ * getAmazonBox(voiceType)
+ * Alias público de getAmazonHtml() con la firma exacta del diseño v8.
+ * Genera el bloque HTML de recomendación de micrófono para el resultado
+ * principal. Usa AMAZON_DOMAINS + AFFILIATE_ID + monetizationDb.
+ * Devuelve "" si monetizationDb no está disponible o no hay perfil.
+ */
+function getAmazonBox(voiceType) {
+  if (!monetizationDb) return "";
+  const vtKey   = voiceType.charAt(0).toUpperCase() + voiceType.slice(1).toLowerCase();
+  const profile = monetizationDb.voice_profiles?.[vtKey];
+  if (!profile) return "";
+  const mic    = profile.microphones?.[0];
+  if (!mic) return "";
+  const domain = AMAZON_DOMAINS[userCountry] || "es";
+  const link   = `https://www.amazon.${domain}/s?k=${encodeURIComponent(mic.search)}&tag=${AFFILIATE_ID}`;
+  return `
+    <div class="cta-box" style="border:2px solid var(--gold,#FFD700);margin-top:20px;
+      padding:1.1rem;border-radius:16px;background:rgba(255,215,0,.05)">
+      <h3 style="color:var(--gold,#FFD700);font-family:'Baloo 2',sans-serif;margin-bottom:.5rem">
+        🎤 Recomendación para tu voz
+      </h3>
+      <p style="font-size:.88rem;margin-bottom:.75rem">
+        Como ${trV("_vt_names", voiceType)}, tu micro ideal es el <b>${mic.name}</b>.
+        ${mic.reason ? `<br><span style="color:#9CA3AF;font-size:.8rem">${mic.reason}</span>` : ""}
+      </p>
+      <a href="${link}" target="_blank" rel="noopener sponsored"
+        style="display:inline-block;background:#FF9900;color:#fff;font-weight:700;
+        font-size:.85rem;padding:.5rem 1.1rem;border-radius:10px;text-decoration:none">
+        🛒 Ver en Amazon →
+      </a>
+    </div>`;
+}
+
+/**
+ * findMatch(userVector)
+ * API pública de matching: recibe el vector de 27 dimensiones del usuario,
+ * aplica similitud del coseno contra toda la DB, aplica el boost catalán
+ * si lang === 'ca', y devuelve los 6 mejores resultados ordenados por score.
+ * Equivale a getMatches() pero sin filtros — para uso directo desde HTML/tests.
+ */
+function findMatch(userVector) {
+  return singersDb.map(singer => {
+    let sc = calculateCosineSimilarity(userVector, singer.vector);
+
+    // Boost cultural: solo si el idioma de la UI es catalán y catalaDb está cargada
+    if (lang === "ca" && typeof catalaDb !== "undefined" && catalaDb?.artistes) {
+      const isCatalan = catalaDb.artistes.some(
+        a => a.nom.toLowerCase() === singer.name.toLowerCase()
+      );
+      if (isCatalan) sc *= 1.15;
+    }
+    return { ...singer, score: sc };
+  }).sort((a, b) => b.score - a.score).slice(0, 6);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 11. RENDERIZAR RESULTADOS
 // ═══════════════════════════════════════════════════════════════════════════════
 function getPlatformLinks(singerName, songName) {
   const platform = getMusicPlatform();
@@ -1406,6 +1561,9 @@ async function renderResults({feat,vt,conf,matches,gender}) {
       </div>
     </div>`;
 
+  // ── Bloque Amazon (monetización) ──────────────────────────────────────
+  const amzHTML = getAmazonHtml(vt);
+
   resEl.innerHTML = `
     <!-- Header resultado -->
     <div style="margin-bottom:1.25rem">
@@ -1433,6 +1591,7 @@ async function renderResults({feat,vt,conf,matches,gender}) {
     <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem">${cardsHTML}</div>
     ${extraBtnsHTML}
     ${songsHTML}
+    ${amzHTML}
     ${shareHTML}`;
 
   // ── Evento filtro época ────────────────────────────────────────────────
@@ -2621,24 +2780,46 @@ function _searchKaraoke() {
 }
 
 async function loadDB() {
+  // Cargar las 3 bases de datos en paralelo — la principal (vectores) + monetización + catalán
+  const [resDb, resMon, resCat] = await Promise.allSettled([
+    fetch(DB_PATH),
+    fetch("/monetization.json"),
+    fetch("/catala_data.json"),
+  ]);
+
+  // ── DB principal (vectores) — obligatoria ──────────────────────────────
   try {
-    const r = await fetch(DB_PATH);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    const d = await r.json();
+    if (resDb.status === "rejected" || !resDb.value.ok)
+      throw new Error(resDb.reason?.message || `HTTP ${resDb.value?.status}`);
+    const d = await resDb.value.json();
     singersDb = d.singers || [];
     console.log(`✓ DB cargada: ${singersDb.length} cantantes`);
-    // Actualizar el botón para indicar que está listo
     const recBtn = document.getElementById("record-btn");
     if (recBtn) recBtn.style.opacity = "1";
     if (singersDb.length === 0) console.warn("⚠️ DB vacía — revisa harmiq_db_vectores.json");
   } catch(e) {
     console.error("❌ DB no disponible:", e.message);
-    // Mostrar aviso suave al usuario solo si lleva mucho tiempo
     setTimeout(() => {
       if (!singersDb.length) showStatus("Base de datos cargando... Espera un momento.", "ok");
       setTimeout(() => showStatus(""), 3000);
     }, 2000);
   }
+
+  // ── monetization.json — opcional (Amazon afiliados en resultado) ────────
+  try {
+    if (resMon.status === "fulfilled" && resMon.value.ok) {
+      monetizationDb = await resMon.value.json();
+      console.log("✓ Monetización cargada");
+    }
+  } catch(e) { console.warn("⚠️ monetization.json no disponible:", e.message); }
+
+  // ── catala_data.json — opcional (boost cultural catalán) ───────────────
+  try {
+    if (resCat.status === "fulfilled" && resCat.value.ok) {
+      catalaDb = await resCat.value.json();
+      console.log(`✓ Datos catalanes cargados: ${catalaDb?.artistes?.length || 0} artistas`);
+    }
+  } catch(e) { console.warn("⚠️ catala_data.json no disponible:", e.message); }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════

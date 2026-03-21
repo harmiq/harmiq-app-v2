@@ -1,592 +1,136 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Tipos de Voz — Soprano, Mezzo, Tenor, Barítono, Bajo, Contralto | Harmiq</title>
-<meta name="description" content="Descubre los 6 tipos de voz: soprano, mezzosoprano, contralto, tenor, barítono y bajo. Rangos de notas, artistas famosos de cada tipo y cómo identificar el tuyo gratis con IA.">
-<meta name="keywords" content="tipos de voz, soprano, mezzo soprano, contralto, tenor, barítono, bajo, qué tipo de voz tengo, rango vocal, vocal range test">
-<link rel="canonical" href="https://harmiq.app/tipos-de-voz">
-<meta property="og:title" content="Tipos de Voz — Cuál es el tuyo | Harmiq">
-<meta property="og:description" content="Guía completa de los 6 tipos de voz con artistas famosos y cómo identificar el tuyo.">
-<meta property="og:url" content="https://harmiq.app/tipos-de-voz">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Tipos de Voz: Guía Completa","description":"Los 6 tipos de voz humana explicados con artistas famosos, rangos de notas y ejercicios","url":"https://harmiq.app/tipos-de-voz","publisher":{"@type":"Organization","name":"Harmiq","url":"https://harmiq.app"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuántos tipos de voz hay?","acceptedAnswer":{"@type":"Answer","text":"Hay 6 tipos principales: soprano, mezzosoprano y contralto (voces femeninas), y tenor, barítono y bajo (voces masculinas). Cada uno tiene un rango de notas específico."}},{"@type":"Question","name":"¿Cómo sé qué tipo de voz tengo?","acceptedAnswer":{"@type":"Answer","text":"La forma más fácil es usar Harmiq: canta unos segundos y la IA analiza tu frecuencia fundamental, timbre y rango para clasificarte automáticamente. También puedes identificarlo por tu nota más grave y más aguda confortables."}},{"@type":"Question","name":"¿Cuál es el tipo de voz más raro?","acceptedAnswer":{"@type":"Answer","text":"El contratenor (voz masculina que canta en registro de mezzo o soprano) es el más inusual. En voces femeninas, la contralto pura es la más escasa."}}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.7}
-a{text-decoration:none;color:inherit}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Tipos de Voz — Soprano, Mezzo, Tenor, Barítono, Bajo, Contralto | Harmiq</title>
+    <meta name="description" content="Descubre los 6 tipos de voz: soprano, mezzosoprano, contralto, tenor, barítono y bajo. Rangos de notas, artistas famosos y cómo identificar el tuyo gratis con IA.">
+    <meta name="keywords" content="tipos de voz, soprano, mezzo soprano, contralto, tenor, barítono, bajo, qué tipo de voz tengo, rango vocal, vocal range test">
+    <link rel="canonical" href="https://harmiq.app/tipos-de-voz">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280;--green:#06D6A0}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:var(--dark);color:var(--t);font-family:'Nunito',sans-serif;line-height:1.6}
+        a{text-decoration:none;color:inherit}
+        
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:rgba(10,8,24,0.9);backdrop-filter:blur(10px);position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,0.05)}
+        .logo{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .nav-links{display:flex;list-style:none;gap:1.5rem}
+        .nav-links a{font-weight:600;font-size:0.95rem;transition:color 0.2s}
+        .nav-links a:hover{color:var(--a)}
 
-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;
-  background:rgba(13,13,26,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.07);
-  position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:.5rem}
-.logo{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900;
-  background:linear-gradient(135deg,#FF4FA3,#7C4DFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-back{background:rgba(124,77,255,.15);color:#A5B4FC;border:1px solid rgba(124,77,255,.3);
-  padding:.45rem 1.1rem;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s}
-.nav-back:hover{background:rgba(124,77,255,.25)}
+        .container{max-width:900px;margin:0 auto;padding:3rem 5%}
+        h1{font-family:'Baloo 2',cursive;font-size:2.8rem;line-height:1.1;margin-bottom:1.5rem;text-align:center}
+        
+        .intro-card{background:linear-gradient(135deg, rgba(124,77,255,0.2), rgba(255,79,163,0.1));padding:2rem;border-radius:2rem;margin-bottom:3rem;border:1px solid rgba(255,255,255,0.1);text-align:center}
+        
+        h2{font-family:'Baloo 2';color:var(--a);margin:2.5rem 0 1rem;font-size:1.8rem}
+        
+        /* Tabla Comparativa */
+        .table-wrap{width:100%;overflow-x:auto;background:var(--card);border-radius:1.5rem;margin:2rem 0;border:1px solid rgba(255,255,255,0.05)}
+        table{width:100%;border-collapse:collapse;min-width:600px}
+        th{background:rgba(124,77,255,0.2);color:var(--p);text-align:left;padding:1.2rem;font-family:'Baloo 2'}
+        td{padding:1.2rem;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.9rem}
+        tr:last-child td{border-bottom:none}
+        
+        .voice-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;margin:2rem 0}
+        .voice-card{background:var(--card);padding:1.5rem;border-radius:1.5rem;border-left:4px solid var(--p)}
+        .voice-card h3{font-family:'Baloo 2';margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem}
 
-.hero{text-align:center;padding:3.5rem 1.5rem 2.5rem;
-  background:linear-gradient(135deg,rgba(124,77,255,.12),rgba(255,79,163,.06));
-  border-bottom:1px solid rgba(255,255,255,.06)}
-.badge{display:inline-block;background:rgba(124,77,255,.15);color:#A5B4FC;
-  border:1px solid rgba(124,77,255,.3);border-radius:50px;padding:.3rem 1rem;
-  font-size:.8rem;font-weight:700;margin-bottom:1rem}
-.hero h1{font-family:'Baloo 2',cursive;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:.8rem}
-.grad{background:linear-gradient(135deg,#FF4FA3,#FFD166,#06D6A0,#7C4DFF);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--m);max-width:620px;margin:0 auto 2rem;font-size:1rem}
+        .cta-inline{background:var(--card);padding:2.5rem;border-radius:2rem;text-align:center;border:2px dashed var(--p);margin-top:3rem}
+        .btn{background:linear-gradient(135deg,#7C4DFF,#FF4FA3);padding:1rem 2rem;border-radius:3rem;font-weight:800;display:inline-block;margin-top:1rem;transition:transform 0.2s}
+        .btn:hover{transform:scale(1.05)}
 
-/* VOICE QUICK NAV */
-.voice-nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;
-  padding:1.5rem;border-bottom:1px solid rgba(255,255,255,.06);max-width:900px;margin:0 auto}
-.vnav{padding:.5rem 1.1rem;border-radius:24px;font-size:.85rem;font-weight:700;
-  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
-  color:var(--m);transition:all .2s;cursor:pointer}
-.vnav:hover{color:var(--t);border-color:rgba(124,77,255,.4)}
-
-/* MAIN CONTENT */
-.content{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
-
-/* VOICE SECTIONS */
-.voice-section{margin-bottom:4rem;scroll-margin-top:80px}
-.voice-header{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:1.5rem;
-  padding:1.5rem;border-radius:20px;border:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
-.voice-emoji{font-size:3rem;line-height:1}
-.voice-meta h2{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:900;margin-bottom:.3rem}
-.voice-meta p{color:var(--m);font-size:.9rem}
-.voice-range{margin-left:auto;text-align:right;min-width:140px}
-.range-tag{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:900}
-.range-label{font-size:.72rem;color:var(--m);text-transform:uppercase;letter-spacing:.5px}
-
-/* INFO GRID */
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
-.info-box{background:var(--card);border-radius:14px;padding:1.2rem;border:1px solid rgba(255,255,255,.07)}
-.info-box h4{font-family:'Baloo 2',cursive;font-size:.95rem;margin-bottom:.5rem}
-.info-box p{font-size:.85rem;color:var(--m)}
-.info-box ul{list-style:none;padding:0}
-.info-box ul li{font-size:.85rem;color:var(--m);padding:.2rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
-.info-box ul li:last-child{border:none}
-.info-box ul li strong{color:var(--t)}
-
-/* ARTISTAS */
-.artists-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.artist-chip{display:flex;align-items:center;gap:.5rem;background:var(--card);
-  border-radius:10px;padding:.5rem .9rem;border:1px solid rgba(255,255,255,.07);font-size:.85rem}
-.artist-chip span{font-size:1.2rem}
-
-/* CARACTERISTICAS */
-.chars-box{background:rgba(124,77,255,.06);border:1px solid rgba(124,77,255,.2);
-  border-radius:14px;padding:1.2rem 1.5rem;margin-bottom:1.5rem}
-.chars-box h4{font-family:'Baloo 2',cursive;color:#A5B4FC;margin-bottom:.8rem}
-.chars-list{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
-.char-item{font-size:.85rem;color:var(--m);display:flex;align-items:center;gap:.4rem}
-.char-item::before{content:"✓";color:#06D6A0;font-weight:700;flex-shrink:0}
-
-/* SEPARADOR */
-.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,77,255,.3),transparent);
-  margin:3rem 0}
-
-/* CTA INLINE */
-.cta-inline{background:linear-gradient(135deg,rgba(124,77,255,.1),rgba(255,79,163,.06));
-  border-radius:16px;padding:1.5rem;text-align:center;border:1px solid rgba(124,77,255,.2);margin-bottom:2rem}
-.cta-inline h3{font-family:'Baloo 2',cursive;margin-bottom:.5rem}
-.cta-inline p{color:var(--m);font-size:.88rem;margin-bottom:1rem}
-.btn-cta{display:inline-block;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);
-  color:#fff;padding:.8rem 2rem;border-radius:50px;font-weight:800;font-size:.95rem;
-  box-shadow:0 4px 20px rgba(124,77,255,.3);transition:transform .2s}
-.btn-cta:hover{transform:translateY(-2px)}
-
-/* COMPARATIVA TABLE */
-.comp-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:2rem}
-.comp-table th{background:rgba(124,77,255,.15);padding:.7rem 1rem;text-align:left;
-  font-weight:700;color:#A5B4FC;border-bottom:1px solid rgba(255,255,255,.1)}
-.comp-table td{padding:.6rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);color:#D1D5DB}
-.comp-table tr:hover td{background:rgba(255,255,255,.02)}
-
-footer{text-align:center;padding:2rem 1.5rem;color:var(--m);font-size:.78rem;
-  border-top:1px solid rgba(255,255,255,.06)}
-footer a{color:var(--m)}
-
-@media(max-width:640px){
-  .info-grid{grid-template-columns:1fr}
-  .chars-list{grid-template-columns:1fr}
-  .voice-header{flex-direction:column}
-  .voice-range{margin-left:0}
-  nav{padding:.8rem 1rem}
-}
-</style>
+        footer{padding:3rem 5%;background:#05040d;text-align:center;color:var(--m);font-size:0.85rem;margin-top:4rem}
+        @media (max-width:768px){ .nav-links{display:none} h1{font-size:2.2rem} }
+    </style>
 </head>
 <body>
 
 <nav>
-  <a class="logo" href="/">🎙️ Harmiq</a>
-  <button class="nav-back" onclick="location.href='/'">← Volver</button>
+    <a href="/" class="logo">Harmiq</a>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/exitos-decada">Éxitos</a></li>
+        <li><a href="/home-studio">Home Studio</a></li>
+        <li><a href="/tipos-de-voz" style="color:var(--a); font-weight:800">Tipos de Voz</a></li>
+        <li><a href="/modul-catala">🏴 Català</a></li>
+    </ul>
 </nav>
 
-<div class="hero">
-  <div class="badge">📖 Guía completa · Actualizada 2026</div>
-  <h1>Los <span class="grad">6 Tipos de Voz</span> explicados</h1>
-  <p>Soprano, mezzosoprano, contralto, tenor, barítono y bajo. Todo lo que necesitas saber para identificar tu tipo de voz y sacarle el máximo partido.</p>
+<div class="container">
+    <header>
+        <h1>Los 6 Tipos de Voz Humana</h1>
+        <div class="intro-card">
+            <p>¿Alguna vez te has preguntado por qué algunas canciones te resultan imposibles de cantar? Todo depende de tu <strong>tesitura</strong> y <strong>timbre</strong>. La clasificación clásica divide las voces en seis categorías principales.</p>
+        </div>
+    </header>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Género</th>
+                    <th>Rango Notas</th>
+                    <th>Frecuencia (Hz)</th>
+                    <th>Timbre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>✨ Soprano</td><td>Femenino</td><td>Do4 – Do6</td><td>261 – 1047 Hz</td><td>Brillante, agudo</td></tr>
+                <tr><td>🎶 Mezzosoprano</td><td>Femenino</td><td>La3 – La5</td><td>220 – 880 Hz</td><td>Cálido, rico</td></tr>
+                <tr><td>🌿 Contralto</td><td>Femenino</td><td>Fa3 – Fa5</td><td>175 – 698 Hz</td><td>Profundo, oscuro</td></tr>
+                <tr><td>🎤 Tenor</td><td>Masculino</td><td>Do3 – Do5</td><td>130 – 523 Hz</td><td>Potente, agudo</td></tr>
+                <tr><td>🎭 Barítono</td><td>Masculino</td><td>Sol2 – Sol4</td><td>98 – 392 Hz</td><td>Versátil, redondo</td></tr>
+                <tr><td>🎸 Bajo</td><td>Masculino</td><td>Mi2 – Do4</td><td>82 – 261 Hz</td><td>Muy grave, potente</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Detalles de cada clasificación</h2>
+    <div class="voice-grid">
+        <div class="voice-card">
+            <h3>Soprano</h3>
+            <p>La voz más aguda. Artistas como <strong>Ariana Grande</strong> o <strong>Sia</strong> destacan en este registro.</p>
+        </div>
+        <div class="voice-card">
+            <h3>Mezzosoprano</h3>
+            <p>Voz media femenina con cuerpo. Ejemplo: <strong>Adele</strong> o <strong>Beyoncé</strong>.</p>
+        </div>
+        <div class="voice-card">
+            <h3>Contralto</h3>
+            <p>La más rara y grave en mujeres. Ejemplo: <strong>Amy Winehouse</strong>.</p>
+        </div>
+        <div class="voice-card">
+            <h3>Tenor</h3>
+            <p>La voz más aguda natural del hombre. Ejemplo: <strong>Bruno Mars</strong> o <strong>Freddie Mercury</strong>.</p>
+        </div>
+        <div class="voice-card">
+            <h3>Barítono</h3>
+            <p>La más común en hombres. Ejemplo: <strong>Elvis Presley</strong> o <strong>Frank Sinatra</strong>.</p>
+        </div>
+        <div class="voice-card">
+            <h3>Bajo</h3>
+            <p>Voces muy profundas y raras. Ejemplo: <strong>Barry White</strong>.</p>
+        </div>
+    </div>
+
+    <div class="cta-inline">
+        <h3>¿Cuál es tu tipo de voz exacto?</h3>
+        <p>No lo adivines. Canta 10 segundos y nuestra IA te dirá tu clasificación y rango en Hz automáticamente.</p>
+        <a href="/#app" class="btn">🎤 Analizar mi voz ahora</a>
+    </div>
 </div>
-
-<!-- QUICK NAV -->
-<div class="voice-nav">
-  <a class="vnav" href="#soprano">✨ Soprano</a>
-  <a class="vnav" href="#mezzo">🎶 Mezzosoprano</a>
-  <a class="vnav" href="#contralto">🌿 Contralto</a>
-  <a class="vnav" href="#tenor">🎤 Tenor</a>
-  <a class="vnav" href="#baritono">🎭 Barítono</a>
-  <a class="vnav" href="#bajo">🎸 Bajo</a>
-  <a class="vnav" href="#comparativa">📊 Comparativa</a>
-</div>
-
-<div class="content">
-
-  <!-- ═══════════════ SOPRANO ═══════════════ -->
-  <div class="voice-section" id="soprano">
-    <div class="voice-header" style="background:linear-gradient(135deg,rgba(255,79,163,.08),rgba(255,79,163,.03));border-color:rgba(255,79,163,.2)">
-      <div class="voice-emoji">✨</div>
-      <div class="voice-meta">
-        <h2 style="background:linear-gradient(135deg,#FF4FA3,#FFD166);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Soprano</h2>
-        <p>La voz femenina más aguda y la más conocida del mundo. Protagonista de las grandes óperas.</p>
-      </div>
-      <div class="voice-range">
-        <div class="range-tag" style="background:linear-gradient(135deg,#FF4FA3,#FFD166);-webkit-background-clip:text;-webkit-text-fill-color:transparent">C4 – C6</div>
-        <div class="range-label">Do4 · Do6</div>
-      </div>
-    </div>
-
-    <div class="info-grid">
-      <div class="info-box">
-        <h4>📊 Rango y características</h4>
-        <ul>
-          <li><strong>Rango:</strong> Do4 (261 Hz) – Do6 (1047 Hz)</li>
-          <li><strong>Nota pasaje:</strong> Fa4-Sol4</li>
-          <li><strong>Registro pecho:</strong> hasta Fa4-Sol4</li>
-          <li><strong>Registro cabeza:</strong> desde Sol4</li>
-          <li><strong>Registro silbido:</strong> posible en algunas</li>
-        </ul>
-      </div>
-      <div class="info-box">
-        <h4>🎵 Subtipos de soprano</h4>
-        <ul>
-          <li><strong>Soprano lírica:</strong> cálida y redonda (Callas)</li>
-          <li><strong>Soprano dramática:</strong> potente y oscura (Nilsson)</li>
-          <li><strong>Soprano coloratura:</strong> ágil y virtuosa (Sumi Jo)</li>
-          <li><strong>Soprano ligera:</strong> pequeña y ágil (Netrebko)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="chars-box">
-      <h4>✨ ¿Cómo saber si eres soprano?</h4>
-      <div class="chars-list">
-        <div class="char-item">Notas agudas sin esfuerzo excesivo</div>
-        <div class="char-item">Voz brillante y clara naturalmente</div>
-        <div class="char-item">Los graves se sienten "débiles" o incómodos</div>
-        <div class="char-item">El Do5 (nota de soprano) es alcanzable</div>
-        <div class="char-item">Timbre luminoso y penetrante</div>
-        <div class="char-item">Pecho ligero en registros medios-altos</div>
-      </div>
-    </div>
-
-    <div class="artists-row">
-      <div class="artist-chip"><span>🇺🇸</span> Mariah Carey</div>
-      <div class="artist-chip"><span>🇨🇦</span> Celine Dion</div>
-      <div class="artist-chip"><span>🇺🇸</span> Whitney Houston</div>
-      <div class="artist-chip"><span>🇺🇸</span> Ariana Grande</div>
-      <div class="artist-chip"><span>🇬🇷</span> María Callas</div>
-      <div class="artist-chip"><span>🇪🇸</span> Montserrat Caballé</div>
-      <div class="artist-chip"><span>🇸🇪</span> Robyn</div>
-    </div>
-
-    <div class="info-box">
-      <h4>🎤 Canciones de karaoke perfectas para sopranos</h4>
-      <ul>
-        <li><strong>I Will Always Love You</strong> — Whitney Houston</li>
-        <li><strong>My Heart Will Go On</strong> — Celine Dion</li>
-        <li><strong>Hero</strong> — Mariah Carey</li>
-        <li><strong>Thank U, Next</strong> — Ariana Grande</li>
-        <li><strong>Let It Go</strong> — Idina Menzel (Frozen)</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ═══════════════ MEZZO ═══════════════ -->
-  <div class="voice-section" id="mezzo">
-    <div class="voice-header" style="background:linear-gradient(135deg,rgba(255,159,28,.08),rgba(255,159,28,.03));border-color:rgba(255,159,28,.2)">
-      <div class="voice-emoji">🎶</div>
-      <div class="voice-meta">
-        <h2 style="background:linear-gradient(135deg,#FF9F1C,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Mezzosoprano</h2>
-        <p>La voz femenina más versátil. Rica en armónicos medios, con un calor único que fascina.</p>
-      </div>
-      <div class="voice-range">
-        <div class="range-tag" style="background:linear-gradient(135deg,#FF9F1C,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent">A3 – A5</div>
-        <div class="range-label">La3 · La5</div>
-      </div>
-    </div>
-
-    <div class="info-grid">
-      <div class="info-box">
-        <h4>📊 Rango y características</h4>
-        <ul>
-          <li><strong>Rango:</strong> La3 (220 Hz) – La5 (880 Hz)</li>
-          <li><strong>Nota pasaje:</strong> Mi4-Fa4</li>
-          <li><strong>Timbre:</strong> Cálido, oscuro, terciopelado</li>
-          <li><strong>Zona más fuerte:</strong> Do4-Sol4</li>
-          <li><strong>Vibrato:</strong> Natural y amplio</li>
-        </ul>
-      </div>
-      <div class="info-box">
-        <h4>🎵 Subtipos de mezzo</h4>
-        <ul>
-          <li><strong>Mezzo lírica:</strong> cálida, Vivaldi y Mozart</li>
-          <li><strong>Mezzo dramática:</strong> potente, Wagner y Verdi</li>
-          <li><strong>Mezzo coloratura:</strong> ágil, Rossini</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="chars-box">
-      <h4>✨ ¿Cómo saber si eres mezzosoprano?</h4>
-      <div class="chars-list">
-        <div class="char-item">Voz naturalmente cálida y oscura</div>
-        <div class="char-item">Los registros medios son tus más fuertes</div>
-        <div class="char-item">El Do5 requiere algo de esfuerzo</div>
-        <div class="char-item">Los graves suenan ricos, no débiles</div>
-        <div class="char-item">Vibrato natural y expresivo</div>
-        <div class="char-item">Te sientes cómoda en Pop, Soul y R&B</div>
-      </div>
-    </div>
-
-    <div class="artists-row">
-      <div class="artist-chip"><span>🇬🇧</span> Adele</div>
-      <div class="artist-chip"><span>🇬🇧</span> Amy Winehouse</div>
-      <div class="artist-chip"><span>🇺🇸</span> Beyoncé</div>
-      <div class="artist-chip"><span>🇺🇸</span> Billie Eilish</div>
-      <div class="artist-chip"><span>🇺🇸</span> Lana Del Rey</div>
-      <div class="artist-chip"><span>🇪🇸</span> Rosalía</div>
-      <div class="artist-chip"><span>🇺🇸</span> Lady Gaga</div>
-    </div>
-
-    <div class="info-box">
-      <h4>🎤 Canciones de karaoke perfectas para mezzosopranos</h4>
-      <ul>
-        <li><strong>Rolling in the Deep</strong> — Adele</li>
-        <li><strong>Rehab</strong> — Amy Winehouse</li>
-        <li><strong>Someone Like You</strong> — Adele</li>
-        <li><strong>Chandelier</strong> — Sia</li>
-        <li><strong>Con Altura</strong> — Rosalía</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ═══════════════ CONTRALTO ═══════════════ -->
-  <div class="voice-section" id="contralto">
-    <div class="voice-header" style="background:linear-gradient(135deg,rgba(128,185,24,.08),rgba(128,185,24,.03));border-color:rgba(128,185,24,.2)">
-      <div class="voice-emoji">🌿</div>
-      <div class="voice-meta">
-        <h2 style="background:linear-gradient(135deg,#80B918,#06D6A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Contralto</h2>
-        <p>La voz femenina más rara y más profunda. Un timbre incomparable, grave y oscuro que hipnotiza.</p>
-      </div>
-      <div class="voice-range">
-        <div class="range-tag" style="background:linear-gradient(135deg,#80B918,#06D6A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent">F3 – F5</div>
-        <div class="range-label">Fa3 · Fa5</div>
-      </div>
-    </div>
-
-    <div class="info-grid">
-      <div class="info-box">
-        <h4>📊 Rango y características</h4>
-        <ul>
-          <li><strong>Rango:</strong> Fa3 (175 Hz) – Fa5 (698 Hz)</li>
-          <li><strong>Nota pasaje:</strong> Re4-Mi4</li>
-          <li><strong>Timbre:</strong> Oscuro, profundo, vibrante</li>
-          <li><strong>Frecuencia:</strong> El tipo de voz femenina más raro</li>
-          <li><strong>Zona de fuerza:</strong> La3-Do5</li>
-        </ul>
-      </div>
-      <div class="info-box">
-        <h4>🌟 La rareza de la contralto</h4>
-        <p style="font-size:.85rem;color:var(--m)">Menos del 3% de las mujeres son contraltos verdaderas. En ópera hay muy pocos roles escritos para esta voz, precisamente por su rareza. Las más famosas son consideradas tesoros únicos.</p>
-      </div>
-    </div>
-
-    <div class="chars-box">
-      <h4>✨ ¿Cómo saber si eres contralto?</h4>
-      <div class="chars-list">
-        <div class="char-item">Tu voz más grave es cómoda y resonante</div>
-        <div class="char-item">El Fa3 o incluso Mi3 son alcanzables</div>
-        <div class="char-item">Los agudos extremos se sienten forzados</div>
-        <div class="char-item">Tu voz "oscurece" naturalmente</div>
-        <div class="char-item">Timbre que te hace sonar "madura"</div>
-        <div class="char-item">Los registros medios-graves son tu casa</div>
-      </div>
-    </div>
-
-    <div class="artists-row">
-      <div class="artist-chip"><span>🇺🇸</span> Cher</div>
-      <div class="artist-chip"><span>🇺🇸</span> Nina Simone</div>
-      <div class="artist-chip"><span>🇺🇸</span> Tina Turner</div>
-      <div class="artist-chip"><span>🇺🇸</span> Tracy Chapman</div>
-      <div class="artist-chip"><span>🇺🇸</span> Macy Gray</div>
-      <div class="artist-chip"><span>🇺🇸</span> Alanis Morissette</div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ═══════════════ TENOR ═══════════════ -->
-  <div class="voice-section" id="tenor">
-    <div class="voice-header" style="background:linear-gradient(135deg,rgba(17,138,178,.08),rgba(17,138,178,.03));border-color:rgba(17,138,178,.2)">
-      <div class="voice-emoji">🎤</div>
-      <div class="voice-meta">
-        <h2 style="background:linear-gradient(135deg,#118AB2,#06D6A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Tenor</h2>
-        <p>La voz masculina más aguda y la más popular en ópera y pop. El rey de los Do de pecho.</p>
-      </div>
-      <div class="voice-range">
-        <div class="range-tag" style="background:linear-gradient(135deg,#118AB2,#06D6A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent">C3 – C5</div>
-        <div class="range-label">Do3 · Do5</div>
-      </div>
-    </div>
-
-    <div class="info-grid">
-      <div class="info-box">
-        <h4>📊 Rango y características</h4>
-        <ul>
-          <li><strong>Rango:</strong> Do3 (130 Hz) – Do5 (523 Hz)</li>
-          <li><strong>Nota pasaje:</strong> Mi4-Fa4</li>
-          <li><strong>Timbre:</strong> Brillante, claro, luminoso</li>
-          <li><strong>El Do5:</strong> La nota más esperada del tenor</li>
-          <li><strong>Registro pecho:</strong> Do3 hasta Fa4-Sol4</li>
-        </ul>
-      </div>
-      <div class="info-box">
-        <h4>🎵 Subtipos de tenor</h4>
-        <ul>
-          <li><strong>Tenor lírico:</strong> suave, Mozart y Donizetti</li>
-          <li><strong>Tenor dramático:</strong> potente, Verdi y Wagner</li>
-          <li><strong>Tenor spinto:</strong> entre lírico y dramático</li>
-          <li><strong>Tenor ligero:</strong> ágil, Rossini y bel canto</li>
-          <li><strong>Tenor Rock:</strong> Freddie Mercury, Robert Plant</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="chars-box">
-      <h4>✨ ¿Cómo saber si eres tenor?</h4>
-      <div class="chars-list">
-        <div class="char-item">Tu voz suena brillante y clara</div>
-        <div class="char-item">El La3-Si3 es tu zona de confort</div>
-        <div class="char-item">El Do5 es alcanzable aunque con esfuerzo</div>
-        <div class="char-item">Los graves por debajo de Do3 se debilitan</div>
-        <div class="char-item">El falsete se conecta naturalmente</div>
-        <div class="char-item">Te identificas con cantantes de rock/pop</div>
-      </div>
-    </div>
-
-    <div class="artists-row">
-      <div class="artist-chip"><span>🇬🇧</span> Freddie Mercury</div>
-      <div class="artist-chip"><span>🇮🇹</span> Luciano Pavarotti</div>
-      <div class="artist-chip"><span>🇬🇧</span> Ed Sheeran</div>
-      <div class="artist-chip"><span>🇺🇸</span> Bruno Mars</div>
-      <div class="artist-chip"><span>🇬🇧</span> Chris Martin</div>
-      <div class="artist-chip"><span>🇰🇷</span> Jungkook (BTS)</div>
-      <div class="artist-chip"><span>🇮🇹</span> Andrea Bocelli</div>
-    </div>
-
-    <div class="info-box">
-      <h4>🎤 Canciones de karaoke perfectas para tenores</h4>
-      <ul>
-        <li><strong>Bohemian Rhapsody</strong> — Queen</li>
-        <li><strong>Don't Stop Believin'</strong> — Journey</li>
-        <li><strong>Shape of You</strong> — Ed Sheeran</li>
-        <li><strong>Yellow</strong> — Coldplay</li>
-        <li><strong>Livin' on a Prayer</strong> — Bon Jovi</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ═══════════════ BARÍTONO ═══════════════ -->
-  <div class="voice-section" id="baritono">
-    <div class="voice-header" style="background:linear-gradient(135deg,rgba(124,77,255,.1),rgba(124,77,255,.04));border-color:rgba(124,77,255,.25)">
-      <div class="voice-emoji">🎭</div>
-      <div class="voice-meta">
-        <h2 style="background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Barítono</h2>
-        <p>La voz masculina más común y más versátil. Equilibra potencia y calidez de forma única.</p>
-      </div>
-      <div class="voice-range">
-        <div class="range-tag" style="background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent">G2 – G4</div>
-        <div class="range-label">Sol2 · Sol4</div>
-      </div>
-    </div>
-
-    <div class="info-grid">
-      <div class="info-box">
-        <h4>📊 Rango y características</h4>
-        <ul>
-          <li><strong>Rango:</strong> Sol2 (98 Hz) – Sol4 (392 Hz)</li>
-          <li><strong>Nota pasaje:</strong> La3-Si3</li>
-          <li><strong>Timbre:</strong> Cálido, oscuro, autoritario</li>
-          <li><strong>El más común:</strong> 70% de los hombres son barítonos</li>
-          <li><strong>Zona de fuerza:</strong> Do3-Fa4</li>
-        </ul>
-      </div>
-      <div class="info-box">
-        <h4>🎵 Subtipos de barítono</h4>
-        <ul>
-          <li><strong>Barítono lírico:</strong> Mozart, Schubert, Brahms</li>
-          <li><strong>Barítono dramático:</strong> Verdi, Puccini</li>
-          <li><strong>Barítono Kavalierbariton:</strong> cálido y noble</li>
-          <li><strong>Barítono Bassbariton:</strong> entre barítono y bajo</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="chars-box">
-      <h4>✨ ¿Cómo saber si eres barítono?</h4>
-      <div class="chars-list">
-        <div class="char-item">Tu zona de confort es Do3-Mi4</div>
-        <div class="char-item">Los Do5 requieren falsete o son imposibles</div>
-        <div class="char-item">Voz naturalmente cálida y oscura</div>
-        <div class="char-item">Te sientes cómodo en el La2-La3</div>
-        <div class="char-item">Timbre que suena "autoridad" o "madurez"</div>
-        <div class="char-item">El 70% de los hombres son barítonos</div>
-      </div>
-    </div>
-
-    <div class="artists-row">
-      <div class="artist-chip"><span>🇺🇸</span> Frank Sinatra</div>
-      <div class="artist-chip"><span>🇺🇸</span> Elvis Presley</div>
-      <div class="artist-chip"><span>🇬🇧</span> David Bowie</div>
-      <div class="artist-chip"><span>🇺🇸</span> Michael Jackson</div>
-      <div class="artist-chip"><span>🇬🇧</span> George Michael</div>
-      <div class="artist-chip"><span>🇪🇸</span> Alejandro Sanz</div>
-      <div class="artist-chip"><span>🇵🇷</span> Bad Bunny</div>
-    </div>
-
-    <div class="info-box">
-      <h4>🎤 Canciones de karaoke perfectas para barítonos</h4>
-      <ul>
-        <li><strong>My Way</strong> — Frank Sinatra</li>
-        <li><strong>Angels</strong> — Robbie Williams</li>
-        <li><strong>Careless Whisper</strong> — George Michael</li>
-        <li><strong>Corazón Partío</strong> — Alejandro Sanz</li>
-        <li><strong>Piano Man</strong> — Billy Joel</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ═══════════════ BAJO ═══════════════ -->
-  <div class="voice-section" id="bajo">
-    <div class="voice-header" style="background:linear-gradient(135deg,rgba(30,58,95,.2),rgba(30,58,95,.08));border-color:rgba(30,58,95,.4)">
-      <div class="voice-emoji">🎸</div>
-      <div class="voice-meta">
-        <h2 style="background:linear-gradient(135deg,#118AB2,#1E3A5F);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Bajo</h2>
-        <p>La voz masculina más grave y más profunda. Capaz de notas que se sienten tanto como se escuchan.</p>
-      </div>
-      <div class="voice-range">
-        <div class="range-tag" style="background:linear-gradient(135deg,#118AB2,#1E3A5F);-webkit-background-clip:text;-webkit-text-fill-color:transparent">E2 – C4</div>
-        <div class="range-label">Mi2 · Do4</div>
-      </div>
-    </div>
-
-    <div class="info-grid">
-      <div class="info-box">
-        <h4>📊 Rango y características</h4>
-        <ul>
-          <li><strong>Rango:</strong> Mi2 (82 Hz) – Do4 (261 Hz)</li>
-          <li><strong>Nota pasaje:</strong> Fa3-Sol3</li>
-          <li><strong>Timbre:</strong> Profundo, oscuro, resonante</li>
-          <li><strong>Frecuencia:</strong> El tipo vocal masculino más raro</li>
-          <li><strong>Zona de fuerza:</strong> Mi2-Sol3</li>
-        </ul>
-      </div>
-      <div class="info-box">
-        <h4>🎵 Subtipos de bajo</h4>
-        <ul>
-          <li><strong>Bajo profundo (basso profondo):</strong> Do2 o menos</li>
-          <li><strong>Bajo cantante:</strong> más agudo y melódico</li>
-          <li><strong>Bajo-barítono:</strong> entre bajo y barítono</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="chars-box">
-      <h4>✨ ¿Cómo saber si eres bajo?</h4>
-      <div class="chars-list">
-        <div class="char-item">El Mi2 o Re2 son alcanzables cómodamente</div>
-        <div class="char-item">Los Do4 ya se sienten muy altos</div>
-        <div class="char-item">Tu voz naturalmente "vibra" en el pecho</div>
-        <div class="char-item">Te piden que hables "más bajito"</div>
-        <div class="char-item">Los graves son tu zona de mayor resonancia</div>
-        <div class="char-item">Tu voz suena "de presentador de radio"</div>
-      </div>
-    </div>
-
-    <div class="artists-row">
-      <div class="artist-chip"><span>🇺🇸</span> Johnny Cash</div>
-      <div class="artist-chip"><span>🇺🇸</span> Barry White</div>
-      <div class="artist-chip"><span>🇨🇦</span> Leonard Cohen</div>
-      <div class="artist-chip"><span>🇺🇸</span> Tom Waits</div>
-      <div class="artist-chip"><span>🇦🇺</span> Nick Cave</div>
-      <div class="artist-chip"><span>🇺🇸</span> Isaac Hayes</div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- TABLA COMPARATIVA -->
-  <div id="comparativa">
-    <h2 style="font-family:'Baloo 2',cursive;font-size:1.8rem;text-align:center;margin-bottom:.5rem">📊 Tabla comparativa</h2>
-    <p style="text-align:center;color:var(--m);margin-bottom:1.5rem;font-size:.9rem">Los 6 tipos de voz de un vistazo</p>
-    <div style="overflow-x:auto">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Tipo</th>
-            <th>Género</th>
-            <th>Rango</th>
-            <th>Hz (fundamental)</th>
-            <th>Timbre</th>
-            <th>Frecuencia</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>✨ Soprano</td><td>Femenino</td><td>Do4 – Do6</td><td>261–1047 Hz</td><td>Brillante, claro</td><td>Muy común</td></tr>
-          <tr><td>🎶 Mezzosoprano</td><td>Femenino</td><td>La3 – La5</td><td>220–880 Hz</td><td>Cálido, oscuro</td><td>Muy común</td></tr>
-          <tr><td>🌿 Contralto</td><td>Femenino</td><td>Fa3 – Fa5</td><td>175–698 Hz</td><td>Profundo, oscuro</td><td>Muy raro</td></tr>
-          <tr><td>🎤 Tenor</td><td>Masculino</td><td>Do3 – Do5</td><td>130–523 Hz</td><td>Brillante, claro</td><td>Común</td></tr>
-          <tr><td>🎭 Barítono</td><td>Masculino</td><td>Sol2 – Sol4</td><td>98–392 Hz</td><td>Cálido, versátil</td><td>Muy común</td></tr>
-          <tr><td>🎸 Bajo</td><td>Masculino</td><td>Mi2 – Do4</td><td>82–261 Hz</td><td>Profundo, grave</td><td>Raro</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- CTA FINAL -->
-  <div class="cta-inline" style="margin-top:3rem">
-    <h3>¿Cuál es tu tipo de voz?</h3>
-    <p>Deja de adivinar. Canta 10 segundos y la IA de Harmiq te lo dice con precisión.</p>
-    <a class="btn-cta" href="/#app">🎤 Analizar mi voz gratis</a>
-  </div>
-
-</div><!-- /content -->
 
 <footer>
-  <p>© 2025 Harmiq · Guía de tipos de voz · hola@harmiq.app
+    <p>© 2026 Harmiq.app — Guía de Técnica Vocal y Análisis con IA</p>
 </footer>
+
+<script src="config.js"></script>
 </body>
 </html>
