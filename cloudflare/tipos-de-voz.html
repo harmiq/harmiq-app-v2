@@ -60,6 +60,19 @@
         .btn:hover{transform:scale(1.05)}
         footer{padding:3rem 5%;background:#05040d;text-align:center;color:var(--m);font-size:0.85rem;margin-top:4rem}
         @media (max-width:768px) { h1{font-size:2rem} .song-item{flex-direction:column; gap:.5rem} }
+        
+        /* Artist photo chips with photos */
+        .artist-chip{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:.3rem .7rem .3rem .3rem;border-radius:2rem;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;cursor:default}
+        .artist-chip .ap{width:26px;height:26px;border-radius:50%;object-fit:cover;background:rgba(255,255,255,.1);flex-shrink:0}
+        .artist-chip .ap.fallback{display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:900;background:linear-gradient(135deg, var(--p), var(--a));color:#fff}
+        
+        /* Ko-Fi float button */
+        .kofi-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;
+            background:linear-gradient(135deg,#FF5E5B,#FF9F1C);color:#fff;
+            border-radius:50px;padding:.7rem 1.4rem;font-weight:900;font-size:.88rem;
+            box-shadow:0 8px 25px rgba(255,94,91,.45);text-decoration:none;
+            display:flex;align-items:center;gap:.5rem;transition:transform .2s}
+        .kofi-btn:hover{transform:translateY(-3px) scale(1.04)}
     </style>
 </head>
 <body>
@@ -107,14 +120,14 @@
         <h2>✨ Soprano <span class="range-badge">Do4 – Do6 · 261–1047 Hz</span></h2>
         <p class="voice-desc">La voz femenina más aguda y brillante. Capaz de alcanzar notas que literalmente hacen temblar el cristal. La soprano es la reina indiscutible del escenario operístico y la voz más reconocible del repertorio clásico. Su sonido aéreo y penetrante ha fascinado a audiencias desde el Barroco. En el pop moderno, sopranos extremas como <strong>Mariah Carey</strong> y <strong>Ariana Grande</strong> han demostrado que este rango también domina las listas globales. Su control del Registro de Silbato (por encima de Do5) es una de las hazañas más extraordinarias de la voz humana.</p>
         <div class="artists-row">
-            <span class="artist-chip">María Callas</span>
-            <span class="artist-chip">Montserrat Caballé</span>
-            <span class="artist-chip">Celine Dion</span>
-            <span class="artist-chip">Mariah Carey</span>
-            <span class="artist-chip">Whitney Houston</span>
-            <span class="artist-chip">Ariana Grande</span>
-            <span class="artist-chip">Édith Piaf</span>
-            <span class="artist-chip">Renée Fleming</span>
+            <span class="artist-chip" data-name="Maria Callas"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">MC</span>María Callas</span>
+            <span class="artist-chip" data-name="Montserrat Caballé"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">MC</span>Montserrat Caballet</span>
+            <span class="artist-chip" data-name="Celine Dion"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">CD</span>Celine Dion</span>
+            <span class="artist-chip" data-name="Mariah Carey"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">MC</span>Mariah Carey</span>
+            <span class="artist-chip" data-name="Whitney Houston"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">WH</span>Whitney Houston</span>
+            <span class="artist-chip" data-name="Ariana Grande"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">AG</span>Ariana Grande</span>
+            <span class="artist-chip" data-name="Edith Piaf"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">ÉP</span>Édith Piaf</span>
+            <span class="artist-chip" data-name="Renée Fleming"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">RF</span>Renée Fleming</span>
         </div>
         <div class="songs-list">
             <div class="song-item">
@@ -164,14 +177,12 @@
         <h2>🎶 Mezzosoprano <span class="range-badge" style="background:rgba(179,56,255,.15);border-color:rgba(179,56,255,.3);color:#B338FF">La3 – La5 · 220–880 Hz</span></h2>
         <p class="voice-desc">La voz femenina de la seducción y el drama. Ni tan brillante como la soprano ni tan profunda como la contralto, la mezzosoprano tiene el privilegio de poseer el timbre más complejo y versátil de todas las voces femeninas. Capaz de transmitir dolor, erotismo o ironía con una simple variación de color. En la ópera interpreta a los personajes más ambiguos y fascinantes. En el pop, voces como la de <strong>Adele</strong> o <strong>Amy Winehouse</strong> han demostrado que la mezzosoprano suena igual de poderosa en cualquier género.</p>
         <div class="artists-row">
-            <span class="artist-chip">Adele</span>
-            <span class="artist-chip">Amy Winehouse</span>
-            <span class="artist-chip">Elton John (falsete)</span>
-            <span class="artist-chip">Lady Gaga</span>
-            <span class="artist-chip">Beyoncé</span>
-            <span class="artist-chip">Elina Garança</span>
-            <span class="artist-chip">Susan Boyle</span>
-            <span class="artist-chip">Lana Del Rey</span>
+            <span class="artist-chip" data-name="Adele"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">AD</span>Adele</span>
+            <span class="artist-chip" data-name="Amy Winehouse"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">AW</span>Amy Winehouse</span>
+            <span class="artist-chip" data-name="Lady Gaga"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">LG</span>Lady Gaga</span>
+            <span class="artist-chip" data-name="Beyoncé"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">BY</span>Beyoncé</span>
+            <span class="artist-chip" data-name="Susan Boyle"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">SB</span>Susan Boyle</span>
+            <span class="artist-chip" data-name="Lana Del Rey"><img class="ap" src="" alt="" style="display:none"><span class="ap fallback">LD</span>Lana Del Rey</span>
         </div>
         <div class="songs-list">
             <div class="song-item">
@@ -367,7 +378,67 @@
 </div>
 
 <footer>
-    <p>© 2026 Harmiq.app — La plataforma global de análisis vocal con IA</p>
+    <p>© 2026 Harmiq.app — La plataforma global de análisis vocal con IA · <a href="/politica-privacidad" style="color:var(--m)">Privacidad & Cookies</a></p>
 </footer>
+
+<!-- Ko-Fi Floating Button -->
+<a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener" class="kofi-btn" aria-label="Apoya a Harmiq en Ko-Fi">
+    ☕ Invítanos a un café
+</a>
+
+<!-- Cookie Consent -->
+<div id="cookie-bar" style="position:fixed;bottom:0;left:0;right:0;background:rgba(10,8,24,.97);border-top:1px solid rgba(255,255,255,.08);padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;z-index:9998;transform:translateY(100%);transition:transform .4s ease">
+    <p style="font-size:.82rem;color:#9CA3AF;max-width:700px;line-height:1.5">🍪 Usamos cookies técnicas esenciales. No vendemos tus datos. <a href="/politica-privacidad" style="color:#FF4FA3">Política de Privacidad & Cookies</a>.</p>
+    <div style="display:flex;gap:.6rem">
+        <button style="background:var(--p);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:20px;font-weight:800;cursor:pointer;font-family:'Outfit'" onclick="acceptC()">Aceptar</button>
+        <button style="background:rgba(255,255,255,.05);color:#9CA3AF;border:1px solid rgba(255,255,255,.1);padding:.5rem 1.2rem;border-radius:20px;font-weight:700;cursor:pointer;font-family:'Outfit'" onclick="rejectC()">Esenciales</button>
+    </div>
+</div>
+
+<script>
+// === Cookie Consent ===
+(function(){ if(!localStorage.getItem('harmiq_cookie_consent')){ setTimeout(function(){ var b=document.getElementById('cookie-bar'); if(b) b.style.transform='translateY(0)'; }, 1800); } })();
+function acceptC(){ localStorage.setItem('harmiq_cookie_consent','all'); document.getElementById('cookie-bar').style.transform='translateY(100%)'; }
+function rejectC(){ localStorage.setItem('harmiq_cookie_consent','essential'); document.getElementById('cookie-bar').style.transform='translateY(100%)'; }
+
+// === Artist Photos via Wikipedia ===
+var WP_CACHE = {};
+function loadChipPhotos() {
+    document.querySelectorAll('.artist-chip[data-name]').forEach(function(chip) {
+        var name = chip.getAttribute('data-name');
+        if (!name) return;
+        var img = chip.querySelector('img.ap');
+        var fb = chip.querySelector('.ap.fallback');
+        if (!img) return;
+        if (WP_CACHE[name]) {
+            if (WP_CACHE[name] === 'none') { img.style.display='none'; if(fb) fb.style.display='flex'; }
+            else { img.src = WP_CACHE[name]; img.style.display='block'; if(fb) fb.style.display='none'; }
+            return;
+        }
+        var url = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(name.replace(/ /g,'_'));
+        fetch(url, {signal: AbortSignal.timeout(5000)})
+            .then(function(r){ return r.json(); })
+            .then(function(d){
+                var thumb = d.thumbnail && d.thumbnail.source;
+                if (thumb) {
+                    WP_CACHE[name] = thumb;
+                    img.src = thumb;
+                    img.style.display = 'block';
+                    if(fb) fb.style.display = 'none';
+                } else {
+                    WP_CACHE[name] = 'none';
+                    img.style.display = 'none';
+                    if(fb) fb.style.display = 'flex';
+                }
+            })
+            .catch(function() {
+                WP_CACHE[name] = 'none';
+                img.style.display = 'none';
+                if(fb) fb.style.display = 'flex';
+            });
+    });
+}
+document.addEventListener('DOMContentLoaded', loadChipPhotos);
+</script>
 </body>
 </html>

@@ -66,6 +66,30 @@
         .fl a:hover{color:var(--a)}
 
         @media(max-width:768px){h1{font-size:2rem}.nav-links{gap:.15rem}}
+        
+        /* Ko-Fi float button */
+        .kofi-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;
+            background:linear-gradient(135deg,#FF5E5B,#FF9F1C);color:#fff;
+            border-radius:50px;padding:.7rem 1.4rem;font-weight:900;font-size:.88rem;
+            box-shadow:0 8px 25px rgba(255,94,91,.45);cursor:pointer;text-decoration:none;
+            display:flex;align-items:center;gap:.5rem;transition:transform .2s,box-shadow .2s;
+            animation:kofi-pulse 3s ease infinite}
+        .kofi-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 35px rgba(255,94,91,.55)}
+        @keyframes kofi-pulse{0%,100%{box-shadow:0 8px 25px rgba(255,94,91,.45)}50%{box-shadow:0 8px 30px rgba(255,94,91,.7)}}
+        
+        /* Cookie Consent */
+        #cookie-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,8,24,.97);backdrop-filter:blur(20px);
+            border-top:1px solid rgba(255,255,255,.08);padding:1rem 5%;display:flex;
+            align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+            z-index:9998;transform:translateY(100%);transition:transform .4s ease}
+        #cookie-bar.show{transform:translateY(0)}
+        #cookie-bar p{font-size:.82rem;color:var(--m);max-width:700px;line-height:1.5}
+        #cookie-bar a{color:var(--a)}
+        .cookie-btns{display:flex;gap:.6rem;flex-shrink:0}
+        .cookie-ok{background:var(--p);color:#fff;border:none;padding:.5rem 1.2rem;
+            border-radius:20px;font-weight:800;cursor:pointer;font-family:'Outfit'}
+        .cookie-rej{background:rgba(255,255,255,.05);color:var(--m);border:1px solid rgba(255,255,255,.1);
+            padding:.5rem 1.2rem;border-radius:20px;font-weight:700;cursor:pointer;font-family:'Outfit'}
     </style>
 </head>
 <body>
@@ -158,8 +182,37 @@
         <li><a href="/modul-catala">Català</a></li>
         <li><a href="/politica-privacidad">Privacidad</a></li>
     </ul>
-    <p style="color:var(--m);font-size:.75rem;margin-top:.8rem">© 2026 Harmiq — Análisis Vocal con IA</p>
+    <p style="color:var(--m);font-size:.75rem;margin-top:.8rem">© 2026 Harmiq — Análisis Vocal con IA · <a href="/politica-privacidad" style="color:var(--m)">Privacidad & Cookies</a> · <a href="/terminos" style="color:var(--m)">Términos</a></p>
 </footer>
+
+<!-- Ko-Fi Floating Button -->
+<a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener" class="kofi-btn" aria-label="Apoya a Harmiq en Ko-Fi">
+    ☕ Invítanos a un café
+</a>
+
+<!-- Cookie Consent Bar -->
+<div id="cookie-bar">
+    <p>🍪 Usamos cookies técnicas esenciales y de analítica anonimizada para mejorar tu experiencia. No vendemos tus datos. Lee nuestra <a href="/politica-privacidad">Política de Privacidad & Cookies</a>.</p>
+    <div class="cookie-btns">
+        <button class="cookie-ok" onclick="acceptCookies()">Aceptar todo</button>
+        <button class="cookie-rej" onclick="rejectCookies()">Solo esenciales</button>
+    </div>
+</div>
+<script>
+    (function(){
+        if(!localStorage.getItem('harmiq_cookie_consent')){
+            setTimeout(function(){ var b=document.getElementById('cookie-bar'); if(b) b.classList.add('show'); }, 1800);
+        }
+    })();
+    function acceptCookies(){
+        localStorage.setItem('harmiq_cookie_consent','all');
+        document.getElementById('cookie-bar').classList.remove('show');
+    }
+    function rejectCookies(){
+        localStorage.setItem('harmiq_cookie_consent','essential');
+        document.getElementById('cookie-bar').classList.remove('show');
+    }
+</script>
 
 <!-- ── SCRIPTS ── -->
 <!-- config.js primero (define CONFIG con HF_BASE, THEME, etc.) -->

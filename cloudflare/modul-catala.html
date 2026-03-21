@@ -72,10 +72,11 @@
     <div class="search-box">
         <input type="text" id="mc-search" class="mc-input" placeholder="Busca per nom d'artista o grup..." oninput="filtrar()">
         <div class="tabs">
-            <div class="tab active" onclick="filtrar('tots')">Tots els artistes</div>
-            <div class="tab" onclick="filtrar('pop')">Pop / Indie</div>
-            <div class="tab" onclick="filtrar('urban')">Urbà</div>
-            <div class="tab" onclick="filtrar('rock')">Rock / Clàssics</div>
+            <div class="tab active" onclick="filtrar('tots',this)">Tots els artistes</div>
+            <div class="tab" onclick="filtrar('pop',this)">Pop / Indie</div>
+            <div class="tab" onclick="filtrar('urban',this)">Urbà</div>
+            <div class="tab" onclick="filtrar('rock',this)">Rock / Clàssics</div>
+            <div class="tab" onclick="filtrar('fusion',this)">🌊 Fusió & Reggae</div>
         </div>
     </div>
 
@@ -167,8 +168,27 @@
 </main>
 
 <footer>
-    <p>© 2026 Harmiq.app — Suport a la cultura i música en català.</p>
+    <p style="color:var(--m);font-size:.8rem">© 2026 Harmiq — Suport a la cultura i música en català. · <a href="/politica-privacidad" style="color:var(--m)">Privacitat & Cookies</a></p>
 </footer>
+
+<!-- Ko-Fi Floating Button -->
+<a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:linear-gradient(135deg,#FF5E5B,#FF9F1C);color:#fff;border-radius:50px;padding:.7rem 1.4rem;font-weight:900;font-size:.88rem;box-shadow:0 8px 25px rgba(255,94,91,.45);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:transform .2s" aria-label="Suporta Harmiq a Ko-Fi">
+    ☕ Suporta'ns!
+</a>
+
+<!-- Cookie Consent -->
+<div id="cookie-bar" style="position:fixed;bottom:0;left:0;right:0;background:rgba(10,8,24,.97);border-top:1px solid rgba(255,255,255,.08);padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;z-index:9998;transform:translateY(100%);transition:transform .4s ease">
+    <p style="font-size:.82rem;color:#9CA3AF;max-width:700px;line-height:1.5">🍪 Fem servir galetes tècniques essencials. No venen les teves dades. <a href="/politica-privacidad" style="color:#FF4FA3">Privadesa & Galetes</a>.</p>
+    <div style="display:flex;gap:.6rem">
+        <button style="background:#CE1126;color:#fff;border:none;padding:.5rem 1.2rem;border-radius:20px;font-weight:800;cursor:pointer;font-family:'Outfit'" onclick="acceptC()">Acceptar</button>
+        <button style="background:rgba(255,255,255,.05);color:#9CA3AF;border:1px solid rgba(255,255,255,.1);padding:.5rem 1.2rem;border-radius:20px;font-weight:700;cursor:pointer;font-family:'Outfit'" onclick="rejectC()">Essencials</button>
+    </div>
+</div>
+<script>
+    (function(){ if(!localStorage.getItem('harmiq_cookie_consent')){ setTimeout(function(){ var b=document.getElementById('cookie-bar'); if(b) b.style.transform='translateY(0)'; }, 1800); } })();
+    function acceptC(){ localStorage.setItem('harmiq_cookie_consent','all'); document.getElementById('cookie-bar').style.transform='translateY(100%)'; }
+    function rejectC(){ localStorage.setItem('harmiq_cookie_consent','essential'); document.getElementById('cookie-bar').style.transform='translateY(100%)'; }
+</script>
 
 <script src="config.js"></script>
 <script src="modul-catala-v3.js"></script>
