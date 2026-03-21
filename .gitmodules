@@ -1,0 +1,3 @@
+[submodule "huggingface/hf-backend"]
+	path = huggingface/hf-backend
+	url = https://huggingface.co/spaces/hamiq/harmiq-backend1
