@@ -24,6 +24,7 @@
 const AMAZON_DOMAINS = { ES:"es",US:"com",MX:"com.mx",UK:"co.uk",DE:"de",FR:"fr",IT:"it",CA:"ca",BR:"com.br",JP:"co.jp" };
 const AFFILIATE_ID   = "harmiqapp-20";
 const DB_PATH        = "/harmiq_db_vectores.json";
+const UDEMY_LINK     = "https://www.udemy.com/topic/singing/"; // TODO: REEMPLAZAR POR TU LINK DE AFILIADO
 const HF_API_URL     = "https://hamiq-harmiq-backend1.hf.space"; 
 
 // Plataformas musicales por país (geolocalización)
@@ -77,6 +78,7 @@ const T = {
     "_eras":{"pre-1960s":"Clásicos pre-60","1960s":"Los 60","1970s":"Los 70","1980s":"Los 80","1990s":"Los 90","2000s":"Años 2000","2010s":"Años 2010","2020s":"Años 2020","2026":"Éxitos 2026"},
     "_karaoke":"🎤 Karaoke","_platform":"🎵 Escuchar","_rec_tips":"Para mejor resultado: canta sin música · acerca el micro · evita el eco",
     "_vt_names":{"bass":"Bajo","bass-baritone":"Bajo-Barítono","baritone":"Barítono","tenor":"Tenor","countertenor":"Contratenor","contralto":"Contralto","mezzo-soprano":"Mezzosoprano","soprano":"Soprano"},
+    "_udemy_cta":"🎓 Mejora tu voz con expertos en Udemy",
   },
   en:{
     "nav-cta":"Analyze my voice","hero-badge":"AI Vocal Analysis · 12,000 artists · 100% Free",
@@ -1206,6 +1208,9 @@ function getEventsModuleHTML() {
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeYvRy52iTb1NyM4dwQA596JrFk-09zmui5adR_aLCU9sA3Qg/viewform?usp=sf_link" target="_blank" style="display:block; margin-top:1.2rem; text-align:center; background:#06D6A0; color:#000; padding:.7rem; border-radius:10px; font-weight:900; text-decoration:none; font-size:.8rem">
           ➕ Publicar mi Evento
         </a>
+        <a href="${UDEMY_LINK}" target="_blank" style="display:block; margin-top:.8rem; text-align:center; background:#A5B4FC; color:#000; padding:.6rem; border-radius:10px; font-weight:800; text-decoration:none; font-size:.75rem">
+          🎓 Cursos de Canto Pro (Udemy)
+        </a>
       </div>
 
       <!-- Mapa -->
@@ -1745,6 +1750,14 @@ async function renderResults({feat,vt,conf,matches,gender}) {
     ${songsHTML}
     ${amzHTML}
     ${shareHTML}
+    <div style="margin-top:1.5rem; background:rgba(124,77,255,.1); border:1px solid rgba(124,77,255,.2); border-radius:18px; padding:1.2rem; display:flex; align-items:center; gap:1rem">
+      <div style="font-size:2rem">🎓</div>
+      <div style="flex:1">
+        <h4 style="font-family:'Baloo 2',sans-serif; font-size:1.1rem; margin-bottom:.2rem">Escala tu talento con Udemy</h4>
+        <p style="font-size:.8rem; color:#A5B4FC">¿Quieres dominar tu voz? Accede a los mejores cursos de técnica vocal y producción.</p>
+      </div>
+      <a href="${UDEMY_LINK}" target="_blank" style="background:#7C4DFF; color:#fff; padding:.6rem 1rem; border-radius:10px; text-decoration:none; font-weight:700; font-size:.85rem; white-space:nowrap">Ver Cursos</a>
+    </div>
     ${getComunidadHarmiq()}`;
 
   // ── Evento filtro época ────────────────────────────────────────────────
