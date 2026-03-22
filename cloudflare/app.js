@@ -1890,30 +1890,34 @@ function buildKaraokeSection(vtName, vtSlug) {
         <!-- Karaoke online -->
         <div style="margin-bottom:1rem">
           <div style="font-size:.78rem;font-weight:700;color:#A5B4FC;margin-bottom:.6rem">
-            💻 Karaoke online — Desde casa o con amigos
+            💻 Karaoke online — Practica con vídeos pro
           </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.4rem">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem">
             ${[
-              {icon:"▶️",name:"YouTube Karaoke",desc:"La mayor biblioteca gratuita",url:"https://www.youtube.com/results?search_query=karaoke+"+encodeURIComponent(vtName),color:"rgba(255,0,0,.15)",border:"rgba(255,0,0,.25)"},
-              {icon:"🏆",name:"Karaoke Total Profesional",desc:"Pistas de alta fidelidad",url:"https://www.youtube.com/watch?v=aAqlY_ds514&list=PLOwMvBWGjS52zQ_6rSH0sGupma2-Txj0f",color:"rgba(255,215,0,.15)",border:"rgba(255,215,0,.3)"},
-              {icon:"🏳️",name:"Karaoke en Català",desc:"La millor selecció de música nostra",url:"https://www.youtube.com/watch?v=5oTfrFin0WQ",color:"rgba(206,17,38,.1)",border:"rgba(206,17,38,.2)"},
-              {icon:"🏰",name:"Karaoke Girona",desc:"Pistes profesionales de la terra",url:"https://www.youtube.com/watch?v=5AnMKHCCXn4",color:"rgba(252,221,9,.1)",border:"rgba(252,221,9,.2)"},
-              {icon:"🕒",name:"TIME KARAOKE EN ESPAÑOL",desc:"Hits Latinos y Pop actual",url:"https://www.youtube.com/@TIMEKARAOKE",color:"rgba(255,153,0,.1)",border:"rgba(255,153,0,.2)"},
-              {icon:"🎤",name:"Karaoke Fun",desc:"Pistas divertidas para practicar",url:"https://www.youtube.com/watch?v=BvW4efU0HTQ",color:"rgba(0,209,255,.1)",border:"rgba(0,209,255,.2)"},
-              {icon:"🌟",name:"Singa",desc:"Catálogo actualizado",url:"https://singa.com",color:"rgba(255,159,28,.1)",border:"rgba(255,159,28,.25)"},
-              {icon:"📱",name:"Yokee",desc:"Karaoke gratis en móvil",url:"https://yokee.tv",color:"rgba(0,153,255,.1)",border:"rgba(0,153,255,.25)"},
-            ].map(p=>`
-              <a href="${p.url}" target="_blank" rel="noopener"
-                style="display:flex;align-items:center;gap:.5rem;padding:.6rem;
-                background:${p.color};border:1px solid ${p.border};border-radius:10px;
-                text-decoration:none;color:#E5E7EB;transition:opacity .15s"
-                onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
-                <span style="font-size:1rem">${p.icon}</span>
-                <div>
-                  <div style="font-size:.75rem;font-weight:700">${p.name}</div>
-                  <div style="font-size:.62rem;color:#6B7280">${p.desc}</div>
+              {id:"aAqlY_ds514", name:"Karaoke Total Profesional", desc:"Pistas alta fidelidad", color:"rgba(255,215,0,.1)", border:"rgba(255,215,0,.3)"},
+              {id:"5oTfrFin0WQ", name:"Karaoke en Català", desc:"Música de casa nostra", color:"rgba(206,17,38,.1)", border:"rgba(206,17,38,.2)"},
+              {id:"5AnMKHCCXn4", name:"Karaoke Girona", desc:"Pistes de la terra", color:"rgba(252,221,9,.1)", border:"rgba(252,221,9,.2)"},
+              {id:"BvW4efU0HTQ", name:"Karaoke Fun", desc:"Pistas divertidas", color:"rgba(0,209,255,.1)", border:"rgba(0,209,255,.2)"},
+              {id:"W_iC8U4Gj7I", name:"TIME KARAOKE", desc:"Hits Latinos & Pop", color:"rgba(255,153,0,.1)", border:"rgba(255,153,0,.2)"},
+            ].map(v=>`
+              <div style="border-radius:12px;overflow:hidden;background:${v.color};border:1px solid ${v.border}">
+                <div style="position:relative;aspect-ratio:16/9;cursor:pointer;background:#000"
+                  onclick="this.innerHTML='<iframe width=100% height=100% src=https://www.youtube.com/embed/${v.id}?autoplay=1 frameborder=0 allow=autoplay allowfullscreen></iframe>'">
+                  <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover;opacity:.7">
+                  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+                    <div style="width:36px;height:36px;background:rgba(255,0,0,.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px">▶</div>
+                  </div>
                 </div>
-              </a>`).join("")}
+                <div style="padding:.5rem">
+                  <div style="font-size:.7rem;font-weight:800;color:#E5E7EB">${v.name}</div>
+                  <div style="font-size:.6rem;color:#6B7280">${v.desc}</div>
+                </div>
+              </div>`).join("")}
+          </div>
+          <div style="margin-top:1rem; display:flex; gap:.5rem; flex-wrap:wrap">
+            <a href="https://www.youtube.com/results?search_query=karaoke+${encodeURIComponent(vtName)}" target="_blank" style="font-size:.65rem; color:#A5B4FC; text-decoration:none; background:rgba(255,255,255,.05); padding:.4rem .8rem; border-radius:8px; border:1px solid rgba(255,255,255,.1)">🔍 Más en YouTube</a>
+            <a href="https://singa.com" target="_blank" style="font-size:.65rem; color:#FF9F1C; text-decoration:none; background:rgba(255,159,28,.05); padding:.4rem .8rem; border-radius:8px; border:1px solid rgba(255,159,28,.2)">🎤 Singa Online</a>
+            <a href="https://yokee.tv" target="_blank" style="font-size:.65rem; color:#1877F2; text-decoration:none; background:rgba(24,119,242,.05); padding:.4rem .8rem; border-radius:8px; border:1px solid rgba(24,119,242,.2)">📱 Yokee App</a>
           </div>
         </div>
 
@@ -2965,7 +2969,7 @@ function renderDisqus(identifier) {
   if (old) old.remove();
   const d = document, s = d.createElement('script');
   s.id = "disqus-embed-script";
-  s.src = 'https://harmiq.disqus.com/embed.js';
+  s.src = 'https://harmiq-app.disqus.com/embed.js';
   s.setAttribute('data-timestamp', +new Date());
   (d.head || d.body).appendChild(s);
 }
