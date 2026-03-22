@@ -31,6 +31,7 @@ var MC_DATA = {
     { "id": "jansky", "nom": "Jansky", "genere": "electro-pop", "pais": "pop", "provincia": "Barcelona", "emergent": true, "bio": "Artista emergent d'electro-pop en català, fusionant música electrònica amb tradició i modernitat. Una aposta molt audaç i original per la música catalana del futur.", "cancons": ["Partícules", "L'espai", "Temps digital", "La senyal"] },
     { "id": "smoking_souls", "nom": "Smoking Souls", "genere": "indie-rock", "pais": "rock", "provincia": "Barcelona", "emergent": true, "bio": "Grup emergent d'indie-rock amb lletres poètiques en català. Representen una nova onada de rock alternatiu i vibrant en la llengua pròpia del país.", "cancons": ["Fum", "Les coses", "Quan plou", "La nit"] },
     { "id": "la_iaia", "nom": "La Iaia", "genere": "folk-pop", "pais": "pop", "provincia": "Barcelona", "emergent": true, "bio": "Artista emergent de folk-pop en català. Veu fresca i autèntica de la nova generació que reivindica la llengua amb una música contemporània, delicada i emocionant.", "cancons": ["Arrels", "La terra", "Tardor", "Nit de lluna"] },
+    { "id": "alex_perez", "nom": "Àlex Pérez", "genere": "pop-autor", "pais": "pop", "provincia": "Girona", "emergent": true, "bio": "Jove cantautor i productor de Vidreres (La Selva). Una de les veus emergents més prometedores de l'escena catalana, destacant per melodies honestes i lletres introspectives de gran sensibilitat.", "cancons": ["Sense direcció", "Cridar fins a trencar-ho", "Viatgers", "Somnis"] },
 
     /* ===== PAÍS VALENCIÀ ===== */
     { "id": "la_fumiga", "nom": "La Fúmiga", "genere": "reggae-folk", "pais": "fusion", "provincia": "País Valencià", "emergent": false, "bio": "Grup de Sueca (La Ribera) que barreja reggae, folk i pop en una proposta única. Referents màxims de la música moderna en valencià, amb directes d'una energia i qualitat excepcionals.", "cancons": ["Bon profit", "L'home de la pluja", "Terra", "Allò que volíem ser", "La cançó de les cases"] },
@@ -79,7 +80,8 @@ var MC_DATA = {
     { "id": "c017", "titol": "Bacallà", "artista": "Zoo", "artista_id": "zoo", "genere": "rap-rock", "any": 2017, "popularitat": 83 },
     { "id": "c018", "titol": "Estimat Thomas", "artista": "Antònia Font", "artista_id": "antonia_font", "genere": "indie-pop", "any": 2006, "popularitat": 90 },
     { "id": "c019", "titol": "Malamente", "artista": "Rosalía", "artista_id": "rosalia", "genere": "flamenco-pop", "any": 2017, "popularitat": 98 },
-    { "id": "c020", "titol": "10 milles per veure una bona armadura", "artista": "Manel", "artista_id": "manel", "genere": "indie-pop", "any": 2008, "popularitat": 92 }
+    { "id": "c020", "titol": "10 milles per veure una bona armadura", "artista": "Manel", "artista_id": "manel", "genere": "indie-pop", "any": 2008, "popularitat": 92 },
+    { "id": "c021", "titol": "Sense direcció", "artista": "Àlex Pérez", "artista_id": "alex_perez", "genere": "pop-autor", "any": 2023, "popularitat": 85 }
   ]
 };
 
