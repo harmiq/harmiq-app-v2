@@ -2969,7 +2969,7 @@ function renderDisqus(identifier) {
   if (old) old.remove();
   const d = document, s = d.createElement('script');
   s.id = "disqus-embed-script";
-  s.src = 'https://harmiq-app.disqus.com/embed.js';
+  s.src = 'https://harmiq.disqus.com/embed.js';
   s.setAttribute('data-timestamp', +new Date());
   (d.head || d.body).appendChild(s);
 }
