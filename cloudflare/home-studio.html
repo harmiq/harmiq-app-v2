@@ -701,11 +701,26 @@
         window.scrollTo({top:70, behavior:'smooth'});
     }
 
-    // Amazon affiliate links — SIEMPRE abren en pestaña nueva
+    // Amazon global TLD detection
+    function getAmazonDomain() {
+        const lang = navigator.language.toLowerCase();
+        if (lang.includes('es')) return 'es';
+        if (lang.includes('mx')) return 'com.mx';
+        if (lang.includes('br')) return 'com.br';
+        if (lang.includes('it')) return 'it';
+        if (lang.includes('fr')) return 'fr';
+        if (lang.includes('de')) return 'de';
+        if (lang.includes('gb') || lang.includes('uk')) return 'co.uk';
+        return 'com'; // Fallback a USA
+    }
+
+    // Amazon affiliate links — SIEMPRE abren en pestaña nueva y con TLD dinámico
     const amzId = 'harmiqapp-20';
+    const domain = getAmazonDomain();
+    
     document.querySelectorAll('.btn-amz').forEach(btn => {
         const asin = btn.getAttribute('data-asin');
-        if(asin) btn.href = `https://www.amazon.es/dp/${asin}/?tag=${amzId}`;
+        if(asin) btn.href = `https://www.amazon.${domain}/dp/${asin}/?tag=${amzId}`;
         btn.target = '_blank';
         btn.rel = 'noopener sponsored';
     });

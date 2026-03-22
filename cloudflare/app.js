@@ -1735,6 +1735,8 @@ function buildKaraokeSection(vtName, vtSlug) {
               {icon:"▶️",name:"YouTube Karaoke",desc:"La mayor biblioteca gratuita",url:"https://www.youtube.com/results?search_query=karaoke+"+encodeURIComponent(vtName),color:"rgba(255,0,0,.15)",border:"rgba(255,0,0,.25)"},
               {icon:"🌟",name:"Singa",desc:"Catálogo actualizado",url:"https://singa.com",color:"rgba(255,159,28,.1)",border:"rgba(255,159,28,.25)"},
               {icon:"🎤",name:"Smule",desc:"Karaoke social con duetos",url:"https://www.smule.com",color:"rgba(124,77,255,.1)",border:"rgba(124,77,255,.25)"},
+              {icon:"📺",name:"Karaoke Práctica",desc:"Entrenamiento vocal en casa",url:"https://youtu.be/5oTfrFin0WQ?si=xQRbOPo71NOfEjo_",color:"rgba(255,0,0,.1)",border:"rgba(255,0,0,.2)"},
+              {icon:"🎤",name:"Karaoke a Girona",desc:"Excelentes pistas locales",url:"https://www.youtube.com/@karaokeagirona1060",color:"rgba(124,77,255,.1)",border:"rgba(124,77,255,.2)"},
               {icon:"⭐",name:"StarMaker",desc:"Efectos de voz y comunidad",url:"https://www.starmaker.us",color:"rgba(255,215,0,.1)",border:"rgba(255,215,0,.25)"},
               {icon:"🎵",name:"KaraFun",desc:"+50.000 canciones",url:"https://www.karafun.es",color:"rgba(29,185,84,.1)",border:"rgba(29,185,84,.25)"},
               {icon:"📱",name:"Yokee",desc:"Karaoke gratis en móvil",url:"https://yokee.tv",color:"rgba(0,153,255,.1)",border:"rgba(0,153,255,.25)"},
@@ -2637,7 +2639,7 @@ function renderVozPage(slug) {
     <a href="/voz/bajo">Bajo</a>
     <a href="https://ko-fi.com/harmiq" target="_blank">☕ Apoya Harmiq</a>
   </div>
-  <p>© 2025 Harmiq · Análisis vocal con IA · <a href="mailto:hola@harmiq.app">hola@harmiq.app</a></p>
+  <p>© 2025 Harmiq · Análisis vocal con IA · <a href="mailto:info@harmiq.app">info@harmiq.app</a></p>
 </footer>
 
 <script>
