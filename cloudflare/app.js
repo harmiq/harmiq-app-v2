@@ -1203,7 +1203,7 @@ function getEventsModuleHTML() {
             </div>
           </div>
         </div>
-        <a href="https://forms.gle/harmiq-eventos-karaoke" target="_blank" style="display:block; margin-top:1.2rem; text-align:center; background:#06D6A0; color:#000; padding:.7rem; border-radius:10px; font-weight:900; text-decoration:none; font-size:.8rem">
+        <a href="mailto:info@harmiq.app?subject=Publicar Evento Karaoke" target="_blank" style="display:block; margin-top:1.2rem; text-align:center; background:#06D6A0; color:#000; padding:.7rem; border-radius:10px; font-weight:900; text-decoration:none; font-size:.8rem">
           ➕ Publicar mi Evento
         </a>
       </div>
