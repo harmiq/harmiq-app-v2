@@ -1203,7 +1203,7 @@ function getEventsModuleHTML() {
             </div>
           </div>
         </div>
-        <a href="mailto:info@harmiq.app?subject=Publicar Evento Karaoke" target="_blank" style="display:block; margin-top:1.2rem; text-align:center; background:#06D6A0; color:#000; padding:.7rem; border-radius:10px; font-weight:900; text-decoration:none; font-size:.8rem">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeYvRy52iTb1NyM4dwQA596JrFk-09zmui5adR_aLCU9sA3Qg/viewform?usp=sf_link" target="_blank" style="display:block; margin-top:1.2rem; text-align:center; background:#06D6A0; color:#000; padding:.7rem; border-radius:10px; font-weight:900; text-decoration:none; font-size:.8rem">
           ➕ Publicar mi Evento
         </a>
       </div>
@@ -3146,6 +3146,7 @@ function showCookieBanner() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   inicializarSEO();
+  injectNewsBanner(); // Inyectar banner de novedades
   showCookieBanner();
   wakeUpBackend(); // Despierta el Hugging Face Space si está en sleep mode
 
@@ -3271,4 +3272,41 @@ function inicializarSEO() {
     <a href="/voz/bajo"         class="btn-vocal v-bajo">🔊 Bajo</a>
   `;
   document.body.insertAdjacentElement("afterbegin", nav);
+}
+
+/**
+ * injectNewsBanner()
+ * Inyecta un aviso "luminoso" de novedades arriba del todo.
+ */
+function injectNewsBanner() {
+  if (document.getElementById("_news_banner")) return;
+  const b = document.createElement("a");
+  b.id = "_news_banner";
+  b.href = "/comunidad";
+  b.style.cssText = `
+    display: block;
+    background: linear-gradient(90deg, #7C4DFF, #FF4FA3, #7C4DFF);
+    background-size: 200% auto;
+    color: #fff;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    animation: news-glow 3s linear infinite;
+    position: relative;
+    z-index: 10000;
+    box-shadow: 0 4px 15px rgba(124,77,255,0.4);
+  `;
+  b.innerHTML = `🆕 <span style="text-transform:uppercase; letter-spacing:1px">¡Evento Nuevo!</span> Concurso de Karaoke en Madrid — Ver detalles y participar →`;
+  
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes news-glow {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+  `;
+  document.head.appendChild(style);
+  document.body.insertAdjacentElement("afterbegin", b);
 }
