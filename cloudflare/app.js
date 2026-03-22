@@ -2637,6 +2637,7 @@ function renderVozPage(slug) {
     <a href="/voz/mezzo-soprano">Mezzo</a>
     <a href="/voz/contralto">Contralto</a>
     <a href="/voz/bajo">Bajo</a>
+    <a href="/comunidad" style="color:#FF5E5B; font-weight:700">Comunidad</a>
     <a href="https://ko-fi.com/harmiq" target="_blank">☕ Apoya Harmiq</a>
   </div>
   <p>© 2025 Harmiq · Análisis vocal con IA · <a href="mailto:info@harmiq.app">info@harmiq.app</a></p>
@@ -2710,6 +2711,43 @@ async function loadStaticPage(url, title) {
   }
 }
 
+// ── Comunidad (Disqus) ────────────────────────────────────────────────────────
+function loadComunidadPage() {
+  const app = document.getElementById("app");
+  if(!app) return;
+  
+  app.innerHTML = `
+    <div style="max-width:800px; margin:0 auto; padding:2rem 1rem; text-align:center">
+      <h1 style="font-family:'Outfit',sans-serif; font-size:2.5rem; margin-bottom:1rem">
+        💬 Comunidad <span class="grad">Harmiq</span>
+      </h1>
+      <p style="color:var(--m); margin-bottom:3rem; font-size:1.1rem">
+        Comparte tus ideas, opiniones o dudas con otros usuarios. ¡Ayúdanos a mejorar Harmiq!
+      </p>
+      
+      <div id="disqus_thread" style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:15px; border:1px solid rgba(255,255,255,0.05)"></div>
+    </div>
+  `;
+  
+  renderDisqus("comunidad-principal");
+  document.title = "Comunidad & Feedback | Harmiq";
+  window.scrollTo(0,0);
+}
+
+function renderDisqus(identifier) {
+  window.disqus_config = function () {
+    this.page.url = window.location.href;
+    this.page.identifier = identifier;
+  };
+  const old = document.getElementById("disqus-embed-script");
+  if (old) old.remove();
+  const d = document, s = d.createElement('script');
+  s.id = "disqus-embed-script";
+  s.src = 'https://harmiq.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+}
+
 // ── Router SPA ─────────────────────────────────────────────────────────────────
 function handleRoute() {
   const path = location.pathname;
@@ -2729,6 +2767,10 @@ function handleRoute() {
   }
 
   // Rutas páginas internas SPA
+  if (path === "/comunidad") {
+    loadComunidadPage();
+    return true;
+  }
   if (path === "/home-studio") {
     loadStaticPage("/home-studio.html", "🎛️ Home Studio | Harmiq");
     return true;
