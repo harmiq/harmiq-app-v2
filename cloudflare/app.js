@@ -419,7 +419,10 @@ function changeLang(l) {
 // ═══════════════════════════════════════════════════════════════════════════════
 async function detectCountry() {
   try {
-    const r = await fetch("https://ipapi.co/json/", { signal: AbortSignal.timeout(3000) });
+    const controller = new AbortController();
+    const tId = setTimeout(() => controller.abort(), 3500);
+    const r = await fetch("https://ipapi.co/json/", { signal: controller.signal });
+    clearTimeout(tId);
     const d = await r.json();
     userCountry = d.country_code || "ES";
     // Auto-detectar idioma si no hay preferencia guardada
@@ -626,9 +629,7 @@ async function getSpotifyImageFromBackend(name) {
   const base = HF_API_URL;
   for (let i = 0; i < 2; i++) {
     try {
-      const r = await fetch(`${base}/artist-image?name=${encodeURIComponent(name)}`, {
-        signal: AbortSignal.timeout(i===0 ? 30000 : 45000) // Extendido para cold starts
-      });
+      const r = await fetch(`${base}/artist-image?name=${encodeURIComponent(name)}`);
       if (!r.ok) continue;
       const d = await r.json();
       if (d.url) { HF_IMG_CACHE[name] = d.url; return d.url; }
@@ -655,10 +656,8 @@ async function getArtistImage(name) {
   // 3. iTunes Search API pública (CORS friendly, rápido y alta calidad)
   try {
     const q = encodeURIComponent(name);
-    const r = await fetch(
-      `https://itunes.apple.com/search?term=${q}&entity=song&limit=1`,
-      { signal: AbortSignal.timeout(4000) }
-    );
+    // Removemos AbortSignal.timeout porque rompe silenciosamente en Safari/Móviles antiguos
+    const r = await fetch(`https://itunes.apple.com/search?term=${q}&entity=song&limit=1`);
     const d = await r.json();
     if (d.results && d.results.length > 0) {
       const art = d.results[0].artworkUrl100;
@@ -668,7 +667,7 @@ async function getArtistImage(name) {
         return img;
       }
     }
-  } catch(_) {}
+  } catch(e) { console.error("iTunes Error:", e); }
 
   // 4. Fallback: avatar con iniciales coloreadas
   const initImg = getInitialsAvatar(name);
@@ -1277,15 +1276,23 @@ function findMatch(userVector) {
 function getPlatformLinks(singerName, songName) {
   const q        = encodeURIComponent(`${singerName} ${songName||""}`);
   const qs       = encodeURIComponent(`${singerName} ${songName||""} karaoke`);
+  // Obtenemos la IP usando la variable global nativa (userCountry) 
+  const cc       = window.userCountry || window.GEO_CC || "US";
 
-  return {
-    karaoke: `https://www.youtube.com/results?search_query=${qs}`,
-    streams: [
-      { url: `https://open.spotify.com/search/${q}`, label: "Spotify", color: "#1DB954" },
-      { url: `https://music.apple.com/search?term=${q}`, label: "Apple Music", color: "#fc3c44" },
-      { url: `https://music.youtube.com/search?q=${q}`, label: "YT Music", color: "#FF0000" }
-    ]
-  };
+  let streams = [
+    { url: `https://open.spotify.com/search/${q}`, label: "Spotify", color: "#1DB954" },
+    { url: `https://music.apple.com/search?term=${q}`, label: "Apple Music", color: "#fc3c44" },
+    { url: `https://music.youtube.com/search?q=${q}`, label: "YT Music", color: "#FF0000" }
+  ];
+
+  // Inyección Geográfica Dinámica para Asia!
+  if (["KR"].includes(cc)) {
+    streams.unshift({ url: `https://www.melon.com/search/total/index.htm?q=${q}`, label: "Melon (멜론)", color: "#00CD3C" });
+  } else if (["JP", "TW", "TH"].includes(cc)) {
+    streams.unshift({ url: `https://music.line.me/search?type=track&q=${q}`, label: "LINE Music", color: "#00B900" });
+  }
+
+  return { karaoke: `https://www.youtube.com/results?search_query=${qs}`, streams };
 }
 
 function rebuildEraFilter() {
@@ -2831,7 +2838,7 @@ async function loadDB() {
 // Función para despertar el backend de manera asíncrona
 async function wakeUpBackend() {
   try {
-    fetch(HF_API_URL + "/", { signal: AbortSignal.timeout(5000) }).catch(() => {});
+    fetch(HF_API_URL + "/").catch(() => {});
   } catch (e) {}
 }
 
