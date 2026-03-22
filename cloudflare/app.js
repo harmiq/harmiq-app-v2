@@ -1169,30 +1169,71 @@ function getAmazonBox(voiceType) {
     </div>`;
 }
 
+function getEventsModuleHTML() {
+  return `
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin-top:2rem">
+      <!-- Listado de Eventos -->
+      <div style="background:rgba(255,255,255,.03); border-radius:20px; border:1px solid rgba(255,255,255,.08); padding:1.2rem">
+        <h3 style="font-family:'Baloo 2',sans-serif; font-size:1.1rem; margin-bottom:1.2rem; display:flex; align-items:center; gap:.5rem">
+          📅 Próximos Eventos de Karaoke
+        </h3>
+        <div style="display:flex; flex-direction:column; gap:.8rem">
+          <!-- Evento 1 -->
+          <div style="background:rgba(124,77,255,.06); border:1px solid rgba(124,77,255,.15); border-radius:14px; padding:.9rem">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:.4rem">
+              <span style="font-size:.65rem; background:#7C4DFF; color:#fff; padding:.2rem .4rem; border-radius:5px; font-weight:800">BARCELONA</span>
+              <span style="font-size:.65rem; color:#6B7280">28 Mar, 21:00</span>
+            </div>
+            <div style="font-weight:800; font-size:.85rem; margin-bottom:.3rem">Karaoke Night @ Sala Apolo</div>
+            <div style="display:flex; gap:.6rem; margin-top:.6rem">
+              <a href="https://maps.google.com/?q=Sala+Apolo+Barcelona" target="_blank" style="font-size:.65rem; color:#A5B4FC; text-decoration:none; font-weight:700">📍 Ubicación</a>
+              <a href="https://instagram.com/sala_apolo" target="_blank" style="font-size:.65rem; color:#FF4FA3; text-decoration:none; font-weight:700">📸 Instagram</a>
+            </div>
+          </div>
+          <!-- Evento 2 -->
+          <div style="background:rgba(255,153,0,.06); border:1px solid rgba(255,153,0,.15); border-radius:14px; padding:.9rem">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:.4rem">
+              <span style="font-size:.65rem; background:#FF9900; color:#fff; padding:.2rem .4rem; border-radius:5px; font-weight:800">MADRID</span>
+              <span style="font-size:.65rem; color:#6B7280">02 Abr, 20:00</span>
+            </div>
+            <div style="font-weight:800; font-size:.85rem; margin-bottom:.3rem">Open Mic @ El Búho Real</div>
+            <div style="display:flex; gap:.6rem; margin-top:.6rem">
+              <a href="https://maps.google.com/?q=El+Buho+Real+Madrid" target="_blank" style="font-size:.65rem; color:#A5B4FC; text-decoration:none; font-weight:700">📍 Ubicación</a>
+              <a href="https://facebook.com/buhoreal" target="_blank" style="font-size:.65rem; color:#1877F2; text-decoration:none; font-weight:700">📘 Facebook</a>
+            </div>
+          </div>
+        </div>
+        <a href="https://forms.gle/harmiq-eventos-karaoke" target="_blank" style="display:block; margin-top:1.2rem; text-align:center; background:#06D6A0; color:#000; padding:.7rem; border-radius:10px; font-weight:900; text-decoration:none; font-size:.8rem">
+          ➕ Publicar mi Evento
+        </a>
+      </div>
+
+      <!-- Mapa -->
+      <div style="background:rgba(255,255,255,.03); border-radius:20px; border:1px solid rgba(255,255,255,.08); padding:1rem; display:flex; flex-direction:column">
+        <h3 style="font-family:'Baloo 2',sans-serif; font-size:1.1rem; margin-bottom:1rem">🧭 Mapa de Locales</h3>
+        <div style="flex:1; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.1); min-height:220px">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1500000!2d-3.7!3d40.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1skaraoke!5e0!3m2!1ses!2ses!4v1711100000000!5m2!1ses!2ses" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function getComunidadHarmiq() {
   return `
     <div id="comunidad-harmiq" style="margin-top:3rem;padding:2rem;background:#13102a;border-radius:24px;border:1px solid rgba(255,255,255,.08);text-align:center">
       <h2 style="font-size:1.5rem;margin-bottom:1rem;font-family:'Outfit',sans-serif">👥 Comunidad Harmiq</h2>
       <p style="color:#9CA3AF;font-size:.9rem;margin-bottom:2rem">¡Comparte tu talento y asiste a los mejores eventos musicales!</p>
       
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem">
-        <div style="background:rgba(255,255,255,.03);padding:1.5rem;border-radius:18px;border:1px solid rgba(255,255,255,.05)">
-          <div style="font-size:2rem;margin-bottom:.5rem">🎤</div>
-          <h3 style="font-size:1.1rem;margin-bottom:.8rem">Organiza tu propio Karaoke</h3>
-          <p style="font-size:.8rem;color:#6B7280;margin-bottom:1.5rem">¿Tienes un local o evento? Publica aquí tu fecha y llega a miles de cantantes.</p>
-          <a href="https://forms.gle/harmiq-eventos-karaoke" target="_blank" 
-            style="display:block;background:var(--p,#7C4DFF);color:#fff;padding:.8rem;border-radius:12px;text-decoration:none;font-weight:800;font-size:.85rem">
-            Publicar Eventos de Karaoke
-          </a>
-        </div>
-        
-        <div style="background:rgba(255,255,255,.03);padding:1.5rem;border-radius:18px;border:1px solid rgba(255,255,255,.05)">
-          <div style="font-size:2rem;margin-bottom:.5rem">🏆</div>
-          <h3 style="font-size:1.1rem;margin-bottom:.8rem">Próximos Concursos</h3>
-          <p style="font-size:.8rem;color:#6B7280;margin-bottom:1rem">¡Gran Final Harmiq 2026! Las mejores voces de la plataforma competirán por premios en metálico.</p>
-          <div style="background:rgba(6,214,160,.1);color:#06D6A0;padding:.5rem;border-radius:8px;font-size:.75rem;font-weight:700">
-            📢 Próximamente: Abril 2026
-          </div>
+      ${getEventsModuleHTML()}
+
+      <div style="margin-top:2rem; padding:1.5rem; background:rgba(255,255,255,.03); border-radius:18px; border:1px solid rgba(255,255,255,.05)">
+        <div style="font-size:2rem;margin-bottom:.5rem">🏆</div>
+        <h3 style="font-size:1.1rem;margin-bottom:.8rem">Próximos Concursos</h3>
+        <p style="font-size:.8rem;color:#6B7280;margin-bottom:1rem">¡Gran Final Harmiq 2026! Las mejores voces competirán por premios en metálico.</p>
+        <div style="display:inline-block; background:rgba(6,214,160,.1);color:#06D6A0;padding:.5rem 1rem;border-radius:8px;font-size:.75rem;font-weight:700">
+          📢 Próximamente: Abril 2026
         </div>
       </div>
     </div>
@@ -1703,7 +1744,8 @@ async function renderResults({feat,vt,conf,matches,gender}) {
     ${extraBtnsHTML}
     ${songsHTML}
     ${amzHTML}
-    ${shareHTML}`;
+    ${shareHTML}
+    ${getComunidadHarmiq()}`;
 
   // ── Evento filtro época ────────────────────────────────────────────────
   const applyFilters = async () => {
@@ -1826,13 +1868,12 @@ function buildKaraokeSection(vtName, vtSlug) {
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.4rem">
             ${[
               {icon:"▶️",name:"YouTube Karaoke",desc:"La mayor biblioteca gratuita",url:"https://www.youtube.com/results?search_query=karaoke+"+encodeURIComponent(vtName),color:"rgba(255,0,0,.15)",border:"rgba(255,0,0,.25)"},
-              {icon:"🌟",name:"Singa",desc:"Catálogo actualizado",url:"https://singa.com",color:"rgba(255,159,28,.1)",border:"rgba(255,159,28,.25)"},
-              {icon:"🎤",name:"Smule",desc:"Karaoke social con duetos",url:"https://www.smule.com",color:"rgba(124,77,255,.1)",border:"rgba(124,77,255,.25)"},
+              {icon:"🏆",name:"Karaoke Total Profesional",desc:"Pistas de alta fidelidad",url:"https://www.youtube.com/watch?v=aAqlY_ds514&list=PLOwMvBWGjS52zQ_6rSH0sGupma2-Txj0f",color:"rgba(255,215,0,.15)",border:"rgba(255,215,0,.3)"},
               {icon:"🏳️",name:"Karaoke en Català",desc:"La millor selecció de música nostra",url:"https://www.youtube.com/watch?v=5oTfrFin0WQ",color:"rgba(206,17,38,.1)",border:"rgba(206,17,38,.2)"},
-              {icon:"🏰",name:"Karaoke Girona",desc:"Pistes professionals de la terra",url:"https://www.youtube.com/watch?v=5AnMKHCCXn4",color:"rgba(252,221,9,.1)",border:"rgba(252,221,9,.2)"},
-              {icon:"🕒",name:"TIME KARAOKE",desc:"Hits Latinos y Pop actual",url:"https://www.youtube.com/watch?v=BvW4efU0HTQ",color:"rgba(255,153,0,.1)",border:"rgba(255,153,0,.2)"},
-              {icon:"🎤",name:"KARAOKE sing",desc:"Las mejores pistas para solistas",url:"https://www.youtube.com/watch?v=sPMA1tqWuf4",color:"rgba(0,209,255,.1)",border:"rgba(0,209,255,.2)"},
-              {icon:"🎵",name:"KaraFun Premium",desc:"+50.000 canciones HQ",url:"https://www.youtube.com/watch?v=BvW4efU0HTQ",color:"rgba(29,185,84,.1)",border:"rgba(29,185,84,.25)"},
+              {icon:"🏰",name:"Karaoke Girona",desc:"Pistes profesionales de la terra",url:"https://www.youtube.com/watch?v=5AnMKHCCXn4",color:"rgba(252,221,9,.1)",border:"rgba(252,221,9,.2)"},
+              {icon:"🕒",name:"TIME KARAOKE EN ESPAÑOL",desc:"Hits Latinos y Pop actual",url:"https://www.youtube.com/@TIMEKARAOKE",color:"rgba(255,153,0,.1)",border:"rgba(255,153,0,.2)"},
+              {icon:"🎤",name:"Karaoke Fun",desc:"Pistas divertidas para practicar",url:"https://www.youtube.com/watch?v=BvW4efU0HTQ",color:"rgba(0,209,255,.1)",border:"rgba(0,209,255,.2)"},
+              {icon:"🌟",name:"Singa",desc:"Catálogo actualizado",url:"https://singa.com",color:"rgba(255,159,28,.1)",border:"rgba(255,159,28,.25)"},
               {icon:"📱",name:"Yokee",desc:"Karaoke gratis en móvil",url:"https://yokee.tv",color:"rgba(0,153,255,.1)",border:"rgba(0,153,255,.25)"},
             ].map(p=>`
               <a href="${p.url}" target="_blank" rel="noopener"
@@ -1850,7 +1891,7 @@ function buildKaraokeSection(vtName, vtSlug) {
         </div>
 
         <!-- Consejos para cantar en público -->
-        <details style="border-top:1px solid rgba(255,255,255,.06);padding-top:.9rem">
+        <details style="border-top:1px solid rgba(255,255,255,.06);padding-top:.9rem;margin-bottom:1.5rem">
           <summary style="font-size:.8rem;font-weight:700;color:#A5B4FC;cursor:pointer;
             list-style:none;display:flex;align-items:center;gap:.4rem">
             <span>💡</span> Consejos para cantar en público <span style="margin-left:auto;font-size:.7rem;color:#6B7280">▼ Ver</span>
@@ -1873,6 +1914,9 @@ function buildKaraokeSection(vtName, vtSlug) {
               </div>`).join("")}
           </div>
         </details>
+
+        <!-- Eventos de Karaoke Relacionados -->
+        ${getEventsModuleHTML()}
 
       </div>
     </div>
@@ -2836,29 +2880,67 @@ async function loadStaticPage(url, title) {
 }
 
 // ── Comunidad (Disqus) ────────────────────────────────────────────────────────
+// ── Comunidad (Disqus + Eventos + Mapa) ──────────────────────────────────────
 function loadComunidadPage() {
-  const app = document.getElementById("app");
-  if(!app) return;
-  
-  app.innerHTML = `
-    <div style="max-width:800px; margin:0 auto; padding:2rem 1rem; text-align:center">
-      <h1 style="font-family:'Outfit',sans-serif; font-size:2.5rem; margin-bottom:1rem">
-        💬 Comunidad <span class="grad">Harmiq</span>
-      </h1>
-      <p style="color:var(--m); margin-bottom:1.5rem; font-size:1.1rem">
-        Comparte tus ideas, opiniones o dudas con otros usuarios. ¡Ayúdanos a mejorar Harmiq!
-      </p>
+  const content = `
+    <div style="max-width:960px; margin:0 auto; padding:2rem 1rem">
+      <div style="text-align:center; margin-bottom:3rem">
+        <h1 style="font-family:'Baloo 2',sans-serif; font-weight:900; font-size:clamp(2rem,6vw,3.5rem); margin-bottom:1rem; background:linear-gradient(135deg,#fff,#7C4DFF); -webkit-background-clip:text; -webkit-text-fill-color:transparent">
+          👥 Comunidad <span style="color:#FF4FA3">Harmiq</span>
+        </h1>
+        <p style="color:#9CA3AF; font-size:1.1rem; max-width:600px; margin:0 auto">
+          El punto de encuentro para amantes del karaoke. Publica eventos, encuentra locales y comparte tu pasión.
+        </p>
+      </div>
+
+      ${getEventsModuleHTML()}
+
+      <!-- DISQUS -->
+      <div style="background:rgba(255,255,255,.02); border-radius:24px; border:1px solid rgba(255,255,255,.05); padding:2rem; margin-top:3rem">
+        <h2 style="font-family:'Baloo 2',sans-serif; font-size:1.5rem; margin-bottom:1.5rem; text-align:center">
+          💬 Foro de Discusión
+        </h2>
+        <div id="disqus_thread"></div>
+      </div>
       
-      <div id="disqus_thread" style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:15px; border:1px solid rgba(255,255,255,0.05); min-height:300px"></div>
-      
-      <div style="margin-top:2rem; padding:1rem; border-top:1px solid rgba(255,255,255,0.05); font-size:0.75rem; color:#6B7280; text-align:left">
-        <strong>Aviso Legal y de Privacidad:</strong> Al participar en esta comunidad, aceptas que tus comentarios, nombre de usuario y perfil sean públicos. Harmiq no se hace responsable de las opiniones vertidas por los usuarios. Respeta las normas de convivencia: no se permite spam, insultos o contenido ilegal. Los datos son gestionados por Disqus según su propia política de privacidad.
+      <div style="margin-top:2.5rem; padding:1.5rem; background:rgba(255,255,255,.03); border-radius:18px; font-size:.78rem; color:#6B7280; line-height:1.6">
+        <strong>Aviso de la Comunidad:</strong> La sección de eventos es gestionada por los propios usuarios. Harmiq actúa únicamente como plataforma de difusión y no se responsabiliza de los cambios de última hora, precios de entrada o calidad del servicio en los locales mencionados. Al participar en el foro, aceptas nuestras normas de respeto y convivencia.
       </div>
     </div>
   `;
-  
-  renderDisqus("comunidad-principal");
-  document.title = "Comunidad & Feedback | Harmiq";
+
+  // Renderizar página completa para evitar el bug del elemento #app ausente
+  document.body.innerHTML = `
+    <nav>
+      <a class="logo" href="/">🎙️ Harmiq</a>
+      <ul class="nav-links">
+        <li><a href="/voz/baritono">Barítono</a></li>
+        <li><a href="/voz/tenor">Tenor</a></li>
+        <li><a href="/voz/soprano">Soprano</a></li>
+        <li><a href="/voz/mezzo-soprano">Mezzo</a></li>
+        <li><a href="/voz/contralto">Contralto</a></li>
+        <li><a href="/voz/bajo">Bajo</a></li>
+      </ul>
+      <a class="btn" href="/#app" style="padding:.5rem 1.2rem;font-size:.85rem">🎤 Analizar mi voz</a>
+    </nav>
+    <div id="comunidad-wrap">${content}</div>
+    <footer>
+      <div class="fl">
+        <a href="/">Inicio</a>
+        <a href="/voz/baritono">Barítono</a>
+        <a href="/voz/tenor">Tenor</a>
+        <a href="/voz/soprano">Soprano</a>
+        <a href="/voz/mezzo-soprano">Mezzo</a>
+        <a href="/voz/contralto">Contralto</a>
+        <a href="/voz/bajo">Bajo</a>
+        <a href="/comunidad" style="color:#FF5E5B; font-weight:700">Comunidad</a>
+      </div>
+      <p>© 2026 Harmiq · <a href="mailto:info@harmiq.app">info@harmiq.app</a> · <a href="/politica-privacidad.html">Privacidad</a></p>
+    </footer>
+  `;
+
+  renderDisqus("comunidad-v3");
+  document.title = "Comunidad Karaoke Harmiq | Eventos y Foro";
   window.scrollTo(0,0);
 }
 
