@@ -24,7 +24,7 @@
 const AMAZON_DOMAINS = { ES:"es",US:"com",MX:"com.mx",UK:"co.uk",DE:"de",FR:"fr",IT:"it",CA:"ca",BR:"com.br",JP:"co.jp" };
 const AFFILIATE_ID   = "harmiqapp-20";
 const DB_PATH        = "/harmiq_db_vectores.json";
-const HF_API_URL     = "https://hamiq-harmiq-backend1.hf.space"; // base — añade /analyze o /artist-image según el endpoint
+const HF_API_URL     = "https://hamiq-harmiq-backend1.hf.space"; 
 
 // Plataformas musicales por país (geolocalización)
 const MUSIC_PLATFORM = {
@@ -74,7 +74,7 @@ const T = {
     "_err_gender":"Selecciona primero tu tipo de voz (masculina o femenina).",
     "_err_db":"Base de datos no disponible. Recarga la página.",
     "_filter_era":"Época","_all_eras":"Todas las épocas",
-    "_eras":{"pre-1960s":"Clásicos pre-60","1960s":"Los 60","1970s-80s":"70s y 80s","1970s":"Los 70","1980s":"Los 80","1990s":"Los 90","2000s+":"Años 2000","2010s+":"Años 2010","2020s":"Años 2020","2026":"Éxitos 2025-26"},
+    "_eras":{"pre-1960s":"Clásicos pre-60","1960s":"Los 60","1970s":"Los 70","1980s":"Los 80","1990s":"Los 90","2000s":"Años 2000","2010s":"Años 2010","2020s":"Años 2020","2026":"Éxitos 2026"},
     "_karaoke":"🎤 Karaoke","_platform":"🎵 Escuchar","_rec_tips":"Para mejor resultado: canta sin música · acerca el micro · evita el eco",
     "_vt_names":{"bass":"Bajo","bass-baritone":"Bajo-Barítono","baritone":"Barítono","tenor":"Tenor","countertenor":"Contratenor","contralto":"Contralto","mezzo-soprano":"Mezzosoprano","soprano":"Soprano"},
   },
@@ -113,7 +113,7 @@ const T = {
     "_err_gender":"Select your voice type first (male or female).",
     "_err_db":"Database not available. Reload the page.",
     "_filter_era":"Era","_all_eras":"All eras",
-    "_eras":{"pre-1960s":"Pre-60s classics","1960s":"The 60s","1970s-80s":"70s & 80s","1970s":"The 70s","1980s":"The 80s","1990s":"The 90s","2000s+":"2000s","2010s+":"2010s","2020s":"2020s","2026":"Hits 2025-26"},
+    "_eras":{"pre-1960s":"Pre-60s classics","1960s":"The 60s","1970s":"The 70s","1980s":"The 80s","1990s":"The 90s","2000s":"2000s","2010s":"2010s","2020s":"2020s","2026":"Hits 2026"},
     "_karaoke":"🎤 Karaoke","_platform":"🎵 Listen","_rec_tips":"For best results: sing without background music · get close to the mic · avoid echo",
     "_vt_names":{"bass":"Bass","bass-baritone":"Bass-Baritone","baritone":"Baritone","tenor":"Tenor","countertenor":"Countertenor","contralto":"Contralto","mezzo-soprano":"Mezzo-soprano","soprano":"Soprano"},
   },
@@ -137,7 +137,7 @@ const T = {
     "f2-t":"Cançons per a la teva veu","f2-d":"Cançons adaptades al teu rang vocal exacte i gèneres favorits.",
     "f3-t":"Artistes per país","f3-d":"Filtra per regió i descobreix artistes locals que coincideixen amb tu.",
     "f4-t":"Comparteix el resultat","f4-d":"Comparteix a WhatsApp, Twitter, LINE, VK o Weibo.",
-    "f5-t":"Cerca el teu artista favorit","f5-d":"Compara la teva veu amb qualsevol artista de la nostra base de dades.",
+    "f5-t":"Cerca el teu artista favorit","f5-d":"Compara la teva veu amb qualsevol artista de nostra base de dades.",
     "f6-t":"Privacitat garantida","f6-d":"El teu àudio s'analitza i s'esborra immediatament. No guardem cap gravació.",
     "cta-title":"Descobreix el teu tipus de veu ara","cta-desc":"Anàlisi gratuïta en 10 segons. 12.000 artistes de tot el món.","cta-btn":"🎤 Analitza la teva veu gratis",
     "_upload_btn":"📁 Pujar àudio","_upload_hint":"WAV · MP3 · M4A · OGG · FLAC · mín. 5 seg",
@@ -148,7 +148,7 @@ const T = {
     "_err_short":"Àudio massa curt.","_err_silent":"Senyal molt baixa.","_err_mic":"No s'ha pogut accedir al micròfon.",
     "_err_gender":"Selecciona primer el teu tipus de veu.","_err_db":"Base de dades no disponible.",
     "_filter_era":"Època","_all_eras":"Totes les èpoques",
-    "_eras":{"pre-1960s":"Abans dels 60","1960s":"Anys 60","1970s-80s":"70s – 80s","1990s":"Anys 90","2000s+":"Anys 2000","2010s+":"Anys 2010+"},
+    "_eras":{"pre-1960s":"Clàssics pre-60","1960s":"Els 60","1970s":"Els 70","1980s":"Els 80","1990s":"Els 90","2000s":"Anys 2000","2010s":"Anys 2010","2020s":"Anys 2020","2026":"Èxitos 2026"},
     "_karaoke":"🎤 Karaoke","_platform":"🎵 Escoltar","_rec_tips":"Per millors resultats: canta sense música · apropa't al micro",
     "_vt_names":{"bass":"Baix","bass-baritone":"Baix-Baríton","baritone":"Baríton","tenor":"Tenor","countertenor":"Contratenor","contralto":"Contralt","mezzo-soprano":"Mezzosoprano","soprano":"Soprano"},
   },
@@ -1002,29 +1002,223 @@ function featuresToVector(f) {
   return [...sc,...mfcc];
 }
 
-function classifyVT(pm, pr, gender) {
-  // pr = pitch_range (p90-p10). Barítonos tienen rango menor que tenores.
-  // Umbral barítono elevado a 215 Hz + discriminación por pitch_range en zona ambigua
-  let vt, c, s;
-  const isMale = gender==="male" || (gender==="auto" && pm < 215);
-  if (isMale) {
-    if      (pm < 110) { vt="bass";          c=90;  s=20; }
-    else if (pm < 145) { vt="bass-baritone"; c=125; s=18; }
-    else if (pm < 215) { vt="baritone";      c=175; s=32; }
-    else if (pm < 290) {
-      // Zona ambigua 215-290: usar pitch_range para discriminar
-      // Barítono: rango típico < 280 Hz | Tenor: rango > 280 Hz
-      vt = (pr > 0 && pr < 280) ? "baritone" : "tenor";
-      c  = vt === "baritone" ? 200 : 250; s = 35;
+function shieldAmazonQuery(q) {
+  if (!q) return "";
+  // 🛡️ Filtro de Amazon Blindado: limpia caracteres especiales para evitar error 'Vaya, algo ha fallado'
+  return q.replace(/[^a-zA-Z0-9\s]/g, '').trim();
+}
+
+/**
+ * getHomeStudioHTML(voiceType)
+ * Genera el bloque de 4 Packs (Básico, Pro, Top, Premium) para el tipo de voz.
+ */
+function getHomeStudioHTML(voiceType) {
+  const domain = window.AMAZON_DOMAIN || "es";
+  const tag    = "harmiqapp-20";
+  
+  const packs = {
+    "bass": {
+      basico: { name: "Fifine AmpliGame A6V", asin: "B09MHRYY5C" },
+      pro:    { name: "Audio-Technica AT2020 + Scarlett Solo", asin: "B0006H92QK" },
+      top:    { name: "AKG P220 + Focusrite 2i2", asin: "B00M9CUJ6W" },
+      premium:{ name: "Shure SM7B + Cloudlifter + Apollo Solo", asin: "B0002E4Z8M" }
+    },
+    "baritone": {
+      basico: { name: "Fifine AmpliGame A6V", asin: "B09MHRYY5C" },
+      pro:    { name: "Audio-Technica AT2035 + Scarlett Solo", asin: "B002T45X1G" },
+      top:    { name: "Sennheiser MK4 + Focusrite 2i2", asin: "B004S4S6I6" },
+      premium:{ name: "Neumann TLM 103 + Apollo Twin", asin: "B0002E4Z8M" }
+    },
+    // Fallback general para otros tipos (tenor, soprano, etc)
+    "default": {
+      basico: { name: "Fifine AmpliGame A6V", asin: "B09MHRYY5C" },
+      pro:    { name: "Rode NT1-A + Scarlett Solo", asin: "B002QAUOKS" },
+      top:    { name: "Blue Baby Bottle SL + Focusrite 2i2", asin: "B01M3W052B" },
+      premium:{ name: "Neumann TLM 102 + Universal Audio Volt", asin: "B0046XCH96" }
     }
-    else               { vt="tenor";         c=260; s=40; }
-  } else {
-    if      (pm < 210) { vt="contralto";     c=185; s=25; }
-    else if (pm < 270) { vt="mezzo-soprano"; c=245; s=30; }
-    else if (pm < 350) { vt="soprano";       c=300; s=38; }
-    else               { vt="soprano";       c=380; s=55; }
+  };
+
+  const p = packs[voiceType] || packs["default"];
+  
+  const getL = (item) => `https://www.amazon.${domain}/s?k=${encodeURIComponent(shieldAmazonQuery(item.name))}&tag=${tag}`;
+
+  return `
+    <div class="hs-packs" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:20px">
+      <div class="hs-pack" style="background:rgba(255,255,255,.03);padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.1);text-align:center">
+        <div style="font-size:.65rem;color:var(--mon-blue,#00AAFF);font-weight:800;text-transform:uppercase">📦 Básico</div>
+        <div style="font-size:.78rem;margin:.5rem 0;font-weight:700">${p.basico.name}</div>
+        <a href="${getL(p.basico)}" target="_blank" style="font-size:.7rem;color:#FF9900;text-decoration:none;font-weight:700">Ver Pack →</a>
+      </div>
+      <div class="hs-pack" style="background:rgba(255,255,255,.03);padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.1);text-align:center">
+        <div style="font-size:.65rem;color:#7C4DFF;font-weight:800;text-transform:uppercase">🚀 Pro</div>
+        <div style="font-size:.78rem;margin:.5rem 0;font-weight:700">${p.pro.name}</div>
+        <a href="${getL(p.pro)}" target="_blank" style="font-size:.7rem;color:#FF9900;text-decoration:none;font-weight:700">Ver Pack →</a>
+      </div>
+      <div class="hs-pack" style="background:rgba(255,255,255,.03);padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.1);text-align:center">
+        <div style="font-size:.65rem;color:#FF4FA3;font-weight:800;text-transform:uppercase">🏆 Top</div>
+        <div style="font-size:.78rem;margin:.5rem 0;font-weight:700">${p.top.name}</div>
+        <a href="${getL(p.top)}" target="_blank" style="font-size:.7rem;color:#FF9900;text-decoration:none;font-weight:700">Ver Pack →</a>
+      </div>
+      <div class="hs-pack" style="background:rgba(255,255,255,.03);padding:1rem;border-radius:12px;border:1px solid rgba(255,153,0,.15);text-align:center">
+        <div style="font-size:.65rem;color:#FF9900;font-weight:800;text-transform:uppercase">💎 Premium</div>
+        <div style="font-size:.78rem;margin:.5rem 0;font-weight:700">${p.premium.name}</div>
+        <a href="${getL(p.premium)}" target="_blank" style="font-size:.7rem;color:#FF9900;text-decoration:none;font-weight:700">Ver Pack →</a>
+      </div>
+    </div>`;
+}
+
+/**
+ * getAmazonHtml(voiceType)
+ * Usa monetizationDb (monetization.json) para mostrar una recomendación de
+ * micrófono personalizada por tipo de voz, con enlace de afiliado Amazon.
+ */
+function getAmazonHtml(voiceType) {
+  if (!monetizationDb || !monetizationDb.logic || !monetizationDb.logic.voice_profiles) return "";
+  const profiles = monetizationDb.logic.voice_profiles;
+  let profile = null; let vtKey = "";
+  for (let k in profiles) {
+    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
+      profile = profiles[k]; vtKey = k; break;
+    }
   }
-  return { vt, conf:Math.min(95,Math.round(100*Math.exp(-.5*((pm-c)/s)**2))) };
+  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return "";
+  
+  const micName = profile.recommended_models[0];
+  const clean   = shieldAmazonQuery(micName);
+  const domain  = window.AMAZON_DOMAIN || "es";
+  const amzLink = `https://www.amazon.${domain}/s?k=${encodeURIComponent(clean)}&tag=harmiqapp-20`;
+  
+  return `
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;padding:1.4rem;display:flex;flex-direction:column;gap:1.2rem;
+      border-left:4px solid #FF9F1C">
+      <div style="display:flex;align-items:center;gap:1rem">
+        <div style="background:#FF9F1C;color:#000;width:42px;height:42px;border-radius:10px;
+          display:flex;align-items:center;justify-content:center;font-size:1.4rem">🎤</div>
+        <div>
+          <div style="font-size:.7rem;color:#FF9F1C;font-weight:800;text-transform:uppercase;letter-spacing:.05em">
+            Micrófono recomendado para ${trV("_vt_names", voiceType) || vtKey}
+          </div>
+          <div style="font-size:.75rem;color:#9CA3AF">Selección personalizada para tu perfil vocal</div>
+        </div>
+      </div>
+      <div style="font-size:.85rem;color:#D1D5DB;font-weight:600">${micName}</div>
+      <div style="font-size:.78rem;color:#9CA3AF;line-height:1.5">${profile.characteristics}</div>
+      <a href="${amzLink}" target="_blank" rel="noopener sponsored"
+        style="display:inline-block;align-self:flex-start;
+        background:linear-gradient(135deg,#FF9F1C,#FF6B35);color:#fff;
+        font-size:.8rem;font-weight:700;padding:.45rem 1rem;border-radius:10px;
+        text-decoration:none;letter-spacing:.02em">
+        🛒 Ver precio en Amazon →
+      </a>
+      ${getHomeStudioHTML(voiceType)}
+    </div>`;
+}
+
+/**
+ * getAmazonAffiliateLink(voiceType)
+ * Versión ligera que devuelve solo la URL de afiliado Amazon para el tipo de voz
+ */
+function getAmazonAffiliateLink(voiceType) {
+  if (!monetizationDb || !monetizationDb.logic) return null;
+  const profiles = monetizationDb.logic.voice_profiles;
+  let profile = null;
+  for (let k in profiles) {
+    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
+      profile = profiles[k]; break;
+    }
+  }
+  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return null;
+  const micName = profile.recommended_models[0];
+  const clean   = shieldAmazonQuery(micName);
+  return `https://www.amazon.es/s?k=${encodeURIComponent(clean)}&tag=${monetizationDb.config?.affiliate_id||"harmiqapp-20"}`;
+}
+
+/**
+ * getAmazonBox(voiceType)
+ * Alias público de getAmazonHtml() con la firma exacta del diseño v8.
+ */
+function getAmazonBox(voiceType) {
+  if (!monetizationDb || !monetizationDb.logic) return "";
+  const profiles = monetizationDb.logic.voice_profiles;
+  let profile = null; let vtKey = "";
+  for (let k in profiles) {
+    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
+      profile = profiles[k]; vtKey = k; break;
+    }
+  }
+  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return "";
+  const micName = profile.recommended_models[0];
+  const clean   = shieldAmazonQuery(micName);
+  const link = `https://www.amazon.es/s?k=${encodeURIComponent(clean)}&tag=${monetizationDb.config?.affiliate_id||"harmiqapp-20"}`;
+  return `
+    <div class="cta-box" style="border:2px solid var(--gold,#FFD700);margin-top:20px;
+      padding:1.1rem;border-radius:16px;background:rgba(255,215,0,.05)">
+      <h3 style="color:var(--gold,#FFD700);font-family:'Baloo 2',sans-serif;margin-bottom:.5rem">
+        🎤 Recomendación para tu voz
+      </h3>
+      <p style="font-size:.88rem;margin-bottom:.75rem">
+        Como ${trV("_vt_names", voiceType) || vtKey}, tu micro ideal es el <b>${micName}</b>.
+        <br><span style="color:#9CA3AF;font-size:.8rem">${profile.characteristics}</span>
+      </p>
+      <a href="${link}" target="_blank" rel="noopener sponsored"
+        style="display:inline-block;background:#FF9900;color:#fff;font-weight:700;
+        font-size:.85rem;padding:.5rem 1.1rem;border-radius:10px;text-decoration:none">
+        🛒 Ver en Amazon →
+      </a>
+    </div>`;
+}
+
+function getComunidadHarmiq() {
+  return `
+    <div id="comunidad-harmiq" style="margin-top:3rem;padding:2rem;background:#13102a;border-radius:24px;border:1px solid rgba(255,255,255,.08);text-align:center">
+      <h2 style="font-size:1.5rem;margin-bottom:1rem;font-family:'Outfit',sans-serif">👥 Comunidad Harmiq</h2>
+      <p style="color:#9CA3AF;font-size:.9rem;margin-bottom:2rem">¡Comparte tu talento y asiste a los mejores eventos musicales!</p>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem">
+        <div style="background:rgba(255,255,255,.03);padding:1.5rem;border-radius:18px;border:1px solid rgba(255,255,255,.05)">
+          <div style="font-size:2rem;margin-bottom:.5rem">🎤</div>
+          <h3 style="font-size:1.1rem;margin-bottom:.8rem">Organiza tu propio Karaoke</h3>
+          <p style="font-size:.8rem;color:#6B7280;margin-bottom:1.5rem">¿Tienes un local o evento? Publica aquí tu fecha y llega a miles de cantantes.</p>
+          <a href="https://forms.gle/harmiq-eventos-karaoke" target="_blank" 
+            style="display:block;background:var(--p,#7C4DFF);color:#fff;padding:.8rem;border-radius:12px;text-decoration:none;font-weight:800;font-size:.85rem">
+            Publicar Eventos de Karaoke
+          </a>
+        </div>
+        
+        <div style="background:rgba(255,255,255,.03);padding:1.5rem;border-radius:18px;border:1px solid rgba(255,255,255,.05)">
+          <div style="font-size:2rem;margin-bottom:.5rem">🏆</div>
+          <h3 style="font-size:1.1rem;margin-bottom:.8rem">Próximos Concursos</h3>
+          <p style="font-size:.8rem;color:#6B7280;margin-bottom:1rem">¡Gran Final Harmiq 2026! Las mejores voces de la plataforma competirán por premios en metálico.</p>
+          <div style="background:rgba(6,214,160,.1);color:#06D6A0;padding:.5rem;border-radius:8px;font-size:.75rem;font-weight:700">
+            📢 Próximamente: Abril 2026
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * findMatch(userVector)
+ * API pública de matching: recibe el vector de 27 dimensiones del usuario,
+ * aplica similitud del coseno contra toda la DB, aplica el boost catalán
+ * si lang === 'ca', y devuelve los 6 mejores resultados ordenados por score.
+ * Equivale a getMatches() pero sin filtros — para uso directo desde HTML/tests.
+ */
+function findMatch(userVector) {
+  return singersDb.map(singer => {
+    let sc = calculateCosineSimilarity(userVector, singer.vector);
+
+    // Boost cultural: solo si el idioma de la UI es catalán y catalaDb está cargada
+    if (lang === "ca" && typeof catalaDb !== "undefined" && catalaDb?.artistes) {
+      const isCatalan = catalaDb.artistes.some(
+        a => a.nom.toLowerCase() === singer.name.toLowerCase()
+      );
+      if (isCatalan) sc *= 1.15;
+    }
+    return { ...singer, score: sc };
+  }).sort((a, b) => b.score - a.score).slice(0, 6);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1048,6 +1242,7 @@ const VTP = [1,.92,.82,.74,.68,.62];
 function calculateCosineSimilarity(vecA, vecB) {
   if (!vecA || !vecB || vecA.length < 27 || vecB.length < 27) return 0;
   let dot = 0, mA = 0, mB = 0;
+  // Recorremos exactamente las 27 dimensiones del vector librosa
   for (let i = 0; i < 27; i++) {
     dot += vecA[i] * vecB[i];
     mA  += vecA[i] * vecA[i];
@@ -1136,14 +1331,30 @@ async function analyzeAudio() {
   if (!singersDb.length){ showStatus(tr("_err_db"),"err"); return; }
   showStatus(tr("_analyzing"));
   try {
-    const feat = await extractFeatures(audioBlob);
-    const vec  = featuresToVector(feat);
-    const {vt,conf} = classifyVT(feat.pitchMean,feat.pitchRange,gender);
-    const matches = getMatches(vec,vt,gender,{},5);
-    lastResult = {feat,vec,vt,conf,matches,gender};
+    // 🚀 ENVÍO AL BACKEND (Vía FormData para recibir vector 27D)
+    const formData = new FormData();
+    formData.append('audio', audioBlob, 'record.wav');
+    
+    const resp = await fetch(`${HF_API_URL}/analyze`, {
+      method: 'POST',
+      body: formData
+    });
+    
+    if (!resp.ok) throw new Error("Error en el servidor de IA. Inténtalo de nuevo.");
+    const data = await resp.json();
+    
+    // El backend devuelve vector (27 dims) + features (pitchMean, centroid...)
+    const vec  = data.vector;
+    const feat = data.features;
+    
+    const {vt,conf} = classifyVT(feat.pitchMean, feat.pitchRange, gender);
+    const matches = getMatches(vec, vt, gender, {}, 5);
+    
+    lastResult = {feat, vec, vt, conf, matches, gender};
     await preloadImages(matches.slice(0,5).map(m=>m.name));
     renderResults(lastResult);
-    // Persistir resultado en sessionStorage para cuando vuelvan
+    
+    // Persistir resultado
     try {
       const toSave = {
         feat: lastResult.feat,
@@ -1160,134 +1371,15 @@ async function analyzeAudio() {
       sessionStorage.setItem("harmiq_result", JSON.stringify(toSave));
     } catch(_) {}
     showStatus("");
-  } catch(e) { showStatus(e.message||tr("_err_short"),"err"); }
+  } catch(e) { 
+    console.error("Analysis error:", e);
+    showStatus(e.message||tr("_err_short"),"err"); 
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // 10. BLOQUE AMAZON — recomendación de micro para el resultado principal
 // ═══════════════════════════════════════════════════════════════════════════════
-/**
- * getAmazonHtml(voiceType)
- * Usa monetizationDb (monetization.json) para mostrar una recomendación de
- * micrófono personalizada por tipo de voz, con enlace de afiliado Amazon.
- * Devuelve "" si monetizationDb no está cargada o no hay perfil para el tipo.
- */
-function getAmazonHtml(voiceType) {
-  if (!monetizationDb || !monetizationDb.logic || !monetizationDb.logic.voice_profiles) return "";
-  const profiles = monetizationDb.logic.voice_profiles;
-  let profile = null; let vtKey = "";
-  for (let k in profiles) {
-    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
-      profile = profiles[k]; vtKey = k; break;
-    }
-  }
-  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return "";
-
-  const micName = profile.recommended_models[0];
-  const amzTag  = monetizationDb.config?.affiliate_id || "harmiqapp-20";
-  const currency= "€";
-  const amzLink = `https://www.amazon.es/s?k=${encodeURIComponent(micName + " microphone")}&tag=${amzTag}`;
-  const vtName  = trV("_vt_names", voiceType) || vtKey;
-
-  return `
-    <div style="margin:1rem 0;padding:1.1rem;border-radius:16px;
-      border:1px solid rgba(255,165,0,.3);background:rgba(255,165,0,.05);
-      display:flex;flex-direction:column;gap:.65rem">
-      <div style="display:flex;align-items:center;gap:.5rem">
-        <span style="font-size:1.3rem">🎙️</span>
-        <div>
-          <div style="font-weight:800;font-size:.95rem;color:#FFB74D">
-            Micrófono recomendado para ${vtName}
-          </div>
-          <div style="font-size:.75rem;color:#9CA3AF">
-            Selección personalizada para tu perfil vocal
-          </div>
-        </div>
-      </div>
-      <div style="font-size:.85rem;color:#D1D5DB;font-weight:600">${micName}</div>
-      <div style="font-size:.78rem;color:#9CA3AF;line-height:1.5">${profile.characteristics}</div>
-      <a href="${amzLink}" target="_blank" rel="noopener sponsored"
-        style="display:inline-block;align-self:flex-start;
-        background:linear-gradient(135deg,#FF9F1C,#FF6B35);color:#fff;
-        font-size:.8rem;font-weight:700;padding:.45rem 1rem;border-radius:10px;
-        text-decoration:none;letter-spacing:.02em">
-        🛒 Ver precio en Amazon ${currency} →
-      </a>
-    </div>`;
-}
-
-/**
- * getAmazonAffiliateLink(voiceType)
- * Versión ligera que devuelve solo la URL de afiliado Amazon para el tipo de voz
- */
-function getAmazonAffiliateLink(voiceType) {
-  if (!monetizationDb || !monetizationDb.logic) return null;
-  const profiles = monetizationDb.logic.voice_profiles;
-  let profile = null;
-  for (let k in profiles) {
-    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
-      profile = profiles[k]; break;
-    }
-  }
-  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return null;
-  return `https://www.amazon.es/s?k=${encodeURIComponent(profile.recommended_models[0])}&tag=${monetizationDb.config?.affiliate_id||"harmiqapp-20"}`;
-}
-
-/**
- * getAmazonBox(voiceType)
- * Alias público de getAmazonHtml() con la firma exacta del diseño v8.
- */
-function getAmazonBox(voiceType) {
-  if (!monetizationDb || !monetizationDb.logic) return "";
-  const profiles = monetizationDb.logic.voice_profiles;
-  let profile = null; let vtKey = "";
-  for (let k in profiles) {
-    if (k.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)]) === voiceType.toLowerCase().replace(/[áéíóú]/g, (m) => "aeiou"["áéíóú".indexOf(m)])) {
-      profile = profiles[k]; vtKey = k; break;
-    }
-  }
-  if (!profile || !profile.recommended_models || !profile.recommended_models.length) return "";
-  const micName = profile.recommended_models[0];
-  const link = `https://www.amazon.es/s?k=${encodeURIComponent(micName)}&tag=${monetizationDb.config?.affiliate_id||"harmiqapp-20"}`;
-  return `
-    <div class="cta-box" style="border:2px solid var(--gold,#FFD700);margin-top:20px;
-      padding:1.1rem;border-radius:16px;background:rgba(255,215,0,.05)">
-      <h3 style="color:var(--gold,#FFD700);font-family:'Baloo 2',sans-serif;margin-bottom:.5rem">
-        🎤 Recomendación para tu voz
-      </h3>
-      <p style="font-size:.88rem;margin-bottom:.75rem">
-        Como ${trV("_vt_names", voiceType) || vtKey}, tu micro ideal es el <b>${micName}</b>.
-        <br><span style="color:#9CA3AF;font-size:.8rem">${profile.characteristics}</span>
-      </p>
-      <a href="${link}" target="_blank" rel="noopener sponsored"
-        style="display:inline-block;background:#FF9900;color:#fff;font-weight:700;
-        font-size:.85rem;padding:.5rem 1.1rem;border-radius:10px;text-decoration:none">
-        🛒 Ver en Amazon →
-      </a>
-    </div>`;
-}
-
-/**
- * findMatch(userVector)
- * API pública de matching: recibe el vector de 27 dimensiones del usuario,
- * aplica similitud del coseno contra toda la DB, aplica el boost catalán
- * si lang === 'ca', y devuelve los 6 mejores resultados ordenados por score.
- * Equivale a getMatches() pero sin filtros — para uso directo desde HTML/tests.
- */
-function findMatch(userVector) {
-  return singersDb.map(singer => {
-    let sc = calculateCosineSimilarity(userVector, singer.vector);
-
-    // Boost cultural: solo si el idioma de la UI es catalán y catalaDb está cargada
-    if (lang === "ca" && typeof catalaDb !== "undefined" && catalaDb?.artistes) {
-      const isCatalan = catalaDb.artistes.some(
-        a => a.nom.toLowerCase() === singer.name.toLowerCase()
-      );
-      if (isCatalan) sc *= 1.15;
-    }
-    return { ...singer, score: sc };
-  }).sort((a, b) => b.score - a.score).slice(0, 6);
-}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // 11. RENDERIZAR RESULTADOS
@@ -1342,15 +1434,14 @@ async function renderResults({feat,vt,conf,matches,gender}) {
   // Épocas disponibles en DB (mostramos todas las que existen)
   const ERA_DISPLAY = [
     {val:"pre-1960s",  label:"Clásicos pre-60"},
-    {val:"1950s",      label:"Los 50"},
     {val:"1960s",      label:"Los 60"},
     {val:"1970s",      label:"Los 70"},
-    {val:"1970s-80s",  label:"70s y 80s"},
     {val:"1980s",      label:"Los 80"},
     {val:"1990s",      label:"Los 90"},
-    {val:"2000s+",     label:"Años 2000"},
-    {val:"2010s+",     label:"Años 2010"},
+    {val:"2000s",      label:"Años 2000"},
+    {val:"2010s",      label:"Años 2010"},
     {val:"2020s",      label:"Años 2020"},
+    {val:"2026",       label:"Éxitos 2026"},
   ];
   // Solo mostrar épocas que realmente tienen artistas en la DB
   const eraOptions = ERA_DISPLAY
@@ -1435,8 +1526,10 @@ async function renderResults({feat,vt,conf,matches,gender}) {
           <span style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;
             white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.name}</span>
         </div>
-        <div style="font-size:.72rem;color:#6B7280;margin-bottom:.5rem;text-transform:capitalize">
-          ${vtN}${m.genre_category?" · "+m.genre_category:""}${m.era?" · "+trV("_eras",m.era):""}
+        <div style="font-size:.72rem;color:#6B7280;margin-bottom:.5rem;text-transform:capitalize;display:flex;gap:.35rem;flex-wrap:wrap">
+          <span class="result-meta-tag" style="background:rgba(255,255,255,.07);color:#E5E7EB">${vtN}</span>
+          ${m.genre_category?`<span class="result-meta-tag" style="background:${data.color}22;color:${data.color}">${m.genre_category}</span>`:""}
+          ${m.era?`<span class="result-meta-tag" style="background:rgba(124,77,255,0.15);color:#A5B4FC">${trV("_eras",m.era)}</span>`:""}
         </div>
 
         <!-- Barra similitud -->
@@ -1735,10 +1828,11 @@ function buildKaraokeSection(vtName, vtSlug) {
               {icon:"▶️",name:"YouTube Karaoke",desc:"La mayor biblioteca gratuita",url:"https://www.youtube.com/results?search_query=karaoke+"+encodeURIComponent(vtName),color:"rgba(255,0,0,.15)",border:"rgba(255,0,0,.25)"},
               {icon:"🌟",name:"Singa",desc:"Catálogo actualizado",url:"https://singa.com",color:"rgba(255,159,28,.1)",border:"rgba(255,159,28,.25)"},
               {icon:"🎤",name:"Smule",desc:"Karaoke social con duetos",url:"https://www.smule.com",color:"rgba(124,77,255,.1)",border:"rgba(124,77,255,.25)"},
-              {icon:"📺",name:"Karaoke Práctica",desc:"Entrenamiento vocal en casa",url:"https://youtu.be/5oTfrFin0WQ?si=xQRbOPo71NOfEjo_",color:"rgba(255,0,0,.1)",border:"rgba(255,0,0,.2)"},
-              {icon:"🎤",name:"Karaoke a Girona",desc:"Excelentes pistas locales",url:"https://www.youtube.com/@karaokeagirona1060",color:"rgba(124,77,255,.1)",border:"rgba(124,77,255,.2)"},
-              {icon:"⭐",name:"StarMaker",desc:"Efectos de voz y comunidad",url:"https://www.starmaker.us",color:"rgba(255,215,0,.1)",border:"rgba(255,215,0,.25)"},
-              {icon:"🎵",name:"KaraFun",desc:"+50.000 canciones",url:"https://www.karafun.es",color:"rgba(29,185,84,.1)",border:"rgba(29,185,84,.25)"},
+              {icon:"🏳️",name:"Karaoke en Català",desc:"La millor selecció de música nostra",url:"https://www.youtube.com/watch?v=5oTfrFin0WQ",color:"rgba(206,17,38,.1)",border:"rgba(206,17,38,.2)"},
+              {icon:"🏰",name:"Karaoke Girona",desc:"Pistes professionals de la terra",url:"https://www.youtube.com/watch?v=5AnMKHCCXn4",color:"rgba(252,221,9,.1)",border:"rgba(252,221,9,.2)"},
+              {icon:"🕒",name:"TIME KARAOKE",desc:"Hits Latinos y Pop actual",url:"https://www.youtube.com/watch?v=BvW4efU0HTQ",color:"rgba(255,153,0,.1)",border:"rgba(255,153,0,.2)"},
+              {icon:"🎤",name:"KARAOKE sing",desc:"Las mejores pistas para solistas",url:"https://www.youtube.com/watch?v=sPMA1tqWuf4",color:"rgba(0,209,255,.1)",border:"rgba(0,209,255,.2)"},
+              {icon:"🎵",name:"KaraFun Premium",desc:"+50.000 canciones HQ",url:"https://www.youtube.com/watch?v=BvW4efU0HTQ",color:"rgba(29,185,84,.1)",border:"rgba(29,185,84,.25)"},
               {icon:"📱",name:"Yokee",desc:"Karaoke gratis en móvil",url:"https://yokee.tv",color:"rgba(0,153,255,.1)",border:"rgba(0,153,255,.25)"},
             ].map(p=>`
               <a href="${p.url}" target="_blank" rel="noopener"
@@ -2699,7 +2793,37 @@ async function loadStaticPage(url, title) {
     document.body.innerHTML = doc.body.innerHTML;
     document.title = doc.title || title;
     
-    // Re-ejecutar scripts inline del nuevo HTML
+    function changeLanguage(l) {
+  if (translations[l]) {
+    lang = l;
+    localStorage.setItem("harmiq_lang", l);
+    // Actualizar todos los textos in-place
+    document.querySelectorAll("[data-tr]").forEach(el => {
+      const key = el.getAttribute("data-tr");
+      if (translations[lang][key]) {
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+          el.placeholder = translations[lang][key];
+        } else {
+          el.innerHTML = translations[lang][key];
+        }
+      }
+    });
+    // Forzar recarga de la ruta actual para actualizar componentes dinámicos
+    handleRoute();
+  }
+}
+
+// Al cargar, verificar el idioma guardado
+(function initLang() {
+  const saved = localStorage.getItem("harmiq_lang");
+  if (saved && translations[saved]) {
+    lang = saved;
+    const sw = document.getElementById("lang-switcher");
+    if(sw) sw.value = lang;
+  }
+})();
+
+// Re-ejecutar scripts inline del nuevo HTML
     document.body.querySelectorAll("script:not([src])").forEach(old => {
       const s = document.createElement("script");
       s.textContent = old.textContent;
@@ -2721,11 +2845,15 @@ function loadComunidadPage() {
       <h1 style="font-family:'Outfit',sans-serif; font-size:2.5rem; margin-bottom:1rem">
         💬 Comunidad <span class="grad">Harmiq</span>
       </h1>
-      <p style="color:var(--m); margin-bottom:3rem; font-size:1.1rem">
+      <p style="color:var(--m); margin-bottom:1.5rem; font-size:1.1rem">
         Comparte tus ideas, opiniones o dudas con otros usuarios. ¡Ayúdanos a mejorar Harmiq!
       </p>
       
-      <div id="disqus_thread" style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:15px; border:1px solid rgba(255,255,255,0.05)"></div>
+      <div id="disqus_thread" style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:15px; border:1px solid rgba(255,255,255,0.05); min-height:300px"></div>
+      
+      <div style="margin-top:2rem; padding:1rem; border-top:1px solid rgba(255,255,255,0.05); font-size:0.75rem; color:#6B7280; text-align:left">
+        <strong>Aviso Legal y de Privacidad:</strong> Al participar en esta comunidad, aceptas que tus comentarios, nombre de usuario y perfil sean públicos. Harmiq no se hace responsable de las opiniones vertidas por los usuarios. Respeta las normas de convivencia: no se permite spam, insultos o contenido ilegal. Los datos son gestionados por Disqus según su propia política de privacidad.
+      </div>
     </div>
   `;
   

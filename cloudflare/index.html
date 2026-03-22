@@ -107,6 +107,20 @@
             border-radius:20px;font-weight:800;cursor:pointer;font-family:'Outfit'}
         .cookie-rej{background:rgba(255,255,255,.05);color:var(--m);border:1px solid rgba(255,255,255,.1);
             padding:.5rem 1.2rem;border-radius:20px;font-weight:700;cursor:pointer;font-family:'Outfit'}
+        .lang-select{background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:20px; padding:4px 10px; font-size:0.8rem; font-weight:700; cursor:pointer; font-family:'Outfit',sans-serif; outline:none}
+        .lang-select:hover{background:rgba(255,255,255,0.1)}
+        
+        /* Typography Improvements for Tags */
+        .result-meta-tag {
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            font-size: 0.72rem !important;
+            padding: 4px 10px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+        }
     </style>
 </head>
 <body>
@@ -117,7 +131,15 @@
         <img src="/harmiq-logo.png" id="nav-logo-img" alt="Harmiq IA Logo" style="height:38px; border-radius:10px; box-shadow: 0 0 15px rgba(124,77,255,0.4); transition: filter 0.5s">
         <span class="grad" id="nav-logo-text">Harmiq</span>
     </a>
-    <ul class="nav-links">
+    
+    <div style="display:flex; align-items:center; gap:0.8rem">
+        <select class="lang-select" id="lang-switcher" onchange="changeLanguage(this.value)">
+            <option value="es">🇪🇸 ES</option>
+            <option value="en">🇺🇸 EN</option>
+            <option value="ca">🏴 CA</option>
+            <option value="ru">🇷🇺 RU</option>
+        </select>
+        <ul class="nav-links">
         <li><a href="/">Inicio</a></li>
         <li><a href="/exitos-decada">Éxitos</a></li>
         <li><a href="/home-studio">Home Studio</a></li>
