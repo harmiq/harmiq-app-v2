@@ -96,7 +96,10 @@
 
 <!-- ── NAVEGACIÓN ── -->
 <nav>
-    <a href="/" class="logo">Harmiq</a>
+    <a href="/" class="logo" style="gap:0.8rem">
+        <img src="/harmiq-logo.png" id="nav-logo-img" alt="Harmiq IA Logo" style="height:38px; border-radius:10px; box-shadow: 0 0 15px rgba(124,77,255,0.4); transition: filter 0.5s">
+        <span class="grad" id="nav-logo-text">Harmiq</span>
+    </a>
     <ul class="nav-links">
         <li><a href="/">Inicio</a></li>
         <li><a href="/exitos-decada">Éxitos</a></li>
@@ -104,14 +107,14 @@
         <li><a href="/tipos-de-voz">Tipos de Voz</a></li>
         <li><a href="/ejercicios-de-canto">Ejercicios</a></li>
         <li><a href="/karaoke-eventos" class="nav-karaoke">🎤 Karaoke</a></li>
-        <li><a href="/modul-catala" class="nav-catala">🏴 Català</a></li>
+        <li><a href="/modul-catala" class="nav-catala" id="nav-catala-btn">🏴 Català</a></li>
     </ul>
 </nav>
 
 <!-- ── HERO ── -->
 <main class="hero">
-    <h1>¿A qué cantante famoso se parece tu voz?</h1>
-    <p>Nuestra IA analiza tu timbre y rango vocal y te compara con más de 12.000 artistas de todo el mundo.</p>
+    <h1>Descubre tu <span class="grad">ADN Vocal</span> en Segundos</h1>
+    <p style="font-size:1.15rem; color:#D1D5DB; margin-bottom:1.5rem; max-width:700px">La primera IA que descifra tu huella acústica. Canta 10 segundos, extraemos tus armónicos y frecuencias base, y te conectamos matemáticamente con tu alma gemela entre más de 12.000 artistas globales.</p>
 
     <!--
         ✅ CORRECTO: app.js inyecta aquí la UI de grabación/análisis completa.
@@ -190,29 +193,7 @@
     ☕ Invítanos a un café
 </a>
 
-<!-- Cookie Consent Bar -->
-<div id="cookie-bar">
-    <p>🍪 Usamos cookies técnicas esenciales y de analítica anonimizada para mejorar tu experiencia. No vendemos tus datos. Lee nuestra <a href="/politica-privacidad">Política de Privacidad & Cookies</a>.</p>
-    <div class="cookie-btns">
-        <button class="cookie-ok" onclick="acceptCookies()">Aceptar todo</button>
-        <button class="cookie-rej" onclick="rejectCookies()">Solo esenciales</button>
-    </div>
-</div>
-<script>
-    (function(){
-        if(!localStorage.getItem('harmiq_cookie_consent')){
-            setTimeout(function(){ var b=document.getElementById('cookie-bar'); if(b) b.classList.add('show'); }, 1800);
-        }
-    })();
-    function acceptCookies(){
-        localStorage.setItem('harmiq_cookie_consent','all');
-        document.getElementById('cookie-bar').classList.remove('show');
-    }
-    function rejectCookies(){
-        localStorage.setItem('harmiq_cookie_consent','essential');
-        document.getElementById('cookie-bar').classList.remove('show');
-    }
-</script>
+<!-- Cookie Consent Bar: Removed! Now handled globally and dynamically by app.js so it doesn't conflict across pages -->
 
 <!-- ── SCRIPTS ── -->
 <!-- config.js primero (define CONFIG con HF_BASE, THEME, etc.) -->
