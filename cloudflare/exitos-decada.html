@@ -162,8 +162,9 @@ async function loadData(target, isSearch = false) {
     } catch (e) {
         container.innerHTML = `
             <div style="text-align:center; padding:3rem; color:var(--m)">
-                <p>El servidor está despertando (Hugging Face)...</p>
-                <button onclick="location.reload()" style="margin-top:1rem; background:var(--p); color:#fff; border:none; padding:10px 20px; border-radius:10px; cursor:pointer">Reintentar Conexión</button>
+                <p style="font-size:1.2rem; margin-bottom:.5rem">⚠️ ${e.message === "Vacío" ? "No se encontraron resultados" : "Error de Conexión"}</p>
+                <p style="font-size:.8rem; color:#9CA3AF">${e.message !== "Vacío" ? e.message : "El servidor respondió con una lista vacía. Revisa las credenciales de Spotify."}</p>
+                <button onclick="location.reload()" style="margin-top:1.5rem; background:var(--p); color:#fff; border:none; padding:12px 24px; border-radius:12px; cursor:pointer; font-weight:700">Reintentar</button>
             </div>`;
     }
 }
