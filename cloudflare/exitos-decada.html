@@ -131,8 +131,8 @@ async function loadData(target, isSearch = false) {
         console.log("Backend Health:", healthCheck);
 
         const url = isSearch 
-            ? `${BACKEND_URL}/search-tracks?q=${encodeURIComponent(target)}`
-            : `${BACKEND_URL}/decade-tracks?decade=${target}`;
+            ? `${BACKEND_URL}/search-tracks?q=${encodeURIComponent(target)}&_cb=${Date.now()}`
+            : `${BACKEND_URL}/decade-tracks?decade=${target}&_cb=${Date.now()}`;
         
         const response = await fetch(url);
         const data = await response.json();
