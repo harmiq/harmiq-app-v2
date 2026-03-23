@@ -3470,10 +3470,10 @@ function injectNewsBanner() {
   if (document.getElementById("_news_banner")) return;
   const b = document.createElement("a");
   b.id = "_news_banner";
-  b.href = "/comunidad";
+  b.href = "/exitos-decada";
   b.style.cssText = `
     display: block;
-    background: linear-gradient(90deg, #7C4DFF, #FF4FA3, #7C4DFF);
+    background: linear-gradient(90deg, #06D6A0, #7C4DFF, #06D6A0);
     background-size: 200% auto;
     color: #fff;
     text-align: center;
@@ -3484,9 +3484,9 @@ function injectNewsBanner() {
     animation: news-glow 3s linear infinite;
     position: relative;
     z-index: 10000;
-    box-shadow: 0 4px 15px rgba(124,77,255,0.4);
+    box-shadow: 0 4px 15px rgba(6,214,160,0.4);
   `;
-  b.innerHTML = `🆕 <span style="text-transform:uppercase; letter-spacing:1px">¡Evento Nuevo!</span> Concurso de Karaoke en Madrid — Ver detalles y participar →`;
+  b.innerHTML = `🔥 <span style="text-transform:uppercase; letter-spacing:1px">¡Harmiq v7.2 Live!</span> Ahora con +50 canciones por década — ¡Descubre más éxitos! →`;
   
   const style = document.createElement("style");
   style.textContent = `
