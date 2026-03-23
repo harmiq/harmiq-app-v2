@@ -1299,11 +1299,23 @@ function findMatch(userVector) {
 // 8. MATCHING — Similitud del coseno sobre 27 dimensiones (librosa)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-// Tabla de penalización por distancia entre tipos vocales
-// (preserva la calidad de resultados cuando los vectores son muy similares
-//  entre tipos adyacentes: ej. barítono que bordea tenor)
+// ═══════════════════════════════════════════════════════════════════════════════
+// SCALER GLOBAL (Calculado de harmiq_db_vectores.json para normalización idéntica)
+const DB_MINS = [0.037, 0.5727, 0.0, 0.2422, 0.147, 0.154, 0.3074, 0.0885, 0.4908, 0.14, 0.1327, 0.2086, 0.3273, 0.2397, 0.2522, 0.283, 0.3838, 0.3836, 0.3372, 0.2678, 0.2662, 0.2893, 0.2904, 0.2906, 0.2972, 0.2886, 0.2819];
+const DB_MAXS = [0.6917, 0.6842, 0.7087, 0.5683, 0.3856, 0.2587, 0.8015, 0.4243, 0.7422, 0.6518, 0.6056, 0.5834, 0.5447, 0.6183, 0.6548, 0.4061, 0.6414, 0.5071, 0.5324, 0.5219, 0.5078, 0.5038, 0.5151, 0.5215, 0.5144, 0.532, 0.5268];
+
+function normalizeVector(raw) {
+  if (!raw || raw.length < 27) return raw;
+  return raw.map((v, i) => {
+    const min = DB_MINS[i] || 0;
+    const max = DB_MAXS[i] || 1;
+    if (v > 1) return (v - min) / (max - min || 1);
+    return v;
+  });
+}
+
 const VTS = {bass:1,"bass-baritone":2,baritone:3,tenor:4,countertenor:5,contralto:3,"mezzo-soprano":4,soprano:6};
-const VTP = [1,.92,.82,.74,.68,.62];
+const VTP = [1,.98,.94,.88,.82,.76];
 
 /**
  * calculateCosineSimilarity(vecA, vecB)
@@ -1332,10 +1344,11 @@ function calculateCosineSimilarity(vecA, vecB) {
  * Devuelve un valor 0–100 listo para mostrar como porcentaje.
  */
 function score(uVec, sVec, uvt, svt) {
-  const cos = calculateCosineSimilarity(uVec, sVec);
+  const normVec = normalizeVector(uVec);
+  const cos = calculateCosineSimilarity(normVec, sVec);
   const u   = VTS[uvt] || 0;
   const s2  = VTS[svt] || 0;
-  const vtPenalty = (u && s2) ? (VTP[Math.abs(u - s2)] ?? 0.60) : 1.0;
+  const vtPenalty = (u && s2) ? (VTP[Math.abs(u - s2)] ?? 0.80) : 1.0;
   return Math.max(0, Math.min(100, cos * vtPenalty * 100));
 }
 
@@ -1401,36 +1414,27 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
  * v2.1 — Harmiq Core
  */
 function classifyVT(pitchMean, pitchRange, gender) {
-  let vt = "baritone";
-  let conf = 70;
-
-  // Normalización de género (si viene de la UI)
+  let pm = pitchMean;
   const g = String(gender).toLowerCase();
+  const isMale = (g === "male" || g === "masculina");
+  if (isMale && pm > 190) pm = pm / 2; // Corrección de octava hombre (pm 240 -> 120)
+
+  let vt = "baritone";
+  let conf = 75;
 
   if (g === "female" || g === "femenina") {
-    // Rangos Femeninos (Aprox)
-    if (pitchMean < 205) { vt = "contralto"; conf = 78; }
-    else if (pitchMean < 260) { vt = "mezzo-soprano"; conf = 88; }
-    else { vt = "soprano"; conf = 82; }
+    if (pm < 205)      { vt = "contralto"; conf = 85; }
+    else if (pm < 265) { vt = "mezzo-soprano"; conf = 90; }
+    else               { vt = "soprano"; conf = 88; }
   } 
-  else if (g === "male" || g === "masculina") {
-    // Rangos Masculinos (Aprox)
-    if (pitchMean < 120) { vt = "bass"; conf = 80; }
-    else if (pitchMean < 160) { vt = "baritone"; conf = 92; }
-    else if (pitchMean < 230) { vt = "tenor"; conf = 86; }
-    else { vt = "countertenor"; conf = 75; }
-  }
   else {
-    // Detección Automática (unisex)
-    if (pitchMean < 135) { vt = "baritone"; conf = 65; }
-    else if (pitchMean < 195) { vt = "tenor"; conf = 60; }
-    else if (pitchMean < 255) { vt = "mezzo-soprano"; conf = 60; }
-    else { vt = "soprano"; conf = 55; }
+    if (pm < 118)      { vt = "bass"; conf = 82; }
+    else if (pm < 155) { vt = "baritone"; conf = 95; }
+    else if (pm < 215) { vt = "tenor"; conf = 88; }
+    else               { vt = "countertenor"; conf = 80; }
   }
 
-  // Pequeño ajuste por rango (si es muy amplio, baja la confianza)
-  if (pitchRange > 150) conf -= 5;
-  
+  if (pitchRange > 180) conf -= 10;
   return { vt, conf: Math.max(10, Math.min(100, Math.round(conf))) };
 }
 
