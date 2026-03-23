@@ -240,12 +240,12 @@ function renderKaraokeVideos() {
     if(!grid) return;
     
     const videos = [
-        {id:"_mDszGypvX4", name:"Karaokemedia", desc:"Pistas profesionales con calidad de estudio.", color:"#FF0000"},
+        {id:"G7KNmW9a75Y", name:"Sing King: Flowers", desc:"Miley Cyrus - El mayor éxito del 2023.", color:"#FF0000"},
         {id:"5oTfrFin0WQ", name:"Karaoke en Català", desc:"La millor selecció de música nostra.", color:"#CE1126"},
-        {id:"5AnMKHCCXn4", name:"Karaoke Girona", desc:"Pistes professionals des de Girona.", color:"#FCDD09", textColor:"#000"},
-        {id:"BvW4efU0HTQ", name:"KaraFun Hits", desc:"Instrumentals de màxima qualitat.", color:"#FF0000"},
-        {id:"sPMA1tqWuf4", name:"KARAOKE sing", desc:"Las mejores pistas vocales.", color:"#00D1FF"},
-        {id:"aAqlY_ds514", list:"PLOwMvBWGjS52zQ_6rSH0sGupma2-Txj0f", name:"Éxitos de Oro", desc:"Lista épica para fiestas.", color:"var(--gold)", textColor:"#000"}
+        {id:"v3I_S-D746k", name:"Sing King: Shallow", desc:"Lady Gaga - Ideal para duetos potentes.", color:"#FFD700", textColor:"#000"},
+        {id:"A_vD_R40qR0", name:"Sing King: Perfect", desc:"Ed Sheeran - Practica tu afinación.", color:"#FF0000"},
+        {id:"m78lJuzftLo", name:"Sing King: Someone You Loved", desc:"Lewis Capaldi - Control emocional y aire.", color:"#00D1FF"},
+        {id:"yOAgv7vU-6Q", list:"PLOwMvBWGjS52zQ_6rSH0sGupma2-Txj0f", name:"Éxitos de Oro", desc:"Lista épica de grandes éxitos.", color:"var(--gold)", textColor:"#000"}
     ];
 
     grid.innerHTML = videos.map(v => `
@@ -281,11 +281,6 @@ function renderEventsNews() {
                 🔔 <span class="grad">Últimas Noticias y Eventos</span>
             </h2>
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.2rem">
-                <div style="background:var(--card); padding:1.2rem; border-radius:18px; border:1px solid rgba(124,77,255,0.2)">
-                    <div style="color:var(--p); font-size:0.75rem; font-weight:800; margin-bottom:0.5rem">🎤 CONCURSO</div>
-                    <div style="font-weight:800; margin-bottom:0.3rem">Gran Final Harmiq 2026</div>
-                    <p style="font-size:0.8rem; color:var(--m)">Próximo 15 de Abril. ¡Últimas plazas!</p>
-                </div>
                 <div style="background:var(--card); padding:1.2rem; border-radius:18px; border:1px solid rgba(6,214,160,0.2)">
                     <div style="color:var(--ok); font-size:0.75rem; font-weight:800; margin-bottom:0.5rem">📍 NUEVO LOCAL</div>
                     <div style="font-weight:800; margin-bottom:0.3rem">Karaoke "La Voz" - Valencia</div>

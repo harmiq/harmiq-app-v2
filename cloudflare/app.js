@@ -2797,12 +2797,12 @@ function renderVozPage(slug) {
     <!-- Videos de vocal coaching seleccionados -->
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-bottom:1rem">
       ${[
-        {id:"BjpEZ2f1j6E", title:"Cómo cantar mejor en 5 minutos", channel:"Brett Manning"},
-        {id:"A8vZuFNLqyo", title:"Cómo cantar notas altas", channel:"Ken Tamplin"},
-        {id:"QXSY_FiLBYk", title:"Calentamiento vocal completo", channel:"Cheryl Porter"},
-        {id:"bqCPDEm2K8s", title:"Clase de canto para principiantes", channel:"Justin Stoney"},
-        {id:"hzNEHAJRevk", title:"Mix voice y técnica vocal", channel:"Eric Arceneaux"},
-        {id:"PgJYSJVfO04", title:"5 mejores ejercicios vocales", channel:"Felicia Ricci"},
+        {id:"U0g-8-tBwQY", title:"Top 7 ejercicios para revolucionar tu voz", channel:"Justin Stoney"},
+        {id:"A8XmK95L9kU", title:"Rutina diaria de 10 minutos (Todos los niveles)", channel:"Cheryl Porter"},
+        {id:"P52n6k4z6-Q", title:"Cómo cantar notas altas sin esfuerzo", channel:"Ken Tamplin"},
+        {id:"mEn9fH-l_Dk", title:"Fortalecimiento vocal diario", channel:"Eric Arceneaux"},
+        {id:"3p7D-hP06F8", title:"Técnica vocal saludable", channel:"Victoria Rapanan"},
+        {id:"M2C_5_e6XmI", title:"Cómo cantar mejor instantáneamente", channel:"Chris Liepe"},
       ].map(v=>`
         <div style="border-radius:14px;overflow:hidden;background:#000;
           box-shadow:0 4px 16px rgba(0,0,0,.4);cursor:pointer"
