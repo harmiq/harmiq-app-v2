@@ -748,23 +748,23 @@ function injectUI() {
   const genderBtns = document.createElement("div");
   genderBtns.style.cssText = "display:flex;gap:.6rem;margin-bottom:1.2rem;";
   genderBtns.innerHTML = `
-    <button onclick="_setGender('male',this)" style="flex:1;padding:.65rem;border-radius:12px;
-      border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#9CA3AF;
-      font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s"
+    <button onclick="_setGender('male',this)" style="flex:1;padding:.8rem;border-radius:12px;
+      border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#E5E7EB;
+      font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all .2s"
       id="_gbtn_male">
-      🎭 Hombre
+      ♂️ Masculina
     </button>
-    <button onclick="_setGender('female',this)" style="flex:1;padding:.65rem;border-radius:12px;
-      border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#9CA3AF;
-      font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s"
+    <button onclick="_setGender('female',this)" style="flex:1;padding:.8rem;border-radius:12px;
+      border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#E5E7EB;
+      font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all .2s"
       id="_gbtn_female">
-      ✨ Mujer
+      ♀️ Femenina
     </button>
-    <button onclick="_setGender('auto',this)" style="flex:1;padding:.65rem;border-radius:12px;
-      border:2px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#9CA3AF;
-      font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s"
+    <button onclick="_setGender('auto',this)" style="flex:1;padding:.8rem;border-radius:12px;
+      border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#E5E7EB;
+      font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all .2s"
       id="_gbtn_auto">
-      🎤 Auto
+      ✨ Auto
     </button>`;
 
   // ── Insertar en el DOM ─────────────────────────────────────────────────
@@ -808,9 +808,9 @@ function _setGender(val, btn) {
     const b = document.getElementById(`_gbtn_${v}`);
     if (!b) return;
     const active = v === val;
-    b.style.borderColor   = active ? "#7C4DFF" : "rgba(255,255,255,.12)";
-    b.style.background    = active ? "rgba(124,77,255,.2)" : "rgba(255,255,255,.04)";
-    b.style.color         = active ? "#A5B4FC" : "#9CA3AF";
+    b.style.borderColor   = active ? "var(--p)" : "rgba(255,255,255,.1)";
+    b.style.background    = active ? "rgba(124,77,255,.15)" : "rgba(255,255,255,.05)";
+    b.style.color         = active ? "#fff" : "#E5E7EB";
   });
 }
 
@@ -3522,27 +3522,3 @@ function injectNewsBanner() {
   document.head.appendChild(style);
   document.body.insertAdjacentElement("afterbegin", b);
 }
-// ── Lógica de los botones de género ──────────────────────────────────────
-document.addEventListener("click", e => {
-  const btn = e.target.closest(".gender-btn");
-  if (!btn) return;
-  const selector = document.getElementById("gender-selector");
-  if (!selector) return;
-
-  // Toggle active class
-  selector.querySelectorAll(".gender-btn").forEach(b => {
-    b.classList.remove("active");
-    b.style.background = "rgba(255,255,255,0.05)";
-    b.style.color = "#E5E7EB";
-    b.style.border = "1px solid rgba(255,255,255,0.1)";
-  });
-  
-  btn.classList.add("active");
-  btn.style.background = "rgba(124,77,255,0.15)";
-  btn.style.color = "#fff";
-  btn.style.border = "1px solid var(--p)";
-  
-  // Update hidden input
-  const input = document.getElementById("user-gender");
-  if (input) input.value = btn.dataset.gender;
-});

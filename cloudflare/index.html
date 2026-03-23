@@ -162,12 +162,12 @@
     -->
     <div id="app" class="app-box" style="padding: 2.5rem 10%; text-align: center;">
         <div style="margin-bottom: 1.5rem;">
-            <div id="gender-selector" style="display: flex; gap: 0.5rem; justify-content: center;">
-                <button type="button" data-gender="male" class="gender-btn active" style="flex: 1; padding: 0.8rem; border-radius: 12px; background: rgba(124,77,255,0.15); color: #fff; border: 1px solid var(--p); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">♂️ Masculina</button>
-                <button type="button" data-gender="female" class="gender-btn" style="flex: 1; padding: 0.8rem; border-radius: 12px; background: rgba(255,255,255,0.05); color: #E5E7EB; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">♀️ Femenina</button>
-                <button type="button" data-gender="auto" class="gender-btn" style="flex: 1; padding: 0.8rem; border-radius: 12px; background: rgba(255,255,255,0.05); color: #E5E7EB; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">✨ Auto</button>
-            </div>
-            <input type="hidden" id="user-gender" value="male">
+            <select id="user-gender" style="padding: 0.8rem; border-radius: 12px; background: rgba(255,255,255,0.05); color: #E5E7EB; border: 1px solid rgba(255,255,255,0.1); width: 100%; font-size: 1rem; outline: none;">
+                <option value="" disabled selected>Selecciona tu tipo de voz</option>
+                <option value="male">Masculina</option>
+                <option value="female">Femenina</option>
+                <option value="auto">Automático</option>
+            </select>
         </div>
         <div style="margin-bottom: 0.5rem; display: flex; justify-content: center; align-items: center;">
             <button id="record-btn" style="padding: 1.2rem 2.5rem; border-radius: 50px; background: linear-gradient(135deg, #7C4DFF, #FF4FA3); color: white; border: none; font-size: 1.2rem; cursor: pointer; font-weight: 800; box-shadow: 0 10px 25px rgba(124,77,255,0.4); transition: transform 0.2s; min-width: 250px;">
