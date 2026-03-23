@@ -1444,15 +1444,29 @@ async function analyzeAudio() {
   if (!singersDb.length){ showStatus(tr("_err_db"),"err"); return; }
   showStatus(tr("_analyzing"));
   try {
+    // 🔔 PING: Despierta el Space de HF si está dormido
+    try { await fetch(`${HF_API_URL}/health`, { method: 'GET', signal: AbortSignal.timeout(5000) }); } catch(_) {}
+
     // 🚀 ENVÍO AL BACKEND (Vía FormData para recibir vector 27D)
     const formData = new FormData();
     formData.append('audio', audioBlob, 'record.wav');
-    
-    const resp = await fetch(`${HF_API_URL}/analyze`, {
-      method: 'POST',
-      body: formData
-    });
-    
+
+    showStatus("⏳ Analizando tu voz con IA... (puede tardar hasta 30 seg la primera vez)");
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 90000); // 90s timeout
+
+    let resp;
+    try {
+      resp = await fetch(`${HF_API_URL}/analyze`, {
+        method: 'POST',
+        body: formData,
+        signal: controller.signal
+      });
+    } finally {
+      clearTimeout(timeout);
+    }
+
     if (!resp.ok) {
       if (resp.status === 503 || resp.status === 504) {
         throw new Error("El servidor de IA se está iniciando. Por favor, espera 30 segundos y vuelve a intentarlo.");
