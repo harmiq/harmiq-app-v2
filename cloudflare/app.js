@@ -441,8 +441,15 @@ function changeLang(l) {
   const tipEl = document.getElementById("_rec_tips_el");
   if (tipEl) tipEl.textContent = tr("_rec_tips");
 
-  // Actualizar filtro de épocas
+  // Actualizar filtro de épocas (solo si ya se han mostrado resultados)
   rebuildEraFilter();
+}
+
+function rebuildEraFilter() {
+  const eraF = document.getElementById("_era_filter");
+  if (!eraF) return; // el filtro solo existe después de analizar — no hacer nada
+  const allOpt = eraF.querySelector('option[value=""]');
+  if (allOpt) allOpt.textContent = tr("_all_eras");
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
