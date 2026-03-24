@@ -174,6 +174,126 @@ function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
+// Datos de referencia por década (se muestran si el backend no responde)
+const DECADE_FALLBACK = {
+    viernes: [
+        {title:"Bzrp Music Sessions Vol.53",artist:"Bizarrap, Shakira",spotify_url:"https://open.spotify.com/search/Shakira%20Bizarrap",year:2023},
+        {title:"Flowers",artist:"Miley Cyrus",spotify_url:"https://open.spotify.com/search/Flowers%20Miley%20Cyrus",year:2023},
+        {title:"As It Was",artist:"Harry Styles",spotify_url:"https://open.spotify.com/search/As%20It%20Was%20Harry%20Styles",year:2022},
+        {title:"Anti-Hero",artist:"Taylor Swift",spotify_url:"https://open.spotify.com/search/Anti%20Hero%20Taylor%20Swift",year:2022},
+        {title:"Quevedo: Bzrp Vol.52",artist:"Bizarrap",spotify_url:"https://open.spotify.com/search/Quevedo%20Bizarrap",year:2022},
+        {title:"Stay",artist:"The Kid LAROI, Justin Bieber",spotify_url:"https://open.spotify.com/search/Stay%20Kid%20Laroi",year:2021},
+        {title:"Blinding Lights",artist:"The Weeknd",spotify_url:"https://open.spotify.com/search/Blinding%20Lights%20The%20Weeknd",year:2020},
+        {title:"Shape of You",artist:"Ed Sheeran",spotify_url:"https://open.spotify.com/search/Shape%20of%20You%20Ed%20Sheeran",year:2017},
+        {title:"Bad Guy",artist:"Billie Eilish",spotify_url:"https://open.spotify.com/search/Bad%20Guy%20Billie%20Eilish",year:2019},
+        {title:"Levitating",artist:"Dua Lipa",spotify_url:"https://open.spotify.com/search/Levitating%20Dua%20Lipa",year:2020}
+    ],
+    "2020s": [
+        {title:"Blinding Lights",artist:"The Weeknd",spotify_url:"https://open.spotify.com/search/Blinding%20Lights%20Weeknd",year:2020},
+        {title:"Flowers",artist:"Miley Cyrus",spotify_url:"https://open.spotify.com/search/Flowers%20Miley%20Cyrus",year:2023},
+        {title:"Anti-Hero",artist:"Taylor Swift",spotify_url:"https://open.spotify.com/search/Anti%20Hero%20Taylor%20Swift",year:2022},
+        {title:"As It Was",artist:"Harry Styles",spotify_url:"https://open.spotify.com/search/As%20It%20Was%20Harry%20Styles",year:2022},
+        {title:"Levitating",artist:"Dua Lipa",spotify_url:"https://open.spotify.com/search/Levitating%20Dua%20Lipa",year:2020},
+        {title:"Stay",artist:"The Kid LAROI",spotify_url:"https://open.spotify.com/search/Stay%20Kid%20Laroi",year:2021},
+        {title:"Montero",artist:"Lil Nas X",spotify_url:"https://open.spotify.com/search/Montero%20Lil%20Nas%20X",year:2021},
+        {title:"Peaches",artist:"Justin Bieber",spotify_url:"https://open.spotify.com/search/Peaches%20Justin%20Bieber",year:2021},
+        {title:"Heat Waves",artist:"Glass Animals",spotify_url:"https://open.spotify.com/search/Heat%20Waves%20Glass%20Animals",year:2020},
+        {title:"Save Your Tears",artist:"The Weeknd",spotify_url:"https://open.spotify.com/search/Save%20Your%20Tears%20Weeknd",year:2020}
+    ],
+    "2010s": [
+        {title:"Shape of You",artist:"Ed Sheeran",spotify_url:"https://open.spotify.com/search/Shape%20of%20You%20Ed%20Sheeran",year:2017},
+        {title:"Uptown Funk",artist:"Mark Ronson ft. Bruno Mars",spotify_url:"https://open.spotify.com/search/Uptown%20Funk%20Bruno%20Mars",year:2014},
+        {title:"Happy",artist:"Pharrell Williams",spotify_url:"https://open.spotify.com/search/Happy%20Pharrell%20Williams",year:2013},
+        {title:"Rolling in the Deep",artist:"Adele",spotify_url:"https://open.spotify.com/search/Rolling%20in%20the%20Deep%20Adele",year:2010},
+        {title:"Thinking Out Loud",artist:"Ed Sheeran",spotify_url:"https://open.spotify.com/search/Thinking%20Out%20Loud%20Ed%20Sheeran",year:2014},
+        {title:"Stay With Me",artist:"Sam Smith",spotify_url:"https://open.spotify.com/search/Stay%20With%20Me%20Sam%20Smith",year:2014},
+        {title:"Royals",artist:"Lorde",spotify_url:"https://open.spotify.com/search/Royals%20Lorde",year:2013},
+        {title:"Titanium",artist:"David Guetta ft. Sia",spotify_url:"https://open.spotify.com/search/Titanium%20David%20Guetta%20Sia",year:2011},
+        {title:"Somebody That I Used to Know",artist:"Gotye",spotify_url:"https://open.spotify.com/search/Somebody%20That%20I%20Used%20to%20Know%20Gotye",year:2011},
+        {title:"Someone Like You",artist:"Adele",spotify_url:"https://open.spotify.com/search/Someone%20Like%20You%20Adele",year:2011}
+    ],
+    "2000s": [
+        {title:"Hips Don't Lie",artist:"Shakira",spotify_url:"https://open.spotify.com/search/Hips%20Don%27t%20Lie%20Shakira",year:2006},
+        {title:"Crazy in Love",artist:"Beyoncé",spotify_url:"https://open.spotify.com/search/Crazy%20in%20Love%20Beyonce",year:2003},
+        {title:"Yeah!",artist:"Usher",spotify_url:"https://open.spotify.com/search/Yeah%20Usher",year:2004},
+        {title:"Beautiful Day",artist:"U2",spotify_url:"https://open.spotify.com/search/Beautiful%20Day%20U2",year:2000},
+        {title:"Poker Face",artist:"Lady Gaga",spotify_url:"https://open.spotify.com/search/Poker%20Face%20Lady%20Gaga",year:2008},
+        {title:"In Da Club",artist:"50 Cent",spotify_url:"https://open.spotify.com/search/In%20Da%20Club%2050%20Cent",year:2003},
+        {title:"Since U Been Gone",artist:"Kelly Clarkson",spotify_url:"https://open.spotify.com/search/Since%20U%20Been%20Gone%20Kelly%20Clarkson",year:2004},
+        {title:"Irreplaceable",artist:"Beyoncé",spotify_url:"https://open.spotify.com/search/Irreplaceable%20Beyonce",year:2006},
+        {title:"Toxic",artist:"Britney Spears",spotify_url:"https://open.spotify.com/search/Toxic%20Britney%20Spears",year:2004},
+        {title:"SexyBack",artist:"Justin Timberlake",spotify_url:"https://open.spotify.com/search/SexyBack%20Justin%20Timberlake",year:2006}
+    ],
+    "90s": [
+        {title:"...Baby One More Time",artist:"Britney Spears",spotify_url:"https://open.spotify.com/search/Baby%20One%20More%20Time%20Britney%20Spears",year:1998},
+        {title:"Macarena",artist:"Los Del Rio",spotify_url:"https://open.spotify.com/search/Macarena%20Los%20Del%20Rio",year:1995},
+        {title:"I Will Always Love You",artist:"Whitney Houston",spotify_url:"https://open.spotify.com/search/I%20Will%20Always%20Love%20You%20Whitney%20Houston",year:1992},
+        {title:"Livin' On a Prayer",artist:"Bon Jovi",spotify_url:"https://open.spotify.com/search/Livin%20On%20a%20Prayer%20Bon%20Jovi",year:1986},
+        {title:"Wonderwall",artist:"Oasis",spotify_url:"https://open.spotify.com/search/Wonderwall%20Oasis",year:1995},
+        {title:"Waterfalls",artist:"TLC",spotify_url:"https://open.spotify.com/search/Waterfalls%20TLC",year:1994},
+        {title:"No Scrubs",artist:"TLC",spotify_url:"https://open.spotify.com/search/No%20Scrubs%20TLC",year:1999},
+        {title:"Smells Like Teen Spirit",artist:"Nirvana",spotify_url:"https://open.spotify.com/search/Smells%20Like%20Teen%20Spirit%20Nirvana",year:1991},
+        {title:"Un-Break My Heart",artist:"Toni Braxton",spotify_url:"https://open.spotify.com/search/Un-Break%20My%20Heart%20Toni%20Braxton",year:1996},
+        {title:"I Want It That Way",artist:"Backstreet Boys",spotify_url:"https://open.spotify.com/search/I%20Want%20It%20That%20Way%20Backstreet%20Boys",year:1999}
+    ],
+    "80s": [
+        {title:"Take On Me",artist:"a-ha",spotify_url:"https://open.spotify.com/search/Take%20On%20Me%20a-ha",year:1985},
+        {title:"Sweet Child O' Mine",artist:"Guns N' Roses",spotify_url:"https://open.spotify.com/search/Sweet%20Child%20O%20Mine%20Guns%20N%20Roses",year:1987},
+        {title:"Like a Prayer",artist:"Madonna",spotify_url:"https://open.spotify.com/search/Like%20a%20Prayer%20Madonna",year:1989},
+        {title:"Don't Stop Believin'",artist:"Journey",spotify_url:"https://open.spotify.com/search/Don%27t%20Stop%20Believin%20Journey",year:1981},
+        {title:"Every Breath You Take",artist:"The Police",spotify_url:"https://open.spotify.com/search/Every%20Breath%20You%20Take%20The%20Police",year:1983},
+        {title:"Billie Jean",artist:"Michael Jackson",spotify_url:"https://open.spotify.com/search/Billie%20Jean%20Michael%20Jackson",year:1982},
+        {title:"Total Eclipse of the Heart",artist:"Bonnie Tyler",spotify_url:"https://open.spotify.com/search/Total%20Eclipse%20of%20the%20Heart%20Bonnie%20Tyler",year:1983},
+        {title:"Livin' On a Prayer",artist:"Bon Jovi",spotify_url:"https://open.spotify.com/search/Livin%20On%20a%20Prayer%20Bon%20Jovi",year:1986},
+        {title:"Girls Just Want to Have Fun",artist:"Cyndi Lauper",spotify_url:"https://open.spotify.com/search/Girls%20Just%20Want%20to%20Have%20Fun%20Cyndi%20Lauper",year:1983},
+        {title:"Africa",artist:"Toto",spotify_url:"https://open.spotify.com/search/Africa%20Toto",year:1982}
+    ],
+    "70s": [
+        {title:"Bohemian Rhapsody",artist:"Queen",spotify_url:"https://open.spotify.com/search/Bohemian%20Rhapsody%20Queen",year:1975},
+        {title:"Hotel California",artist:"Eagles",spotify_url:"https://open.spotify.com/search/Hotel%20California%20Eagles",year:1977},
+        {title:"Stayin' Alive",artist:"Bee Gees",spotify_url:"https://open.spotify.com/search/Stayin%20Alive%20Bee%20Gees",year:1977},
+        {title:"Imagine",artist:"John Lennon",spotify_url:"https://open.spotify.com/search/Imagine%20John%20Lennon",year:1971},
+        {title:"Don't Stop Me Now",artist:"Queen",spotify_url:"https://open.spotify.com/search/Don%27t%20Stop%20Me%20Now%20Queen",year:1978},
+        {title:"Dancing Queen",artist:"ABBA",spotify_url:"https://open.spotify.com/search/Dancing%20Queen%20ABBA",year:1976},
+        {title:"Waterloo",artist:"ABBA",spotify_url:"https://open.spotify.com/search/Waterloo%20ABBA",year:1974},
+        {title:"Sultans of Swing",artist:"Dire Straits",spotify_url:"https://open.spotify.com/search/Sultans%20of%20Swing%20Dire%20Straits",year:1978},
+        {title:"More Than a Feeling",artist:"Boston",spotify_url:"https://open.spotify.com/search/More%20Than%20a%20Feeling%20Boston",year:1976},
+        {title:"Don't You Want Me",artist:"Human League",spotify_url:"https://open.spotify.com/search/Don%27t%20You%20Want%20Me%20Human%20League",year:1981}
+    ],
+    "60s": [
+        {title:"Hey Jude",artist:"The Beatles",spotify_url:"https://open.spotify.com/search/Hey%20Jude%20Beatles",year:1968},
+        {title:"Let It Be",artist:"The Beatles",spotify_url:"https://open.spotify.com/search/Let%20It%20Be%20Beatles",year:1970},
+        {title:"Respect",artist:"Aretha Franklin",spotify_url:"https://open.spotify.com/search/Respect%20Aretha%20Franklin",year:1967},
+        {title:"Gimme Shelter",artist:"The Rolling Stones",spotify_url:"https://open.spotify.com/search/Gimme%20Shelter%20Rolling%20Stones",year:1969},
+        {title:"Like a Rolling Stone",artist:"Bob Dylan",spotify_url:"https://open.spotify.com/search/Like%20a%20Rolling%20Stone%20Bob%20Dylan",year:1965},
+        {title:"Good Vibrations",artist:"The Beach Boys",spotify_url:"https://open.spotify.com/search/Good%20Vibrations%20Beach%20Boys",year:1966},
+        {title:"Johnny B. Goode",artist:"Chuck Berry",spotify_url:"https://open.spotify.com/search/Johnny%20B%20Goode%20Chuck%20Berry",year:1958},
+        {title:"Stand By Me",artist:"Ben E. King",spotify_url:"https://open.spotify.com/search/Stand%20By%20Me%20Ben%20E%20King",year:1961},
+        {title:"(Sittin' On) The Dock of the Bay",artist:"Otis Redding",spotify_url:"https://open.spotify.com/search/Dock%20of%20the%20Bay%20Otis%20Redding",year:1968},
+        {title:"Purple Haze",artist:"Jimi Hendrix",spotify_url:"https://open.spotify.com/search/Purple%20Haze%20Jimi%20Hendrix",year:1967}
+    ]
+};
+
+function renderFallbackDecade(decade) {
+    const tracks = DECADE_FALLBACK[decade] || DECADE_FALLBACK['viernes'];
+    const labels = {viernes:"Novedades (referencia)",  "2020s":"2020s","2010s":"2010s","2000s":"2000s","90s":"90s","80s":"80s","70s":"70s","60s":"60s"};
+    const row = t => `<div class="track-card">
+        <div class="img-container"><span class="track-placeholder">🎵</span></div>
+        <div class="track-info">
+            <div class="track-title">${t.title}</div>
+            <div class="track-artist">${t.artist}</div>
+            <span class="year-badge">${t.year}</span>
+        </div>
+        <div class="actions"><a href="${t.spotify_url}" target="_blank" class="btn-play">Buscar</a></div>
+    </div>`;
+    return `<div style="margin-bottom:1.5rem">
+        <div style="background:rgba(255,165,0,0.06);border:1px solid rgba(255,165,0,0.18);border-radius:10px;padding:0.7rem 1rem;margin-bottom:1.2rem;font-size:0.78rem;color:#9CA3AF">
+            ⚠️ Datos de referencia — el servidor está iniciando. <a href="https://open.spotify.com/search/${encodeURIComponent(labels[decade]||'hits')}" target="_blank" style="color:var(--green)">Ver en Spotify →</a>
+        </div>
+        ${tracks.map(row).join('')}
+    </div>`;
+}
+
 async function loadData(target, isSearch = false) {
     const container = document.getElementById('list-container');
     container.innerHTML = `<div class="loading-box"><div class="spinner"></div><p>Cargando...</p></div>`;
@@ -256,12 +376,17 @@ async function loadData(target, isSearch = false) {
         `).join('');
 
     } catch (e) {
-        container.innerHTML = `
-            <div style="text-align:center; padding:3rem; color:var(--m)">
-                <p style="font-size:1.2rem; margin-bottom:.5rem">⚠️ ${e.message === "Vacío" ? "No se encontraron resultados" : "Error de Conexión"}</p>
-                <p style="font-size:.8rem; color:#9CA3AF">${e.message === "Vacío" ? "El servidor respondió con una lista vacía." : e.message}</p>
-                <button onclick="location.reload()" style="margin-top:1.5rem; background:var(--p); color:#fff; border:none; padding:12px 24px; border-radius:12px; cursor:pointer; font-weight:700">Reintentar</button>
-            </div>`;
+        // Mostrar datos de referencia si el backend no responde
+        if (!isSearch) {
+            container.innerHTML = renderFallbackDecade(target);
+        } else {
+            container.innerHTML = `
+                <div style="text-align:center; padding:3rem; color:var(--m)">
+                    <p style="font-size:1.2rem; margin-bottom:.5rem">⚠️ Sin resultados para esta búsqueda</p>
+                    <p style="font-size:.8rem; color:#9CA3AF">Prueba con otro artista o canción.</p>
+                    <a href="https://open.spotify.com/search/${encodeURIComponent(typeof target === 'string' ? target : '')}" target="_blank" style="display:inline-block;margin-top:1rem;background:var(--green);color:#000;padding:10px 20px;border-radius:10px;font-weight:700;text-decoration:none">Buscar en Spotify →</a>
+                </div>`;
+        }
     }
 }
 

@@ -1528,21 +1528,45 @@ async function analyzeAudio() {
 // 10. DESCRIPCIONES EMPÁTICAS — Explicación profesional del tipo de voz
 // ═══════════════════════════════════════════════════════════════════════════════
 function getVoiceTypeDescription(vt, conf, lang = 'es') {
+  const icons = {
+    baritone: "🎙️", tenor: "🎵", bass: "🔊", "bass-baritone": "🎼",
+    soprano: "✨", "mezzo-soprano": "🌹", contralto: "🌊", countertenor: "🦋"
+  };
+  const tips = {
+    baritone: "Ideal para: pop, rock, soul, jazz.",
+    tenor: "Ideal para: ópera, pop lírico, rock melódico.",
+    bass: "Ideal para: gospel, blues, música clásica, soul profundo.",
+    "bass-baritone": "Ideal para: ópera dramática, baladas cinematográficas.",
+    soprano: "Ideal para: ópera, música sacra, pop lírico femenino.",
+    "mezzo-soprano": "Ideal para: ópera, jazz, soul, R&B.",
+    contralto: "Ideal para: gospel, blues, jazz, música folk.",
+    countertenor: "Ideal para: música barroca, early music, pop experimental."
+  };
   const data = {
     es: {
-      baritone: "Tu voz de **Barítono** tiene un timbre rico y cálido, situándose en el equilibrio perfecto entre profundidad y versatilidad. Es la voz masculina más común y emblemática en el pop y rock.",
-      tenor: "Un **Tenor** posee una brillantez y agilidad únicas en el registro agudo. Tu voz tiene esa cualidad heroica y potente que destaca naturalmente en cualquier mezcla musical.",
-      bass: "Como **Bajo**, posees la base más profunda y resonante del espectro humano. Tu voz transmite autoridad, estabilidad y un cuerpo impresionante en las notas graves.",
-      "bass-baritone": "Tu voz de **Bajo-Barítono** combina la autoridad del bajo con la flexibilidad lírica del barítono, permitiéndote navegar con maestría por una amplia gama de emociones.",
-      soprano: "Una **Soprano** es la voz más brillante y aguda, capaz de una agilidad cristalina. Tu registro tiene una claridad natural que brilla con elegancia en las notas más altas.",
-      "mezzo-soprano": "Como **Mezzosoprano**, tu voz es rica, plena y extremadamente expresiva. Tienes un timbre aterciopelado que aporta una calidez y madurez sonora excepcional.",
-      contralto: "La voz de **Contralto** es una rareza vocal maravillosa, siendo la más grave y profunda de las voces femeninas. Posees un tono oscuro y noble con una resonancia única.",
-      countertenor: "Ser **Contratenor** es poseer una rareza vocal extraordinaria, utilizando el falsete para alcanzar registros tradicionalmente femeninos con una pureza etérea y mágica."
+      baritone: "Tu voz de <strong>Barítono</strong> tiene un timbre rico y cálido, situándose en el equilibrio perfecto entre profundidad y versatilidad. Es la voz masculina más común y emblemática en el pop y rock.",
+      tenor: "Un <strong>Tenor</strong> posee una brillantez y agilidad únicas en el registro agudo. Tu voz tiene esa cualidad heroica y potente que destaca naturalmente en cualquier mezcla musical.",
+      bass: "Como <strong>Bajo</strong>, posees la base más profunda y resonante del espectro humano. Tu voz transmite autoridad, estabilidad y un cuerpo impresionante en las notas graves.",
+      "bass-baritone": "Tu voz de <strong>Bajo-Barítono</strong> combina la autoridad del bajo con la flexibilidad lírica del barítono, permitiéndote navegar con maestría por una amplia gama de emociones.",
+      soprano: "Una <strong>Soprano</strong> es la voz más brillante y aguda, capaz de una agilidad cristalina. Tu registro tiene una claridad natural que brilla con elegancia en las notas más altas.",
+      "mezzo-soprano": "Como <strong>Mezzosoprano</strong>, tu voz es rica, plena y extremadamente expresiva. Tienes un timbre aterciopelado que aporta una calidez y madurez sonora excepcional.",
+      contralto: "La voz de <strong>Contralto</strong> es una rareza vocal maravillosa, siendo la más grave y profunda de las voces femeninas. Posees un tono oscuro y noble con una resonancia única.",
+      countertenor: "Ser <strong>Contratenor</strong> es poseer una rareza vocal extraordinaria, utilizando el falsete para alcanzar registros tradicionalmente femeninos con una pureza etérea y mágica."
     }
   };
 
+  const icon = icons[vt] || "🎤";
+  const tip  = tips[vt]  || "";
   const base = data[lang]?.[vt] || data['es']?.[vt] || "Tu voz tiene una cualidad única y especial. Sigue explorando tu potencial.";
-  return `${base} (Análisis completado con un **${conf}%** de precisión).`;
+
+  return `
+    <div style="background:linear-gradient(135deg,rgba(124,77,255,.12),rgba(255,79,163,.07));
+      border:1px solid rgba(124,77,255,.28);border-radius:20px;padding:1.2rem 1.4rem;margin-top:1rem;margin-bottom:.25rem">
+      <div style="font-size:2.2rem;margin-bottom:.55rem;line-height:1">${icon}</div>
+      <p style="font-size:.92rem;line-height:1.7;color:#D1D5DB;margin-bottom:.6rem">${base}</p>
+      ${tip ? `<p style="font-size:.78rem;color:#A5B4FC;font-weight:600;margin-bottom:.45rem">💡 ${tip}</p>` : ""}
+      <p style="font-size:.78rem;color:#6B7280">Análisis completado con una precisión de <strong style="color:#A5B4FC">${conf}%</strong>.</p>
+    </div>`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1568,7 +1592,7 @@ function getPlatformLinks(singerName, songName) {
   return { karaoke: `https://www.youtube.com/results?search_query=${qs}`, streams };
 }
 
-async function renderResults({feat,vt,conf,matches,gender}) {
+async function renderResults({feat,vec,vt,conf,matches,gender}) {
   const vtName = trV("_vt_names",vt);
   const sym    = ["🥇","🥈","🥉","4.","5."];
   const explanation = getVoiceTypeDescription(vt, conf, window.lang || 'es');
@@ -1871,7 +1895,7 @@ function attachFilterEvents(vec, vt, gender) {
         lastResult.matches = newMatches;
         await renderResults(lastResult);
     } else {
-        await renderResults({ feat: {}, vt, conf: 100, matches: newMatches, gender });
+        await renderResults({ feat: {}, vec, vt, conf: 100, matches: newMatches, gender });
     }
   };
 
@@ -2982,12 +3006,33 @@ async function loadStaticPage(url, title) {
     document.body.innerHTML = doc.body.innerHTML;
     document.title = doc.title || title;
     
-    // Re-ejecutar scripts inline del nuevo HTML
-    document.body.querySelectorAll("script:not([src])").forEach(old => {
-      const s = document.createElement("script");
-      s.textContent = old.textContent;
-      old.replaceWith(s);
-    });
+    // Re-ejecutar scripts del nuevo HTML (externos nuevos + inline), respetando orden
+    const _alreadyLoaded = new Set(
+      [...document.querySelectorAll('script[src]')].map(s => {
+        try { return new URL(s.src, location.href).href; } catch(_) { return s.getAttribute('src'); }
+      })
+    );
+    const _bodyScripts = [...document.body.querySelectorAll("script")];
+    for (const old of _bodyScripts) {
+      const srcAttr = old.getAttribute('src');
+      if (srcAttr) {
+        let fullSrc;
+        try { fullSrc = new URL(srcAttr, location.href).href; } catch(_) { fullSrc = srcAttr; }
+        old.remove();
+        if (_alreadyLoaded.has(fullSrc)) continue; // ya cargado globalmente
+        await new Promise(res => {
+          const s = document.createElement("script");
+          s.src = srcAttr;
+          s.onload = res; s.onerror = res;
+          document.body.appendChild(s);
+        });
+        _alreadyLoaded.add(fullSrc);
+      } else {
+        const s = document.createElement("script");
+        s.textContent = old.textContent;
+        old.replaceWith(s);
+      }
+    }
     window.scrollTo(0,0);
   } catch(e) {
     location.href = url;

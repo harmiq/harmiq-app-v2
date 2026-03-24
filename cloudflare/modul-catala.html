@@ -289,11 +289,10 @@
 <script src="config.js"></script>
 <script src="modul-catala-v3.js"></script>
 <script>
-    // Inicialización al cargar
-    document.addEventListener('DOMContentLoaded', () => {
-        if(typeof mc_init === 'function') mc_init();
-        console.log("Config carregada:", CONFIG.HF_BASE);
-    });
+    // Inicialización: compatible amb SPA i càrrega directa
+    // mcInit() és definit i auto-cridat per modul-catala-v3.js en la primera càrrega.
+    // En navegació SPA (pàgina ja carregada), cridem explícitament:
+    if (typeof mcInit === 'function') { mcInit(); }
 </script>
 
 </body>

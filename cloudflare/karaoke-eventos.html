@@ -240,42 +240,42 @@ async function geoLocate() {
 function renderKaraokeVideos() {
     const grid = document.getElementById('_online_karaoke_grid');
     if(!grid) return;
-    
+
     const videos = [
-        {id:"8-P79_3gqIs", name:"Karaoke: Flowers", desc:"Miley Cyrus - El mayor éxito mundial del 2023.", color:"#FF4FA3"},
-        {id:"5oTfrFin0WQ", name:"Karaoke en Català", desc:"La millor selecció de música nostra.", color:"#CE1126"},
-        {id:"X9Lp_C43v6U", name:"Karaoke: Shallow", desc:"Lady Gaga - Ideal para duetos potentes.", color:"#7C4DFF"},
-        {id:"Lp66mC5-728", name:"Karaoke: Perfect", desc:"Ed Sheeran - Practica tu afinación.", color:"#FF4FA3"},
-        {id:"8kY59e-V_oE", name:"Karaoke: Someone You Loved", desc:"Lewis Capaldi - Control emocional y aire.", color:"#00D1FF"},
-        {id:"yOAgv7vU-6Q", list:"PLOwMvBWGjS52zQ_6rSH0sGupma2-Txj0f", thumbId:"yOAgv7vU-6Q", name:"Éxitos de Oro", desc:"Lista épica de grandes éxitos.", color:"#FFD700", textColor:"#000"}
+        {id:"r9-M3oxB0HA", name:"Karaoke: Flowers", desc:"Miley Cyrus · Control de aire y afinación.", color:"#FF4FA3"},
+        {id:"5oTfrFin0WQ", name:"Karaoke en Català", desc:"La millor selecció de música en català.", color:"#CE1126"},
+        {id:"X9Lp_C43v6U", name:"Karaoke: Shallow", desc:"Lady Gaga · Ideal para duetos potentes.", color:"#7C4DFF"},
+        {id:"Lp66mC5-728", name:"Karaoke: Perfect", desc:"Ed Sheeran · Trabaja la afinación media.", color:"#FF8C00"},
+        {id:"8kY59e-V_oE", name:"Karaoke: Someone You Loved", desc:"Lewis Capaldi · Gestión emocional y aire.", color:"#00D1FF"},
+        {id:"yOAgv7vU-6Q", list:"PLOwMvBWGjS52zQ_6rSH0sGupma2-Txj0f", thumbId:"yOAgv7vU-6Q", name:"Éxitos de Oro", desc:"Lista épica de grandes éxitos de todas las épocas.", color:"#FFD700", textColor:"#000"}
     ];
 
     grid.innerHTML = videos.map(v => {
         const thumbId = v.thumbId || v.id;
         const embedSrc = v.list
-            ? `https://www.youtube.com/embed/videoseries?list=${v.list}&autoplay=1`
-            : `https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0`;
+            ? `https://www.youtube-nocookie.com/embed/videoseries?list=${v.list}&autoplay=1&rel=0`
+            : `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0`;
         const ytHref = v.list
             ? `https://www.youtube.com/playlist?list=${v.list}`
             : `https://www.youtube.com/watch?v=${v.id}`;
         return `
         <div class="card" style="padding:0; overflow:hidden; background:var(--card); border:1px solid rgba(255,255,255,0.08)">
-            <div style="position:relative; aspect-ratio:16/9; background:#000; cursor:pointer"
-                 onclick="this.innerHTML='<iframe width=\\'100%\\' height=\\'100%\\' src=\\'https://www.youtube.com/embed/${v.list ? 'videoseries?list=' + v.list + '&autoplay=1' : v.id + '?autoplay=1'}\\' frameborder=\\'0\\' allow=\\'autoplay; encrypted-media\\' allowfullscreen></iframe>'">
+            <div style="position:relative; aspect-ratio:16/9; background:#111; cursor:pointer"
+                 onclick="(function(el){el.style.position='relative';el.innerHTML='<iframe src=\'${embedSrc}\' frameborder=\'0\' allow=\'autoplay;encrypted-media;fullscreen\' allowfullscreen style=\'position:absolute;top:0;left:0;width:100%;height:100%;border:none\'></iframe>'})(this)">
                 <img src="https://img.youtube.com/vi/${thumbId}/mqdefault.jpg"
-                    class="karaoke-thumbnail" style="width:100%; height:100%; object-fit:cover; opacity:0.8"
+                    class="karaoke-thumbnail" style="width:100%; height:100%; object-fit:cover; opacity:0.85; position:absolute; inset:0"
                     alt="${v.name}"
-                    onerror="this.src='https://img.youtube.com/vi/${thumbId}/default.jpg';this.onerror=function(){this.style.display='none';this.parentNode.style.background='#1a1a2e'}">
-                <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center">
-                    <div style="width:50px; height:50px; background:rgba(255,0,0,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px">▶</div>
+                    onerror="this.style.display='none';this.parentNode.style.background='#1a1a2e'">
+                <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.2)">
+                    <div style="width:52px; height:52px; background:rgba(255,0,0,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; box-shadow:0 4px 12px rgba(0,0,0,0.5)">▶</div>
                 </div>
             </div>
-            <div style="padding:1.5rem; text-align:center">
-                <h3 style="font-size:1.1rem; margin-bottom:0.5rem">${v.name}</h3>
-                <p style="margin-bottom:1.5rem; font-size:0.85rem">${v.desc}</p>
-                <a href="https://www.youtube.com/watch?v=${v.id}${v.list?'&list='+v.list:''}" target="_blank" class="card-btn" 
-                   style="background:${v.color}; color:${v.textColor||'#fff'}; display:block; box-shadow:0 8px 15px rgba(0,0,0,0.3)">
-                   Ver en YouTube
+            <div style="padding:1.2rem 1.5rem 1.5rem; text-align:center">
+                <h3 style="font-size:1.05rem; margin-bottom:0.4rem">${v.name}</h3>
+                <p style="margin-bottom:1.2rem; font-size:0.82rem; color:var(--m)">${v.desc}</p>
+                <a href="${ytHref}" target="_blank" rel="noopener" class="card-btn"
+                   style="background:${v.color}; color:${v.textColor||'#fff'}; display:block; box-shadow:0 6px 12px rgba(0,0,0,0.3); font-size:0.85rem; padding:0.65rem">
+                   ▶ Ver en YouTube
                 </a>
             </div>
         </div>
