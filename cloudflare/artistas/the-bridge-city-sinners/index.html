@@ -19,66 +19,67 @@
         h1{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem;line-height:1;font-weight:900;}
         .badge{background:rgba(124,77,255,.15);color:var(--a);padding:0.5rem 1rem;border-radius:20px;font-weight:700;display:inline-block;margin-bottom:1rem;border:1px solid rgba(124,77,255,.3);}
         .verified-badge {display:inline-flex;align-items:center;gap:5px;background:rgba(6,214,160,0.1);color:#06D6A0;padding:4px 10px;border-radius:15px;font-size:0.7rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem;border:1px solid rgba(6,214,160,0.2);}
-        .dashboard{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;margin-bottom:2rem;}
+        .dashboard{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;margin-bottom:1.5rem;}
         @media(max-width:768px){ .dashboard{grid-template-columns:1fr;} }
-        .card{background:rgba(255,255,255,0.03);padding:2rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.08);height:100%;}
         
-        .technical-bio {margin-bottom:2rem; padding:2rem; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(124,77,255,0.05)); border-radius:1.5rem; border:1px solid rgba(124,77,255,0.2);}
-        .bio-text {font-size:1.1rem; color:#D1D5DB; line-height:1.8;}
+        .card{background:rgba(255,255,255,0.03);padding:1.5rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.08);height:100%;}
+        
+        .technical-bio {margin-bottom:1.5rem; padding:1.5rem; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(124,77,255,0.05)); border-radius:1.5rem; border:1px solid rgba(124,77,255,0.2);}
+        .bio-text {font-size:1rem; color:#D1D5DB; line-height:1.6;}
 
-        .metric-wrap {margin-bottom:1.5rem;}
-        .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.5rem;font-size:0.9rem;color:#A5B4FC;}
-        .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:14px;overflow:hidden;}
+        .metric-wrap {margin-bottom:1.2rem;}
+        .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.4rem;font-size:0.85rem;color:#A5B4FC;}
+        .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:12px;overflow:hidden;}
         .progress-fill {height:100%;border-radius:10px;transition:width 1s ease-in-out;}
 
-        .cta-box{text-align:center;margin-top:4rem;padding:4rem 2rem;background:linear-gradient(135deg,rgba(124,77,255,0.1),rgba(255,79,163,0.1));border-radius:2rem;border:1px solid rgba(124,77,255,0.3);position:relative;}
+        .cta-box{text-align:center;margin-top:2.5rem;padding:3rem 2rem;background:linear-gradient(135deg,rgba(124,77,255,0.1),rgba(255,79,163,0.1));border-radius:2rem;border:1px solid rgba(124,77,255,0.3);position:relative;}
         .cta-box::after {content:''; position:absolute; inset:0; border-radius:2rem; background:radial-gradient(circle at center, rgba(124,77,255,0.2), transparent 70%); z-index:-1;}
-        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.4rem 3rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.3rem;box-shadow:0 15px 40px rgba(124,77,255,0.4);transition:all 0.3s;margin-bottom:1.5rem;width:100%;max-width:450px;}
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.2rem 2.5rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.2rem;box-shadow:0 15px 40px rgba(124,77,255,0.4);transition:all 0.3s;margin-bottom:1.2rem;width:100%;max-width:420px;}
         .btn:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 20px 50px rgba(124,77,255,0.6);}
-        .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.15);font-size:1rem;}
+        .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.15);font-size:0.95rem;}
     </style>
 </head>
 <body>
     <nav>
         <a href="/" class="logo">Harmiq</a>
-        <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:0.6rem 1.2rem;border-radius:30px;font-size:0.9rem;">Prueba la IA Gratis</a>
+        <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:0.5rem 1rem;border-radius:30px;font-size:0.85rem;">IA Gratis</a>
     </nav>
     <div class="container">
         <div class="hero">
             
             <div class="badge">Bajo • V-Pop</div>
             <h1>The Bridge City Sinners</h1>
-            <p style="color:var(--m);font-size:1.2rem;">Análisis biomecánico y acústico de la huella vocal.</p>
+            <p style="color:var(--m);font-size:1.1rem;">Análisis biomecánico y acústico.</p>
         </div>
 
         <div class="technical-bio">
-            <h3 style="margin-bottom:1rem; color:var(--a); font-size:1.4rem; font-family:'Baloo 2',sans-serif;">🧬 Perfil Técnico Detallado</h3>
+            <h3 style="margin-bottom:0.8rem; color:var(--a); font-size:1.2rem; font-family:'Baloo 2',sans-serif;">🧬 Perfil Técnico</h3>
             <p class="bio-text">The Bridge City Sinners es Bajo. La voz más profunda y densa, con una autoridad y oscuridad en su tono inconfundibles. Su perfil acústico revela una huella vocal distintiva en el espectro musical actual.</p>
         </div>
 
         <div class="dashboard">
-            <div class="card">
-                <h3 style="margin-bottom:1.5rem; color:#fff;">Métricas de Tesitura</h3>
+            <div class="card" style="height:320px;">
+                <h3 style="margin-bottom:1.2rem; color:#fff; font-size:1.1rem;">Métricas clave</h3>
                 <div class="metric-wrap">
-                    <div class="metric-head"><span>Potencia Vocal (RMS)</span><span>58%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:58%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div>
+                    <div class="metric-head"><span>Potencia (RMS)</span><span>57%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:57%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div>
                 </div>
                 <div class="metric-wrap">
-                    <div class="metric-head"><span>Brillo Espectral (Rolloff)</span><span>35%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:35%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div>
+                    <div class="metric-head"><span>Brillo (Rolloff)</span><span>26%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:26%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div>
                 </div>
                 <div class="metric-wrap">
-                    <div class="metric-head"><span>Centroide Áureo</span><span>28%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:28%;background:linear-gradient(90deg,#10B981,#3B82F6);"></div></div>
+                    <div class="metric-head"><span>Centroide</span><span>32%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:32%;background:linear-gradient(90deg,#10B981,#3B82F6);"></div></div>
                 </div>
             </div>
-            <div class="card" style="padding:1rem;">
+            <div class="card" style="height:320px; padding:1rem;">
                 <canvas id="chromaChart"></canvas>
             </div>
         </div>
 
-        <div class="card" style="margin-bottom:2rem; min-height:300px;">
-            <h3 style="margin-bottom:1rem;">Análisis de Timbre (MFCC)</h3>
+        <div class="card" style="margin-bottom:1.5rem; height:320px;">
+            <h3 style="margin-bottom:0.8rem; font-size:1.1rem;">Análisis de Timbre (MFCC)</h3>
             <canvas id="mfccChart"></canvas>
         </div>
 
@@ -98,7 +99,7 @@
                 labels: ['Do', 'Do#', 'Re', 'Re#', 'Mi', 'Fa', 'Fa#', 'Sol', 'Sol#', 'La', 'La#', 'Si'],
                 datasets: [{
                     label: 'Armónicos',
-                    data: [0.4083, 0.2946, 0.9066, 0.5448, 0.2606, 0.3022, 0.7231, 0.5274, 0.1386, 0.4697, 0.7822, 0.5475],
+                    data: [0.0986, 0.6342, 0.0568, 0.5946, 0.6022, 0.1732, 0.6107, 0.5427, 0.8786, 0.61, 0.6526, 0.1689],
                     backgroundColor: 'rgba(255, 79, 163, 0.2)',
                     borderColor: '#FF4FA3',
                     pointRadius: 0,
@@ -114,7 +115,7 @@
                 labels: Array.from({length:20}, (_,i)=>i+1),
                 datasets: [{
                     label: 'Espectro',
-                    data: [-29.5034, 14.181, 54.4899, 2.379, 3.1681, 7.5541, -68.7549, -3.9892, 53.1243, 63.4319, -52.6828, 74.3629, 79.3418, -41.7068, -29.704, 11.7097, -29.4272, -65.4627, 52.9684, 55.3948],
+                    data: [31.4089, 63.0617, -28.1295, 69.6163, -22.9448, 64.8461, -57.7083, 70.8938, -30.7627, -56.5203, 76.5872, 8.2973, 78.6571, 14.9951, 76.2482, 72.785, -30.1962, 54.1825, 50.7368, 10.914],
                     borderColor: '#7C4DFF',
                     tension: 0.4,
                     fill: true,

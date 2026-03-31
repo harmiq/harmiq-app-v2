@@ -19,66 +19,67 @@
         h1{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem;line-height:1;font-weight:900;}
         .badge{background:rgba(124,77,255,.15);color:var(--a);padding:0.5rem 1rem;border-radius:20px;font-weight:700;display:inline-block;margin-bottom:1rem;border:1px solid rgba(124,77,255,.3);}
         .verified-badge {display:inline-flex;align-items:center;gap:5px;background:rgba(6,214,160,0.1);color:#06D6A0;padding:4px 10px;border-radius:15px;font-size:0.7rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem;border:1px solid rgba(6,214,160,0.2);}
-        .dashboard{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;margin-bottom:2rem;}
+        .dashboard{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;margin-bottom:1.5rem;}
         @media(max-width:768px){ .dashboard{grid-template-columns:1fr;} }
-        .card{background:rgba(255,255,255,0.03);padding:2rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.08);height:100%;}
         
-        .technical-bio {margin-bottom:2rem; padding:2rem; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(124,77,255,0.05)); border-radius:1.5rem; border:1px solid rgba(124,77,255,0.2);}
-        .bio-text {font-size:1.1rem; color:#D1D5DB; line-height:1.8;}
+        .card{background:rgba(255,255,255,0.03);padding:1.5rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.08);height:100%;}
+        
+        .technical-bio {margin-bottom:1.5rem; padding:1.5rem; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(124,77,255,0.05)); border-radius:1.5rem; border:1px solid rgba(124,77,255,0.2);}
+        .bio-text {font-size:1rem; color:#D1D5DB; line-height:1.6;}
 
-        .metric-wrap {margin-bottom:1.5rem;}
-        .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.5rem;font-size:0.9rem;color:#A5B4FC;}
-        .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:14px;overflow:hidden;}
+        .metric-wrap {margin-bottom:1.2rem;}
+        .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.4rem;font-size:0.85rem;color:#A5B4FC;}
+        .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:12px;overflow:hidden;}
         .progress-fill {height:100%;border-radius:10px;transition:width 1s ease-in-out;}
 
-        .cta-box{text-align:center;margin-top:4rem;padding:4rem 2rem;background:linear-gradient(135deg,rgba(124,77,255,0.1),rgba(255,79,163,0.1));border-radius:2rem;border:1px solid rgba(124,77,255,0.3);position:relative;}
+        .cta-box{text-align:center;margin-top:2.5rem;padding:3rem 2rem;background:linear-gradient(135deg,rgba(124,77,255,0.1),rgba(255,79,163,0.1));border-radius:2rem;border:1px solid rgba(124,77,255,0.3);position:relative;}
         .cta-box::after {content:''; position:absolute; inset:0; border-radius:2rem; background:radial-gradient(circle at center, rgba(124,77,255,0.2), transparent 70%); z-index:-1;}
-        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.4rem 3rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.3rem;box-shadow:0 15px 40px rgba(124,77,255,0.4);transition:all 0.3s;margin-bottom:1.5rem;width:100%;max-width:450px;}
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.2rem 2.5rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.2rem;box-shadow:0 15px 40px rgba(124,77,255,0.4);transition:all 0.3s;margin-bottom:1.2rem;width:100%;max-width:420px;}
         .btn:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 20px 50px rgba(124,77,255,0.6);}
-        .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.15);font-size:1rem;}
+        .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.15);font-size:0.95rem;}
     </style>
 </head>
 <body>
     <nav>
         <a href="/" class="logo">Harmiq</a>
-        <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:0.6rem 1.2rem;border-radius:30px;font-size:0.9rem;">Prueba la IA Gratis</a>
+        <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:0.5rem 1rem;border-radius:30px;font-size:0.85rem;">IA Gratis</a>
     </nav>
     <div class="container">
         <div class="hero">
             
             <div class="badge">Tenor • Rock</div>
             <h1>Claude Debussy;Andrzej Cieplinski;Tymoteusz Bies</h1>
-            <p style="color:var(--m);font-size:1.2rem;">Análisis biomecánico y acústico de la huella vocal.</p>
+            <p style="color:var(--m);font-size:1.1rem;">Análisis biomecánico y acústico.</p>
         </div>
 
         <div class="technical-bio">
-            <h3 style="margin-bottom:1rem; color:var(--a); font-size:1.4rem; font-family:'Baloo 2',sans-serif;">🧬 Perfil Técnico Detallado</h3>
+            <h3 style="margin-bottom:0.8rem; color:var(--a); font-size:1.2rem; font-family:'Baloo 2',sans-serif;">🧬 Perfil Técnico</h3>
             <p class="bio-text">Claude Debussy;Andrzej Cieplinski;Tymoteusz Bies es Tenor. La voz masculina más aguda natural, con gran facilidad para las notas altas y una proyección brillante. Su perfil acústico revela una huella vocal distintiva en el espectro musical actual.</p>
         </div>
 
         <div class="dashboard">
-            <div class="card">
-                <h3 style="margin-bottom:1.5rem; color:#fff;">Métricas de Tesitura</h3>
+            <div class="card" style="height:320px;">
+                <h3 style="margin-bottom:1.2rem; color:#fff; font-size:1.1rem;">Métricas clave</h3>
                 <div class="metric-wrap">
-                    <div class="metric-head"><span>Potencia Vocal (RMS)</span><span>52%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:52%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div>
+                    <div class="metric-head"><span>Potencia (RMS)</span><span>63%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:63%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div>
                 </div>
                 <div class="metric-wrap">
-                    <div class="metric-head"><span>Brillo Espectral (Rolloff)</span><span>62%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:62%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div>
+                    <div class="metric-head"><span>Brillo (Rolloff)</span><span>63%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:63%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div>
                 </div>
                 <div class="metric-wrap">
-                    <div class="metric-head"><span>Centroide Áureo</span><span>77%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:77%;background:linear-gradient(90deg,#10B981,#3B82F6);"></div></div>
+                    <div class="metric-head"><span>Centroide</span><span>92%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:92%;background:linear-gradient(90deg,#10B981,#3B82F6);"></div></div>
                 </div>
             </div>
-            <div class="card" style="padding:1rem;">
+            <div class="card" style="height:320px; padding:1rem;">
                 <canvas id="chromaChart"></canvas>
             </div>
         </div>
 
-        <div class="card" style="margin-bottom:2rem; min-height:300px;">
-            <h3 style="margin-bottom:1rem;">Análisis de Timbre (MFCC)</h3>
+        <div class="card" style="margin-bottom:1.5rem; height:320px;">
+            <h3 style="margin-bottom:0.8rem; font-size:1.1rem;">Análisis de Timbre (MFCC)</h3>
             <canvas id="mfccChart"></canvas>
         </div>
 
@@ -98,7 +99,7 @@
                 labels: ['Do', 'Do#', 'Re', 'Re#', 'Mi', 'Fa', 'Fa#', 'Sol', 'Sol#', 'La', 'La#', 'Si'],
                 datasets: [{
                     label: 'Armónicos',
-                    data: [0.9387, 0.6293, 0.9402, 0.9051, 0.9273, 0.5372, 0.8436, 0.8408, 0.0201, 0.9679, 0.0037, 0.9913],
+                    data: [0.1962, 0.7289, 0.5582, 0.4131, 0.4611, 0.1596, 0.5202, 0.7583, 0.4575, 0.7244, 0.0849, 0.63],
                     backgroundColor: 'rgba(255, 79, 163, 0.2)',
                     borderColor: '#FF4FA3',
                     pointRadius: 0,
@@ -114,7 +115,7 @@
                 labels: Array.from({length:20}, (_,i)=>i+1),
                 datasets: [{
                     label: 'Espectro',
-                    data: [31.613, 57.0475, -44.6701, 71.8272, -13.089, 75.1821, -0.8596, -2.3942, 79.6622, -54.7486, 70.1852, -65.4642, 30.6117, 61.4875, -76.5587, -12.6719, -30.4542, -39.4838, 7.9208, -23.4006],
+                    data: [-44.6094, -55.015, -40.9738, 11.4741, 11.6297, -64.2917, 60.4965, -13.1, -26.2751, 61.1373, 15.2158, 43.2822, -28.0154, -32.1079, -77.086, -74.8792, -54.2549, 4.9398, -56.7284, -51.5265],
                     borderColor: '#7C4DFF',
                     tension: 0.4,
                     fill: true,
