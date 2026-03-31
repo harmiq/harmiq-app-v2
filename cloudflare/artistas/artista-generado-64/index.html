@@ -21,19 +21,15 @@
         .dashboard{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;}
         @media(max-width:768px){ .dashboard{grid-template-columns:1fr;} }
         .card{background:rgba(255,255,255,0.03);padding:2rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.05);}
-        
-        /* Progress bars */
         .metric-wrap {margin-bottom:1rem;}
         .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.4rem;font-size:0.9rem;}
         .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:12px;overflow:hidden;}
         .progress-fill {height:100%;background:linear-gradient(90deg, #7C4DFF, #FF4FA3);border-radius:10px;}
-
         .cta-box{text-align:center;margin-top:2rem;padding:3rem 2rem;background:linear-gradient(135deg,rgba(10,8,24,0.8),rgba(255,79,163,.05));border-radius:1.5rem;border:2px dashed rgba(124,77,255,.4);}
         .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.2rem 2.5rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.2rem;box-shadow:0 10px 30px rgba(124,77,255,.4);transition:transform 0.2s;margin-bottom:1rem;width:100%;max-width:400px;}
         .btn:hover{transform:translateY(-4px);box-shadow:0 15px 40px rgba(124,77,255,.6);}
         .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.1);font-size:1rem;padding:0.9rem 2rem;}
         .btn-amazon:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px);}
-        
         .voice-desc {font-size:0.95rem;color:var(--m);line-height:1.7;margin-top:1rem;border-left:3px solid var(--p);padding-left:1rem;background:rgba(0,0,0,0.2);padding:1rem;border-radius:0 10px 10px 0;}
     </style>
 </head>
@@ -46,99 +42,35 @@
         <div class="hero">
             <div class="badge">Mezzosoprano • V-Pop</div>
             <h1>ADN Vocal: Artista Generado 64</h1>
-            <p style="color:var(--m);font-size:1.15rem;max-width:700px;margin:0 auto;">Explora la huella acústica de Artista Generado 64 extraída por algoritmos de Inteligencia Artificial.</p>
+            <p style="color:var(--m);font-size:1.15rem;max-width:700px;margin:0 auto;">Explora la huella acústica de Artista Generado 64 extraída por IA.</p>
         </div>
-
         <div class="dashboard">
             <div class="card">
-                <h3 style="margin-bottom:0.5rem;color:var(--a);">Tipo de Voz: Mezzosoprano</h3>
+                <h3 style="margin-bottom:0.5rem;color:var(--a);">Mezzosoprano</h3>
                 <div class="voice-desc">La voz de Mezzosoprano tiene un tono más pesado y rico que la soprano, pero mantiene agilidad. Suelen dominar el registro medio con una potencia emotiva muy especial.</div>
                 <div style="margin-top:2rem;">
-                    <div class="metric-wrap">
-                        <div class="metric-head">
-                            <span style="color:#c4b5fd;">Intensidad / Potencia (RMS)</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="progress-bg"><div class="progress-fill" style="width:88%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div>
-                    </div>
-                    <div class="metric-wrap">
-                        <div class="metric-head">
-                            <span style="color:#c4b5fd;">Brillo Espectral (Rolloff)</span>
-                            <span>89%</span>
-                        </div>
-                        <div class="progress-bg"><div class="progress-fill" style="width:89%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div>
-                    </div>
-                    <div class="metric-wrap">
-                        <div class="metric-head">
-                            <span style="color:#c4b5fd;">Aspereza (ZCR)</span>
-                            <span>45%</span>
-                        </div>
-                        <div class="progress-bg"><div class="progress-fill" style="width:45%;background:linear-gradient(90deg,#10B981,#3B82F6);"></div></div>
-                    </div>
+                    <div class="metric-wrap"><div class="metric-head"><span>RMS Potencia</span><span>88%</span></div><div class="progress-bg"><div class="progress-fill" style="width:88%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div></div>
+                    <div class="metric-wrap"><div class="metric-head"><span>Brillo (Rolloff)</span><span>89%</span></div><div class="progress-bg"><div class="progress-fill" style="width:89%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div></div>
                 </div>
             </div>
-
             <div class="card">
-                <h3 style="margin-bottom:1rem;color:var(--p);">Perfil Tonal (Chroma)</h3>
                 <canvas id="chromaChart"></canvas>
             </div>
         </div>
-
-        <div class="card" style="margin-bottom:2rem;">
-            <h3 style="margin-bottom:1rem;">Timbre Base (MFCCs)</h3>
-            <div style="height:250px;"><canvas id="mfccChart"></canvas></div>
+        <div class="card">
+            <canvas id="mfccChart"></canvas>
         </div>
-
         <div class="cta-box">
-            <h2 style="margin-bottom:1rem;font-size:2.5rem;">🎤 ¿Te pareces a Artista Generado 64?</h2>
-            <p style="margin-bottom:2.5rem;color:var(--t);font-size:1.1rem;max-width:600px;margin-left:auto;margin-right:auto;">Nuestra Inteligencia Artificial te escucha cantar durante 10 segundos y te dice tu porcentaje de compatibilidad biológica con este artista.</p>
-            
-            <a href="https://harmiq.app/?compare=artista-generado-64#app" class="btn">✨ Comparar mi voz con Artista Generado 64</a>
+            <h2>🎤 ¿Te pareces a Artista Generado 64?</h2>
+            <p>Canta 10 segundos y descubre tu compatibilidad con Artista Generado 64.</p>
+            <a href="https://harmiq.app/?compare=artista-generado-64#app" class="btn">✨ Comparar mi voz</a>
             <br>
-            <a href="https://www.amazon.es/s?k=artista+generado+64+music+cd&tag=harmiqapp-20" target="_blank" rel="nofollow noopener" class="btn btn-amazon">🛒 Ver micros recomendados para Mezzosopranos</a>
+            <a href="https://www.amazon.es/s?k=artista+generado+64+music+cd&tag=harmiqapp-20" target="_blank" rel="nofollow noopener" class="btn btn-amazon">🛒 Equipo recomendado</a>
         </div>
     </div>
-
     <script>
-        const chromaData = [0.9693, 0.3726, 0.065, 0.1862, 0.1863, 0.6049, 0.8355, 0.6872, 0.1955, 0.3232, 0.4241, 0.5557];
-        const mfccData = [36.999, 3.7065, -170.0614, -69.4727, 116.4785, -150.138, 31.992, -10.4314, -77.8305, 79.8787, -189.0615, 34.7799, -198.6016, 81.4773, -103.1999, -35.3611, 172.4338, -193.904, 166.1723, -15.9233];
-
-        new Chart(document.getElementById('chromaChart'), {
-            type: 'radar',
-            data: {
-                labels: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
-                datasets: [{
-                    label: 'Intensidad Tonal',
-                    data: chromaData,
-                    backgroundColor: 'rgba(255, 79, 163, 0.2)',
-                    borderColor: '#FF4FA3',
-                    pointBackgroundColor: '#fff',
-                    borderWidth: 2
-                }]
-            },
-            options: { maintainAspectRatio: false, scales: { r: { ticks: { display: false }, grid: { color: 'rgba(255,255,255,0.1)' }, angleLines: { color: 'rgba(255,255,255,0.1)' } } } }
-        });
-
-        new Chart(document.getElementById('mfccChart'), {
-            type: 'bar',
-            data: {
-                labels: ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'],
-                datasets: [{
-                    label: 'Coeficientes',
-                    data: mfccData.slice(0, 12),
-                    backgroundColor: '#7C4DFF',
-                    borderRadius: 4
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                scales: {
-                    y: { grid: { color: 'rgba(255,255,255,0.05)' } },
-                    x: { grid: { display: false } }
-                },
-                plugins: { legend: { display:false } }
-            }
-        });
+        new Chart(document.getElementById('chromaChart'), { type: 'radar', data: { labels:['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'], datasets:[{ label:'Chroma', data:[0.9693, 0.3726, 0.065, 0.1862, 0.1863, 0.6049, 0.8355, 0.6872, 0.1955, 0.3232, 0.4241, 0.5557], backgroundColor:'rgba(255,79,163,0.2)', borderColor:'#FF4FA3' }] }, options: { maintainAspectRatio:false, scales:{ r:{ ticks:{ display:false } } } } });
+        new Chart(document.getElementById('mfccChart'), { type: 'bar', data: { labels:['1','2','3','4','5','6','7','8','9','10','11','12'], datasets:[{ label:'MFCC Coefs', data:[36.999, 3.7065, -170.0614, -69.4727, 116.4785, -150.138, 31.992, -10.4314, -77.8305, 79.8787, -189.0615, 34.7799, -198.6016, 81.4773, -103.1999, -35.3611, 172.4338, -193.904, 166.1723, -15.9233].slice(0,12), backgroundColor:'#7C4DFF' }] }, options:{ maintainAspectRatio:false, plugins:{ legend:{ display:false } } } });
     </script>
 </body>
 </html>
