@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Análisis Vocal de Circulando De Fulo | Descubre si tienes su voz | Harmiq IA</title>
-    <meta name="description" content="Análisis vocal de Circulando De Fulo. Descubre su tipo de voz (Soprano), perfil acústico y anímate a comparar tu propia voz con Circulando De Fulo usando la IA de Harmiq.">
+    <title>Análisis Vocal de Circulando De Fulo | Soprano | Harmiq IA</title>
+    <meta name="description" content="Descubre el perfil acústico de Circulando De Fulo, Soprano. Análisis de potencia, brillo y tesitura técnica por la IA de Harmiq.">
     <link rel="canonical" href="https://harmiq.app/artistas/circulando-de-fulo/">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -12,65 +12,117 @@
         :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280;}
         *{margin:0;padding:0;box-sizing:border-box;}
         body{background:var(--dark);color:var(--t);font-family:'Outfit',sans-serif;line-height:1.6;}
-        nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 4%;background:rgba(10,8,24,.95);border-bottom:1px solid rgba(255,255,255,.07);}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 4%;background:rgba(10,8,24,.95);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:100;}
         .logo{font-size:1.7rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
         .container{max-width:1100px;margin:0 auto;padding:3rem 5%;}
         .hero{text-align:center;margin-bottom:3rem;}
-        h1{font-size:clamp(2.2rem,5vw,3.5rem);margin-bottom:1rem;line-height:1.1;}
+        h1{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem;line-height:1;font-weight:900;}
         .badge{background:rgba(124,77,255,.15);color:var(--a);padding:0.5rem 1rem;border-radius:20px;font-weight:700;display:inline-block;margin-bottom:1rem;border:1px solid rgba(124,77,255,.3);}
-        .dashboard{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;}
+        .verified-badge {display:inline-flex;align-items:center;gap:5px;background:rgba(6,214,160,0.1);color:#06D6A0;padding:4px 10px;border-radius:15px;font-size:0.7rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem;border:1px solid rgba(6,214,160,0.2);}
+        .dashboard{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;margin-bottom:2rem;}
         @media(max-width:768px){ .dashboard{grid-template-columns:1fr;} }
-        .card{background:rgba(255,255,255,0.03);padding:2rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.05);}
-        .metric-wrap {margin-bottom:1rem;}
-        .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.4rem;font-size:0.9rem;}
-        .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:12px;overflow:hidden;}
-        .progress-fill {height:100%;background:linear-gradient(90deg, #7C4DFF, #FF4FA3);border-radius:10px;}
-        .cta-box{text-align:center;margin-top:2rem;padding:3rem 2rem;background:linear-gradient(135deg,rgba(10,8,24,0.8),rgba(255,79,163,.05));border-radius:1.5rem;border:2px dashed rgba(124,77,255,.4);}
-        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.2rem 2.5rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.2rem;box-shadow:0 10px 30px rgba(124,77,255,.4);transition:transform 0.2s;margin-bottom:1rem;width:100%;max-width:400px;}
-        .btn:hover{transform:translateY(-4px);box-shadow:0 15px 40px rgba(124,77,255,.6);}
-        .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.1);font-size:1rem;padding:0.9rem 2rem;}
-        .btn-amazon:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px);}
-        .voice-desc {font-size:0.95rem;color:var(--m);line-height:1.7;margin-top:1rem;border-left:3px solid var(--p);padding-left:1rem;background:rgba(0,0,0,0.2);padding:1rem;border-radius:0 10px 10px 0;}
+        .card{background:rgba(255,255,255,0.03);padding:2rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.08);height:100%;}
+        
+        .technical-bio {margin-bottom:2rem; padding:2rem; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(124,77,255,0.05)); border-radius:1.5rem; border:1px solid rgba(124,77,255,0.2);}
+        .bio-text {font-size:1.1rem; color:#D1D5DB; line-height:1.8;}
+
+        .metric-wrap {margin-bottom:1.5rem;}
+        .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.5rem;font-size:0.9rem;color:#A5B4FC;}
+        .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:14px;overflow:hidden;}
+        .progress-fill {height:100%;border-radius:10px;transition:width 1s ease-in-out;}
+
+        .cta-box{text-align:center;margin-top:4rem;padding:4rem 2rem;background:linear-gradient(135deg,rgba(124,77,255,0.1),rgba(255,79,163,0.1));border-radius:2rem;border:1px solid rgba(124,77,255,0.3);position:relative;}
+        .cta-box::after {content:''; position:absolute; inset:0; border-radius:2rem; background:radial-gradient(circle at center, rgba(124,77,255,0.2), transparent 70%); z-index:-1;}
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.4rem 3rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.3rem;box-shadow:0 15px 40px rgba(124,77,255,0.4);transition:all 0.3s;margin-bottom:1.5rem;width:100%;max-width:450px;}
+        .btn:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 20px 50px rgba(124,77,255,0.6);}
+        .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.15);font-size:1rem;}
     </style>
 </head>
 <body>
     <nav>
         <a href="/" class="logo">Harmiq</a>
-        <a href="/" style="color:var(--t);text-decoration:none;font-weight:700;background:rgba(255,255,255,0.1);padding:0.4rem 1rem;border-radius:20px;">Analizar Voz Gratis</a>
+        <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:0.6rem 1.2rem;border-radius:30px;font-size:0.9rem;">Prueba la IA Gratis</a>
     </nav>
     <div class="container">
         <div class="hero">
+            
             <div class="badge">Soprano • Jazz</div>
-            <h1>ADN Vocal: Circulando De Fulo</h1>
-            <p style="color:var(--m);font-size:1.15rem;max-width:700px;margin:0 auto;">Explora la huella acústica de Circulando De Fulo extraída por IA.</p>
+            <h1>Circulando De Fulo</h1>
+            <p style="color:var(--m);font-size:1.2rem;">Análisis biomecánico y acústico de la huella vocal.</p>
         </div>
+
+        <div class="technical-bio">
+            <h3 style="margin-bottom:1rem; color:var(--a); font-size:1.4rem; font-family:'Baloo 2',sans-serif;">🧬 Perfil Técnico Detallado</h3>
+            <p class="bio-text">Circulando De Fulo es Soprano. Las voces Soprano son las más altas y cristalinas. Alcanzan notas de gran altura con facilidad y suelen tener un timbre ligero y brillante. Su perfil acústico revela una huella vocal distintiva en el espectro musical actual.</p>
+        </div>
+
         <div class="dashboard">
             <div class="card">
-                <h3 style="margin-bottom:0.5rem;color:var(--a);">Soprano</h3>
-                <div class="voice-desc">Las voces Soprano son las más altas y cristalinas de la clasificación. Alcanzan notas de gran altura con facilidad y suelen tener un timbre ligero y brillante que resalta en cualquier mezcla.</div>
-                <div style="margin-top:2rem;">
-                    <div class="metric-wrap"><div class="metric-head"><span>RMS Potencia</span><span>70%</span></div><div class="progress-bg"><div class="progress-fill" style="width:70%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div></div>
-                    <div class="metric-wrap"><div class="metric-head"><span>Brillo (Rolloff)</span><span>39%</span></div><div class="progress-bg"><div class="progress-fill" style="width:39%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div></div>
+                <h3 style="margin-bottom:1.5rem; color:#fff;">Métricas de Tesitura</h3>
+                <div class="metric-wrap">
+                    <div class="metric-head"><span>Potencia Vocal (RMS)</span><span>74%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:74%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div>
+                </div>
+                <div class="metric-wrap">
+                    <div class="metric-head"><span>Brillo Espectral (Rolloff)</span><span>59%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:59%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div>
+                </div>
+                <div class="metric-wrap">
+                    <div class="metric-head"><span>Centroide Áureo</span><span>59%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:59%;background:linear-gradient(90deg,#10B981,#3B82F6);"></div></div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="padding:1rem;">
                 <canvas id="chromaChart"></canvas>
             </div>
         </div>
-        <div class="card">
+
+        <div class="card" style="margin-bottom:2rem; min-height:300px;">
+            <h3 style="margin-bottom:1rem;">Análisis de Timbre (MFCC)</h3>
             <canvas id="mfccChart"></canvas>
         </div>
+
         <div class="cta-box">
-            <h2>🎤 ¿Te pareces a Circulando De Fulo?</h2>
-            <p>Canta 10 segundos y descubre tu compatibilidad con Circulando De Fulo.</p>
-            <a href="https://harmiq.app/?compare=circulando-de-fulo#app" class="btn">✨ Comparar mi voz</a>
+            <h2 style="font-size:2.8rem; margin-bottom:1rem; font-weight:900;">🎤 ¿Tu voz es como la de Circulando De Fulo?</h2>
+            <p style="margin-bottom:3rem; font-size:1.2rem; color:#A5B4FC;">Usa nuestra IA para compararte en tiempo real con este perfil.</p>
+            <a href="https://harmiq.app/?compare=circulando-de-fulo#app" class="btn">🚀 Iniciar Comparación de Voz</a>
             <br>
-            <a href="https://www.amazon.es/s?k=circulando+de+fulo+music+cd&tag=harmiqapp-20" target="_blank" rel="nofollow noopener" class="btn btn-amazon">🛒 Equipo recomendado</a>
+            <a href="https://www.amazon.es/s?k=circulando+de+fulo+music+cd&tag=harmiqapp-20" target="_blank" rel="nofollow noopener" class="btn btn-amazon">🛒 Equipamiento para Soprano</a>
         </div>
     </div>
+
     <script>
-        new Chart(document.getElementById('chromaChart'), { type: 'radar', data: { labels:['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'], datasets:[{ label:'Chroma', data:[0.7847, 0.162, 0.9056, 0.9129, 0.5308, 0.172, 0.0991, 0.4449, 0.9505, 0.0205, 0.1653, 0.2767], backgroundColor:'rgba(255,79,163,0.2)', borderColor:'#FF4FA3' }] }, options: { maintainAspectRatio:false, scales:{ r:{ ticks:{ display:false } } } } });
-        new Chart(document.getElementById('mfccChart'), { type: 'bar', data: { labels:['1','2','3','4','5','6','7','8','9','10','11','12'], datasets:[{ label:'MFCC Coefs', data:[64.6367, 77.2471, 36.6913, 41.8425, -99.4151, -16.3748, 12.3754, 28.5001, -42.1858, 80.999, -30.9835, 49.8482, -42.4918, -84.7024, -47.2647, 81.6088, 29.0806, -13.8614, -80.5938, -21.9574].slice(0,12), backgroundColor:'#7C4DFF' }] }, options:{ maintainAspectRatio:false, plugins:{ legend:{ display:false } } } });
+        new Chart(document.getElementById('chromaChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Do', 'Do#', 'Re', 'Re#', 'Mi', 'Fa', 'Fa#', 'Sol', 'Sol#', 'La', 'La#', 'Si'],
+                datasets: [{
+                    label: 'Armónicos',
+                    data: [0.2383, 0.807, 0.2516, 0.3139, 0.1029, 0.7629, 0.7589, 0.27, 0.7813, 0.4515, 0.6664, 0.1005],
+                    backgroundColor: 'rgba(255, 79, 163, 0.2)',
+                    borderColor: '#FF4FA3',
+                    pointRadius: 0,
+                    borderWidth: 2
+                }]
+            },
+            options: { maintainAspectRatio:false, scales:{ r:{ ticks:{display:false}, grid:{color:'rgba(255,255,255,0.05)'}, angleLines:{color:'rgba(255,255,255,0.05)'} } } }
+        });
+
+        new Chart(document.getElementById('mfccChart'), {
+            type: 'line',
+            data: {
+                labels: Array.from({length:20}, (_,i)=>i+1),
+                datasets: [{
+                    label: 'Espectro',
+                    data: [73.5891, -31.285, -66.2601, -57.9669, 68.4909, -21.7409, 37.0021, -63.3397, -70.9718, -53.3562, 38.8853, -23.0847, -13.1942, 73.0788, 36.346, -33.2079, -25.0356, 62.2683, 66.924, -34.0494],
+                    borderColor: '#7C4DFF',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(124,77,255,0.1)'
+                }]
+            },
+            options: { maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(255,255,255,0.05)'}}, x:{grid:{display:false}} } }
+        });
     </script>
 </body>
 </html>
