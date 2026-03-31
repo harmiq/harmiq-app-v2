@@ -3507,3 +3507,30 @@ function injectNewsBanner() {
   document.head.appendChild(style);
   document.body.insertAdjacentElement("afterbegin", b);
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 16. MODO COMPARACIÓN (Desde Landings de Artistas)
+// ═══════════════════════════════════════════════════════════════════════════════
+window.addEventListener("DOMContentLoaded", () => {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const compareSlug = urlParams.get('compare');
+    if (compareSlug) {
+      const parts = compareSlug.split('-');
+      const artistName = parts.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      const heroH1 = document.querySelector('main.hero h1');
+      const heroP = document.querySelector('main.hero p');
+      
+      if (heroH1) {
+        heroH1.innerHTML = `🎤 Comparando tu voz con <span class="grad">${artistName}</span>`;
+      }
+      if (heroP) {
+        heroP.innerHTML = `Nuestra Inteligencia Artificial está lista para escuchar tu voz y calcular tu porcentaje de similitud acústica exacto con ${artistName}. ¡Canta 10 segundos!`;
+        heroP.style.color = "#c4b5fd";
+        heroP.style.fontWeight = "600";
+      }
+    }
+  } catch (e) {
+    console.error("Error activando modo comparación:", e);
+  }
+});
