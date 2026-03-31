@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Descubre si tienes la voz de Juanes | Harmiq IA</title>
+    <meta name="description" content="Análisis vocal de Juanes. Descubre su tipo de voz (Barítono), perfil acústico y compara tu voz con Juanes usando la IA de Harmiq.">
+    <link rel="canonical" href="https://harmiq.app/artistas/juanes/">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--dark);color:var(--t);font-family:'Outfit',sans-serif;line-height:1.6;}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 4%;background:rgba(10,8,24,.95);border-bottom:1px solid rgba(255,255,255,.07);}
+        .logo{font-size:1.7rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+        .container{max-width:1100px;margin:0 auto;padding:3rem 5%;}
+        .hero{text-align:center;margin-bottom:3rem;}
+        h1{font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;}
+        .badge{background:rgba(124,77,255,.15);color:var(--a);padding:0.5rem 1rem;border-radius:20px;font-weight:700;display:inline-block;margin-bottom:1rem;border:1px solid rgba(124,77,255,.3);}
+        .dashboard{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+        @media(max-width:768px){ .dashboard{grid-template-columns:1fr;} }
+        .card{background:var(--card);padding:2rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.05);}
+        .cta-box{text-align:center;margin-top:2rem;padding:2rem;background:linear-gradient(135deg,rgba(124,77,255,.1),rgba(255,79,163,.1));border-radius:1.5rem;border:1px dashed rgba(255,79,163,.3);}
+        .btn{display:inline-block;padding:1rem 2rem;background:linear-gradient(135deg,#FF9F1C,#FF5E5B);color:#fff;text-decoration:none;border-radius:50px;font-weight:800;font-size:1.1rem;box-shadow:0 8px 25px rgba(255,94,91,.4);transition:transform 0.2s;}
+        .btn:hover{transform:translateY(-3px);}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">Harmiq</a>
+        <a href="/" style="color:var(--t);text-decoration:none;font-weight:700;">Volver al inicio</a>
+    </nav>
+    <div class="container">
+        <div class="hero">
+            <div class="badge">Barítono • Jazz</div>
+            <h1>Análisis Vocal de Juanes</h1>
+            <p style="color:var(--m);font-size:1.1rem;max-width:600px;margin:0 auto;">Explora la huella acústica de Juanes. Valores extraídos mediante algoritmos de Inteligencia Artificial.</p>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h3 style="margin-bottom:1rem;color:var(--a);">Perfil de Frecuencia (Chroma)</h3>
+                <canvas id="chromaChart"></canvas>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom:1rem;color:var(--p);">Timbre (MFCCs Destacados)</h3>
+                <canvas id="mfccChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:2rem;">
+            <h3 style="margin-bottom:1rem;">Métricas en Bruto</h3>
+            <ul style="list-style:none;color:var(--m);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+                <li><strong>Spectral Centroid:</strong> 1123.5103 Hz</li>
+                <li><strong>Rolloff:</strong> 4247.8246 Hz</li>
+                <li><strong>Zero Crossing Rate:</strong> 0.0816</li>
+                <li><strong>RMS Energy:</strong> 0.2316</li>
+            </ul>
+        </div>
+
+        <div class="cta-box">
+            <h2 style="margin-bottom:1rem;">¿Quieres sonar como Juanes?</h2>
+            <p style="margin-bottom:1.5rem;color:var(--t);">Equípate con los mejores micrófonos recomendados para voces Barítono.</p>
+            <a href="https://www.amazon.es/s?k=juanes+music+cd&tag=harmiqapp-20" target="_blank" rel="nofollow noopener" class="btn">🛒 Ver Micrófonos en Amazon</a>
+        </div>
+    </div>
+
+    <script>
+        const chromaData = [0.3991, 0.4946, 0.6531, 0.7926, 0.548, 0.0655, 0.2713, 0.4539, 0.8174, 0.6827, 0.0903, 0.5867];
+        const mfccData = [-57.3193, 93.2485, -186.4751, 50.8189, 0.3596, 111.8965, 92.539, -105.8134, 172.3947, -79.5562, 170.6538, -161.1485, 155.8881, -145.449, 43.7087, -67.3771, -116.0498, -112.8787, 86.9519, -186.1074];
+
+        new Chart(document.getElementById('chromaChart'), {
+            type: 'radar',
+            data: {
+                labels: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
+                datasets: [{
+                    label: 'Intensidad Tonal',
+                    data: chromaData,
+                    backgroundColor: 'rgba(255, 79, 163, 0.2)',
+                    borderColor: '#FF4FA3',
+                    pointBackgroundColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: { scales: { r: { ticks: { display: false }, grid: { color: 'rgba(255,255,255,0.1)' }, angleLines: { color: 'rgba(255,255,255,0.1)' } } } }
+        });
+
+        new Chart(document.getElementById('mfccChart'), {
+            type: 'bar',
+            data: {
+                labels: ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10'],
+                datasets: [{
+                    label: 'Coeficientes Cepstrales',
+                    data: mfccData.slice(0, 10),
+                    backgroundColor: '#7C4DFF',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                scales: {
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
