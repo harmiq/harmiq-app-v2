@@ -135,6 +135,10 @@ VERIFIED_ARTISTS = {
     "kurt-cobain": ("Barítono", "Kurt Cobain empleó su voz nasal mezclada con agresiva distorsión fonética para definir el grunge de los 90.", ["Smells Like Teen Spirit", "Come As You Are", "Lithium", "Heart-Shaped Box", "About a Girl"]),
     "james-hetfield": ("Barítono", "James Hetfield es el arquetipo de growl vocal del heavy metal con firmeza de barítono.", ["Nothing Else Matters", "Enter Sandman", "Master of Puppets", "The Unforgiven", "One"]),
     "bruce-dickinson": ("Tenor", "Bruce Dickinson combina las campanas del power metal con operáticos saltos de octavas en falsete.", ["The Trooper", "Fear of the Dark", "Run to the Hills", "Hallowed Be Thy Name", "Aces High"]),
+    "michael-buble": ("Barítono", "Michael Bublé es el crooner por excelencia del siglo XXI, con una voz de barítono lírico capaz de revivir los estándares del jazz con frescura pop.", ["Feeling Good", "Sway", "Haven't Met You Yet", "Everything", "Home"]),
+    "alejandro-fernandez": ("Barítono", "Alejandro Fernández, 'El Potrillo', posee una voz de barítono brillante y potente, capaz de navegar con maestría entre el mariachi tradicional y el pop romántico.", ["Me Dediqué a Perderte", "Hoy Tengo Ganas de Ti", "Como Quien Pierde Una Estrella", "Caballero", "Nube Viajera"]),
+    "cristian-castro": ("Tenor", "Cristian Castro es un tenor lírico con una facilidad prodigiosa para las notas altas y una técnica que le permite interpretar baladas con una emotividad desbordante.", ["Azul", "Lloran las Rosas", "Por Amarte Así", "No Podrás", "Volver a Amar"]),
+    "carlos-rivera": ("Tenor", "Carlos Rivera es un tenor con una sólida formación en teatro musical, lo que le otorga una potencia y un control vocal excepcionales en el pop melódico.", ["Recuérdame", "¿Cómo Pagarte?", "Que lo Nuestro Se Quede Nuestro", "Te Esperaba", "Solo Tú"]),
 }
 
 def load_cache():
