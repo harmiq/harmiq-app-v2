@@ -97,6 +97,44 @@ VERIFIED_ARTISTS = {
     "aretha-franklin": ("Mezzosoprano", "Aretha Franklin, Reina del Soul, su canto exuda reverencia, poder evangélico y pura destreza.", ["Respect", "I Say a Little Prayer", "Think", "A Natural Woman", "Chain of Fools"]),
     "tina-turner": ("Mezzosoprano", "Tina Turner dominaba las tablas con una voz de pura dinamita soul-rock.", ["What's Love Got to Do with It", "The Best", "Proud Mary", "Private Dancer", "River Deep - Mountain High"]),
     "maria-callas": ("Soprano", "María Callas, considerada por muchos la soprano definitiva de la ópera moderna del siglo XX.", ["Casta Diva", "Vissi d'arte", "O mio babbino caro", "Habanera", "Sempre libera"]),
+    
+    # NUEVOS ESPAÑOLES / LATINOS
+    "ricky-martin": ("Tenor", "Ricky Martin es un tenor pop latino enfocado en un fraseo rítmico y potente.", ["Livin' la Vida Loca", "Vente Pa' Ca", "La Mordidita", "Pégate", "Tal Vez"]),
+    "chayanne": ("Tenor", "Chayanne mezcla un registro clásico de tenor ligero con una resistencia aeróbica impresionante.", ["Torero", "Dejaría Todo", "Salomé", "Un Siglo Sin Ti", "Madre Tierra (Oye)"]),
+    "marc-anthony": ("Tenor", "Marc Anthony es un tenor excepcional, con una potencia y resonancia nasal distintivas para la salsa.", ["Vivir Mi Vida", "Flor Pálida", "Tu Amor Me Hace Bien", "Valió la Pena", "Y Hubo Alguien"]),
+    "celia-cruz": ("Contralto", "Celia Cruz, la Reina de la Salsa, dominaba el escenario con una voz de contralto de enorme contundencia, color oscuro y gritos inconfundibles.", ["La Vida Es Un Carnaval", "La Negra Tiene Tumbao", "Quimbara", "Ríe y Llora", "Yo Viviré"]),
+    "romeo-santos": ("Tenor", "Romeo Santos ha popularizado el uso intensivo del falsete, alcanzando notas altísimas propias de un contratenor.", ["Propuesta Indecente", "Eres Mía", "Obsesión", "Imitadora", "Promise"]),
+    "quevedo": ("Barítono", "Quevedo posee un registro de barítono, muy grueso y resonante, muy poco habitual en el pop urbano actual.", ["Columbia", "Bzrp Music Sessions, Vol. 52", "Punto G", "Playa Del Inglés", "Vista Al Mar"]),
+    "tini": ("Mezzosoprano", "TINI usa una voz mezzo ligera muy adaptable al pop urbano, con un buen uso del susurro (vocal fry).", ["Miénteme", "La Triple T", "Bar", "Cupido", "Oye"]),
+    "sebastian-yatra": ("Tenor", "Sebastián Yatra es un tenor moderno que utiliza frecuentemente el aire y el falsete para la balada-pop.", ["Tacones Rojos", "Pareja Del Año", "Traicionera", "Robarte un Beso", "Chica Ideal"]),
+    "fito-cabrales": ("Barítono", "Fito tiene un timbre nasal, desgarrado y callejero muy personal en el registro barítono.", ["Por la Boca Vive el Pez", "Soldadito Marinero", "Antes de que Cuente Diez", "Me Equivocaría Otra Vez", "La Casa Por el Tejado"]),
+    
+    # DIVAS POP / ROCK INTERNACIONALES
+    "cher": ("Contralto", "Cher posee la voz de contralto pop más icónica, con una resonancia baja atronadora y fue pionera del autotune estético.", ["Believe", "If I Could Turn Back Time", "Strong Enough", "Shoop Shoop Song", "Walking In Memphis"]),
+    "barbra-streisand": ("Mezzosoprano", "Barbra Streisand posee un control técnico impecable, de mezzosoprano lírica con impecable legato y fraseo.", ["The Way We Were", "Woman in Love", "Memory", "Evergreen", "Don't Rain On My Parade"]),
+    "christina-aguilera": ("Soprano", "Christina Aguilera es una soprano lírica conocida por su enorme volumen (belting) y melismas complejos.", ["Beautiful", "Fighter", "Hurt", "Genie In A Bottle", "Dirrty"]),
+    "britney-spears": ("Soprano", "Britney Spears en realidad es una soprano lírica ligera, famosa por alterar su técnica hacia el vocal fry y tonos nasales icónicos.", ["Toxic", "Baby One More Time", "Oops!...I Did It Again", "Womanizer", "Gimme More"]),
+    "kelly-clarkson": ("Soprano", "Kelly Clarkson es una soprano con un espectacular 'chest voice' e impecable belting rock-pop.", ["Since U Been Gone", "Because of You", "Stronger", "Breakaway", "A Moment Like This"]),
+    "pink": ("Mezzosoprano", "P!nk canta impecablemente colgada boca abajo, con una voz mezzo potente, gruesa y rasgada.", ["Just Give Me A Reason", "So What", "Try", "What About Us", "Raise Your Glass"]),
+    
+    # LEYENDAS / SOUL / POP-ROCK 
+    "stevie-wonder": ("Tenor", "Stevie Wonder posee un rango de tenor impresionantemente ágil con un dominio del melisma fundamental para el R&B moderno.", ["Superstition", "Isn't She Lovely", "I Just Called to Say I Love You", "Sir Duke", "Signed, Sealed, Delivered"]),
+    "marvin-gaye": ("Tenor", "Marvin Gaye ostentaba tres voces distintas: un áspero grito góspel, un suave medio rango y un aclamado falsete dulce.", ["What's Going On", "Let's Get It On", "Sexual Healing", "Ain't No Mountain High Enough", "I Heard It Through The Grapevine"]),
+    "george-michael": ("Tenor", "George Michael dominaba un soul-pop británico perfeccionista, con fraseos aterciopelados en lo agudo.", ["Careless Whisper", "Faith", "Freedom! '90", "Wake Me Up Before You Go-Go", "Last Christmas"]),
+    "phil-collins": ("Tenor", "Phil Collins empleaba un tono tenor muy puro y percusivo, ideal para la compresión de radio ochentera.", ["In the Air Tonight", "Against All Odds", "Another Day In Paradise", "You Can't Hurry Love", "Sussudio"]),
+    "sting": ("Tenor", "Sting usa frecuentemente su distintivo rango alto rasgado, con influencias punk, reggae y jazz.", ["Shape of My Heart", "Englishman In New York", "Every Breath You Take", "Fields of Gold", "Roxanne"]),
+    "bono": ("Tenor", "Bono tiene un canto grandilocuente, épico y de himno de estadio en un registro tenor agudo.", ["With Or Without You", "Beautiful Day", "One", "I Still Haven't Found What I'm Looking For", "Sunday Bloody Sunday"]),
+    
+    # CONTEMPORÁNEOS / POP MASCULINO
+    "charlie-puth": ("Tenor", "Charlie Puth tiene un tono tenor muy claro pero es famoso por su extenso falsete de cabeza.", ["Attention", "We Don't Talk Anymore", "See You Again", "Light Switch", "How Long"]),
+    "justin-timberlake": ("Tenor", "Justin Timberlake tiene un registro de tenor ligero orientado al R&B, rítmico e hipersincopado.", ["Mirrors", "Cry Me a River", "Can't Stop the Feeling!", "SexyBack", "Suit & Tie"]),
+    "zayn-malik": ("Tenor", "Zayn Malik destaca en el mainstream por sus precisas subidas acrobáticas vocales y altos melismas.", ["Dusk Till Dawn", "PILLOWTALK", "I Don't Wanna Live Forever", "Vibez", "Let Me"]),
+    
+    # ROCK / METAL HARD / ALTERNATIVO
+    "axl-rose": ("Barítono", "Axl Rose tiene una extensión vocal de record Guinness: desde barítono bajo hasta un grito tenor altísimo en falsete.", ["Sweet Child O' Mine", "November Rain", "Welcome to the Jungle", "Paradise City", "Don't Cry"]),
+    "kurt-cobain": ("Barítono", "Kurt Cobain empleó su voz nasal mezclada con agresiva distorsión fonética para definir el grunge de los 90.", ["Smells Like Teen Spirit", "Come As You Are", "Lithium", "Heart-Shaped Box", "About a Girl"]),
+    "james-hetfield": ("Barítono", "James Hetfield es el arquetipo de growl vocal del heavy metal con firmeza de barítono.", ["Nothing Else Matters", "Enter Sandman", "Master of Puppets", "The Unforgiven", "One"]),
+    "bruce-dickinson": ("Tenor", "Bruce Dickinson combina las campanas del power metal con operáticos saltos de octavas en falsete.", ["The Trooper", "Fear of the Dark", "Run to the Hills", "Hallowed Be Thy Name", "Aces High"]),
 }
 
 def load_cache():
