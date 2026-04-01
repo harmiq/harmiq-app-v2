@@ -3,40 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Análisis Vocal de Кето Джапаридзе | Mezzosoprano | Harmiq IA</title>
-    <meta name="description" content="Descubre el perfil acústico de Кето Джапаридзе, Mezzosoprano. Análisis de potencia, brillo y tesitura técnica por la IA de Harmiq.">
-    <link rel="canonical" href="https://harmiq.app/artistas//">
+    <title>Directorio de Voces y Cantantes | Harmiq IA</title>
+    <meta name="description" content="Explora el directorio completo de perfiles vocales de Harmiq. Descubre el tipo de voz de tus artistas favoritos: Sopranos, Tenores, Barítonos y más.">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280;}
         *{margin:0;padding:0;box-sizing:border-box;}
         body{background:var(--dark);color:var(--t);font-family:'Outfit',sans-serif;line-height:1.6;}
         nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 4%;background:rgba(10,8,24,.95);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:100;}
         .logo{font-size:1.7rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
-        .container{max-width:1100px;margin:0 auto;padding:3rem 5%;}
-        .hero{text-align:center;margin-bottom:3rem;}
-        h1{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem;line-height:1;font-weight:900;}
-        .badge{background:rgba(124,77,255,.15);color:var(--a);padding:0.5rem 1rem;border-radius:20px;font-weight:700;display:inline-block;margin-bottom:1rem;border:1px solid rgba(124,77,255,.3);}
-        .verified-badge {display:inline-flex;align-items:center;gap:5px;background:rgba(6,214,160,0.1);color:#06D6A0;padding:4px 10px;border-radius:15px;font-size:0.7rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem;border:1px solid rgba(6,214,160,0.2);}
-        .dashboard{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;margin-bottom:1.5rem;}
-        @media(max-width:768px){ .dashboard{grid-template-columns:1fr;} }
+        .container{max-width:1200px;margin:0 auto;padding:3rem 5%;}
         
-        .card{background:rgba(255,255,255,0.03);padding:1.5rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.08);height:100%;}
-        
-        .technical-bio {margin-bottom:1.5rem; padding:1.5rem; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(124,77,255,0.05)); border-radius:1.5rem; border:1px solid rgba(124,77,255,0.2);}
-        .bio-text {font-size:1rem; color:#D1D5DB; line-height:1.6;}
+        .header-section {text-align:center; margin-bottom:3rem;}
+        h1 {font-size:3rem; font-weight:900; margin-bottom:1rem;}
+        .search-container {max-width:600px; margin:0 auto 2rem; position:relative;}
+        #artistSearch {
+            width:100%; padding:1.2rem 1.5rem; border-radius:50px; 
+            background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+            color:white; font-family:'Outfit'; font-size:1.1rem; outline:none;
+            transition: all 0.3s;
+        }
+        #artistSearch:focus {border-color:var(--p); box-shadow:0 0 20px rgba(124,77,255,0.2);}
 
-        .metric-wrap {margin-bottom:1.2rem;}
-        .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.4rem;font-size:0.85rem;color:#A5B4FC;}
-        .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:12px;overflow:hidden;}
-        .progress-fill {height:100%;border-radius:10px;transition:width 1s ease-in-out;}
+        .artist-grid {
+            display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap:1.5rem;
+        }
+        .artist-card {
+            background:var(--card); border-radius:1.5rem; overflow:hidden;
+            border:1px solid rgba(255,255,255,0.05); transition:all 0.3s;
+            text-decoration:none; color:white; display:block;
+        }
+        .artist-card:hover {
+            transform:translateY(-10px); border-color:var(--p);
+            box-shadow:0 15px 30px rgba(0,0,0,0.4);
+        }
+        .artist-card img {
+            width:100%; height:200px; object-fit:cover;
+            border-bottom:1px solid rgba(255,255,255,0.05);
+        }
+        .artist-info {padding:1.2rem; text-align:center;}
+        .artist-info h3 {font-size:1.1rem; margin-bottom:0.5rem; font-weight:700;}
+        .vocal-tag {
+            font-size:0.75rem; font-weight:800; text-transform:uppercase;
+            color:var(--a); background:rgba(255,79,163,0.1);
+            padding:4px 10px; border-radius:20px;
+        }
 
-        .cta-box{text-align:center;margin-top:2.5rem;padding:3rem 2rem;background:linear-gradient(135deg,rgba(124,77,255,0.1),rgba(255,79,163,0.1));border-radius:2rem;border:1px solid rgba(124,77,255,0.3);position:relative;}
-        .cta-box::after {content:''; position:absolute; inset:0; border-radius:2rem; background:radial-gradient(circle at center, rgba(124,77,255,0.2), transparent 70%); z-index:-1;}
-        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.2rem 2.5rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.2rem;box-shadow:0 15px 40px rgba(124,77,255,0.4);transition:all 0.3s;margin-bottom:1.2rem;width:100%;max-width:420px;}
-        .btn:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 20px 50px rgba(124,77,255,0.6);}
-        .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.15);font-size:0.95rem;}
+        footer {padding:3rem; text-align:center; color:var(--m); font-size:0.9rem; border-top:1px solid rgba(255,255,255,0.05); margin-top:4rem;}
     </style>
 </head>
 <body>
@@ -44,86 +58,831 @@
         <a href="/" class="logo">Harmiq</a>
         <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:0.5rem 1rem;border-radius:30px;font-size:0.85rem;">IA Gratis</a>
     </nav>
+    
     <div class="container">
-        <div class="hero">
+        <div class="header-section">
+            <h1>Directorio de Voces</h1>
+            <p style="color:var(--m); margin-bottom:2rem;">Explora nuestra base de datos de artistas verificados por nuestra IA.</p>
+            <div class="search-container">
+                <input type="text" id="artistSearch" placeholder="Busca tu cantante favorito (ej: Bad Bunny, Adele...)" onkeyup="filterArtists()">
+            </div>
+        </div>
+
+        <div class="artist-grid" id="artistGrid">
             
-            <div class="badge">Mezzosoprano • Hip-Hop</div>
-            <h1>Кето Джапаридзе</h1>
-            <p style="color:var(--m);font-size:1.1rem;">Análisis biomecánico y acústico.</p>
-        </div>
-
-        <div class="technical-bio">
-            <h3 style="margin-bottom:0.8rem; color:var(--a); font-size:1.2rem; font-family:'Baloo 2',sans-serif;">🧬 Perfil Técnico</h3>
-            <p class="bio-text">Кето Джапаридзе es Mezzosoprano. La voz de Mezzosoprano tiene un tono rico y versátil, dominando el registro medio con una potencia emotiva especial. Su perfil acústico revela una huella vocal distintiva en el espectro musical actual.</p>
-        </div>
-
-        <div class="dashboard">
-            <div class="card" style="height:320px;">
-                <h3 style="margin-bottom:1.2rem; color:#fff; font-size:1.1rem;">Métricas clave</h3>
-                <div class="metric-wrap">
-                    <div class="metric-head"><span>Potencia (RMS)</span><span>73%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:73%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div>
-                </div>
-                <div class="metric-wrap">
-                    <div class="metric-head"><span>Brillo (Rolloff)</span><span>90%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:90%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div>
-                </div>
-                <div class="metric-wrap">
-                    <div class="metric-head"><span>Centroide</span><span>62%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:62%;background:linear-gradient(90deg,#10B981,#3B82F6);"></div></div>
-                </div>
+        <a href="/artistas/adele/" class="artist-card" data-name="adele" data-type="mezzosoprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg" alt="Adele" loading="lazy">
+            <div class="artist-info">
+                <h3>Adele</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
             </div>
-            <div class="card" style="height:320px; padding:1rem;">
-                <canvas id="chromaChart"></canvas>
+        </a>
+        <a href="/artistas/aitana/" class="artist-card" data-name="aitana" data-type="soprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cc/6f/fc/cc6ffc8f-80c2-d222-9be5-bc6f4335f0b3/18UMGIM74890.rgb.jpg/600x600bb.jpg" alt="Aitana" loading="lazy">
+            <div class="artist-info">
+                <h3>Aitana</h3>
+                <span class="vocal-tag">Soprano</span>
             </div>
-        </div>
-
-        <div class="card" style="margin-bottom:1.5rem; height:320px;">
-            <h3 style="margin-bottom:0.8rem; font-size:1.1rem;">Análisis de Timbre (MFCC)</h3>
-            <canvas id="mfccChart"></canvas>
-        </div>
-
-        <div class="cta-box">
-            <h2 style="font-size:2.8rem; margin-bottom:1rem; font-weight:900;">🎤 ¿Tu voz es como la de Кето Джапаридзе?</h2>
-            <p style="margin-bottom:3rem; font-size:1.2rem; color:#A5B4FC;">Usa nuestra IA para compararte en tiempo real con este perfil.</p>
-            <a href="https://harmiq.app/?compare=#app" class="btn">🚀 Iniciar Comparación de Voz</a>
-            <br>
-            <a href="https://www.amazon.es/s?k=+music+cd&tag=harmiqapp-20" target="_blank" rel="nofollow noopener" class="btn btn-amazon">🛒 Equipamiento para Mezzosoprano</a>
+        </a>
+        <a href="/artistas/alejandro-sanz/" class="artist-card" data-name="alejandro sanz" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/ee/fe/a4eefebe-f64e-9250-b91f-f66ff956deb3/mzm.oeidtsbm.jpg/600x600bb.jpg" alt="Alejandro Sanz" loading="lazy">
+            <div class="artist-info">
+                <h3>Alejandro Sanz</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/alexandre-pires/" class="artist-card" data-name="alexandre pires" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Features124/v4/11/6c/6a/116c6a08-ff95-6bd0-433f-7651353a57b1/dj.gamlkvae.jpg/600x600bb.jpg" alt="Alexandre Pires" loading="lazy">
+            <div class="artist-info">
+                <h3>Alexandre Pires</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/alicia-keys/" class="artist-card" data-name="alicia keys" data-type="mezzosoprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c7/88/df/c788dffe-d06f-8923-ad61-a6194daf6616/888880809919.jpg/600x600bb.jpg" alt="Alicia Keys" loading="lazy">
+            <div class="artist-info">
+                <h3>Alicia Keys</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/amy-winehouse/" class="artist-card" data-name="amy winehouse" data-type="contralto">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9b/c3/36/9bc3369b-250a-5efb-af02-eb29b5a17d0c/mzi.hcitlgrl.jpg/600x600bb.jpg" alt="Amy Winehouse" loading="lazy">
+            <div class="artist-info">
+                <h3>Amy Winehouse</h3>
+                <span class="vocal-tag">Contralto</span>
+            </div>
+        </a>
+        <a href="/artistas/aretha-franklin/" class="artist-card" data-name="aretha franklin" data-type="mezzosoprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/47/0d/c0/470dc076-70e9-be30-07e5-ecee641a7604/603497902460.jpg/600x600bb.jpg" alt="Aretha Franklin" loading="lazy">
+            <div class="artist-info">
+                <h3>Aretha Franklin</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/ariana-grande/" class="artist-card" data-name="ariana grande" data-type="soprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/70/0f/3f700f55-1c91-c890-8cb7-b8886f87b7f6/16UMGIM30042.rgb.jpg/600x600bb.jpg" alt="Ariana Grande" loading="lazy">
+            <div class="artist-info">
+                <h3>Ariana Grande</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/axl-rose/" class="artist-card" data-name="axl rose" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/47/b7/5647b700-6b9d-9e72-ec9f-51140b6d4492/00602567673781.rgb.jpg/600x600bb.jpg" alt="Axl Rose" loading="lazy">
+            <div class="artist-info">
+                <h3>Axl Rose</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/bad-bunny/" class="artist-card" data-name="bad bunny" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/90/5e/7e/905e7ed5-a8fa-a8f3-cd06-0028fdf3afaa/199066342442.jpg/600x600bb.jpg" alt="Bad Bunny" loading="lazy">
+            <div class="artist-info">
+                <h3>Bad Bunny</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/barbra-streisand/" class="artist-card" data-name="barbra streisand" data-type="mezzosoprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1d/db/7f/1ddb7f0b-b6d4-ff4e-475a-61c453ab94e1/dj.kefgnnir.jpg/600x600bb.jpg" alt="Barbra Streisand" loading="lazy">
+            <div class="artist-info">
+                <h3>Barbra Streisand</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/beyonc/" class="artist-card" data-name="beyonc" data-type="mezzosoprano">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=beyonc" alt="Beyonc" loading="lazy">
+            <div class="artist-info">
+                <h3>Beyonc</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/billie-eilish/" class="artist-card" data-name="billie eilish" data-type="soprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg" alt="Billie Eilish" loading="lazy">
+            <div class="artist-info">
+                <h3>Billie Eilish</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/bob-marley-the-wailers/" class="artist-card" data-name="bob marley the wailers" data-type="tenor">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=bob-marley-the-wailers" alt="Bob Marley The Wailers" loading="lazy">
+            <div class="artist-info">
+                <h3>Bob Marley The Wailers</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/bono/" class="artist-card" data-name="bono" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c2/d2/6d/c2d26dcf-7e1b-ed4c-f598-f8dcb42b0f75/21UM1IM35664.rgb.jpg/600x600bb.jpg" alt="Bono" loading="lazy">
+            <div class="artist-info">
+                <h3>Bono</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/britney-spears/" class="artist-card" data-name="britney spears" data-type="soprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/9d/97/d59d9769-1369-854f-1681-4901a6d8361b/012414170422.jpg/600x600bb.jpg" alt="Britney Spears" loading="lazy">
+            <div class="artist-info">
+                <h3>Britney Spears</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/bruce-dickinson/" class="artist-card" data-name="bruce dickinson" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/35/3e/d1/353ed1dd-44a8-396e-92e2-bd42fceb0da0/5414939548079.jpg/600x600bb.jpg" alt="Bruce Dickinson" loading="lazy">
+            <div class="artist-info">
+                <h3>Bruce Dickinson</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/bruce-springsteen/" class="artist-card" data-name="bruce springsteen" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/72/68/327268ba-b9dd-b322-2a16-bdd0212df48c/074643865326.jpg/600x600bb.jpg" alt="Bruce Springsteen" loading="lazy">
+            <div class="artist-info">
+                <h3>Bruce Springsteen</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/bruno-mars/" class="artist-card" data-name="bruno mars" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bf/c6/eb/bfc6ebb2-98f6-2013-40d1-3b1bed9392a1/5059460491212.jpg/600x600bb.jpg" alt="Bruno Mars" loading="lazy">
+            <div class="artist-info">
+                <h3>Bruno Mars</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/c-tangana/" class="artist-card" data-name="c tangana" data-type="barítono">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=c-tangana" alt="C Tangana" loading="lazy">
+            <div class="artist-info">
+                <h3>C Tangana</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/camilo-sesto/" class="artist-card" data-name="camilo sesto" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/0a/b3/49/mzi.poszyzgt.jpg/600x600bb.jpg" alt="Camilo Sesto" loading="lazy">
+            <div class="artist-info">
+                <h3>Camilo Sesto</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/celia-cruz/" class="artist-card" data-name="celia cruz" data-type="contralto">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1a/22/3b/1a223bd0-2620-fdbf-c561-f1aee5cee9eb/00602567162544.rgb.jpg/600x600bb.jpg" alt="Celia Cruz" loading="lazy">
+            <div class="artist-info">
+                <h3>Celia Cruz</h3>
+                <span class="vocal-tag">Contralto</span>
+            </div>
+        </a>
+        <a href="/artistas/celine-dion/" class="artist-card" data-name="celine dion" data-type="soprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fd/2c/fa/fd2cfa89-c6c4-e564-8e6e-7f03a5377744/886447854761.jpg/600x600bb.jpg" alt="Celine Dion" loading="lazy">
+            <div class="artist-info">
+                <h3>Celine Dion</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/charlie-puth/" class="artist-card" data-name="charlie puth" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/8c/43/3e8c43f6-e02c-09ee-e1ea-56e74590be40/075679583208.jpg/600x600bb.jpg" alt="Charlie Puth" loading="lazy">
+            <div class="artist-info">
+                <h3>Charlie Puth</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/chayanne/" class="artist-card" data-name="chayanne" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/d8/da/55/mzi.tejiipmk.jpg/600x600bb.jpg" alt="Chayanne" loading="lazy">
+            <div class="artist-info">
+                <h3>Chayanne</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/cher/" class="artist-card" data-name="cher" data-type="contralto">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bf/c6/eb/bfc6ebb2-98f6-2013-40d1-3b1bed9392a1/5059460491212.jpg/600x600bb.jpg" alt="Cher" loading="lazy">
+            <div class="artist-info">
+                <h3>Cher</h3>
+                <span class="vocal-tag">Contralto</span>
+            </div>
+        </a>
+        <a href="/artistas/chris-brown/" class="artist-card" data-name="chris brown" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2d/5c/c1/2d5cc1a6-86ce-ee16-5985-807f2fffa3cb/196871957267.jpg/600x600bb.jpg" alt="Chris Brown" loading="lazy">
+            <div class="artist-info">
+                <h3>Chris Brown</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/christina-aguilera/" class="artist-card" data-name="christina aguilera" data-type="soprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6b/25/9b/6b259bc3-3e53-4339-80b0-5b50131c8901/888880771674.jpg/600x600bb.jpg" alt="Christina Aguilera" loading="lazy">
+            <div class="artist-info">
+                <h3>Christina Aguilera</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/coldplay/" class="artist-card" data-name="coldplay" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/65/29/e265299b-2fa0-a627-7254-352ec8c73e0a/5059460487185.jpg/600x600bb.jpg" alt="Coldplay" loading="lazy">
+            <div class="artist-info">
+                <h3>Coldplay</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/daddy-yankee/" class="artist-card" data-name="daddy yankee" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EDA%3C/text%3E%3C/svg%3E" alt="Daddy Yankee" loading="lazy">
+            <div class="artist-info">
+                <h3>Daddy Yankee</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/dani-mart-n/" class="artist-card" data-name="dani mart n" data-type="tenor">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=dani-mart-n" alt="Dani Mart N" loading="lazy">
+            <div class="artist-info">
+                <h3>Dani Mart N</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/david-bisbal/" class="artist-card" data-name="david bisbal" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EDA%3C/text%3E%3C/svg%3E" alt="David Bisbal" loading="lazy">
+            <div class="artist-info">
+                <h3>David Bisbal</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/david-bowie/" class="artist-card" data-name="david bowie" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EDA%3C/text%3E%3C/svg%3E" alt="David Bowie" loading="lazy">
+            <div class="artist-info">
+                <h3>David Bowie</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/donna-summer/" class="artist-card" data-name="donna summer" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EDO%3C/text%3E%3C/svg%3E" alt="Donna Summer" loading="lazy">
+            <div class="artist-info">
+                <h3>Donna Summer</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/drake/" class="artist-card" data-name="drake" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EDR%3C/text%3E%3C/svg%3E" alt="Drake" loading="lazy">
+            <div class="artist-info">
+                <h3>Drake</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/dua-lipa/" class="artist-card" data-name="dua lipa" data-type="mezzosoprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg" alt="Dua Lipa" loading="lazy">
+            <div class="artist-info">
+                <h3>Dua Lipa</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/ed-sheeran/" class="artist-card" data-name="ed sheeran" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EED%3C/text%3E%3C/svg%3E" alt="Ed Sheeran" loading="lazy">
+            <div class="artist-info">
+                <h3>Ed Sheeran</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/ella-fitzgerald/" class="artist-card" data-name="ella fitzgerald" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EEL%3C/text%3E%3C/svg%3E" alt="Ella Fitzgerald" loading="lazy">
+            <div class="artist-info">
+                <h3>Ella Fitzgerald</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/elton-john/" class="artist-card" data-name="elton john" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/75/b6/da/75b6da76-a3e0-6a77-cbe5-ad6c42cb0692/06UMGIM48050.rgb.jpg/600x600bb.jpg" alt="Elton John" loading="lazy">
+            <div class="artist-info">
+                <h3>Elton John</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/elvis-presley/" class="artist-card" data-name="elvis presley" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EEL%3C/text%3E%3C/svg%3E" alt="Elvis Presley" loading="lazy">
+            <div class="artist-info">
+                <h3>Elvis Presley</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/enrique-iglesias/" class="artist-card" data-name="enrique iglesias" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EEN%3C/text%3E%3C/svg%3E" alt="Enrique Iglesias" loading="lazy">
+            <div class="artist-info">
+                <h3>Enrique Iglesias</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/fito-cabrales/" class="artist-card" data-name="fito cabrales" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8c/a3/dc/8ca3dc30-ff70-f6f9-d63e-60fed11b8354/886448078463.jpg/600x600bb.jpg" alt="Fito Cabrales" loading="lazy">
+            <div class="artist-info">
+                <h3>Fito Cabrales</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/frank-sinatra/" class="artist-card" data-name="frank sinatra" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EFR%3C/text%3E%3C/svg%3E" alt="Frank Sinatra" loading="lazy">
+            <div class="artist-info">
+                <h3>Frank Sinatra</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/freddie-mercury/" class="artist-card" data-name="freddie mercury" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EFR%3C/text%3E%3C/svg%3E" alt="Freddie Mercury" loading="lazy">
+            <div class="artist-info">
+                <h3>Freddie Mercury</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/george-michael/" class="artist-card" data-name="george michael" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ee/49/ac/ee49accc-78bd-bcdb-1aff-c40c1ac3ccc4/074643959520.jpg/600x600bb.jpg" alt="George Michael" loading="lazy">
+            <div class="artist-info">
+                <h3>George Michael</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/harry-styles/" class="artist-card" data-name="harry styles" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EHA%3C/text%3E%3C/svg%3E" alt="Harry Styles" loading="lazy">
+            <div class="artist-info">
+                <h3>Harry Styles</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/j-balvin/" class="artist-card" data-name="j balvin" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23118AB2%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EJ%20%3C/text%3E%3C/svg%3E" alt="J Balvin" loading="lazy">
+            <div class="artist-info">
+                <h3>J Balvin</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/james-brown/" class="artist-card" data-name="james brown" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/43/8c/69/438c690f-fe4a-8a0d-4b46-2c1800f47754/06UMGIM02758.rgb.jpg/600x600bb.jpg" alt="James Brown" loading="lazy">
+            <div class="artist-info">
+                <h3>James Brown</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/james-hetfield/" class="artist-card" data-name="james hetfield" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e5/06/50/e50650cb-673f-3ae6-aeb2-05fa6b69c562/4099964100259.jpg/600x600bb.jpg" alt="James Hetfield" loading="lazy">
+            <div class="artist-info">
+                <h3>James Hetfield</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/janis-joplin/" class="artist-card" data-name="janis joplin" data-type="contralto">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/16/9d/87/169d87fe-76ee-1c50-d186-14ac71ab237e/886443610538.jpg/600x600bb.jpg" alt="Janis Joplin" loading="lazy">
+            <div class="artist-info">
+                <h3>Janis Joplin</h3>
+                <span class="vocal-tag">Contralto</span>
+            </div>
+        </a>
+        <a href="/artistas/jason-mraz/" class="artist-card" data-name="jason mraz" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f8/ac/ec/f8acec21-40e2-fa91-fe61-1be3cbc1467a/mzi.jokpbtnf.jpg/600x600bb.jpg" alt="Jason Mraz" loading="lazy">
+            <div class="artist-info">
+                <h3>Jason Mraz</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/joan-manuel-serrat/" class="artist-card" data-name="joan manuel serrat" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/36/ea/e2/mzi.devdguum.jpg/600x600bb.jpg" alt="Joan Manuel Serrat" loading="lazy">
+            <div class="artist-info">
+                <h3>Joan Manuel Serrat</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/joaqu-n-sabina/" class="artist-card" data-name="joaqu n sabina" data-type="barítono">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=joaqu-n-sabina" alt="Joaqu N Sabina" loading="lazy">
+            <div class="artist-info">
+                <h3>Joaqu N Sabina</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/juanes/" class="artist-card" data-name="juanes" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/21/1d/ad/211dad4f-69f6-9ac3-4c3b-3116dd3de4d4/06UMGIM24053.rgb.jpg/600x600bb.jpg" alt="Juanes" loading="lazy">
+            <div class="artist-info">
+                <h3>Juanes</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/julio-iglesias/" class="artist-card" data-name="julio iglesias" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23118AB2%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EJU%3C/text%3E%3C/svg%3E" alt="Julio Iglesias" loading="lazy">
+            <div class="artist-info">
+                <h3>Julio Iglesias</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/justin-bieber/" class="artist-card" data-name="justin bieber" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EJU%3C/text%3E%3C/svg%3E" alt="Justin Bieber" loading="lazy">
+            <div class="artist-info">
+                <h3>Justin Bieber</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/justin-timberlake/" class="artist-card" data-name="justin timberlake" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4c/44/30/4c4430dd-150b-d393-ec70-4894975f4b16/888880422095.jpg/600x600bb.jpg" alt="Justin Timberlake" loading="lazy">
+            <div class="artist-info">
+                <h3>Justin Timberlake</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/karol-g/" class="artist-card" data-name="karol g" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EKA%3C/text%3E%3C/svg%3E" alt="Karol G" loading="lazy">
+            <div class="artist-info">
+                <h3>Karol G</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/katy-perry/" class="artist-card" data-name="katy perry" data-type="contralto">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EKA%3C/text%3E%3C/svg%3E" alt="Katy Perry" loading="lazy">
+            <div class="artist-info">
+                <h3>Katy Perry</h3>
+                <span class="vocal-tag">Contralto</span>
+            </div>
+        </a>
+        <a href="/artistas/kelly-clarkson/" class="artist-card" data-name="kelly clarkson" data-type="soprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5a/08/43/5a08434e-a283-2877-6a65-37438184fe8c/5059460484955.jpg/600x600bb.jpg" alt="Kelly Clarkson" loading="lazy">
+            <div class="artist-info">
+                <h3>Kelly Clarkson</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/kendrick-lamar/" class="artist-card" data-name="kendrick lamar" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23118AB2%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EKE%3C/text%3E%3C/svg%3E" alt="Kendrick Lamar" loading="lazy">
+            <div class="artist-info">
+                <h3>Kendrick Lamar</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/kurt-cobain/" class="artist-card" data-name="kurt cobain" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/600x600bb.jpg" alt="Kurt Cobain" loading="lazy">
+            <div class="artist-info">
+                <h3>Kurt Cobain</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/lady-gaga/" class="artist-card" data-name="lady gaga" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ELA%3C/text%3E%3C/svg%3E" alt="Lady Gaga" loading="lazy">
+            <div class="artist-info">
+                <h3>Lady Gaga</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/lana-del-rey/" class="artist-card" data-name="lana del rey" data-type="contralto">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ELA%3C/text%3E%3C/svg%3E" alt="Lana Del Rey" loading="lazy">
+            <div class="artist-info">
+                <h3>Lana Del Rey</h3>
+                <span class="vocal-tag">Contralto</span>
+            </div>
+        </a>
+        <a href="/artistas/lola-indigo/" class="artist-card" data-name="lola indigo" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ELO%3C/text%3E%3C/svg%3E" alt="Lola Indigo" loading="lazy">
+            <div class="artist-info">
+                <h3>Lola Indigo</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/louis-armstrong/" class="artist-card" data-name="louis armstrong" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ELO%3C/text%3E%3C/svg%3E" alt="Louis Armstrong" loading="lazy">
+            <div class="artist-info">
+                <h3>Louis Armstrong</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/madonna/" class="artist-card" data-name="madonna" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EMA%3C/text%3E%3C/svg%3E" alt="Madonna" loading="lazy">
+            <div class="artist-info">
+                <h3>Madonna</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/maluma/" class="artist-card" data-name="maluma" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EMA%3C/text%3E%3C/svg%3E" alt="Maluma" loading="lazy">
+            <div class="artist-info">
+                <h3>Maluma</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/marc-anthony/" class="artist-card" data-name="marc anthony" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f7/24/ce/f724ce48-4d0d-0cbc-3493-3d935142e5e6/886443947238.jpg/600x600bb.jpg" alt="Marc Anthony" loading="lazy">
+            <div class="artist-info">
+                <h3>Marc Anthony</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/maria-callas/" class="artist-card" data-name="maria callas" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EMA%3C/text%3E%3C/svg%3E" alt="Maria Callas" loading="lazy">
+            <div class="artist-info">
+                <h3>Maria Callas</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/mariah-carey/" class="artist-card" data-name="mariah carey" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EMA%3C/text%3E%3C/svg%3E" alt="Mariah Carey" loading="lazy">
+            <div class="artist-info">
+                <h3>Mariah Carey</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/marvin-gaye/" class="artist-card" data-name="marvin gaye" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/76/36/2d/76362d74-cb7a-8ef9-104e-cde1d858e9a9/20UMGIM95279.rgb.jpg/600x600bb.jpg" alt="Marvin Gaye" loading="lazy">
+            <div class="artist-info">
+                <h3>Marvin Gaye</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/melanie-martinez/" class="artist-card" data-name="melanie martinez" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EME%3C/text%3E%3C/svg%3E" alt="Melanie Martinez" loading="lazy">
+            <div class="artist-info">
+                <h3>Melanie Martinez</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/michael-jackson/" class="artist-card" data-name="michael jackson" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EMI%3C/text%3E%3C/svg%3E" alt="Michael Jackson" loading="lazy">
+            <div class="artist-info">
+                <h3>Michael Jackson</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/mick-jagger/" class="artist-card" data-name="mick jagger" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EMI%3C/text%3E%3C/svg%3E" alt="Mick Jagger" loading="lazy">
+            <div class="artist-info">
+                <h3>Mick Jagger</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/miley-cyrus/" class="artist-card" data-name="miley cyrus" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EMI%3C/text%3E%3C/svg%3E" alt="Miley Cyrus" loading="lazy">
+            <div class="artist-info">
+                <h3>Miley Cyrus</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/natalia-lafourcade/" class="artist-card" data-name="natalia lafourcade" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ENA%3C/text%3E%3C/svg%3E" alt="Natalia Lafourcade" loading="lazy">
+            <div class="artist-info">
+                <h3>Natalia Lafourcade</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/nina-simone/" class="artist-card" data-name="nina simone" data-type="contralto">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ENI%3C/text%3E%3C/svg%3E" alt="Nina Simone" loading="lazy">
+            <div class="artist-info">
+                <h3>Nina Simone</h3>
+                <span class="vocal-tag">Contralto</span>
+            </div>
+        </a>
+        <a href="/artistas/norah-jones/" class="artist-card" data-name="norah jones" data-type="contralto">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ENO%3C/text%3E%3C/svg%3E" alt="Norah Jones" loading="lazy">
+            <div class="artist-info">
+                <h3>Norah Jones</h3>
+                <span class="vocal-tag">Contralto</span>
+            </div>
+        </a>
+        <a href="/artistas/olivia-rodrigo/" class="artist-card" data-name="olivia rodrigo" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23118AB2%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EOL%3C/text%3E%3C/svg%3E" alt="Olivia Rodrigo" loading="lazy">
+            <div class="artist-info">
+                <h3>Olivia Rodrigo</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/pablo-albor-n/" class="artist-card" data-name="pablo albor n" data-type="tenor">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=pablo-albor-n" alt="Pablo Albor N" loading="lazy">
+            <div class="artist-info">
+                <h3>Pablo Albor N</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/paul-mccartney/" class="artist-card" data-name="paul mccartney" data-type="tenor">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=paul-mccartney" alt="Paul Mccartney" loading="lazy">
+            <div class="artist-info">
+                <h3>Paul Mccartney</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/peso-pluma/" class="artist-card" data-name="peso pluma" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EPE%3C/text%3E%3C/svg%3E" alt="Peso Pluma" loading="lazy">
+            <div class="artist-info">
+                <h3>Peso Pluma</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/phil-collins/" class="artist-card" data-name="phil collins" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/64/d1/e264d18c-2b20-051d-3fc3-68b3424f8cde/603497880249.jpg/600x600bb.jpg" alt="Phil Collins" loading="lazy">
+            <div class="artist-info">
+                <h3>Phil Collins</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/pink/" class="artist-card" data-name="pink" data-type="mezzosoprano">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d0/70/6d/d0706da6-50cb-c630-97db-cb99be13edac/8800323979203.jpg/600x600bb.jpg" alt="Pink" loading="lazy">
+            <div class="artist-info">
+                <h3>Pink</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/post-malone/" class="artist-card" data-name="post malone" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EPO%3C/text%3E%3C/svg%3E" alt="Post Malone" loading="lazy">
+            <div class="artist-info">
+                <h3>Post Malone</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/prince/" class="artist-card" data-name="prince" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EPR%3C/text%3E%3C/svg%3E" alt="Prince" loading="lazy">
+            <div class="artist-info">
+                <h3>Prince</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/quevedo/" class="artist-card" data-name="quevedo" data-type="barítono">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/b5/76/a0b576ad-667d-1140-4694-23e5d598e89e/196925240499.jpg/600x600bb.jpg" alt="Quevedo" loading="lazy">
+            <div class="artist-info">
+                <h3>Quevedo</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/raphael/" class="artist-card" data-name="raphael" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ERA%3C/text%3E%3C/svg%3E" alt="Raphael" loading="lazy">
+            <div class="artist-info">
+                <h3>Raphael</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/rels-b/" class="artist-card" data-name="rels b" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ERE%3C/text%3E%3C/svg%3E" alt="Rels B" loading="lazy">
+            <div class="artist-info">
+                <h3>Rels B</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/ricky-martin/" class="artist-card" data-name="ricky martin" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ab/3c/ed/ab3cedd0-03a6-0802-ec42-2f48c4eb118c/074646989128.jpg/600x600bb.jpg" alt="Ricky Martin" loading="lazy">
+            <div class="artist-info">
+                <h3>Ricky Martin</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/rihanna/" class="artist-card" data-name="rihanna" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ERI%3C/text%3E%3C/svg%3E" alt="Rihanna" loading="lazy">
+            <div class="artist-info">
+                <h3>Rihanna</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/robert-plant/" class="artist-card" data-name="robert plant" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ERO%3C/text%3E%3C/svg%3E" alt="Robert Plant" loading="lazy">
+            <div class="artist-info">
+                <h3>Robert Plant</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/rocio-jurado/" class="artist-card" data-name="rocio jurado" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ERO%3C/text%3E%3C/svg%3E" alt="Rocio Jurado" loading="lazy">
+            <div class="artist-info">
+                <h3>Rocio Jurado</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/romeo-santos/" class="artist-card" data-name="romeo santos" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ad/a7/dc/ada7dc95-4333-f6df-ce0f-f0eeccbac7f4/886446557991.jpg/600x600bb.jpg" alt="Romeo Santos" loading="lazy">
+            <div class="artist-info">
+                <h3>Romeo Santos</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/sabrina-carpenter/" class="artist-card" data-name="sabrina carpenter" data-type="soprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ESA%3C/text%3E%3C/svg%3E" alt="Sabrina Carpenter" loading="lazy">
+            <div class="artist-info">
+                <h3>Sabrina Carpenter</h3>
+                <span class="vocal-tag">Soprano</span>
+            </div>
+        </a>
+        <a href="/artistas/sam-smith/" class="artist-card" data-name="sam smith" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ESA%3C/text%3E%3C/svg%3E" alt="Sam Smith" loading="lazy">
+            <div class="artist-info">
+                <h3>Sam Smith</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/sebastian-yatra/" class="artist-card" data-name="sebastian yatra" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ESE%3C/text%3E%3C/svg%3E" alt="Sebastian Yatra" loading="lazy">
+            <div class="artist-info">
+                <h3>Sebastian Yatra</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/shakira/" class="artist-card" data-name="shakira" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ESH%3C/text%3E%3C/svg%3E" alt="Shakira" loading="lazy">
+            <div class="artist-info">
+                <h3>Shakira</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/shawn-mendes/" class="artist-card" data-name="shawn mendes" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ESH%3C/text%3E%3C/svg%3E" alt="Shawn Mendes" loading="lazy">
+            <div class="artist-info">
+                <h3>Shawn Mendes</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/snoop-dogg/" class="artist-card" data-name="snoop dogg" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ESN%3C/text%3E%3C/svg%3E" alt="Snoop Dogg" loading="lazy">
+            <div class="artist-info">
+                <h3>Snoop Dogg</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/stevie-wonder/" class="artist-card" data-name="stevie wonder" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/eb/1f/12/eb1f12ec-474c-63aa-43af-09282f423b9d/00602537004737.rgb.jpg/600x600bb.jpg" alt="Stevie Wonder" loading="lazy">
+            <div class="artist-info">
+                <h3>Stevie Wonder</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/sting/" class="artist-card" data-name="sting" data-type="tenor">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/eb/29/4c/eb294c36-1f54-fade-0de3-463ff57ea09a/16UMGIM59578.rgb.jpg/600x600bb.jpg" alt="Sting" loading="lazy">
+            <div class="artist-info">
+                <h3>Sting</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/sza/" class="artist-card" data-name="sza" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ESZ%3C/text%3E%3C/svg%3E" alt="Sza" loading="lazy">
+            <div class="artist-info">
+                <h3>Sza</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/taylor-swift/" class="artist-card" data-name="taylor swift" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ETA%3C/text%3E%3C/svg%3E" alt="Taylor Swift" loading="lazy">
+            <div class="artist-info">
+                <h3>Taylor Swift</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/the-weeknd/" class="artist-card" data-name="the weeknd" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ETH%3C/text%3E%3C/svg%3E" alt="The Weeknd" loading="lazy">
+            <div class="artist-info">
+                <h3>The Weeknd</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
+        <a href="/artistas/tina-turner/" class="artist-card" data-name="tina turner" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23E63946%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ETI%3C/text%3E%3C/svg%3E" alt="Tina Turner" loading="lazy">
+            <div class="artist-info">
+                <h3>Tina Turner</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/tini/" class="artist-card" data-name="tini" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ETI%3C/text%3E%3C/svg%3E" alt="Tini" loading="lazy">
+            <div class="artist-info">
+                <h3>Tini</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/tove-lo/" class="artist-card" data-name="tove lo" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF4FA3%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ETO%3C/text%3E%3C/svg%3E" alt="Tove Lo" loading="lazy">
+            <div class="artist-info">
+                <h3>Tove Lo</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/travis-scott/" class="artist-card" data-name="travis scott" data-type="barítono">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%237C4DFF%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3ETR%3C/text%3E%3C/svg%3E" alt="Travis Scott" loading="lazy">
+            <div class="artist-info">
+                <h3>Travis Scott</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/vicente-fern-ndez/" class="artist-card" data-name="vicente fern ndez" data-type="barítono">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=vicente-fern-ndez" alt="Vicente Fern Ndez" loading="lazy">
+            <div class="artist-info">
+                <h3>Vicente Fern Ndez</h3>
+                <span class="vocal-tag">Barítono</span>
+            </div>
+        </a>
+        <a href="/artistas/whitney-houston/" class="artist-card" data-name="whitney houston" data-type="mezzosoprano">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23FF9F1C%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EWH%3C/text%3E%3C/svg%3E" alt="Whitney Houston" loading="lazy">
+            <div class="artist-info">
+                <h3>Whitney Houston</h3>
+                <span class="vocal-tag">Mezzosoprano</span>
+            </div>
+        </a>
+        <a href="/artistas/zayn-malik/" class="artist-card" data-name="zayn malik" data-type="tenor">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22600%22%20height%3D%22600%22%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%2306D6A0%22/%3E%3Ctext%20x%3D%22300%22%20y%3D%22380%22%20font-family%3D%22Arial%22%20font-weight%3D%22bold%22%20font-size%3D%22280%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EZA%3C/text%3E%3C/svg%3E" alt="Zayn Malik" loading="lazy">
+            <div class="artist-info">
+                <h3>Zayn Malik</h3>
+                <span class="vocal-tag">Tenor</span>
+            </div>
+        </a>
         </div>
     </div>
 
-    <script>
-        new Chart(document.getElementById('chromaChart'), {
-            type: 'radar',
-            data: {
-                labels: ['Do', 'Do#', 'Re', 'Re#', 'Mi', 'Fa', 'Fa#', 'Sol', 'Sol#', 'La', 'La#', 'Si'],
-                datasets: [{
-                    label: 'Armónicos',
-                    data: [0.8915, 0.9899, 0.566, 0.4112, 0.5114, 0.3652, 0.7922, 0.7338, 0.9356, 0.5928, 0.4529, 0.3502],
-                    backgroundColor: 'rgba(255, 79, 163, 0.2)',
-                    borderColor: '#FF4FA3',
-                    pointRadius: 0,
-                    borderWidth: 2
-                }]
-            },
-            options: { maintainAspectRatio:false, scales:{ r:{ ticks:{display:false}, grid:{color:'rgba(255,255,255,0.05)'}, angleLines:{color:'rgba(255,255,255,0.05)'} } } }
-        });
+    <footer>
+        © 2026 Harmiq — Análisis Vocal con Inteligencia Artificial
+    </footer>
 
-        new Chart(document.getElementById('mfccChart'), {
-            type: 'line',
-            data: {
-                labels: Array.from({length:20}, (_,i)=>i+1),
-                datasets: [{
-                    label: 'Espectro',
-                    data: [48.3559, -47.4146, -23.2076, -77.734, 40.6917, -64.7911, -43.5242, -74.7123, 38.4286, 16.5462, -65.0214, 76.3651, -3.8888, -43.5306, -9.8511, -39.6397, 67.9453, 50.4578, 75.2121, 49.4941],
-                    borderColor: '#7C4DFF',
-                    tension: 0.4,
-                    fill: true,
-                    backgroundColor: 'rgba(124,77,255,0.1)'
-                }]
-            },
-            options: { maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(255,255,255,0.05)'}}, x:{grid:{display:false}} } }
-        });
+    <script>
+        function filterArtists() {
+            let input = document.getElementById('artistSearch').value.toLowerCase();
+            let cards = document.getElementsByClassName('artist-card');
+            
+            for (let card of cards) {
+                let name = card.getAttribute('data-name');
+                let type = card.getAttribute('data-type');
+                if (name.includes(input) || type.includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
     </script>
 </body>
 </html>

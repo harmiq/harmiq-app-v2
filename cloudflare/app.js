@@ -37,6 +37,7 @@ function getPremiumHeaderHTML() {
                 <li><a href="/voz/soprano" style="color:#FF4FA3; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(255,79,163,0.1)">Soprano</a></li>
                 <li><a href="/voz/mezzo-soprano" style="color:#7C4DFF; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(124,77,255,0.1)">Mezzo</a></li>
                 <li><a href="/voz/tenor" style="color:#1DB954; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(29,185,84,0.1)">Tenor</a></li>
+                <li><a href="/artistas/" style="color:#A5B4FC; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(124,77,255,0.1)">Artistas</a></li>
                 <li><a href="/comunidad" style="color:#FF9900; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 1.2rem; border-radius:10px; background:rgba(255,153,0,0.1); border:1px solid rgba(255,153,0,0.2)">Comunidad</a></li>
             </ul>
         </div>
@@ -1677,7 +1678,9 @@ async function renderResults({feat,vec,vt,conf,matches,gender}) {
       <div style="font-size:1.1rem; color:#D1D5DB; margin-bottom:1.5rem; font-style:italic">"${phrase}"</div>
 
       <div style="display:inline-block; background:rgba(255,255,255,0.05); padding:1rem 2rem; border-radius:20px; border:1px solid rgba(255,255,255,0.1); margin-bottom:2rem">
-        <div style="font-size:0.8rem; color:#9CA3AF; text-transform:uppercase; letter-spacing:1px">Similitud con ${top1.name}</div>
+        <a href="/artistas/${top1.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/" style="text-decoration:none">
+          <div style="font-size:0.8rem; color:#A5B4FC; text-transform:uppercase; letter-spacing:1px; font-weight:700; transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Similitud con ${top1.name}</div>
+        </a>
         <div style="font-size:3.5rem; font-weight:900; background:linear-gradient(135deg, #fff, ${color}); -webkit-background-clip:text; -webkit-text-fill-color:transparent">
           ${Math.round(top1.score)}%
         </div>
@@ -1747,7 +1750,9 @@ async function renderResults({feat,vec,vt,conf,matches,gender}) {
           <div style="position:absolute; bottom:-5px; right:-5px; width:30px; height:30px; background:#1a103f; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; font-weight:800; border:2px solid ${color}">${sym[i]}</div>
         </div>
         <div style="flex:1">
-          <h3 style="font-family:'Baloo 2',sans-serif; font-size:1.4rem; color:#fff; margin-bottom:0.2rem; line-height:1.2">${m.name}</h3>
+          <a href="/artistas/${m.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/" style="text-decoration:none">
+            <h3 style="font-family:'Baloo 2',sans-serif; font-size:1.4rem; color:#fff; margin-bottom:0.2rem; line-height:1.2; transition:color 0.2s" onmouseover="this.style.color='#7C4DFF'" onmouseout="this.style.color='#fff'">${m.name}</h3>
+          </a>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
             <span style="font-size:0.7rem; font-weight:800; padding:0.2rem 0.6rem; border-radius:20px; background:${color}22; color:${color}; text-transform:uppercase">${vtN}</span>
             <span style="font-size:0.7rem; font-weight:800; padding:0.2rem 0.6rem; border-radius:20px; background:rgba(255,255,255,0.05); color:#9CA3AF; text-transform:uppercase">${trV("_eras",m.era)}</span>

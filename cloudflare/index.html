@@ -147,6 +147,7 @@
         <li><a href="/tipos-de-voz">Tipos de Voz</a></li>
         <li><a href="/ejercicios-de-canto">Ejercicios</a></li>
         <li><a href="/comunidad" style="background:rgba(255,94,91,.1); color:#FF5E5B; border:1px solid rgba(255,94,91,.25)">💬 Comunidad</a></li>
+        <li><a href="/artistas/" style="background:rgba(124,77,255,0.1); color:#A5B4FC; border:1px solid rgba(124,77,255,0.2)">🎙️ Artistas</a></li>
         <li><a href="/karaoke-eventos" class="nav-karaoke">🎤 Karaoke</a></li>
         <li><a href="/modul-catala" class="nav-catala" id="nav-catala-btn">🏴 Català</a></li>
     </ul>
@@ -212,6 +213,57 @@
         <div id="status-msg" style="display:none; margin-top: 1.2rem; font-weight: 700; color: #7C4DFF; font-size: 1.1rem;"></div>
     </div>
     <div id="results"></div>
+
+    <!-- ── ARTISTAS DESTACADOS (SEO & FEEDBACK) ── -->
+    <section id="featured-artists" style="margin-top:4rem; padding:0 5%;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2rem; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:1rem;">
+            <div>
+                <h2 style="font-family:'Outfit'; font-size:1.8rem; margin:0; color:#fff;">🎤 Artistas Destacados</h2>
+                <p style="color:#9CA3AF; margin-top:0.3rem;">Descubre el análisis acústico de las voces más icónicas.</p>
+            </div>
+            <a href="/artistas/" style="color:#A5B4FC; text-decoration:none; font-weight:700; font-size:0.9rem;">Ver todos →</a>
+        </div>
+        
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:1.5rem;">
+            <!-- Rosalía -->
+            <a href="/artistas/rosal-a/" style="text-decoration:none; text-align:center; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/3d/8c/1e/3d8c1e87-84bc-2358-7e50-2f9611f8e6c4/196589006509.jpg/200x200bb.jpg" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid #7C4DFF; margin-bottom:0.8rem;">
+                <div style="color:#fff; font-weight:700; font-size:0.9rem;">Rosalía</div>
+                <div style="color:#A5B4FC; font-size:0.75rem; font-weight:600;">Soprano</div>
+            </a>
+            <!-- Quevedo -->
+            <a href="/artistas/quevedo/" style="text-decoration:none; text-align:center; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/44/23/e8/4423e80f-90e8-0b5c-897b-952402bc4500/8445162981504.jpg/200x200bb.jpg" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid #7C4DFF; margin-bottom:0.8rem;">
+                <div style="color:#fff; font-weight:700; font-size:0.9rem;">Quevedo</div>
+                <div style="color:#A5B4FC; font-size:0.75rem; font-weight:600;">Barítono</div>
+            </a>
+            <!-- Freddie Mercury -->
+            <a href="/artistas/freddie-mercury/" style="text-decoration:none; text-align:center; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ce/6f/fc/ce6ffc4a-6f6a-2d22-bc6f-f4335f08ca42/06UMGIM08611.rgb.jpg/200x200bb.jpg" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid #7C4DFF; margin-bottom:0.8rem;">
+                <div style="color:#fff; font-weight:700; font-size:0.9rem;">F. Mercury</div>
+                <div style="color:#A5B4FC; font-size:0.75rem; font-weight:600;">Barítono</div>
+            </a>
+            <!-- Bad Bunny -->
+            <a href="/artistas/bad-bunny/" style="text-decoration:none; text-align:center; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ee/6f/fc/ee6ffc5a-6f6a-2d22-bc6f-f4335f08ca42/196589552105.jpg/200x200bb.jpg" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid #7C4DFF; margin-bottom:0.8rem;">
+                <div style="color:#fff; font-weight:700; font-size:0.9rem;">Bad Bunny</div>
+                <div style="color:#A5B4FC; font-size:0.75rem; font-weight:600;">Barítono</div>
+            </a>
+            <!-- Michael Jackson -->
+            <a href="/artistas/michael-jackson/" style="text-decoration:none; text-align:center; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ce/6f/fc/ce6ffc4a-6f6a-2d22-bc6f-f4335f08ca42/886447285661.jpg/200x200bb.jpg" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid #7C4DFF; margin-bottom:0.8rem;">
+                <div style="color:#fff; font-weight:700; font-size:0.9rem;">M. Jackson</div>
+                <div style="color:#A5B4FC; font-size:0.75rem; font-weight:600;">Tenor</div>
+            </a>
+            <!-- Shakira -->
+            <a href="/artistas/shakira/" style="text-decoration:none; text-align:center; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/be/6f/fc/be6ffc4a-6f6a-2d22-bc6f-f4335f08ca42/196589785890.jpg/200x200bb.jpg" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid #7C4DFF; margin-bottom:0.8rem;">
+                <div style="color:#fff; font-weight:700; font-size:0.9rem;">Shakira</div>
+                <div style="color:#A5B4FC; font-size:0.75rem; font-weight:600;">Mezzo</div>
+            </a>
+        </div>
+    </section>
+
     <div id="events-area"></div>
 
     <!-- Foro de la Comunidad — Homepage -->
@@ -259,9 +311,9 @@
         <li><a href="/home-studio">Home Studio</a></li>
         <li><a href="/tipos-de-voz">Tipos de Voz</a></li>
         <li><a href="/ejercicios-de-canto">Ejercicios</a></li>
-        <li><a href="/karaoke-eventos">Karaoke</a></li>
-        <li><a href="/modul-catala">Català</a></li>
         <li><a href="/comunidad" style="color:#FF5E5B; font-weight:700">Comunidad</a></li>
+        <li><a href="/artistas/">Artistas</a></li>
+        <li><a href="/karaoke-eventos">Karaoke</a></li>
         <li><a href="/politica-privacidad">Privacidad</a></li>
     </ul>
     <p style="color:var(--m);font-size:.75rem;margin-top:.8rem">© 2026 Harmiq — Análisis Vocal con IA · <a href="/politica-privacidad" style="color:var(--m)">Privacidad & Cookies</a> · <a href="/terminos" style="color:var(--m)">Términos</a></p>
