@@ -1,9 +1,14 @@
 /**
- * app.js — Harmiq PRODUCCIÓN v8.1 (HealthCheck & Playlists Fix)
+ * app.js — Harmiq PRODUCCIÓN v10.1 (UI Redesign & Amazon Search Shield)
  * FIX: botones género visual, auto-selección, HF_API_URL, GDPR
  * Un solo archivo. No requiere analyzer.js.
  *
- * FIXES v5:
+ * v10.1: Rediseño del analizador de voz (grabación separada de análisis),
+ * visualizador de espectro, escudo de búsqueda Amazon corregido (Micrófonos vs Monitores).
+ *
+ * v8.1: HealthCheck & Playlists Fix
+ *
+ * v5:
  * 1. Emoji duplicado en botón grabar — CORREGIDO
  * 2. Barítono clasificado como tenor — CORREGIDO (umbral 215Hz + pitch_range)
  * 3. Fotos de artistas — Wikipedia cache + avatar iniciales (sin CORS)
@@ -13,9 +18,6 @@
  * 7. Canciones recomendadas de Spotify en resultado
  * 8. Filtros: época + género musical + idioma/país
  * 9. Sección karaoke/eventos en resultado principal
- * 10. Fotos en todas las cards de artistas con fallback de iniciales
- * 11. Router robusto — /voz/* funcional, no recarga la página
- * 12. Matching con boost de popularidad local por país del usuario
  */
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1495,13 +1497,25 @@ function classifyVT(pitchMean, pitchRange, gender) {
 // 9. ANÁLISIS
 // ═══════════════════════════════════════════════════════════════════════════════
 async function analyzeAudio() {
-  const gender = document.getElementById("user-gender")?.value;
+  const gender     = document.getElementById("user-gender")?.value;
+  const analyzeBtn = document.getElementById("analyze-btn");
+  const dropZone   = document.getElementById("_drop_zone");
+
   if (!gender)    { showStatus(tr("_err_gender"),"err"); return; }
   if (!audioBlob) { showStatus(tr("_err_short"),"err"); return; }
   if (!singersDb.length){ showStatus(tr("_err_db"),"err"); return; }
 
+  // Estado de carga en el botón
+  let oldHtml = "";
+  if (analyzeBtn) {
+    oldHtml = analyzeBtn.innerHTML;
+    analyzeBtn.disabled = true;
+    analyzeBtn.innerHTML = `<span>⏳</span> Analizando...`;
+    analyzeBtn.style.opacity = "0.7";
+  }
+
   try {
-    showStatus("⏳ Despertando el servidor de IA...");
+    showStatus("⏳ Despertando o servidor de IA...");
     
     // 🔔 WAKE-UP LOOP: Hasta 20 segundos para despertar el Space
     let isAwake = false;
@@ -1540,6 +1554,7 @@ async function analyzeAudio() {
         sessionStorage.setItem("harmiq_result", JSON.stringify(toSave));
       } catch(_) {}
       await preloadImages(matches.slice(0,5).map(m=>m.name));
+      if (dropZone) dropZone.style.display = "none";
       renderResults(lastResult);
       showStatus("");
       return;
@@ -1576,6 +1591,7 @@ async function analyzeAudio() {
       const matches = getMatches(vec, vt, gender, {}, 5);
       lastResult = {feat, vec, vt, conf, matches, gender};
       await preloadImages(matches.slice(0,5).map(m=>m.name));
+      if (dropZone) dropZone.style.display = "none";
       renderResults(lastResult);
       showStatus("");
       return;
@@ -1592,7 +1608,12 @@ async function analyzeAudio() {
     
     lastResult = {feat, vec, vt, conf, matches, gender};
     await preloadImages(matches.slice(0,5).map(m=>m.name));
+
+    // TRANSICIÓN DE UI: Ocultar zona de grabación para mostrar resultados
+    if (dropZone) dropZone.style.display = "none";
+    
     renderResults(lastResult);
+    showStatus("");
     
     // Persistir resultado
     try {
@@ -1610,7 +1631,7 @@ async function analyzeAudio() {
       };
       sessionStorage.setItem("harmiq_result", JSON.stringify(toSave));
     } catch(_) {}
-    showStatus("");
+
   } catch(e) { 
     console.error("Analysis error:", e);
     let msg = e.message || tr("_err_short");
@@ -1618,6 +1639,12 @@ async function analyzeAudio() {
       msg = "⚠️ El servidor de IA no responde. Por favor, asegúrate de que no tienes un bloqueador de anuncios activo o intenta recargar la página.";
     }
     showStatus(msg, "err"); 
+    // Restaurar botón en caso de error
+    if (analyzeBtn) {
+      analyzeBtn.disabled = false;
+      analyzeBtn.innerHTML = oldHtml;
+      analyzeBtn.style.opacity = "1";
+    }
   }
 }
 
@@ -1693,9 +1720,13 @@ function getPlatformLinks(singerName, songName) {
   return { karaoke: `https://www.youtube.com/results?search_query=${qs}`, streams };
 }
 
-async function renderResults({feat,vec,vt,conf,matches,gender}) {
-  const vtName = trV("_vt_names",vt);
-  const sym    = ["🥇","🥈","🥉","4.","5."];
+async function renderResults(data) {
+  if (!data) return;
+  const {feat,vec,vt,conf,matches,gender} = data;
+  
+  try {
+    const vtName = trV("_vt_names",vt);
+    const sym    = ["🥇","🥈","🥉","4.","5."];
   const explanation = getVoiceTypeDescription(vt, conf, window.lang || 'es');
 
   const resEl = document.getElementById("results");
@@ -1782,7 +1813,10 @@ async function renderResults({feat,vec,vt,conf,matches,gender}) {
     {val:"actualidad", label:"Actual"}
   ];
   const eraOptions = ERA_DISPLAY
-    .filter(e => singersDb.some(s => (s.era === e.val || s.era === ({"1970s":"1970s-80s","1980s":"1970s-80s","2000s":"2000s+","2010s":"2010s+","2020s":"2010s+","actualidad":"2010s+"}[e.val]))))
+    .filter(e => {
+      const dbVal = ({"1970s":"1970s-80s","1980s":"1970s-80s","2000s":"2000s+","2010s":"2010s+","2020s":"2010s+","actualidad":"2010s+"}[e.val]) || e.val;
+      return singersDb.some(s => s.era === dbVal || s.era === e.val);
+    })
     .map(e => `<option value="${e.val}">${e.label}</option>`).join("");
 
   const genreOptions = [...new Set(singersDb.map(s=>s.genre_category).filter(Boolean))].sort()
@@ -1899,14 +1933,19 @@ async function renderResults({feat,vec,vt,conf,matches,gender}) {
   // Re-vincular eventos de filtros
   attachFilterEvents(vec, vt, gender);
   
-  // Scroll suave al inicio del resultado
-  setTimeout(() => resEl.scrollIntoView({ behavior:"smooth", block:"start" }), 100);
+    // Scroll suave al inicio del resultado
+    setTimeout(() => resEl.scrollIntoView({ behavior:"smooth", block:"start" }), 150);
 
-  // ── Sección karaoke personalizada ──────────────────────────────────
-  const evEl = document.getElementById("events-area");
-  if (evEl) {
-    const vtSlug = {"baritone":"baritono","bass":"bajo","tenor":"tenor","soprano":"soprano","mezzo-soprano":"mezzosoprano","contralto":"contralto","countertenor":"tenor"}[vt] || "baritono";
-    evEl.innerHTML = buildKaraokeSection(vtName, vtSlug);
+    // ── Sección karaoke personalizada ──────────────────────────────────
+    const evEl = document.getElementById("events-area");
+    if (evEl) {
+      const vtSlug = {"baritone":"baritono","bass":"bajo","tenor":"tenor","soprano":"soprano","mezzo-soprano":"mezzosoprano","contralto":"contralto","countertenor":"tenor"}[vt] || "baritono";
+      evEl.innerHTML = buildKaraokeSection(vtName, vtSlug);
+    }
+  } catch (renderErr) {
+    console.error("Error in renderResults:", renderErr);
+    const resEl = document.getElementById("results");
+    if (resEl) resEl.innerHTML = `<div style="padding:2rem; text-align:center; color:#9CA3AF">Hubo un problema al generar la tarjeta de resultados. Por favor, intenta analizar de nuevo.</div>`;
   }
 }
 
