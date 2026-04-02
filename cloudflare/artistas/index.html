@@ -4,914 +4,1322 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    <title>Directorio de Voces y Cantantes | Harmiq IA</title>
-    <meta name="description" content="Explora el directorio completo de perfiles vocales de Harmiq. Descubre el tipo de voz de tus artistas favoritos: Sopranos, Tenores, Barítonos y más.">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Artistas y Cantantes — Tipo de Voz, Fotos y Curiosidades | Harmiq</title>
+    <meta name="description" content="Descubre el tipo de voz de más de 200 artistas: Bad Bunny, Rosalía, Adele, Peso Pluma, Beyoncé y muchos más. Fotos, curiosidades y análisis vocal en Harmiq.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280;}
         *{margin:0;padding:0;box-sizing:border-box;}
         body{background:var(--dark);color:var(--t);font-family:'Outfit',sans-serif;line-height:1.6;}
         nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 4%;background:rgba(10,8,24,.95);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:100;}
         .logo{font-size:1.7rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
-        .container{max-width:1200px;margin:0 auto;padding:3rem 5%;}
-        
-        .header-section {text-align:center; margin-bottom:3rem;}
-        h1 {font-size:3rem; font-weight:900; margin-bottom:1rem;}
-        .search-container {max-width:600px; margin:0 auto 2rem; position:relative;}
-        #artistSearch {
-            width:100%; padding:1.2rem 1.5rem; border-radius:50px; 
-            background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
-            color:white; font-family:'Outfit'; font-size:1.1rem; outline:none;
-            transition: all 0.3s;
-        }
-        #artistSearch:focus {border-color:var(--p); box-shadow:0 0 20px rgba(124,77,255,0.2);}
+        .container{max-width:1300px;margin:0 auto;padding:3rem 4%;}
 
-        .artist-grid {
-            display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap:1.5rem;
-        }
-        .artist-card {
-            background:var(--card); border-radius:1.5rem; overflow:hidden;
-            border:1px solid rgba(255,255,255,0.05); transition:all 0.3s;
-            text-decoration:none; color:white; display:block;
-        }
-        .artist-card:hover {
-            transform:translateY(-10px); border-color:var(--p);
-            box-shadow:0 15px 30px rgba(0,0,0,0.4);
-        }
-        .artist-card img {
-            width:100%; height:200px; object-fit:cover;
-            border-bottom:1px solid rgba(255,255,255,0.05);
-        }
-        .artist-info {padding:1.2rem; text-align:center;}
-        .artist-info h3 {font-size:1.1rem; margin-bottom:0.5rem; font-weight:700;}
-        .vocal-tag {
-            font-size:0.75rem; font-weight:800; text-transform:uppercase;
-            color:var(--a); background:rgba(255,79,163,0.1);
-            padding:4px 10px; border-radius:20px;
-        }
+        .header-section{text-align:center;margin-bottom:2.5rem;}
+        h1{font-family:'Baloo 2',sans-serif;font-size:2.8rem;font-weight:900;margin-bottom:.8rem;background:linear-gradient(135deg,#fff,#A5B4FC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .subtitle{color:var(--m);font-size:1.1rem;margin-bottom:2rem;}
 
-        footer {padding:3rem; text-align:center; color:var(--m); font-size:0.9rem; border-top:1px solid rgba(255,255,255,0.05); margin-top:4rem;}
+        /* Buscador y filtros */
+        .controls{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;}
+        .search-wrap{position:relative;flex:1;min-width:220px;max-width:420px;}
+        .search-wrap::before{content:'🔍';position:absolute;left:1rem;top:50%;transform:translateY(-50%);pointer-events:none;}
+        #artistSearch{width:100%;padding:.75rem 1rem .75rem 2.8rem;border-radius:50px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:white;font-family:'Outfit';font-size:.9rem;outline:none;transition:border-color .2s;}
+        #artistSearch:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(124,77,255,.15);}
+        .filter-sel{padding:.7rem 1.2rem;border-radius:50px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#E5E7EB;font-family:'Outfit';font-size:.85rem;font-weight:600;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;padding-right:2.2rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239CA3AF'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;}
+        .filter-sel option{background:#1a1730;}
+        #resultCount{color:var(--m);font-size:.85rem;text-align:center;margin-bottom:1.5rem;}
+
+        /* Grid */
+        .artist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;}
+        .artist-card{background:var(--card);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.07);transition:transform .25s,box-shadow .25s,border-color .25s;text-decoration:none;color:white;display:block;}
+        .artist-card:hover{transform:translateY(-8px);border-color:var(--p);box-shadow:0 16px 40px rgba(0,0,0,.5);}
+        .card-img-wrap{position:relative;padding-top:100%;background:#0d0a1f;overflow:hidden;}
+        .card-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+        .artist-card:hover .card-img-wrap img{transform:scale(1.06);}
+        .card-genre-badge{position:absolute;bottom:8px;left:8px;font-size:.58rem;font-weight:900;padding:3px 9px;border-radius:20px;border:1px solid;text-transform:uppercase;letter-spacing:.5px;backdrop-filter:blur(6px);}
+        .artist-info{padding:1rem 1.1rem;}
+        .artist-info h3{font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .artist-genre{font-size:.7rem;color:var(--m);margin-bottom:.5rem;}
+        .artist-desc{font-size:.72rem;color:#9CA3AF;line-height:1.45;margin-bottom:.6rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+        .anecdote-toggle{font-size:.65rem;color:var(--p);font-weight:800;cursor:pointer;padding:.3rem 0;transition:color .15s;}
+        .anecdote-toggle:hover{color:var(--a);}
+        .anecdote-text{font-size:.7rem;color:#C4B5FD;line-height:1.5;margin-top:.5rem;padding:.6rem .8rem;background:rgba(124,77,255,.08);border-radius:10px;border-left:2px solid var(--p);}
+
+        /* Stats bar */
+        .stats-bar{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;padding:1rem;background:rgba(255,255,255,.03);border-radius:16px;border:1px solid rgba(255,255,255,.07);}
+        .stat-item{text-align:center;}
+        .stat-num{font-family:'Baloo 2',sans-serif;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .stat-label{font-size:.7rem;color:var(--m);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+
+        footer{padding:3rem;text-align:center;color:var(--m);font-size:.9rem;border-top:1px solid rgba(255,255,255,.05);margin-top:4rem;}
+        @media(max-width:600px){h1{font-size:2rem;} .artist-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.8rem;}}
     </style>
 </head>
 <body>
     <nav>
         <a href="/" class="logo">Harmiq</a>
-        <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:0.5rem 1rem;border-radius:30px;font-size:0.85rem;">IA Gratis</a>
+        <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:.5rem 1rem;border-radius:30px;font-size:.85rem;">Analizar mi voz</a>
     </nav>
-    
+
     <div class="container">
         <div class="header-section">
-            <h1>Directorio de Voces</h1>
-            <p style="color:var(--m); margin-bottom:2rem;">Explora nuestra base de datos de artistas verificados por nuestra IA.</p>
-            <div class="search-container">
-                <input type="text" id="artistSearch" placeholder="Busca tu cantante favorito (ej: Bad Bunny, Adele...)" onkeyup="filterArtists()">
+            <h1>Directorio de Artistas</h1>
+            <p class="subtitle">Descubre el tipo de voz de tus artistas favoritos y sus curiosidades</p>
+
+            <div class="stats-bar">
+                <div class="stat-item"><div class="stat-num">92</div><div class="stat-label">Artistas</div></div>
+                <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Tipos de voz</div></div>
+                <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Géneros</div></div>
+                <div class="stat-item"><div class="stat-num">13.000+</div><div class="stat-label">En nuestra DB</div></div>
             </div>
+
+            <div class="controls">
+                <div class="search-wrap">
+                    <input type="text" id="artistSearch" placeholder="Busca artista..." onkeyup="filterArtists()">
+                </div>
+                <select class="filter-sel" id="vtypeFilter" onchange="filterArtists()">
+                    <option value="">Tipo de voz</option>
+                    <option value="bajo barítono">Bajo barítono</option><option value="barítono">Barítono</option><option value="contralto">Contralto</option><option value="mezzosoprano">Mezzosoprano</option><option value="soprano">Soprano</option><option value="tenor">Tenor</option>
+                </select>
+                <select class="filter-sel" id="genreFilter" onchange="filterArtists()">
+                    <option value="">Género</option>
+                    <option value="afrobeats">Afrobeats</option><option value="bachata">Bachata</option><option value="corridos">Corridos</option><option value="corridos sierreños">Corridos Sierreños</option><option value="corridos tumbados">Corridos Tumbados</option><option value="country">Country</option><option value="flamenco">Flamenco</option><option value="folk">Folk</option><option value="funk">Funk</option><option value="funk carioca">Funk Carioca</option><option value="hip-hop">Hip-Hop</option><option value="hip-hop consciente">Hip-Hop Consciente</option><option value="jazz">Jazz</option><option value="pop">Pop</option><option value="r&b">R&B</option><option value="ranchera">Ranchera</option><option value="reggaeton">Reggaeton</option><option value="rock">Rock</option><option value="sierreño">Sierreño</option><option value="soul">Soul</option><option value="soul trap">Soul Trap</option><option value="trap">Trap</option><option value="trap argentina">Trap Argentina</option><option value="trap colombia">Trap Colombia</option><option value="trap latino">Trap Latino</option><option value="urbano">Urbano</option><option value="vallenato">Vallenato</option>
+                </select>
+            </div>
+            <div id="resultCount">92 artistas</div>
         </div>
 
         <div class="artist-grid" id="artistGrid">
-            
-        <a href="/artistas/adele/" class="artist-card" data-name="adele" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg" alt="Adele" loading="lazy">
-            <div class="artist-info">
-                <h3>Adele</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+        <a href="/artistas/bad-bunny/" class="artist-card" data-name="bad bunny" data-type="barítono" data-genre="reggaeton / trap">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb9bb6bca061266ec568c0919d" alt="Bad Bunny" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
             </div>
-        </a>
-        <a href="/artistas/aitana/" class="artist-card" data-name="aitana" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cc/6f/fc/cc6ffc8f-80c2-d222-9be5-bc6f4335f0b3/18UMGIM74890.rgb.jpg/600x600bb.jpg" alt="Aitana" loading="lazy">
-            <div class="artist-info">
-                <h3>Aitana</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/alejandro-fernandez/" class="artist-card" data-name="alejandro fernandez" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/6a/d9/756ad92c-2d6c-5d28-30c9-d5b78288fa79/mzi.yytcitvy.jpg/600x600bb.jpg" alt="Alejandro Fernandez" loading="lazy">
-            <div class="artist-info">
-                <h3>Alejandro Fernandez</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/alejandro-sanz/" class="artist-card" data-name="alejandro sanz" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/ee/fe/a4eefebe-f64e-9250-b91f-f66ff956deb3/mzm.oeidtsbm.jpg/600x600bb.jpg" alt="Alejandro Sanz" loading="lazy">
-            <div class="artist-info">
-                <h3>Alejandro Sanz</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/alexandre-pires/" class="artist-card" data-name="alexandre pires" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Features124/v4/11/6c/6a/116c6a08-ff95-6bd0-433f-7651353a57b1/dj.gamlkvae.jpg/600x600bb.jpg" alt="Alexandre Pires" loading="lazy">
-            <div class="artist-info">
-                <h3>Alexandre Pires</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/alicia-keys/" class="artist-card" data-name="alicia keys" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c7/88/df/c788dffe-d06f-8923-ad61-a6194daf6616/888880809919.jpg/600x600bb.jpg" alt="Alicia Keys" loading="lazy">
-            <div class="artist-info">
-                <h3>Alicia Keys</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/amy-winehouse/" class="artist-card" data-name="amy winehouse" data-type="contralto">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9b/c3/36/9bc3369b-250a-5efb-af02-eb29b5a17d0c/mzi.hcitlgrl.jpg/600x600bb.jpg" alt="Amy Winehouse" loading="lazy">
-            <div class="artist-info">
-                <h3>Amy Winehouse</h3>
-                <span class="vocal-tag">Contralto</span>
-            </div>
-        </a>
-        <a href="/artistas/aretha-franklin/" class="artist-card" data-name="aretha franklin" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/47/0d/c0/470dc076-70e9-be30-07e5-ecee641a7604/603497902460.jpg/600x600bb.jpg" alt="Aretha Franklin" loading="lazy">
-            <div class="artist-info">
-                <h3>Aretha Franklin</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/ariana-grande/" class="artist-card" data-name="ariana grande" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/70/0f/3f700f55-1c91-c890-8cb7-b8886f87b7f6/16UMGIM30042.rgb.jpg/600x600bb.jpg" alt="Ariana Grande" loading="lazy">
-            <div class="artist-info">
-                <h3>Ariana Grande</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/axl-rose/" class="artist-card" data-name="axl rose" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/47/b7/5647b700-6b9d-9e72-ec9f-51140b6d4492/00602567673781.rgb.jpg/600x600bb.jpg" alt="Axl Rose" loading="lazy">
-            <div class="artist-info">
-                <h3>Axl Rose</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/bad-bunny/" class="artist-card" data-name="bad bunny" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb9bb6bca061266ec568c0919d" alt="Bad Bunny" loading="lazy">
             <div class="artist-info">
                 <h3>Bad Bunny</h3>
-                <span class="vocal-tag">Barítono</span>
+                <div class="artist-genre">Reggaeton / Trap</div>
+                <p class="artist-desc">Benito Antonio Martínez Ocasio, conocido como Bad Bunny, es el artista latino más escuchado en la hi...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Grabó su primer gran hit 'Diles' mientras trabajaba embolsando comida en un supermercado de Puerto Rico.</div>
             </div>
         </a>
-        <a href="/artistas/barbra-streisand/" class="artist-card" data-name="barbra streisand" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1d/db/7f/1ddb7f0b-b6d4-ff4e-475a-61c453ab94e1/dj.kefgnnir.jpg/600x600bb.jpg" alt="Barbra Streisand" loading="lazy">
-            <div class="artist-info">
-                <h3>Barbra Streisand</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+        <a href="/artistas/peso-pluma/" class="artist-card" data-name="peso pluma" data-type="tenor" data-genre="corridos tumbados">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb9687e74266858e70588665da" alt="Peso Pluma" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
             </div>
-        </a>
-        <a href="/artistas/beyonc/" class="artist-card" data-name="beyonc" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c9/6b/3f/c96b3ff3-9cf6-4ce6-05aa-9f11474bd569/886443938373.jpg/600x600bb.jpg" alt="Beyonc" loading="lazy">
-            <div class="artist-info">
-                <h3>Beyonc</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/billie-eilish/" class="artist-card" data-name="billie eilish" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg" alt="Billie Eilish" loading="lazy">
-            <div class="artist-info">
-                <h3>Billie Eilish</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/bob-marley-the-wailers/" class="artist-card" data-name="bob marley the wailers" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3c/c2/0d/3cc20dcc-8f4e-f060-36dd-7de52a7ec8fe/12UMGIM14712.rgb.jpg/600x600bb.jpg" alt="Bob Marley The Wailers" loading="lazy">
-            <div class="artist-info">
-                <h3>Bob Marley The Wailers</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/bono/" class="artist-card" data-name="bono" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c2/d2/6d/c2d26dcf-7e1b-ed4c-f598-f8dcb42b0f75/21UM1IM35664.rgb.jpg/600x600bb.jpg" alt="Bono" loading="lazy">
-            <div class="artist-info">
-                <h3>Bono</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/britney-spears/" class="artist-card" data-name="britney spears" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/9d/97/d59d9769-1369-854f-1681-4901a6d8361b/012414170422.jpg/600x600bb.jpg" alt="Britney Spears" loading="lazy">
-            <div class="artist-info">
-                <h3>Britney Spears</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/bruce-dickinson/" class="artist-card" data-name="bruce dickinson" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/35/3e/d1/353ed1dd-44a8-396e-92e2-bd42fceb0da0/5414939548079.jpg/600x600bb.jpg" alt="Bruce Dickinson" loading="lazy">
-            <div class="artist-info">
-                <h3>Bruce Dickinson</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/bruce-springsteen/" class="artist-card" data-name="bruce springsteen" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/72/68/327268ba-b9dd-b322-2a16-bdd0212df48c/074643865326.jpg/600x600bb.jpg" alt="Bruce Springsteen" loading="lazy">
-            <div class="artist-info">
-                <h3>Bruce Springsteen</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/bruno-mars/" class="artist-card" data-name="bruno mars" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bf/c6/eb/bfc6ebb2-98f6-2013-40d1-3b1bed9392a1/5059460491212.jpg/600x600bb.jpg" alt="Bruno Mars" loading="lazy">
-            <div class="artist-info">
-                <h3>Bruno Mars</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/c-tangana/" class="artist-card" data-name="c tangana" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/63/8c/02/638c027b-3487-1cc6-8028-2be8546ae151/886448978985.jpg/600x600bb.jpg" alt="C Tangana" loading="lazy">
-            <div class="artist-info">
-                <h3>C Tangana</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/camilo-sesto/" class="artist-card" data-name="camilo sesto" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/0a/b3/49/mzi.poszyzgt.jpg/600x600bb.jpg" alt="Camilo Sesto" loading="lazy">
-            <div class="artist-info">
-                <h3>Camilo Sesto</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/carlos-rivera/" class="artist-card" data-name="carlos rivera" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/73/86/0d/73860dff-12c1-83b1-bd57-4005e6cfd5c8/886447255728.jpg/600x600bb.jpg" alt="Carlos Rivera" loading="lazy">
-            <div class="artist-info">
-                <h3>Carlos Rivera</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/celia-cruz/" class="artist-card" data-name="celia cruz" data-type="contralto">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1a/22/3b/1a223bd0-2620-fdbf-c561-f1aee5cee9eb/00602567162544.rgb.jpg/600x600bb.jpg" alt="Celia Cruz" loading="lazy">
-            <div class="artist-info">
-                <h3>Celia Cruz</h3>
-                <span class="vocal-tag">Contralto</span>
-            </div>
-        </a>
-        <a href="/artistas/celine-dion/" class="artist-card" data-name="celine dion" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fd/2c/fa/fd2cfa89-c6c4-e564-8e6e-7f03a5377744/886447854761.jpg/600x600bb.jpg" alt="Celine Dion" loading="lazy">
-            <div class="artist-info">
-                <h3>Celine Dion</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/charlie-puth/" class="artist-card" data-name="charlie puth" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/8c/43/3e8c43f6-e02c-09ee-e1ea-56e74590be40/075679583208.jpg/600x600bb.jpg" alt="Charlie Puth" loading="lazy">
-            <div class="artist-info">
-                <h3>Charlie Puth</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/chayanne/" class="artist-card" data-name="chayanne" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/d8/da/55/mzi.tejiipmk.jpg/600x600bb.jpg" alt="Chayanne" loading="lazy">
-            <div class="artist-info">
-                <h3>Chayanne</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/cher/" class="artist-card" data-name="cher" data-type="contralto">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bf/c6/eb/bfc6ebb2-98f6-2013-40d1-3b1bed9392a1/5059460491212.jpg/600x600bb.jpg" alt="Cher" loading="lazy">
-            <div class="artist-info">
-                <h3>Cher</h3>
-                <span class="vocal-tag">Contralto</span>
-            </div>
-        </a>
-        <a href="/artistas/chris-brown/" class="artist-card" data-name="chris brown" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2d/5c/c1/2d5cc1a6-86ce-ee16-5985-807f2fffa3cb/196871957267.jpg/600x600bb.jpg" alt="Chris Brown" loading="lazy">
-            <div class="artist-info">
-                <h3>Chris Brown</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/christina-aguilera/" class="artist-card" data-name="christina aguilera" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6b/25/9b/6b259bc3-3e53-4339-80b0-5b50131c8901/888880771674.jpg/600x600bb.jpg" alt="Christina Aguilera" loading="lazy">
-            <div class="artist-info">
-                <h3>Christina Aguilera</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/coldplay/" class="artist-card" data-name="coldplay" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/65/29/e265299b-2fa0-a627-7254-352ec8c73e0a/5059460487185.jpg/600x600bb.jpg" alt="Coldplay" loading="lazy">
-            <div class="artist-info">
-                <h3>Coldplay</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/cristian-castro/" class="artist-card" data-name="cristian castro" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/51/c7/1b/51c71bcd-d2a1-4a65-2cb2-49473e87fe3f/mzi.rtugypzk.jpg/600x600bb.jpg" alt="Cristian Castro" loading="lazy">
-            <div class="artist-info">
-                <h3>Cristian Castro</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/daddy-yankee/" class="artist-card" data-name="daddy yankee" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5ebcc755cb92d29485f319520ea" alt="Daddy Yankee" loading="lazy">
-            <div class="artist-info">
-                <h3>Daddy Yankee</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/dani-mart-n/" class="artist-card" data-name="dani mart n" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ab/5d/0c/ab5d0c59-2441-d873-38cb-985f8cc75ae3/886446798424.jpg/600x600bb.jpg" alt="Dani Mart N" loading="lazy">
-            <div class="artist-info">
-                <h3>Dani Mart N</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/david-bisbal/" class="artist-card" data-name="david bisbal" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb592c30058b7301c18d9ef673" alt="David Bisbal" loading="lazy">
-            <div class="artist-info">
-                <h3>David Bisbal</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/david-bowie/" class="artist-card" data-name="david bowie" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb76db01b1b1178351586715f6" alt="David Bowie" loading="lazy">
-            <div class="artist-info">
-                <h3>David Bowie</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/donna-summer/" class="artist-card" data-name="donna summer" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b0/3d/23/b03d231f-3099-5409-cb9d-c7bdce71343b/06UMGIM02285.rgb.jpg/600x600bb.jpg" alt="Donna Summer" loading="lazy">
-            <div class="artist-info">
-                <h3>Donna Summer</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/drake/" class="artist-card" data-name="drake" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179927c" alt="Drake" loading="lazy">
-            <div class="artist-info">
-                <h3>Drake</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/dua-lipa/" class="artist-card" data-name="dua lipa" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg" alt="Dua Lipa" loading="lazy">
-            <div class="artist-info">
-                <h3>Dua Lipa</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/ed-sheeran/" class="artist-card" data-name="ed sheeran" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb121f1e63717208d2ae374244" alt="Ed Sheeran" loading="lazy">
-            <div class="artist-info">
-                <h3>Ed Sheeran</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/ella-fitzgerald/" class="artist-card" data-name="ella fitzgerald" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/fd/a7/0c/fda70c9b-1e6a-8915-b8db-71f8456d034e/18UMGIM13490.rgb.jpg/600x600bb.jpg" alt="Ella Fitzgerald" loading="lazy">
-            <div class="artist-info">
-                <h3>Ella Fitzgerald</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/elton-john/" class="artist-card" data-name="elton john" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/75/b6/da/75b6da76-a3e0-6a77-cbe5-ad6c42cb0692/06UMGIM48050.rgb.jpg/600x600bb.jpg" alt="Elton John" loading="lazy">
-            <div class="artist-info">
-                <h3>Elton John</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/elvis-presley/" class="artist-card" data-name="elvis presley" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb98759714856658997a61d1e4" alt="Elvis Presley" loading="lazy">
-            <div class="artist-info">
-                <h3>Elvis Presley</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/enrique-iglesias/" class="artist-card" data-name="enrique iglesias" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5ebf898a3d684990cd3a936a04e" alt="Enrique Iglesias" loading="lazy">
-            <div class="artist-info">
-                <h3>Enrique Iglesias</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/fito-cabrales/" class="artist-card" data-name="fito cabrales" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8c/a3/dc/8ca3dc30-ff70-f6f9-d63e-60fed11b8354/886448078463.jpg/600x600bb.jpg" alt="Fito Cabrales" loading="lazy">
-            <div class="artist-info">
-                <h3>Fito Cabrales</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/frank-sinatra/" class="artist-card" data-name="frank sinatra" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5ebf898a3d684990cd3a936a04e" alt="Frank Sinatra" loading="lazy">
-            <div class="artist-info">
-                <h3>Frank Sinatra</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/freddie-mercury/" class="artist-card" data-name="freddie mercury" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/600x600bb.jpg" alt="Freddie Mercury" loading="lazy">
-            <div class="artist-info">
-                <h3>Freddie Mercury</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/george-michael/" class="artist-card" data-name="george michael" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ee/49/ac/ee49accc-78bd-bcdb-1aff-c40c1ac3ccc4/074643959520.jpg/600x600bb.jpg" alt="George Michael" loading="lazy">
-            <div class="artist-info">
-                <h3>George Michael</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/harry-styles/" class="artist-card" data-name="harry styles" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eba2503d89953258a69919f939" alt="Harry Styles" loading="lazy">
-            <div class="artist-info">
-                <h3>Harry Styles</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/j-balvin/" class="artist-card" data-name="j balvin" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb994191d4e0e564bd9d55aa61" alt="J Balvin" loading="lazy">
-            <div class="artist-info">
-                <h3>J Balvin</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/james-brown/" class="artist-card" data-name="james brown" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/43/8c/69/438c690f-fe4a-8a0d-4b46-2c1800f47754/06UMGIM02758.rgb.jpg/600x600bb.jpg" alt="James Brown" loading="lazy">
-            <div class="artist-info">
-                <h3>James Brown</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/james-hetfield/" class="artist-card" data-name="james hetfield" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e5/06/50/e50650cb-673f-3ae6-aeb2-05fa6b69c562/4099964100259.jpg/600x600bb.jpg" alt="James Hetfield" loading="lazy">
-            <div class="artist-info">
-                <h3>James Hetfield</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/janis-joplin/" class="artist-card" data-name="janis joplin" data-type="contralto">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/16/9d/87/169d87fe-76ee-1c50-d186-14ac71ab237e/886443610538.jpg/600x600bb.jpg" alt="Janis Joplin" loading="lazy">
-            <div class="artist-info">
-                <h3>Janis Joplin</h3>
-                <span class="vocal-tag">Contralto</span>
-            </div>
-        </a>
-        <a href="/artistas/jason-mraz/" class="artist-card" data-name="jason mraz" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f8/ac/ec/f8acec21-40e2-fa91-fe61-1be3cbc1467a/mzi.jokpbtnf.jpg/600x600bb.jpg" alt="Jason Mraz" loading="lazy">
-            <div class="artist-info">
-                <h3>Jason Mraz</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/joan-manuel-serrat/" class="artist-card" data-name="joan manuel serrat" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music/36/ea/e2/mzi.devdguum.jpg/600x600bb.jpg" alt="Joan Manuel Serrat" loading="lazy">
-            <div class="artist-info">
-                <h3>Joan Manuel Serrat</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/joaqu-n-sabina/" class="artist-card" data-name="joaqu n sabina" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/13/cf/41/13cf41c4-bf22-8bc1-c290-291025c1755e/886446298832.jpg/600x600bb.jpg" alt="Joaqu N Sabina" loading="lazy">
-            <div class="artist-info">
-                <h3>Joaqu N Sabina</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/juanes/" class="artist-card" data-name="juanes" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/21/1d/ad/211dad4f-69f6-9ac3-4c3b-3116dd3de4d4/06UMGIM24053.rgb.jpg/600x600bb.jpg" alt="Juanes" loading="lazy">
-            <div class="artist-info">
-                <h3>Juanes</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/julio-iglesias/" class="artist-card" data-name="julio iglesias" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb56e8739678e727988358f2da" alt="Julio Iglesias" loading="lazy">
-            <div class="artist-info">
-                <h3>Julio Iglesias</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/justin-bieber/" class="artist-card" data-name="justin bieber" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb9910901eff269e86307137f6" alt="Justin Bieber" loading="lazy">
-            <div class="artist-info">
-                <h3>Justin Bieber</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/justin-timberlake/" class="artist-card" data-name="justin timberlake" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4c/44/30/4c4430dd-150b-d393-ec70-4894975f4b16/888880422095.jpg/600x600bb.jpg" alt="Justin Timberlake" loading="lazy">
-            <div class="artist-info">
-                <h3>Justin Timberlake</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/karol-g/" class="artist-card" data-name="karol g" data-type="soprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb0010c265691079361a87e35b" alt="Karol G" loading="lazy">
-            <div class="artist-info">
-                <h3>Karol G</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/katy-perry/" class="artist-card" data-name="katy perry" data-type="contralto">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb0072a392e9d2983c27db1277" alt="Katy Perry" loading="lazy">
-            <div class="artist-info">
-                <h3>Katy Perry</h3>
-                <span class="vocal-tag">Contralto</span>
-            </div>
-        </a>
-        <a href="/artistas/kelly-clarkson/" class="artist-card" data-name="kelly clarkson" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5a/08/43/5a08434e-a283-2877-6a65-37438184fe8c/5059460484955.jpg/600x600bb.jpg" alt="Kelly Clarkson" loading="lazy">
-            <div class="artist-info">
-                <h3>Kelly Clarkson</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/kendrick-lamar/" class="artist-card" data-name="kendrick lamar" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb43769913165a3d02446d6912" alt="Kendrick Lamar" loading="lazy">
-            <div class="artist-info">
-                <h3>Kendrick Lamar</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/kurt-cobain/" class="artist-card" data-name="kurt cobain" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/600x600bb.jpg" alt="Kurt Cobain" loading="lazy">
-            <div class="artist-info">
-                <h3>Kurt Cobain</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/lady-gaga/" class="artist-card" data-name="lady gaga" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb3fbb49479e00185906ef455a" alt="Lady Gaga" loading="lazy">
-            <div class="artist-info">
-                <h3>Lady Gaga</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/lana-del-rey/" class="artist-card" data-name="lana del rey" data-type="contralto">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb3e85e98583487c6999a4e8d3" alt="Lana Del Rey" loading="lazy">
-            <div class="artist-info">
-                <h3>Lana Del Rey</h3>
-                <span class="vocal-tag">Contralto</span>
-            </div>
-        </a>
-        <a href="/artistas/lola-indigo/" class="artist-card" data-name="lola indigo" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb1d248b94df9f6e9b46df5de4" alt="Lola Indigo" loading="lazy">
-            <div class="artist-info">
-                <h3>Lola Indigo</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/louis-armstrong/" class="artist-card" data-name="louis armstrong" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/8c/2f/2e8c2f46-4148-d40d-61dc-2cc8e2493aab/12UMGIM11012.rgb.jpg/600x600bb.jpg" alt="Louis Armstrong" loading="lazy">
-            <div class="artist-info">
-                <h3>Louis Armstrong</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/madonna/" class="artist-card" data-name="madonna" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb4f395758eb090a2cf7252f2f" alt="Madonna" loading="lazy">
-            <div class="artist-info">
-                <h3>Madonna</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/maluma/" class="artist-card" data-name="maluma" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb9f270059346617ba84df3634" alt="Maluma" loading="lazy">
-            <div class="artist-info">
-                <h3>Maluma</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/marc-anthony/" class="artist-card" data-name="marc anthony" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb743a60a778efcf813a8548c2" alt="Marc Anthony" loading="lazy">
-            <div class="artist-info">
-                <h3>Marc Anthony</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/maria-callas/" class="artist-card" data-name="maria callas" data-type="soprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb662057d2a09c2a6886e08c4e" alt="Maria Callas" loading="lazy">
-            <div class="artist-info">
-                <h3>Maria Callas</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/mariah-carey/" class="artist-card" data-name="mariah carey" data-type="soprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb061eb0d507c81373507c5765" alt="Mariah Carey" loading="lazy">
-            <div class="artist-info">
-                <h3>Mariah Carey</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/marvin-gaye/" class="artist-card" data-name="marvin gaye" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/76/36/2d/76362d74-cb7a-8ef9-104e-cde1d858e9a9/20UMGIM95279.rgb.jpg/600x600bb.jpg" alt="Marvin Gaye" loading="lazy">
-            <div class="artist-info">
-                <h3>Marvin Gaye</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/melanie-martinez/" class="artist-card" data-name="melanie martinez" data-type="soprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb478ce13e54737aa6e17e3352" alt="Melanie Martinez" loading="lazy">
-            <div class="artist-info">
-                <h3>Melanie Martinez</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/michael-buble/" class="artist-card" data-name="michael buble" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d4/c3/d8/d4c3d821-a206-ad69-82d8-80bd294b80b5/5059460488946.jpg/600x600bb.jpg" alt="Michael Buble" loading="lazy">
-            <div class="artist-info">
-                <h3>Michael Buble</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/michael-jackson/" class="artist-card" data-name="michael jackson" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb0933758b7538965f375ba31a" alt="Michael Jackson" loading="lazy">
-            <div class="artist-info">
-                <h3>Michael Jackson</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/mick-jagger/" class="artist-card" data-name="mick jagger" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb629731495dec503c5ec82333" alt="Mick Jagger" loading="lazy">
-            <div class="artist-info">
-                <h3>Mick Jagger</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/miley-cyrus/" class="artist-card" data-name="miley cyrus" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb5cf2468305001a1c7268808d" alt="Miley Cyrus" loading="lazy">
-            <div class="artist-info">
-                <h3>Miley Cyrus</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/natalia-lafourcade/" class="artist-card" data-name="natalia lafourcade" data-type="soprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/63/82/b0/6382b01d-f1ba-842f-cd93-84a4155c7219/mzm.righpiat.jpg/600x600bb.jpg" alt="Natalia Lafourcade" loading="lazy">
-            <div class="artist-info">
-                <h3>Natalia Lafourcade</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/nina-simone/" class="artist-card" data-name="nina simone" data-type="contralto">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb6046e2794b17f51b6e4e844b" alt="Nina Simone" loading="lazy">
-            <div class="artist-info">
-                <h3>Nina Simone</h3>
-                <span class="vocal-tag">Contralto</span>
-            </div>
-        </a>
-        <a href="/artistas/norah-jones/" class="artist-card" data-name="norah jones" data-type="contralto">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb4e0193496c5676a084c718be" alt="Norah Jones" loading="lazy">
-            <div class="artist-info">
-                <h3>Norah Jones</h3>
-                <span class="vocal-tag">Contralto</span>
-            </div>
-        </a>
-        <a href="/artistas/olivia-rodrigo/" class="artist-card" data-name="olivia rodrigo" data-type="soprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eba094a97491d90060d4734731" alt="Olivia Rodrigo" loading="lazy">
-            <div class="artist-info">
-                <h3>Olivia Rodrigo</h3>
-                <span class="vocal-tag">Soprano</span>
-            </div>
-        </a>
-        <a href="/artistas/pablo-albor-n/" class="artist-card" data-name="pablo albor n" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/4e/c8/964ec8f1-32ad-199c-36b8-425932393294/5099909693159.jpg/600x600bb.jpg" alt="Pablo Albor N" loading="lazy">
-            <div class="artist-info">
-                <h3>Pablo Albor N</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/paul-mccartney/" class="artist-card" data-name="paul mccartney" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/41/4a/7f/414a7fbe-4719-48fc-5648-1be00e4ec0b1/26UMGIM32367.rgb.jpg/600x600bb.jpg" alt="Paul Mccartney" loading="lazy">
-            <div class="artist-info">
-                <h3>Paul Mccartney</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/peso-pluma/" class="artist-card" data-name="peso pluma" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb9687e74266858e70588665da" alt="Peso Pluma" loading="lazy">
             <div class="artist-info">
                 <h3>Peso Pluma</h3>
-                <span class="vocal-tag">Tenor</span>
+                <div class="artist-genre">Corridos Tumbados</div>
+                <p class="artist-desc">Hassan Emilio Kabande Laija mezcla el sierreño tradicional con trap y R&B. Su voz de tenor clara y d...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su apodo 'Peso Pluma' (peso pluma en boxeo) refleja su carácter: ligero pero con impacto brutal en el escenario.</div>
             </div>
         </a>
-        <a href="/artistas/phil-collins/" class="artist-card" data-name="phil collins" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/64/d1/e264d18c-2b20-051d-3fc3-68b3424f8cde/603497880249.jpg/600x600bb.jpg" alt="Phil Collins" loading="lazy">
-            <div class="artist-info">
-                <h3>Phil Collins</h3>
-                <span class="vocal-tag">Tenor</span>
+        <a href="/artistas/quevedo/" class="artist-card" data-name="quevedo" data-type="barítono" data-genre="trap / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb03af700140224b7501b33334" alt="Quevedo" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
             </div>
-        </a>
-        <a href="/artistas/pink/" class="artist-card" data-name="pink" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d0/70/6d/d0706da6-50cb-c630-97db-cb99be13edac/8800323979203.jpg/600x600bb.jpg" alt="Pink" loading="lazy">
-            <div class="artist-info">
-                <h3>Pink</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
-            </div>
-        </a>
-        <a href="/artistas/post-malone/" class="artist-card" data-name="post malone" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5ebeb4c54cb1168ef9e1882d2eb" alt="Post Malone" loading="lazy">
-            <div class="artist-info">
-                <h3>Post Malone</h3>
-                <span class="vocal-tag">Barítono</span>
-            </div>
-        </a>
-        <a href="/artistas/prince/" class="artist-card" data-name="prince" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb7304be36111059f33b1e32d5" alt="Prince" loading="lazy">
-            <div class="artist-info">
-                <h3>Prince</h3>
-                <span class="vocal-tag">Tenor</span>
-            </div>
-        </a>
-        <a href="/artistas/quevedo/" class="artist-card" data-name="quevedo" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb03af700140224b7501b33334" alt="Quevedo" loading="lazy">
             <div class="artist-info">
                 <h3>Quevedo</h3>
-                <span class="vocal-tag">Barítono</span>
+                <div class="artist-genre">Trap / Pop</div>
+                <p class="artist-desc">Francisco Jesús Ruiz Tejera nació en Gran Canaria y se convirtió en el artista español más escuchado...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">'Quevedo' no es un apodo random: de pequeño lo llamaban así en el colegio por sus gafas, como el poeta del siglo XVII.</div>
             </div>
         </a>
-        <a href="/artistas/raphael/" class="artist-card" data-name="raphael" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb659972322aff4864c233c091" alt="Raphael" loading="lazy">
+        <a href="/artistas/c-tangana/" class="artist-card" data-name="c. tangana" data-type="barítono" data-genre="trap / flamenco">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/63/8c/02/638c027b-3487-1cc6-8028-2be8546ae151/886448978985.jpg/600x600bb.jpg" alt="C. Tangana" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Raphael</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>C. Tangana</h3>
+                <div class="artist-genre">Trap / Flamenco</div>
+                <p class="artist-desc">Antón Álvarez Alfaro es uno de los artistas más versátiles del panorama español: del trap más duro a...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue expulsado del colegio de curas a los 14 años. Años después, colaboró con la Orquesta Nacional de España.</div>
             </div>
         </a>
-        <a href="/artistas/rels-b/" class="artist-card" data-name="rels b" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb005370ab945391c53e00fcda" alt="Rels B" loading="lazy">
+        <a href="/artistas/bizarrap/" class="artist-card" data-name="bizarrap" data-type="barítono" data-genre="trap / electronic">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" alt="Bizarrap" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Rels B</h3>
-                <span class="vocal-tag">Barítono</span>
+                <h3>Bizarrap</h3>
+                <div class="artist-genre">Trap / Electronic</div>
+                <p class="artist-desc">Gonzalo Julián Conde no es cantante sino productor, pero su voz aparece en intros y colaboraciones. ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su productora está en el garaje de la casa de sus padres en Buenos Aires, donde grabó los primeros 50 Music Sessions.</div>
             </div>
         </a>
-        <a href="/artistas/ricky-martin/" class="artist-card" data-name="ricky martin" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ab/3c/ed/ab3cedd0-03a6-0802-ec42-2f48c4eb118c/074646989128.jpg/600x600bb.jpg" alt="Ricky Martin" loading="lazy">
+        <a href="/artistas/anuel-aa/" class="artist-card" data-name="anuel aa" data-type="barítono" data-genre="trap latino">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EAA%3C/text%3E%3C/svg%3E" alt="Anuel AA" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Ricky Martin</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Anuel AA</h3>
+                <div class="artist-genre">Trap Latino</div>
+                <p class="artist-desc">Emmanuel Gazmey Santiago popularizó el trap latino junto a Bad Bunny. Voz de barítono oscura con muc...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Grabó su álbum 'Real Hasta la Muerte' estando en prisión, usando un teléfono de contrabando.</div>
             </div>
         </a>
-        <a href="/artistas/rihanna/" class="artist-card" data-name="rihanna" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb5629da76f3f01b777a83b28b" alt="Rihanna" loading="lazy">
+        <a href="/artistas/myke-towers/" class="artist-card" data-name="myke towers" data-type="barítono" data-genre="reggaeton / trap">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EMT%3C/text%3E%3C/svg%3E" alt="Myke Towers" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Rihanna</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+                <h3>Myke Towers</h3>
+                <div class="artist-genre">Reggaeton / Trap</div>
+                <p class="artist-desc">Michael Anthony Torres Monge tiene una voz de barítono suave con un flow melódico que mezcla reggaet...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su nombre artístico viene de Michael Jordan: 'Myke' por Michael y 'Towers' porque de joven era el más alto del equipo de baloncesto.</div>
             </div>
         </a>
-        <a href="/artistas/robert-plant/" class="artist-card" data-name="robert plant" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb914f6b0f023f03e2c310fb4e" alt="Robert Plant" loading="lazy">
+        <a href="/artistas/rauw-alejandro/" class="artist-card" data-name="rauw alejandro" data-type="tenor" data-genre="reggaeton / r&b">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ERA%3C/text%3E%3C/svg%3E" alt="Rauw Alejandro" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
             <div class="artist-info">
-                <h3>Robert Plant</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Rauw Alejandro</h3>
+                <div class="artist-genre">Reggaeton / R&B</div>
+                <p class="artist-desc">Raúl Alejandro Ocasio Ruiz es conocido por su voz de tenor limpia y sus coreografías. Considerado el...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue jugador de fútbol federado y estaba a punto de firmar por un equipo de primera cuando decidió dedicarse a la música.</div>
             </div>
         </a>
-        <a href="/artistas/rocio-jurado/" class="artist-card" data-name="rocio jurado" data-type="soprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb6e902b4d96ef492cc59654d3" alt="Rocio Jurado" loading="lazy">
+        <a href="/artistas/mora/" class="artist-card" data-name="mora" data-type="barítono" data-genre="trap / reggaeton">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" alt="Mora" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Rocio Jurado</h3>
-                <span class="vocal-tag">Soprano</span>
+                <h3>Mora</h3>
+                <div class="artist-genre">Trap / Reggaeton</div>
+                <p class="artist-desc">Edward Mora Rivera tiene una voz de barítono distintiva con mucha personalidad. Su estilo mezcla el ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Empezó publicando freestyles en SoundCloud a los 16 años desde su barrio en Puerto Rico.</div>
             </div>
         </a>
-        <a href="/artistas/romeo-santos/" class="artist-card" data-name="romeo santos" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ad/a7/dc/ada7dc95-4333-f6df-ce0f-f0eeccbac7f4/886446557991.jpg/600x600bb.jpg" alt="Romeo Santos" loading="lazy">
+        <a href="/artistas/jhay-cortez/" class="artist-card" data-name="jhay cortez" data-type="tenor" data-genre="reggaeton / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EJC%3C/text%3E%3C/svg%3E" alt="Jhay Cortez" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
             <div class="artist-info">
-                <h3>Romeo Santos</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Jhay Cortez</h3>
+                <div class="artist-genre">Reggaeton / Pop</div>
+                <p class="artist-desc">Jesaías Feliciano Rivera tiene una de las voces más versátiles del urbano latino. Su tenor ágil le p...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Antes de brillar como cantante, escribió hits para otros artistas como Justin Quiles y Farruko.</div>
             </div>
         </a>
-        <a href="/artistas/sabrina-carpenter/" class="artist-card" data-name="sabrina carpenter" data-type="soprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb36d7d515a133f92bf4cc8330" alt="Sabrina Carpenter" loading="lazy">
+        <a href="/artistas/sech/" class="artist-card" data-name="sech" data-type="barítono" data-genre="reggaeton">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" alt="Sech" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Sabrina Carpenter</h3>
-                <span class="vocal-tag">Soprano</span>
+                <h3>Sech</h3>
+                <div class="artist-genre">Reggaeton</div>
+                <p class="artist-desc">Carlos José De Icaza Pitti es el máximo representante del urbano panameño. Su voz de barítono suave ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Cuando grabó 'Otro Trago' con Darell, ninguno esperaba que se convertiría en uno de los éxitos más grandes de 2019.</div>
             </div>
         </a>
-        <a href="/artistas/sam-smith/" class="artist-card" data-name="sam smith" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb8e578c74070a2fde6d8f61e8" alt="Sam Smith" loading="lazy">
+        <a href="/artistas/nicky-jam/" class="artist-card" data-name="nicky jam" data-type="barítono" data-genre="reggaeton">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ENJ%3C/text%3E%3C/svg%3E" alt="Nicky Jam" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Sam Smith</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Nicky Jam</h3>
+                <div class="artist-genre">Reggaeton</div>
+                <p class="artist-desc">Nicolás Rivera Reyes es una leyenda del reggaeton. Voz de barítono ronca y poderosa. Junto a Daddy Y...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">En 2009 cayó en las drogas y desapareció del mapa musical durante años. Su regreso en 2014 con 'El Perdón' fue uno de los comebacks más épicos de la música latina.</div>
             </div>
         </a>
-        <a href="/artistas/sebastian-yatra/" class="artist-card" data-name="sebastian yatra" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb743a60a778efcf813a8548c2" alt="Sebastian Yatra" loading="lazy">
+        <a href="/artistas/farruko/" class="artist-card" data-name="farruko" data-type="barítono" data-genre="reggaeton">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E" alt="Farruko" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Sebastian Yatra</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Farruko</h3>
+                <div class="artist-genre">Reggaeton</div>
+                <p class="artist-desc">Carlos Efrén Reyes Rosado pasó de ser uno de los pilares del reggaeton a convertirse en predicador c...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">En pleno concierto en Miami en 2022, paró la música y pidió perdón al público por 'haberse alejado de Dios'. Al día siguiente era tendencia mundial.</div>
             </div>
         </a>
-        <a href="/artistas/shakira/" class="artist-card" data-name="shakira" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb662057d2a09c2a6886e08c4e" alt="Shakira" loading="lazy">
+        <a href="/artistas/ozuna/" class="artist-card" data-name="ozuna" data-type="tenor" data-genre="reggaeton / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E" alt="Ozuna" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
             <div class="artist-info">
-                <h3>Shakira</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+                <h3>Ozuna</h3>
+                <div class="artist-genre">Reggaeton / Pop</div>
+                <p class="artist-desc">Juan Carlos Ozuna Rosado es el 'Negrito Ojos Claros'. Su voz de tenor dulce y su magnetismo visual l...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Tiene tatuajes en casi todo el cuerpo, incluyendo los párpados. Dice que cada tatuaje cuenta una historia de su vida.</div>
             </div>
         </a>
-        <a href="/artistas/shawn-mendes/" class="artist-card" data-name="shawn mendes" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb2913e618ce525048cd7cbdee" alt="Shawn Mendes" loading="lazy">
+        <a href="/artistas/lunay/" class="artist-card" data-name="lunay" data-type="tenor" data-genre="reggaeton">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" alt="Lunay" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
             <div class="artist-info">
-                <h3>Shawn Mendes</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Lunay</h3>
+                <div class="artist-genre">Reggaeton</div>
+                <p class="artist-desc">Jeyvier Jiménez tiene una de las voces más agudas y cristalinas del urbano latino joven. Su tenor br...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Firmó su primer contrato discográfico a los 17 años, convirtiéndose en uno de los artistas más jóvenes del circuito urbano latino.</div>
             </div>
         </a>
-        <a href="/artistas/snoop-dogg/" class="artist-card" data-name="snoop dogg" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb944062828b801a61c3905187" alt="Snoop Dogg" loading="lazy">
+        <a href="/artistas/paulo-londra/" class="artist-card" data-name="paulo londra" data-type="barítono" data-genre="trap argentina">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EPL%3C/text%3E%3C/svg%3E" alt="Paulo Londra" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Snoop Dogg</h3>
-                <span class="vocal-tag">Barítono</span>
+                <h3>Paulo Londra</h3>
+                <div class="artist-genre">Trap Argentina</div>
+                <p class="artist-desc">Paulo Ezequiel Londra nació en Córdoba y conquistó primero Argentina y luego el mundo con su mezcla ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su primer tema viral fue 'Nena Maldición', que grabó con 16 años en el cuarto de su casa de Córdoba.</div>
             </div>
         </a>
-        <a href="/artistas/stevie-wonder/" class="artist-card" data-name="stevie wonder" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/eb/1f/12/eb1f12ec-474c-63aa-43af-09282f423b9d/00602537004737.rgb.jpg/600x600bb.jpg" alt="Stevie Wonder" loading="lazy">
+        <a href="/artistas/bizarrap/" class="artist-card" data-name="bizarrap" data-type="barítono" data-genre="trap / electrónica">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" alt="Bizarrap" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Stevie Wonder</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Bizarrap</h3>
+                <div class="artist-genre">Trap / Electrónica</div>
+                <p class="artist-desc">El productor más importante de la música urbana latinoamericana actual. Sus BZRP Sessions han redefi...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">A los 17 años ganó un concurso de DJs en Buenos Aires. Hoy produce desde el mismo garaje donde empezó.</div>
             </div>
         </a>
-        <a href="/artistas/sting/" class="artist-card" data-name="sting" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/eb/29/4c/eb294c36-1f54-fade-0de3-463ff57ea09a/16UMGIM59578.rgb.jpg/600x600bb.jpg" alt="Sting" loading="lazy">
+        <a href="/artistas/duki/" class="artist-card" data-name="duki" data-type="barítono" data-genre="trap argentina">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E" alt="Duki" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Sting</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Duki</h3>
+                <div class="artist-genre">Trap Argentina</div>
+                <p class="artist-desc">Mauro Ezequiel Lombardo fue uno de los pioneros del trap argentino junto a Wos y Paulo Londra. Su vo...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Empezó en las batallas de freestyle callejeras de Buenos Aires, donde lo conocían como 'El Queso'.</div>
             </div>
         </a>
-        <a href="/artistas/sza/" class="artist-card" data-name="sza" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb78bd90a4fa779435b6c20173" alt="Sza" loading="lazy">
+        <a href="/artistas/wos/" class="artist-card" data-name="wos" data-type="barítono" data-genre="trap argentina">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E" alt="Wos" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Sza</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+                <h3>Wos</h3>
+                <div class="artist-genre">Trap Argentina</div>
+                <p class="artist-desc">Valentín Oliva es probablemente el mejor freestyler de Argentina. Su paso del rap de competición al ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Ganó el Red Bull Batalla de los Gallos en Argentina cuatro veces. Su batalla contra Aczino en 2018 es considerada la mejor batalla de freestyle de la historia.</div>
             </div>
         </a>
-        <a href="/artistas/taylor-swift/" class="artist-card" data-name="taylor swift" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb5a009695c07206fbb2328851" alt="Taylor Swift" loading="lazy">
+        <a href="/artistas/trueno/" class="artist-card" data-name="trueno" data-type="barítono" data-genre="trap argentina">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E" alt="Trueno" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Taylor Swift</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+                <h3>Trueno</h3>
+                <div class="artist-genre">Trap Argentina</div>
+                <p class="artist-desc">Mateo Palacios Corazzina, hijo del legendario rapero Acru, creció en el mundo del freestyle. Su 'Bie...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">A los 16 años ya competía contra veteranos en las plazas de Buenos Aires. Su padre lo entrenó en el arte del rap desde los 8 años.</div>
             </div>
         </a>
-        <a href="/artistas/the-weeknd/" class="artist-card" data-name="the weeknd" data-type="tenor">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb20790938b8ca7067f9659b9a" alt="The Weeknd" loading="lazy">
+        <a href="/artistas/drake/" class="artist-card" data-name="drake" data-type="barítono" data-genre="hip-hop / r&b">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179927c" alt="Drake" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Drake</h3>
+                <div class="artist-genre">Hip-Hop / R&B</div>
+                <p class="artist-desc">Aubrey Drake Graham es el artista con más récords en la historia de Billboard. Su voz de barítono cá...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Antes de ser rapero fue actor en la serie canadiense 'Degrassi: The Next Generation', donde interpretaba a Jimmy Brooks, un jugador de baloncesto en silla de ruedas.</div>
+            </div>
+        </a>
+        <a href="/artistas/kendrick-lamar/" class="artist-card" data-name="kendrick lamar" data-type="barítono" data-genre="hip-hop / rap">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb43769913165a3d02446d6912" alt="Kendrick Lamar" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Kendrick Lamar</h3>
+                <div class="artist-genre">Hip-Hop / Rap</div>
+                <p class="artist-desc">Kendrick Lamar Duckworth es el rapero más aclamado de su generación. Su voz de barítono versátil le ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Es el primer músico de hip-hop en ganar el Premio Pulitzer de Música (2018) por su álbum 'DAMN.'.</div>
+            </div>
+        </a>
+        <a href="/artistas/post-malone/" class="artist-card" data-name="post malone" data-type="barítono" data-genre="hip-hop / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5ebeb4c54cb1168ef9e1882d2eb" alt="Post Malone" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Post Malone</h3>
+                <div class="artist-genre">Hip-Hop / Pop</div>
+                <p class="artist-desc">Austin Richard Post mezcla el hip-hop con el pop y el rock. Su voz de barítono melódico y sus tatuaj...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su nombre 'Post Malone' viene de un generador de nombres de raperos que usó de broma a los 14 años. Se quedó con él.</div>
+            </div>
+        </a>
+        <a href="/artistas/the-weeknd/" class="artist-card" data-name="the weeknd" data-type="barítono" data-genre="r&b / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb20790938b8ca7067f9659b9a" alt="The Weeknd" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
                 <h3>The Weeknd</h3>
-                <span class="vocal-tag">Tenor</span>
+                <div class="artist-genre">R&B / Pop</div>
+                <p class="artist-desc">Abel Makkonen Tesfaye tiene una de las voces más reconocibles del pop moderno. Su barítono oscuro co...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Publicó sus primeras canciones anónimamente en YouTube en 2010, sin foto ni información. El misterio fue clave para su lanzamiento.</div>
             </div>
         </a>
-        <a href="/artistas/tina-turner/" class="artist-card" data-name="tina turner" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb6f4c8033878b277b21239c87" alt="Tina Turner" loading="lazy">
+        <a href="/artistas/j-cole/" class="artist-card" data-name="j. cole" data-type="barítono" data-genre="hip-hop consciente">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EJC%3C/text%3E%3C/svg%3E" alt="J. Cole" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Tina Turner</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+                <h3>J. Cole</h3>
+                <div class="artist-genre">Hip-Hop Consciente</div>
+                <p class="artist-desc">Jermaine Lamarr Cole es conocido por su rap introspectivo y sus letras cargadas de consciencia socia...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Compró la casa de su infancia en Fayetteville, Carolina del Norte, y vive allí con su familia en vez de en una mansión de Los Ángeles.</div>
             </div>
         </a>
-        <a href="/artistas/tini/" class="artist-card" data-name="tini" data-type="mezzosoprano">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/52/8c/b4/528cb4e3-56a2-b926-a5a3-4a11a83d0ad0/886449235001.jpg/600x600bb.jpg" alt="Tini" loading="lazy">
+        <a href="/artistas/rod-wave/" class="artist-card" data-name="rod wave" data-type="barítono" data-genre="soul trap">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ERW%3C/text%3E%3C/svg%3E" alt="Rod Wave" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Tini</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+                <h3>Rod Wave</h3>
+                <div class="artist-genre">Soul Trap</div>
+                <p class="artist-desc">Rodarius Marcell Green mezcla el soul del sur de Estados Unidos con el trap moderno. Su voz de barít...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Grabó 'Heart on Ice' en 2019 con un presupuesto casi nulo. El vídeo se viralizó en TikTok y lo catapultó a la fama mundial.</div>
             </div>
         </a>
-        <a href="/artistas/tove-lo/" class="artist-card" data-name="tove lo" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb1d277a06a275466827f31cfa" alt="Tove Lo" loading="lazy">
+        <a href="/artistas/khalid/" class="artist-card" data-name="khalid" data-type="barítono" data-genre="r&b / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" alt="Khalid" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Tove Lo</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+                <h3>Khalid</h3>
+                <div class="artist-genre">R&B / Pop</div>
+                <p class="artist-desc">Khalid Donnel Robinson tiene apenas 26 años pero ya es un veterano del R&B moderno. Su voz de baríto...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Publicó 'Location' el mismo día que empezó la universidad en El Paso, Texas. En semanas era viral y tuvo que dejar los estudios.</div>
             </div>
         </a>
-        <a href="/artistas/travis-scott/" class="artist-card" data-name="travis scott" data-type="barítono">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb1903c404dfcf8f0d8ef6a63a" alt="Travis Scott" loading="lazy">
+        <a href="/artistas/giveon/" class="artist-card" data-name="giveon" data-type="bajo barítono" data-genre="r&b">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" alt="Giveon" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">bajo barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Travis Scott</h3>
-                <span class="vocal-tag">Barítono</span>
+                <h3>Giveon</h3>
+                <div class="artist-genre">R&B</div>
+                <p class="artist-desc">Giveon Dezmann Evans tiene una de las voces más graves del R&B moderno. Su tono de bajo-barítono evo...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Aprendió a cantar imitando a Barry White en el salón de su casa. Sus vecinos le pedían que cantara en los picnics del barrio.</div>
             </div>
         </a>
-        <a href="/artistas/vicente-fern-ndez/" class="artist-card" data-name="vicente fern ndez" data-type="barítono">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Features114/v4/71/70/66/7170663c-fbe9-ecd3-fe0e-61e8cd3e9cec/dj.xccbvvbs.jpg/600x600bb.jpg" alt="Vicente Fern Ndez" loading="lazy">
+        <a href="/artistas/manuel-turizo/" class="artist-card" data-name="manuel turizo" data-type="barítono" data-genre="bachata / reggaeton">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EMT%3C/text%3E%3C/svg%3E" alt="Manuel Turizo" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Vicente Fern Ndez</h3>
-                <span class="vocal-tag">Barítono</span>
+                <h3>Manuel Turizo</h3>
+                <div class="artist-genre">Bachata / Reggaeton</div>
+                <p class="artist-desc">El colombiano Manuel Andrés Turizo Zapata tiene 22 años y ya ha conquistado Latinoamérica con su bac...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Empezó publicando covers en Instagram a los 14 años. Su hermano mayor lo animó a escribir sus propias canciones, resultando en 'Una Lady Como Tú'.</div>
             </div>
         </a>
-        <a href="/artistas/whitney-houston/" class="artist-card" data-name="whitney houston" data-type="mezzosoprano">
-            <img src="https://i.scdn.co/image/ab6761610000e5eb4911762e557b7fde92d84784" alt="Whitney Houston" loading="lazy">
+        <a href="/artistas/feid/" class="artist-card" data-name="feid" data-type="barítono" data-genre="urbano">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E" alt="Feid" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Whitney Houston</h3>
-                <span class="vocal-tag">Mezzosoprano</span>
+                <h3>Feid</h3>
+                <div class="artist-genre">Urbano</div>
+                <p class="artist-desc">Salomón Villada Hoyos es el rey del urbano colombiano actual. Su voz de barítono oscuro y su estilo ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Estudió producción musical en el Berklee Online College antes de lanzarse como artista. Produce muchos de sus propios temas.</div>
             </div>
         </a>
-        <a href="/artistas/zayn-malik/" class="artist-card" data-name="zayn malik" data-type="tenor">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/ea/e7/83eae790-c063-0982-db22-52a3b947cda8/26UMGIM07948.rgb.jpg/600x600bb.jpg" alt="Zayn Malik" loading="lazy">
+        <a href="/artistas/blessd/" class="artist-card" data-name="blessd" data-type="barítono" data-genre="trap colombia">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" alt="Blessd" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
             <div class="artist-info">
-                <h3>Zayn Malik</h3>
-                <span class="vocal-tag">Tenor</span>
+                <h3>Blessd</h3>
+                <div class="artist-genre">Trap Colombia</div>
+                <p class="artist-desc">José Darío Gómez López es el exponente más importante del trap colombiano de la nueva generación. Su...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">De niño vendía chicles en las calles de Medellín para ayudar a su familia. Hoy es el artista más streaming de Colombia.</div>
             </div>
         </a>
+        <a href="/artistas/ryan-castro/" class="artist-card" data-name="ryan castro" data-type="barítono" data-genre="urbano">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ERC%3C/text%3E%3C/svg%3E" alt="Ryan Castro" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Ryan Castro</h3>
+                <div class="artist-genre">Urbano</div>
+                <p class="artist-desc">Daniel Cano González es otro talento del urbano colombiano con una voz de barítono particular y letr...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Pasó varios años sin éxito antes de que 'Quien Soy Yo' se viralizara en 2021, convirtiéndolo de la noche a la mañana.</div>
+            </div>
+        </a>
+        <a href="/artistas/mora/" class="artist-card" data-name="mora" data-type="barítono" data-genre="trap / reggaeton">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" alt="Mora" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Mora</h3>
+                <div class="artist-genre">Trap / Reggaeton</div>
+                <p class="artist-desc">Su voz oscura y sus colaboraciones con los grandes del urbano lo han posicionado entre los artistas ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Sus primeros seguidores eran del barrio. Sus freestyles grabados con el móvil en el portal de su casa se hicieron virales en 2018.</div>
+            </div>
+        </a>
+        <a href="/artistas/natanael-cano/" class="artist-card" data-name="natanael cano" data-type="tenor" data-genre="corridos tumbados">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ENC%3C/text%3E%3C/svg%3E" alt="Natanael Cano" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Natanael Cano</h3>
+                <div class="artist-genre">Corridos Tumbados</div>
+                <p class="artist-desc">Nathanael Rubén Cano Berrelleza fue el primero en popularizar los 'corridos tumbados', mezcla de cor...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue fichado por una disquera a los 17 años tras publicar sus corridos en YouTube desde el pueblo de Los Mochis, Sinaloa.</div>
+            </div>
+        </a>
+        <a href="/artistas/junior-h/" class="artist-card" data-name="junior h" data-type="barítono" data-genre="corridos sierreños">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EJH%3C/text%3E%3C/svg%3E" alt="Junior H" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Junior H</h3>
+                <div class="artist-genre">Corridos Sierreños</div>
+                <p class="artist-desc">Antonio Herrera Pérez es el rostro del 'sad sierreño', un subgénero de los corridos más melancólico ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">El término 'sad sierreño' fue acuñado por sus propios fans en TikTok para describir el efecto emocional de sus canciones.</div>
+            </div>
+        </a>
+        <a href="/artistas/dannylux/" class="artist-card" data-name="dannylux" data-type="tenor" data-genre="sierreño / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E" alt="DannyLux" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>DannyLux</h3>
+                <div class="artist-genre">Sierreño / Pop</div>
+                <p class="artist-desc">Daniel Guadalupe Hinojos Lux tiene apenas 21 años y ya domina el cruce entre el sierreño y el pop. S...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Nació en San Diego, California, pero sus raíces musicales son 100% del norte de México. Su familia era de músicos de sierreño.</div>
+            </div>
+        </a>
+        <a href="/artistas/peso-pluma/" class="artist-card" data-name="peso pluma" data-type="tenor" data-genre="corridos tumbados">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb9687e74266858e70588665da" alt="Peso Pluma" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Peso Pluma</h3>
+                <div class="artist-genre">Corridos Tumbados</div>
+                <p class="artist-desc">Hassan Kabande ha revolucionado el regional mexicano y es el primer artista de corridos en llegar al...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su sello era usar guitarras acústicas y elementos del sierreño tradicional mezclados con 808s de trap. Una combinación que nadie había intentado a esa escala.</div>
+            </div>
+        </a>
+        <a href="/artistas/xavi/" class="artist-card" data-name="xavi" data-type="tenor" data-genre="corridos">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EX%3C/text%3E%3C/svg%3E" alt="Xavi" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Xavi</h3>
+                <div class="artist-genre">Corridos</div>
+                <p class="artist-desc">Xavi Reyes tiene una voz de tenor suave y romántica que se aplica perfectamente a los corridos de am...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Subía sus corridos a TikTok sin esperar nada. La respuesta del algoritmo fue instantánea: millones de reproducciones en días.</div>
+            </div>
+        </a>
+        <a href="/artistas/carlos-vives/" class="artist-card" data-name="carlos vives" data-type="barítono" data-genre="vallenato / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E" alt="Carlos Vives" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Carlos Vives</h3>
+                <div class="artist-genre">Vallenato / Pop</div>
+                <p class="artist-desc">Carlos Eduardo Vives Restrepo es la leyenda viva del vallenato modernizado. Su voz de barítono cálid...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Estudió teatro antes que música. Su primer trabajo fue actuar en telenovelas colombianas, donde interpretó a Carlos Gardel.</div>
+            </div>
+        </a>
+        <a href="/artistas/juan-luis-guerra/" class="artist-card" data-name="juan luis guerra" data-type="tenor" data-genre="bachata / merengue">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EJL%3C/text%3E%3C/svg%3E" alt="Juan Luis Guerra" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Juan Luis Guerra</h3>
+                <div class="artist-genre">Bachata / Merengue</div>
+                <p class="artist-desc">Juan Luis Guerra Seijas es el más grande músico dominicano de todos los tiempos. Su tenor lírico bri...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Estudió jazz y composición en el Berklee College of Music en Boston antes de regresar a la República Dominicana a revolucionar el merengue.</div>
+            </div>
+        </a>
+        <a href="/artistas/j-balvin/" class="artist-card" data-name="j balvin" data-type="barítono" data-genre="reggaeton">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb994191d4e0e564bd9d55aa61" alt="J Balvin" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>J Balvin</h3>
+                <div class="artist-genre">Reggaeton</div>
+                <p class="artist-desc">José Álvaro Osorio Balvín fue el primero en llevar el reggaeton al público masivo europeo y asiático...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Sufrió depresión severa en el punto álgido de su fama. Su documental 'The Boy from Medellín' lo muestra con una honestidad brutal.</div>
+            </div>
+        </a>
+        <a href="/artistas/maluma/" class="artist-card" data-name="maluma" data-type="barítono" data-genre="reggaeton / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb9f270059346617ba84df3634" alt="Maluma" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Maluma</h3>
+                <div class="artist-genre">Reggaeton / Pop</div>
+                <p class="artist-desc">Juan Luis Londoño Arias tiene la imagen más trabajada del pop urbano latino. Voz de barítono con muc...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su nombre artístico 'Maluma' es un acrónimo de los nombres de su familia: MAría LUisa MAldonado.</div>
+            </div>
+        </a>
+        <a href="/artistas/daddy-yankee/" class="artist-card" data-name="daddy yankee" data-type="barítono" data-genre="reggaeton">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5ebcc755cb92d29485f319520ea" alt="Daddy Yankee" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Daddy Yankee</h3>
+                <div class="artist-genre">Reggaeton</div>
+                <p class="artist-desc">Ramón Luis Ayala Rodríguez, 'El Cangri', es el padrino del reggaeton. Su voz de barítono con flow ca...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">'Gasolina' fue rechazada por varias disqueras antes de publicarla de forma independiente. Se convirtió en la canción de reggaeton más vendida de la historia.</div>
+            </div>
+        </a>
+        <a href="/artistas/rosal-a/" class="artist-card" data-name="rosalía" data-type="mezzosoprano" data-genre="flamenco / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb3dbf697486e963945ca35e0d" alt="Rosalía" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Rosalía</h3>
+                <div class="artist-genre">Flamenco / Pop</div>
+                <p class="artist-desc">Rosalía Vila Tobella fusionó el flamenco más puro con la electrónica y el R&B moderno. Su mezzosopra...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Se especializó en el Conservatorio Superior de Música de Cataluña con el maestro José Miguel Évora. Su TFM fue un análisis del cantaor Franconetti. Pasó de ser una estudiante académica a ganar dos Grammy Latinos con 26 años.</div>
+            </div>
+        </a>
+        <a href="/artistas/aitana/" class="artist-card" data-name="aitana" data-type="soprano" data-genre="pop">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/cc/6f/fc/cc6ffc8f-80c2-d222-9be5-bc6f4335f0b3/18UMGIM74890.rgb.jpg/600x600bb.jpg" alt="Aitana" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Aitana</h3>
+                <div class="artist-genre">Pop</div>
+                <p class="artist-desc">Aitana Ocaña Morales saltó a la fama en OT 2017. Su voz de soprano brillante y su capacidad de conec...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Llegó segunda en OT 2017, pero fue la que más discos vendió y más streams generó de toda su promoción.</div>
+            </div>
+        </a>
+        <a href="/artistas/alejandro-sanz/" class="artist-card" data-name="alejandro sanz" data-type="tenor" data-genre="pop / flamenco">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a4/ee/fe/a4eefebe-f64e-9250-b91f-f66ff956deb3/mzm.oeidtsbm.jpg/600x600bb.jpg" alt="Alejandro Sanz" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Alejandro Sanz</h3>
+                <div class="artist-genre">Pop / Flamenco</div>
+                <p class="artist-desc">Alejandro Sánchez Pizarro tiene una de las voces de tenor más reconocibles del pop en español. Sus f...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Empezó tocando la guitarra en los tablaos flamencos de Madrid con 15 años para ganar dinero. La música fue primero un trabajo y luego una pasión.</div>
+            </div>
+        </a>
+        <a href="/artistas/pablo-albor-n/" class="artist-card" data-name="pablo alborán" data-type="tenor" data-genre="pop">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/4e/c8/964ec8f1-32ad-199c-36b8-425932393294/5099909693159.jpg/600x600bb.jpg" alt="Pablo Alborán" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Pablo Alborán</h3>
+                <div class="artist-genre">Pop</div>
+                <p class="artist-desc">Pablo Morales Morales tiene una voz de tenor suave y cristalina que brilla en las baladas pop. Saltó...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Publicó su primera maqueta en MySpace. Universal España la escuchó y le ofreció un contrato sin haberle visto actuar en directo.</div>
+            </div>
+        </a>
+        <a href="/artistas/david-bisbal/" class="artist-card" data-name="david bisbal" data-type="tenor" data-genre="pop / flamenco">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb592c30058b7301c18d9ef673" alt="David Bisbal" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>David Bisbal</h3>
+                <div class="artist-genre">Pop / Flamenco</div>
+                <p class="artist-desc">David Bisbal Ferre nació en Almería y compagina el pop con el flamenco y la balada romántica. Es uno...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue segundo en OT 2001 pero el más exitoso a largo plazo. Su rivalidad amistosa con David Bustamante fue uno de los grandes relatos del programa.</div>
+            </div>
+        </a>
+        <a href="/artistas/ana-mena/" class="artist-card" data-name="ana mena" data-type="soprano" data-genre="pop / electrónica">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E" alt="Ana Mena" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Ana Mena</h3>
+                <div class="artist-genre">Pop / Electrónica</div>
+                <p class="artist-desc">Ana Mena Rojas de Estepona (Málaga) debutó con 7 años como actriz. Su soprano pop, su versatilidad e...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Habló italiano con fluidez para grabar 'Da Zero a Cento' con Fred De Palma, que fue número 1 en Italia durante semanas.</div>
+            </div>
+        </a>
+        <a href="/artistas/beret/" class="artist-card" data-name="beret" data-type="tenor" data-genre="pop / r&b">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" alt="Beret" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Beret</h3>
+                <div class="artist-genre">Pop / R&B</div>
+                <p class="artist-desc">José González García tiene una voz de tenor suave con mucho soul, a medio camino entre el pop y el R...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Empezó en YouTube haciendo covers con su guitarra acústica. Sus versiones de temas internacionales acumularon millones de vistas antes de lanzar material propio.</div>
+            </div>
+        </a>
+        <a href="/artistas/morat/" class="artist-card" data-name="morat" data-type="tenor" data-genre="pop / indie">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" alt="Morat" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Morat</h3>
+                <div class="artist-genre">Pop / Indie</div>
+                <p class="artist-desc">El cuarteto colombiano Morat tiene en Juan Pablo Villamil a un frontman con voz de tenor cálido. Son...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Se conocieron en el colegio Gimnasio Moderno de Bogotá y empezaron a tocar en festivales universitarios. Una gira por España los convirtió en ídolos del pop iberoamericano.</div>
+            </div>
+        </a>
+        <a href="/artistas/alejandro-fern-ndez/" class="artist-card" data-name="alejandro fernández" data-type="barítono" data-genre="ranchera / pop">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/6a/d9/756ad92c-2d6c-5d28-30c9-d5b78288fa79/mzi.yytcitvy.jpg/600x600bb.jpg" alt="Alejandro Fernández" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Alejandro Fernández</h3>
+                <div class="artist-genre">Ranchera / Pop</div>
+                <p class="artist-desc">Alejandro Fernández es el 'Potrillo', heredero de la tradición musical de Vicente Fernández. Su barí...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Creció literalmente en el escenario, acompañando a su padre Vicente Fernández desde los 5 años. Le costó años convencer al público de que era algo más que el hijo de 'Chente'.</div>
+            </div>
+        </a>
+        <a href="/artistas/camilo/" class="artist-card" data-name="camilo" data-type="tenor" data-genre="pop / vallenato">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E" alt="Camilo" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Camilo</h3>
+                <div class="artist-genre">Pop / Vallenato</div>
+                <p class="artist-desc">Camilo Echeverry es uno de los compositores más prolíficos del pop en español. Su voz de tenor suave...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Tiene un ritual antes de cada concierto: escribe el nombre de cada ciudad en un papel y lo guarda en su bolsillo durante toda la actuación.</div>
+            </div>
+        </a>
+        <a href="/artistas/sebasti-n-yatra/" class="artist-card" data-name="sebastián yatra" data-type="tenor" data-genre="pop / reggaeton">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ESY%3C/text%3E%3C/svg%3E" alt="Sebastián Yatra" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Sebastián Yatra</h3>
+                <div class="artist-genre">Pop / Reggaeton</div>
+                <p class="artist-desc">Sebastián Yatra Cadavid tiene una de las voces de tenor más populares del pop latino actual. Su paso...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Estudió en la Miami Arts Charter School y habla inglés con acento americano perfecto, lo que le abre las puertas del mercado anglosajón.</div>
+            </div>
+        </a>
+        <a href="/artistas/maluma/" class="artist-card" data-name="maluma" data-type="barítono" data-genre="reggaeton / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb9f270059346617ba84df3634" alt="Maluma" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Maluma</h3>
+                <div class="artist-genre">Reggaeton / Pop</div>
+                <p class="artist-desc">El paisa de Medellín se ha convertido en el artista colombiano más global de la historia. Su imagen ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue a la misma escuela que J Balvin en Medellín. Coincidieron poco, pero admiran mutuamente lo que el otro ha logrado.</div>
+            </div>
+        </a>
+        <a href="/artistas/manuel-carrasco/" class="artist-card" data-name="manuel carrasco" data-type="tenor" data-genre="pop / rock">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EMC%3C/text%3E%3C/svg%3E" alt="Manuel Carrasco" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Manuel Carrasco</h3>
+                <div class="artist-genre">Pop / Rock</div>
+                <p class="artist-desc">Manuel Carrasco Gutiérrez de Bonares (Huelva) es uno de los grandes del pop español. Su voz de tenor...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue finalista de OT 2003. Hoy llena el estadio Olímpico de Barcelona —que son 55.000 personas— durante varios días seguidos.</div>
+            </div>
+        </a>
+        <a href="/artistas/adele/" class="artist-card" data-name="adele" data-type="mezzosoprano" data-genre="soul / pop">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg" alt="Adele" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Adele</h3>
+                <div class="artist-genre">Soul / Pop</div>
+                <p class="artist-desc">Adele Laurie Blue Adkins tiene la voz más reconocida del pop mundial. Su mezzosoprano oscuro y poder...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">'Someone Like You' fue escrita en una sola noche después de que la dejara su novio. Lo grabó en una toma, llorando de verdad.</div>
+            </div>
+        </a>
+        <a href="/artistas/billie-eilish/" class="artist-card" data-name="billie eilish" data-type="soprano" data-genre="pop / indie">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg" alt="Billie Eilish" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Billie Eilish</h3>
+                <div class="artist-genre">Pop / Indie</div>
+                <p class="artist-desc">Billie Eilish Pirate Baird O'Connell revolucionó el pop con su estética oscura y su voz de soprano s...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su canción 'Ocean Eyes' fue grabada originalmente para una clase de danza de su hermano. La publicaron en SoundCloud sin esperar nada y en días tenía millones de reproducciones.</div>
+            </div>
+        </a>
+        <a href="/artistas/taylor-swift/" class="artist-card" data-name="taylor swift" data-type="soprano" data-genre="country / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb5a009695c07206fbb2328851" alt="Taylor Swift" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Taylor Swift</h3>
+                <div class="artist-genre">Country / Pop</div>
+                <p class="artist-desc">Taylor Alison Swift es la artista más influyente de su generación. Su soprano claro y su capacidad d...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Se mudó a Nashville con 14 años convenciendo a sus padres de que la llevaran. Tocaba guitarra en todos los bares que la dejaban entrar, hasta que la fichó Scott Borchetta.</div>
+            </div>
+        </a>
+        <a href="/artistas/ariana-grande/" class="artist-card" data-name="ariana grande" data-type="soprano" data-genre="pop / r&b">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/70/0f/3f700f55-1c91-c890-8cb7-b8886f87b7f6/16UMGIM30042.rgb.jpg/600x600bb.jpg" alt="Ariana Grande" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Ariana Grande</h3>
+                <div class="artist-genre">Pop / R&B</div>
+                <p class="artist-desc">Ariana Grande-Butera tiene un rango vocal de cuatro octavas que la sitúa entre las sopranos más comp...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Empezó como actriz en Broadway a los 15 años. Su papel en 'Victorious' de Nickelodeon fue clave para lanzar su carrera musical.</div>
+            </div>
+        </a>
+        <a href="/artistas/dua-lipa/" class="artist-card" data-name="dua lipa" data-type="mezzosoprano" data-genre="pop / dance">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6c/11/d6/6c11d681-aa3a-d59e-4c2e-f77e181026ab/190295092665.jpg/600x600bb.jpg" alt="Dua Lipa" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Dua Lipa</h3>
+                <div class="artist-genre">Pop / Dance</div>
+                <p class="artist-desc">Dua Lipa tiene una voz de mezzosoprano grave y fría que encaja a la perfección con el disco-pop que ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">De adolescente fue modelo en Londres para pagar las clases de canto. Sus fotos de esa época circulan todavía por internet.</div>
+            </div>
+        </a>
+        <a href="/artistas/rosal-a/" class="artist-card" data-name="rosalía" data-type="mezzosoprano" data-genre="flamenco / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb3dbf697486e963945ca35e0d" alt="Rosalía" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Rosalía</h3>
+                <div class="artist-genre">Flamenco / Pop</div>
+                <p class="artist-desc">La artista española más global de la historia reciente. Su fusión de flamenco con electrónica, regga...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Estudió flamenco en el Conservatorio de Barcelona con una beca. Su profesora le decía que tenía demasiada 'rabia' para el flamenco clásico. Esa rabia la convirtió en estrella.</div>
+            </div>
+        </a>
+        <a href="/artistas/olivia-rodrigo/" class="artist-card" data-name="olivia rodrigo" data-type="soprano" data-genre="pop / rock">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eba094a97491d90060d4734731" alt="Olivia Rodrigo" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Olivia Rodrigo</h3>
+                <div class="artist-genre">Pop / Rock</div>
+                <p class="artist-desc">Olivia Isabel Rodrigo saltó a la fama con 17 años con 'drivers license'. Su soprano emocional y sus ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">'drivers license' bate récords de Spotify para un debut artístico. La escribió en una hora después de que le negaran el carné de conducir por segunda vez.</div>
+            </div>
+        </a>
+        <a href="/artistas/sabrina-carpenter/" class="artist-card" data-name="sabrina carpenter" data-type="soprano" data-genre="pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb36d7d515a133f92bf4cc8330" alt="Sabrina Carpenter" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Sabrina Carpenter</h3>
+                <div class="artist-genre">Pop</div>
+                <p class="artist-desc">Sabrina Ann Lynn Carpenter tiene una voz de soprano brillante y un sentido del humor ácido en sus le...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Mide 1,57 metros y ha convertido su estatura en parte de su personalidad artística. Su hit 'Espresso' tiene un guiño a ello en el vídeo.</div>
+            </div>
+        </a>
+        <a href="/artistas/doja-cat/" class="artist-card" data-name="doja cat" data-type="mezzosoprano" data-genre="hip-hop / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EDC%3C/text%3E%3C/svg%3E" alt="Doja Cat" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Doja Cat</h3>
+                <div class="artist-genre">Hip-Hop / Pop</div>
+                <p class="artist-desc">Amala Ratna Zandile Dlamini mezcla el rap, el pop y el R&B con una facilidad que pocos artistas han ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Publicó 'Mooo!' —una canción sobre ser una vaca— en 2018 como broma. Se hizo tan viral que la convirtió en su primer gran éxito y la consagró como artista.</div>
+            </div>
+        </a>
+        <a href="/artistas/chappell-roan/" class="artist-card" data-name="chappell roan" data-type="soprano" data-genre="pop / synth">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ECR%3C/text%3E%3C/svg%3E" alt="Chappell Roan" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Chappell Roan</h3>
+                <div class="artist-genre">Pop / Synth</div>
+                <p class="artist-desc">Kayleigh Rose Amstutz ha creado uno de los personajes artísticos más elaborados del pop actual. Su s...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Trabajó de camarera mientras grababa su álbum de debut. Tuvo que pedir prestado el dinero para el vídeo de 'Good Luck Babe!', que se convirtió en el hit del verano 2024.</div>
+            </div>
+        </a>
+        <a href="/artistas/tyla/" class="artist-card" data-name="tyla" data-type="soprano" data-genre="afrobeats / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E" alt="Tyla" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Tyla</h3>
+                <div class="artist-genre">Afrobeats / Pop</div>
+                <p class="artist-desc">Tyla Laura Seethal ganó el Grammy a Mejor Artista Africana en 2024 con solo 22 años. Su soprano suav...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">'Water' fue grabada en un día en Johannesburgo. El challenge de TikTok que creó la viralizó en todo el mundo y se convirtió en el hit del año.</div>
+            </div>
+        </a>
+        <a href="/artistas/kali-uchis/" class="artist-card" data-name="kali uchis" data-type="soprano" data-genre="r&b / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EKU%3C/text%3E%3C/svg%3E" alt="Kali Uchis" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Kali Uchis</h3>
+                <div class="artist-genre">R&B / Pop</div>
+                <p class="artist-desc">Diana Milena Real nació en Colombia pero creció en Virginia. Su soprano etéreo mezcla el soul de los...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">De adolescente vivió en el coche de sus padres durante varios meses. La experiencia de esa época la plasmó en su primer EP.</div>
+            </div>
+        </a>
+        <a href="/artistas/anitta/" class="artist-card" data-name="anitta" data-type="soprano" data-genre="funk carioca / pop">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" alt="Anitta" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Anitta</h3>
+                <div class="artist-genre">Funk Carioca / Pop</div>
+                <p class="artist-desc">Larissa de Macedo Machado es la artista brasileña más exitosa de la historia. Su soprano energético ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Creció en la favela Honório Gurgel de Río de Janeiro. Su madre vendía comida en la calle para que ella pudiera tomar clases de danza.</div>
+            </div>
+        </a>
+        <a href="/artistas/karol-g/" class="artist-card" data-name="karol g" data-type="soprano" data-genre="reggaeton / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb0010c265691079361a87e35b" alt="Karol G" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF4FA333;border-color:#FF4FA366;color:#FF4FA3">soprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Karol G</h3>
+                <div class="artist-genre">Reggaeton / Pop</div>
+                <p class="artist-desc">Carolina Giraldo Navarro, 'La Bichota', es la artista femenina de reggaeton más exitosa de la histor...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su álbum 'Mañana Será Bonito' fue el primer álbum en español de una artista femenina en llegar al número 1 en el chart de álbumes de Billboard.</div>
+            </div>
+        </a>
+        <a href="/artistas/nathy-peluso/" class="artist-card" data-name="nathy peluso" data-type="mezzosoprano" data-genre="pop / jazz">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ENP%3C/text%3E%3C/svg%3E" alt="Nathy Peluso" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Nathy Peluso</h3>
+                <div class="artist-genre">Pop / Jazz</div>
+                <p class="artist-desc">Natalia Peluso mezcla el jazz, el hip-hop, el R&B y la electrónica en un cóctel completamente origin...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Creció en Buenos Aires escuchando a sus padres tocar música italiana. Estudió en el Conservatorio Superior de Música Manuel de Falla antes de mudarse a Barcelona.</div>
+            </div>
+        </a>
+        <a href="/artistas/jennifer-lopez/" class="artist-card" data-name="jennifer lopez" data-type="mezzosoprano" data-genre="pop / salsa">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EJL%3C/text%3E%3C/svg%3E" alt="Jennifer Lopez" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Jennifer Lopez</h3>
+                <div class="artist-genre">Pop / Salsa</div>
+                <p class="artist-desc">Jennifer Lynn Lopez, 'J.Lo', es la artista latina más influyente de los últimos 30 años. Actriz, can...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Antes de ser famosa trabajó como bailarina de fondo en 'In Living Color'. La despidieron varias veces antes de que la ficha Selena Quintanilla. El resto es historia.</div>
+            </div>
+        </a>
+        <a href="/artistas/harry-styles/" class="artist-card" data-name="harry styles" data-type="tenor" data-genre="pop / rock">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eba2503d89953258a69919f939" alt="Harry Styles" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Harry Styles</h3>
+                <div class="artist-genre">Pop / Rock</div>
+                <p class="artist-desc">Harry Edward Styles es el exmiembro de One Direction más exitoso en solitario. Su voz de tenor ha ev...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">En la primera audición de X Factor cantó tan mal que los productores le pidieron que volviera. La segunda audición fue mejor y quedó finalista como parte de One Direction.</div>
+            </div>
+        </a>
+        <a href="/artistas/ed-sheeran/" class="artist-card" data-name="ed sheeran" data-type="tenor" data-genre="pop / folk">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb121f1e63717208d2ae374244" alt="Ed Sheeran" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Ed Sheeran</h3>
+                <div class="artist-genre">Pop / Folk</div>
+                <p class="artist-desc">Edward Christopher Sheeran es el artista en solitario con más récords de ventas en el Reino Unido. S...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Llegó a Londres a los 17 años con una guitarra y 200 libras y dormía en los bancos del metro. En 18 meses había firmado con Atlantic Records.</div>
+            </div>
+        </a>
+        <a href="/artistas/the-weeknd/" class="artist-card" data-name="the weeknd" data-type="barítono" data-genre="r&b / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb20790938b8ca7067f9659b9a" alt="The Weeknd" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>The Weeknd</h3>
+                <div class="artist-genre">R&B / Pop</div>
+                <p class="artist-desc">Abel Tesfaye creó su primer mixtape de forma completamente anónima, publicando solo en YouTube bajo ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Desapareció varios días de su casa cuando tenía 17 años para meterse de lleno en la música. Sus padres no sabían dónde estaba. Los 'Trilogy Mixtapes' que grabó en ese periodo son considerados un clásico del R&B moderno.</div>
+            </div>
+        </a>
+        <a href="/artistas/bad-bunny/" class="artist-card" data-name="bad bunny" data-type="barítono" data-genre="reggaeton">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb9bb6bca061266ec568c0919d" alt="Bad Bunny" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Bad Bunny</h3>
+                <div class="artist-genre">Reggaeton</div>
+                <p class="artist-desc">Benito, el artista más escuchado del mundo en Spotify durante tres años consecutivos, ha llevado el ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue becado para estudiar comunicaciones en la UPR en Bayamón, Puerto Rico. Dejó la carrera a un semestre de terminar para dedicarse a la música.</div>
+            </div>
+        </a>
+        <a href="/artistas/beyonc/" class="artist-card" data-name="beyoncé" data-type="mezzosoprano" data-genre="r&b / pop">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c9/6b/3f/c96b3ff3-9cf6-4ce6-05aa-9f11474bd569/886443938373.jpg/600x600bb.jpg" alt="Beyoncé" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Beyoncé</h3>
+                <div class="artist-genre">R&B / Pop</div>
+                <p class="artist-desc">Beyoncé Giselle Knowles-Carter es la artista más premiada en la historia de los Grammy (32 premios)....</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue rechazada en la primera ronda de audiciones de Star Search con 10 años. Le dijeron que 'no tenía lo que hay que tener'. Años después ganó el Grammy a mejor álbum por 'Renaissance'.</div>
+            </div>
+        </a>
+        <a href="/artistas/alicia-keys/" class="artist-card" data-name="alicia keys" data-type="mezzosoprano" data-genre="r&b / soul">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c7/88/df/c788dffe-d06f-8923-ad61-a6194daf6616/888880809919.jpg/600x600bb.jpg" alt="Alicia Keys" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Alicia Keys</h3>
+                <div class="artist-genre">R&B / Soul</div>
+                <p class="artist-desc">Alicia Augello Cook empezó a tocar el piano a los 7 años y a los 15 ya tenía contrato con Columbia R...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Tocó el himno de Estados Unidos en el Super Bowl XLVII (2013) con un piano de cola en el campo. Fue considerado uno de los mejores momentos musicales en la historia del evento.</div>
+            </div>
+        </a>
+        <a href="/artistas/sam-smith/" class="artist-card" data-name="sam smith" data-type="mezzosoprano" data-genre="pop / soul">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb8e578c74070a2fde6d8f61e8" alt="Sam Smith" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#FF9F1C33;border-color:#FF9F1C66;color:#FF9F1C">mezzosoprano</div>
+            </div>
+            <div class="artist-info">
+                <h3>Sam Smith</h3>
+                <div class="artist-genre">Pop / Soul</div>
+                <p class="artist-desc">Samuel Frederick Smith ha ganado cuatro Grammy y un Oscar. Su voz de mezzosoprano no binaria es de u...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">La canción 'Stay With Me' fue escrita después de pasar una noche con alguien cuyo nombre no sabía. El dolor de esa experiencia se convierte en una de las baladas más reconocibles del siglo XXI.</div>
+            </div>
+        </a>
+        <a href="/artistas/amy-winehouse/" class="artist-card" data-name="amy winehouse" data-type="contralto" data-genre="jazz / soul">
+            <div class="card-img-wrap">
+                <img src="/assets/img/amy_winehouse.png" alt="Amy Winehouse" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#80B91833;border-color:#80B91866;color:#80B918">contralto</div>
+            </div>
+            <div class="artist-info">
+                <h3>Amy Winehouse</h3>
+                <div class="artist-genre">Jazz / Soul</div>
+                <p class="artist-desc">Amy Jade Winehouse fue una de las grandes voces del jazz y el soul del siglo XXI. Su contralto oscur...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Fue rechazada en la National Youth Music Theatre por ser 'demasiado gorda y sensual para interpretar teatro musical'. El rechazo la empujó hacia el jazz y el soul.</div>
+            </div>
+        </a>
+        <a href="/artistas/camar-n-de-la-isla/" class="artist-card" data-name="camarón de la isla" data-type="barítono" data-genre="flamenco">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ECD%3C/text%3E%3C/svg%3E" alt="Camarón de la Isla" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Camarón de la Isla</h3>
+                <div class="artist-genre">Flamenco</div>
+                <p class="artist-desc">José Monje Cruz, 'Camarón de la Isla', fue el cantaor que llevó el flamenco más allá de sus límites ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Su apodo 'Camarón' se lo puso un tendero de La Línea de la Concepción porque era rubio y pálido como los camarones del mar. Nunca le gustó el apodo.</div>
+            </div>
+        </a>
+        <a href="/artistas/paco-de-luc-a/" class="artist-card" data-name="paco de lucía" data-type="bajo barítono" data-genre="flamenco">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EPD%3C/text%3E%3C/svg%3E" alt="Paco de Lucía" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">bajo barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Paco de Lucía</h3>
+                <div class="artist-genre">Flamenco</div>
+                <p class="artist-desc">Francisco Sánchez Gómez fue el guitarrista de flamenco más influyente de todos los tiempos. Aunque r...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Empezó a tocar la guitarra a los 7 años porque su padre le dijo que o tocaba el instrumento o se ponía a trabajar en el campo. Eligió la guitarra.</div>
+            </div>
+        </a>
+        <a href="/artistas/enrique-morente/" class="artist-card" data-name="enrique morente" data-type="barítono" data-genre="flamenco">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EEM%3C/text%3E%3C/svg%3E" alt="Enrique Morente" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Enrique Morente</h3>
+                <div class="artist-genre">Flamenco</div>
+                <p class="artist-desc">Enrique Morente Cotelo fue el gran innovador del flamenco de la segunda mitad del siglo XX. Su barít...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Colaboró con Sonic Youth, Leonard Cohen y el grupo de rock Lagartija Nick. La fusión provocó un escándalo entre los puristas del flamenco. Hoy se considera un clásico.</div>
+            </div>
+        </a>
+        <a href="/artistas/freddie-mercury/" class="artist-card" data-name="freddie mercury" data-type="tenor" data-genre="rock / pop">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/08/2a/4d082a9e-7898-1aa1-a02f-339810058d9e/14DMGIM05632.rgb.jpg/600x600bb.jpg" alt="Freddie Mercury" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Freddie Mercury</h3>
+                <div class="artist-genre">Rock / Pop</div>
+                <p class="artist-desc">Farrokh Bulsara tenía un rango vocal de cuatro octavas y era capaz de producir micro variaciones de ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Actuó en el Live Aid de 1985 durante 20 minutos con sus cuatro compañeros de Queen. Los expertos lo califican como la mejor actuación en vivo de la historia del rock.</div>
+            </div>
+        </a>
+        <a href="/artistas/david-bowie/" class="artist-card" data-name="david bowie" data-type="barítono" data-genre="rock / art pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb76db01b1b1178351586715f6" alt="David Bowie" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>David Bowie</h3>
+                <div class="artist-genre">Rock / Art Pop</div>
+                <p class="artist-desc">David Robert Jones creó a Ziggy Stardust, Aladdin Sane, The Thin White Duke y otros personajes para ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Sus ojos de diferentes colores (heterocromía) no son genéticos. Quedaron así tras una pelea de adolescente en la que su amigo le dio un puñetazo tan fuerte que le dilató permanentemente la pupila izquierda.</div>
+            </div>
+        </a>
+        <a href="/artistas/elvis-presley/" class="artist-card" data-name="elvis presley" data-type="barítono" data-genre="rock / country">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb98759714856658997a61d1e4" alt="Elvis Presley" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Elvis Presley</h3>
+                <div class="artist-genre">Rock / Country</div>
+                <p class="artist-desc">Elvis Aaron Presley, 'El Rey', tenía una voz de barítono con un rango de dos octavas y media. Su cap...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Cuando fue a grabar por primera vez al Sun Studio con 18 años, pagó él mismo la sesión: le costó 4 dólares. La secretaria escribió en su ficha: 'No tiene nada especial'.</div>
+            </div>
+        </a>
+        <a href="/artistas/michael-jackson/" class="artist-card" data-name="michael jackson" data-type="tenor" data-genre="pop / r&b">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb0933758b7538965f375ba31a" alt="Michael Jackson" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Michael Jackson</h3>
+                <div class="artist-genre">Pop / R&B</div>
+                <p class="artist-desc">Michael Joseph Jackson es el artista más vendido de la historia de la música. Su tenor con falsete y...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Desarrolló el 'moonwalk' viendo bailar a Jeffrey Daniel, antiguo miembro del grupo Shalamar. Lo practicó en calcetines en el suelo de linóleo del estudio durante semanas antes de presentarlo al mundo en 'Motown 25'.</div>
+            </div>
+        </a>
+        <a href="/artistas/prince/" class="artist-card" data-name="prince" data-type="tenor" data-genre="funk / pop">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb7304be36111059f33b1e32d5" alt="Prince" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Prince</h3>
+                <div class="artist-genre">Funk / Pop</div>
+                <p class="artist-desc">Prince Rogers Nelson tenía un rango vocal de cinco octavas. Su tenor melismático y su dominio de más...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Grabó más de 500 canciones inéditas en una cámara acorazada de su estudio Paisley Park. La bóveda, llamada 'the Vault', puede contener más material que ningún artista vivo o muerto ha publicado jamás.</div>
+            </div>
+        </a>
+        <a href="/artistas/bruce-springsteen/" class="artist-card" data-name="bruce springsteen" data-type="barítono" data-genre="rock">
+            <div class="card-img-wrap">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/72/68/327268ba-b9dd-b322-2a16-bdd0212df48c/074643865326.jpg/600x600bb.jpg" alt="Bruce Springsteen" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Bruce Springsteen</h3>
+                <div class="artist-genre">Rock</div>
+                <p class="artist-desc">Bruce Frederick Joseph Springsteen, 'The Boss', es el poeta del sueño americano. Su barítono áspero ...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">En el album 'Born to Run' cambió el bajo de los altavoces durante la mezcla a las 3 de la mañana después de escucharlo durante semanas. Al día siguiente llegó y descubrió que le había costado 4 meses de trabajo extra.</div>
+            </div>
+        </a>
+        <a href="/artistas/bob-dylan/" class="artist-card" data-name="bob dylan" data-type="barítono" data-genre="folk / rock">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3EBD%3C/text%3E%3C/svg%3E" alt="Bob Dylan" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Bob Dylan</h3>
+                <div class="artist-genre">Folk / Rock</div>
+                <p class="artist-desc">Robert Allen Zimmerman tiene una de las voces más reconocibles y discutidas de la historia. Su barít...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Ganó el Nobel de Literatura en 2016, convirtiéndose en el primer músico en recibirlo. Tardó varias semanas en responder a la Academia Sueca. Cuando lo hizo, dijo que no podría asistir a la ceremonia 'por compromisos previos'.</div>
+            </div>
+        </a>
+        <a href="/artistas/mick-jagger/" class="artist-card" data-name="mick jagger" data-type="barítono" data-genre="rock">
+            <div class="card-img-wrap">
+                <img src="https://i.scdn.co/image/ab6761610000e5eb629731495dec503c5ec82333" alt="Mick Jagger" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#7C4DFF33;border-color:#7C4DFF66;color:#7C4DFF">barítono</div>
+            </div>
+            <div class="artist-info">
+                <h3>Mick Jagger</h3>
+                <div class="artist-genre">Rock</div>
+                <p class="artist-desc">Sir Michael Philip Jagger tiene la mayor colección de movimientos de escena del rock. Su barítono ág...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">Estudió en la London School of Economics antes de unirse a los Rolling Stones. Su profesor de economía le aconsejó que dejara la música para dedicarse a la banca.</div>
+            </div>
+        </a>
+        <a href="/artistas/led-zeppelin-robert-plant/" class="artist-card" data-name="led zeppelin (robert plant)" data-type="tenor" data-genre="rock / blues">
+            <div class="card-img-wrap">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%231a1730'/%3E%3Ctext x='150' y='165' font-family='Outfit' font-size='90' font-weight='900' fill='%237C4DFF' text-anchor='middle'%3ELZ%3C/text%3E%3C/svg%3E" alt="Led Zeppelin (Robert Plant)" loading="lazy" onerror="this.src='/harmiq-logo.png'">
+                <div class="card-genre-badge" style="background:#118AB233;border-color:#118AB266;color:#118AB2">tenor</div>
+            </div>
+            <div class="artist-info">
+                <h3>Led Zeppelin (Robert Plant)</h3>
+                <div class="artist-genre">Rock / Blues</div>
+                <p class="artist-desc">Robert Anthony Plant tiene el mayor registro de tenor del rock clásico. Su uso del falsete y su capa...</p>
+                <div class="anecdote-toggle" onclick="event.preventDefault();this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.textContent=this.textContent==='Ver anécdota ▼'?'Ocultar ▲':'Ver anécdota ▼'">Ver anécdota ▼</div>
+                <div class="anecdote-text" style="display:none">'Whole Lotta Love' fue grabada en una sola toma en los estudios Olympic de Londres. Plant improvisó la mayoría de las letras en el momento.</div>
+            </div>
+        </a>
+        </div>
+
+        <div id="noResults" style="display:none;text-align:center;padding:4rem 2rem;color:var(--m);">
+            <div style="font-size:3rem;margin-bottom:1rem">🔍</div>
+            <h3 style="color:#fff;margin-bottom:.5rem">No encontramos ese artista aquí</h3>
+            <p>Prueba a analizar tu voz y te compararemos con más de 13.000 cantantes de nuestra base de datos.</p>
+            <a href="/" style="display:inline-block;margin-top:1.5rem;padding:.8rem 2rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:800;">Analizar mi voz</a>
         </div>
     </div>
 
     <footer>
-        © 2026 Harmiq — Análisis Vocal con Inteligencia Artificial
+        <p>Harmiq &copy; 2026 &mdash; Tecnología de análisis vocal con IA &mdash; <a href="/" style="color:var(--p)">Analiza tu voz</a></p>
     </footer>
 
     <script>
-        function filterArtists() {
-            let input = document.getElementById('artistSearch').value.toLowerCase();
-            let cards = document.getElementsByClassName('artist-card');
-            
-            for (let card of cards) {
-                let name = card.getAttribute('data-name');
-                let type = card.getAttribute('data-type');
-                if (name.includes(input) || type.includes(input)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            }
-        }
+    function filterArtists() {
+        const q     = document.getElementById('artistSearch').value.toLowerCase();
+        const vtype = document.getElementById('vtypeFilter').value.toLowerCase();
+        const genre = document.getElementById('genreFilter').value.toLowerCase();
+        const cards = document.querySelectorAll('.artist-card');
+        let visible = 0;
+        cards.forEach(c => {
+            const name  = c.dataset.name || '';
+            const type  = c.dataset.type || '';
+            const gen   = c.dataset.genre || '';
+            const show  = (!q || name.includes(q))
+                       && (!vtype || type.includes(vtype))
+                       && (!genre || gen.includes(genre));
+            c.style.display = show ? 'block' : 'none';
+            if (show) visible++;
+        });
+        document.getElementById('resultCount').textContent = visible + ' artistas';
+        document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    }
     </script>
 </body>
 </html>

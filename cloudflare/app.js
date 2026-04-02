@@ -1491,9 +1491,15 @@ function score(uVec, sVec, uvt, svt) {
 }
 
 function getMatches(vec,vt,gender,filters={},topN=5) {
+  // 0. FILTRO DE CALIDAD: excluir entradas con nombres inválidos del CSV
+  const nameOk = s => {
+    const n = (s.name||'').trim();
+    return n.length >= 3 && !/^\d+$/.test(n) && !/^[A-Z]{2}$/.test(n);
+  };
+
   // 1. FILTRO DEMOGRÁFICO ESTRICTO (Género)
-  let pool = gender ? singersDb.filter(s=>s.gender===gender) : singersDb;
-  
+  let pool = gender ? singersDb.filter(s=>s.gender===gender && nameOk(s)) : singersDb.filter(nameOk);
+
   // 2. FILTRO DE TIPO DE VOZ ESTRICTO (Barítono solo ve Barítonos, etc.)
   pool = pool.filter(s => s.voice_type === vt);
   const compareSlug = (new URLSearchParams(window.location.search)).get('compare');
@@ -2254,18 +2260,22 @@ function buildKaraokeSection(vtName, vtSlug) {
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem">
             ${[
-              {id:"TfD-5k68uOQ", name:"Técnica: Respiración", desc:"Gret Rocha (Vocal Coach)", color:"rgba(124,77,255,.1)", border:"rgba(124,77,255,.3)"},
-              {id:"Z8_X9v_Z-jI", name:"Técnica: Apoyo Vocal", desc:"Ejercicios prácticos", color:"rgba(255,79,163,.1)", border:"rgba(255,79,163,.2)"},
-              {id:"6oF08tGkM50", name:"Vocal Grit & Power", desc:"Chris Liepe (Distortion)", color:"rgba(255,153,0,.1)", border:"rgba(255,153,0,.2)"},
-              {id:"4vUu_k_oI9Q", name:"High Note Control", desc:"Domina tus agudos", color:"rgba(6,214,160,.1)", border:"rgba(6,214,160,.2)"},
-              {id:"fS_m4uXoU_Y", name:"Daily Vocal Warmup", desc:"Calentamiento diario (Singeo)", color:"rgba(0,170,255,.1)", border:"rgba(0,170,255,.2)"},
+              {id:"TfD-5k68uOQ", name:"Técnica: Respiración", desc:"Gret Rocha (Vocal Coach)", color:"rgba(124,77,255,.1)", border:"rgba(124,77,255,.3)", emoji:"🫁"},
+              {id:"eRXpvyxmVkQ", name:"Técnica: Apoyo Vocal", desc:"Ejercicios de soporte", color:"rgba(255,79,163,.1)", border:"rgba(255,79,163,.2)", emoji:"💪"},
+              {id:"PkNMEFOcwGE", name:"Vocal Grit & Power", desc:"Potencia tu voz (SLS)", color:"rgba(255,153,0,.1)", border:"rgba(255,153,0,.2)", emoji:"🔥"},
+              {id:"JCiYqpRGQhg", name:"Controla tus agudos", desc:"Domina el Do de pecho", color:"rgba(6,214,160,.1)", border:"rgba(6,214,160,.2)", emoji:"🎯"},
+              {id:"hXg5YWOR7QI", name:"Calentamiento vocal", desc:"Rutina diaria de 10 min", color:"rgba(0,170,255,.1)", border:"rgba(0,170,255,.2)", emoji:"☀️"},
             ].map(v=>`
               <div style="border-radius:12px;overflow:hidden;background:${v.color};border:1px solid ${v.border}">
-                <div style="position:relative;aspect-ratio:16/9;cursor:pointer;background:#000"
-                  onclick="window.open('https://www.youtube.com/watch?v=${v.id}','_blank')">
-                  <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover;opacity:.7">
+                <div style="position:relative;aspect-ratio:16/9;cursor:pointer;background:#0d0a1f"
+                  onclick="window.open('https://www.youtube.com/watch?v=${v.id}','_blank')"
+                  onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                  <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg"
+                    style="width:100%;height:100%;object-fit:cover;opacity:.75;display:block"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:.4rem;font-size:2rem;position:absolute;inset:0">${v.emoji}</div>
                   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
-                    <div style="width:36px;height:36px;background:rgba(255,0,0,.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px">▶</div>
+                    <div style="width:40px;height:40px;background:rgba(255,0,0,.88);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 4px 16px rgba(255,0,0,.4)">▶</div>
                   </div>
                 </div>
                 <div style="padding:.5rem">
