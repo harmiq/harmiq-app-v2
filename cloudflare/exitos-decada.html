@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Éxitos por Década — Hits Reales de Spotify | Harmiq</title>
-<meta name="description" content="Explora los mayores éxitos musicales desde los 60 hasta hoy con fotos reales de artistas y conexión a Spotify.">
-<link rel="canonical" href="https://harmiq.app/exitos-decada.html">
+<meta name="description" content="Explora los mayores éxitos musicales desde los 60 hasta hoy con listas actualizadas de Spotify, Apple Music y Amazon Music.">
+<link rel="canonical" href="https://harmiq.app/exitos-decada">
 <link rel="icon" type="image/png" href="/harmiq-logo.png">
 <link rel="apple-touch-icon" href="/harmiq-logo.png">
 <meta property="og:image" content="https://harmiq.app/harmiq-logo.png">
-<meta name="twitter:image" content="https://harmiq.app/harmiq-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -18,48 +17,29 @@
 body{background:var(--dark);color:var(--t);font-family:'Outfit',sans-serif;line-height:1.6;min-height:100vh;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
 
-/* Navegación Estilo Harmiq */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(13,13,26,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:100}
 .logo{font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#FF4FA3,#7C4DFF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .nav-back{background:rgba(124,77,255,.15);color:#A5B4FC;border:1px solid rgba(124,77,255,.3);padding:.45rem 1.1rem;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer}
 
-/* Hero */
 .hero{text-align:center;padding:3rem 1.5rem 2rem;background:radial-gradient(circle at top right, rgba(124,77,255,0.1), transparent)}
 .grad{background:linear-gradient(135deg, var(--p), #FFFFFF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero h1{font-family:'Outfit';font-size:clamp(2rem,6vw,3rem);font-weight:900}
 
-/* Buscador mejorado */
-.search-wrap{max-width:680px;margin:1.5rem auto 0;padding:0 1.5rem}
-.search-row{display:flex;gap:.6rem;background:var(--card);border:1px solid rgba(124,77,255,0.3);border-radius:18px;padding:.6rem;box-shadow:0 10px 30px rgba(0,0,0,0.3)}
-.search-inp{flex:1;background:none;border:none;color:var(--t);padding:0 .8rem;outline:none;font-size:1rem}
-.search-btn{background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:14px;font-weight:800;cursor:pointer;transition:.2s}
-.search-btn:hover{transform:scale(1.05)}
-
-/* Tabs de Décadas */
 .tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;padding:1.5rem;margin-bottom:1rem}
 .tab{padding:.5rem 1.2rem;border-radius:25px;font-size:.85rem;font-weight:700;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,0.05);color:var(--m);cursor:pointer;transition:.3s}
 .tab.active{background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;border-color:transparent;box-shadow:0 5px 15px rgba(124,77,255,0.4)}
 
-/* Lista de Canciones con FOTOS */
 .content{max-width:900px;margin:0 auto;padding:1rem 1.5rem 4rem}
-.track-card{display:flex;align-items:center;gap:1.2rem;background:var(--card);border-radius:16px;padding:1rem;margin-bottom:0.8rem;border:1px solid rgba(255,255,255,0.05);transition:.3s;animation:slideIn 0.4s ease forwards}
-.track-card:hover{border-color:var(--p);transform:translateX(5px)}
 
-@keyframes slideIn { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
+.spotify-section{display:flex;flex-direction:column;gap:1.5rem;align-items:center}
+.spotify-section iframe{border-radius:16px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+.platform-links{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.platform-links a{padding:.5rem 1.2rem;border-radius:20px;font-weight:800;font-size:.8rem;transition:.3s;display:flex;align-items:center;gap:.4rem}
+.btn-spotify{background:#1DB954;color:#000}
+.btn-apple{background:#FC3C44;color:#fff}
+.btn-amazon{background:#FF9900;color:#000}
+.platform-links a:hover{transform:scale(1.05)}
 
-.img-container{width:60px;height:60px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#000;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.1)}
-.track-img{width:100%;height:100%;object-fit:cover}
-.track-placeholder{font-size:1.5rem}
-
-.track-info{flex:1;min-width:0}
-.track-title{font-weight:800;font-size:1rem;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.track-artist{font-size:0.85rem;color:var(--m);margin-top:2px}
-
-.actions{display:flex;gap:10px;align-items:center}
-.btn-play{background:var(--green);color:#000;padding:.5rem 1rem;border-radius:20px;font-size:0.75rem;font-weight:800;display:flex;align-items:center;gap:5px}
-.year-badge{font-size:0.7rem;color:var(--m);background:rgba(255,255,255,0.05);padding:3px 8px;border-radius:5px}
-
-/* Loading */
 .loading-box{text-align:center;padding:4rem}
 .spinner{width:40px;height:40px;border:4px solid rgba(124,77,255,0.2);border-top-color:var(--p);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -67,32 +47,25 @@ a{text-decoration:none;color:inherit}
 footer{text-align:center;padding:3rem;color:var(--m);font-size:0.8rem;border-top:1px solid rgba(255,255,255,0.05)}
 
 @media (max-width:600px) {
-    .actions{flex-direction:column; gap:5px}
-    .track-card{gap:0.8rem; padding:0.8rem}
+    .spotify-section iframe{width:100%!important}
 }
 </style>
 </head>
 <body>
 
 <nav class="nav">
-    <a class="logo" href="/" style="display:flex;align-items:center;gap:0.8rem;text-decoration:none"><img src="/harmiq-logo.png" id="nav-logo-img" alt="Harmiq IA Logo" style="height:38px; border-radius:10px; box-shadow: 0 0 15px rgba(124,77,255,0.4); transition: filter 0.5s"><span id="nav-logo-text" style="background:linear-gradient(135deg,var(--a),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Harmiq</span></a>
+    <a class="logo" href="/" style="display:flex;align-items:center;gap:0.8rem;text-decoration:none"><img src="/harmiq-logo.png" alt="Harmiq Logo" style="height:38px; border-radius:10px; box-shadow: 0 0 15px rgba(124,77,255,0.4)"><span style="background:linear-gradient(135deg,var(--a),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Harmiq</span></a>
     <button class="nav-back" onclick="location.href='/'">← Volver</button>
 </nav>
 
 <div class="hero">
     <h1><span class="grad">Hits de Leyenda</span></h1>
-    <p>Fotos reales de artistas y canciones que definieron épocas.</p>
+    <p>Listas actualizadas a diario por Spotify. Escucha, descubre y disfruta.</p>
 </div>
 
-<div class="search-wrap">
-    <div class="search-row">
-        <input class="search-inp" id="search-inp" type="text" placeholder="Busca un artista o canción de Spotify..." onkeydown="if(event.key==='Enter') doSearch()">
-        <button class="search-btn" onclick="doSearch()">Buscar</button>
-    </div>
-</div>
-
-<div class="tabs">
-    <div class="tab active" onclick="changeTab('viernes', this)">🆕 Novedades</div>
+<div class="tabs" id="tabs-container">
+    <div class="tab active" onclick="changeTab('top', this)">🌍 Top Charts</div>
+    <div class="tab" onclick="changeTab('novedades', this)">🆕 Novedades 2026</div>
     <div class="tab" onclick="changeTab('2020s', this)">2020s</div>
     <div class="tab" onclick="changeTab('2010s', this)">2010s</div>
     <div class="tab" onclick="changeTab('2000s', this)">2000s</div>
@@ -100,24 +73,48 @@ footer{text-align:center;padding:3rem;color:var(--m);font-size:0.8rem;border-top
     <div class="tab" onclick="changeTab('80s', this)">80s</div>
     <div class="tab" onclick="changeTab('70s', this)">70s</div>
     <div class="tab" onclick="changeTab('60s', this)">60s</div>
-    <div class="tab" onclick="changeTab('top', this)" style="border-color:var(--green); color:var(--green)">🌍 Top Charts</div>
-    <div class="tab" id="tab-search" style="display:none">🔍 Búsqueda</div>
 </div>
 
 <div class="content">
-    <div id="list-container">
-        </div>
+    <div id="list-container"></div>
 </div>
 
 <footer>
-    <p>© 2026 Harmiq · Datos de Spotify API · Música en Alta Definición</p>
+    <p>© 2026 Harmiq · Listas oficiales de Spotify · Actualizadas a diario</p>
 </footer>
 
 <script>
-const BACKEND_URL = "https://hamiq-harmiq-backend1.hf.space";
+const SPOTIFY_TOP50 = {
+    GLOBAL: "37i9dQZEVXbMDoHDwVN2tF",
+    ES: "37i9dQZEVXbNFJfN1Vw8d9",
+    US: "37i9dQZEVXbLRQDuF5jeBp",
+    MX: "37i9dQZEVXbO3qyFxbkOQ1",
+    AR: "37i9dQZEVXbMMy2roB9myp",
+    CO: "37i9dQZEVXbOa2lmxNORXQ",
+    CL: "37i9dQZEVXbL0GavIqMTeb",
+    GB: "37i9dQZEVXbLnolsZ8PSNw",
+    FR: "37i9dQZEVXbIPWwFssbupI",
+    DE: "37i9dQZEVXbJiZcmkrIHGU",
+    IT: "37i9dQZEVXbIQnj7RRhdSX",
+    PT: "37i9dQZEVXbKyJS56d1pgi",
+    BR: "37i9dQZEVXbMXbN3EUUhlg",
+    JP: "37i9dQZEVXbKXQ4mDTEBXq",
+    CA: "37i9dQZEVXbKj23U1GF4IR"
+};
+
+const SPOTIFY_PLAYLISTS = {
+    novedades: "37i9dQZF1DXcBWIGoYBM5M",
+    "2020s": "37i9dQZF1DX2L0iB23Enbq",
+    "2010s": "37i9dQZF1DX5Ejj0EkURtP",
+    "2000s": "37i9dQZF1DX4o1oenSJRJd",
+    "90s": "37i9dQZF1DXbTxRx0MVQev",
+    "80s": "37i9dQZF1DX4UtSsGT1Sbe",
+    "70s": "37i9dQZF1DWTJ7xPn4vNaz",
+    "60s": "37i9dQZF1DXaKIA8E7WcJj"
+};
+
 let userCC = "GLOBAL";
 
-// Detectar País por IP (con timeout de 3s)
 async function detectGeo() {
     try {
         const ctrl = new AbortController();
@@ -125,293 +122,77 @@ async function detectGeo() {
         const res = await fetch('https://ipapi.co/json/', { signal: ctrl.signal });
         const data = await res.json();
         if (data.country_code) userCC = data.country_code;
-    } catch(e) { console.log("Geo-IP fallback to GLOBAL"); }
+    } catch(e) { console.log("Geo fallback: GLOBAL"); }
 }
 
-async function fetchWithTimeout(url, ms = 12000) {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), ms);
-    try {
-        const r = await fetch(url, { signal: ctrl.signal });
-        clearTimeout(timer);
-        return r;
-    } catch(e) { clearTimeout(timer); throw e; }
-}
-
-function renderFallbackCharts() {
-    const topES = [
-        {pos:1,title:"Hawái",artist:"Maluma",spotify_url:"https://open.spotify.com/search/Hawai%20Maluma"},
-        {pos:2,title:"Pepas",artist:"Farruko",spotify_url:"https://open.spotify.com/search/Pepas%20Farruko"},
-        {pos:3,title:"La Bachata",artist:"Manuel Turizo",spotify_url:"https://open.spotify.com/search/La%20Bachata%20Manuel%20Turizo"},
-        {pos:4,title:"Quevedo: Bzrp Vol.52",artist:"Bizarrap",spotify_url:"https://open.spotify.com/search/Quevedo%20Bizarrap"},
-        {pos:5,title:"Flowers",artist:"Miley Cyrus",spotify_url:"https://open.spotify.com/search/Flowers%20Miley%20Cyrus"},
-        {pos:6,title:"As It Was",artist:"Harry Styles",spotify_url:"https://open.spotify.com/search/As%20It%20Was%20Harry%20Styles"},
-        {pos:7,title:"Anti-Hero",artist:"Taylor Swift",spotify_url:"https://open.spotify.com/search/Anti-Hero%20Taylor%20Swift"},
-        {pos:8,title:"Shakira: Bzrp Vol.53",artist:"Bizarrap",spotify_url:"https://open.spotify.com/search/Shakira%20Bizarrap"},
-        {pos:9,title:"Tití Me Preguntó",artist:"Bad Bunny",spotify_url:"https://open.spotify.com/search/Titi%20Me%20Pregunto%20Bad%20Bunny"},
-        {pos:10,title:"CALLE EN LLAMAS",artist:"Quevedo",spotify_url:"https://open.spotify.com/search/Calle%20en%20Llamas%20Quevedo"},
-    ];
-    const topGlobal = [
-        {pos:1,title:"Blinding Lights",artist:"The Weeknd",spotify_url:"https://open.spotify.com/search/Blinding%20Lights%20The%20Weeknd"},
-        {pos:2,title:"Shape of You",artist:"Ed Sheeran",spotify_url:"https://open.spotify.com/search/Shape%20of%20You%20Ed%20Sheeran"},
-        {pos:3,title:"Flowers",artist:"Miley Cyrus",spotify_url:"https://open.spotify.com/search/Flowers%20Miley%20Cyrus"},
-        {pos:4,title:"As It Was",artist:"Harry Styles",spotify_url:"https://open.spotify.com/search/As%20It%20Was%20Harry%20Styles"},
-        {pos:5,title:"Stay",artist:"The Kid LAROI",spotify_url:"https://open.spotify.com/search/Stay%20Kid%20Laroi"},
-        {pos:6,title:"Levitating",artist:"Dua Lipa",spotify_url:"https://open.spotify.com/search/Levitating%20Dua%20Lipa"},
-        {pos:7,title:"Bad Guy",artist:"Billie Eilish",spotify_url:"https://open.spotify.com/search/Bad%20Guy%20Billie%20Eilish"},
-        {pos:8,title:"Peaches",artist:"Justin Bieber",spotify_url:"https://open.spotify.com/search/Peaches%20Justin%20Bieber"},
-        {pos:9,title:"MONTERO",artist:"Lil Nas X",spotify_url:"https://open.spotify.com/search/MONTERO%20Lil%20Nas%20X"},
-        {pos:10,title:"Save Your Tears",artist:"The Weeknd",spotify_url:"https://open.spotify.com/search/Save%20Your%20Tears%20Weeknd"},
-    ];
-    const row = t => `<div class="track-card"><div style="font-weight:900;color:var(--m);width:25px">${t.pos}</div><div class="img-container"><span class="track-placeholder">🎵</span></div><div class="track-info"><div class="track-title">${t.title}</div><div class="track-artist">${t.artist}</div></div><div class="actions"><a href="${t.spotify_url}" target="_blank" class="btn-play">Buscar</a></div></div>`;
-    const section = (tracks, title) => `<div style="margin-bottom:2rem"><h3 style="color:var(--p);margin-bottom:1rem;border-left:4px solid var(--p);padding-left:10px">${title}</h3><div style="background:rgba(255,165,0,0.05);border:1px solid rgba(255,165,0,0.15);border-radius:10px;padding:0.6rem 1rem;margin-bottom:1rem;font-size:0.75rem;color:#9CA3AF">⚠️ Datos de referencia — backend en pausa. <a href="https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M" target="_blank" style="color:var(--green)">Ver en Spotify →</a></div>${tracks.map(row).join('')}</div>`;
-    return section(topES,'🇪🇸 Top España (referencia)') + section(topGlobal,'🌍 Top Global (referencia)');
-}
-
-// Mezclar para que no sea estático
-function shuffle(array) {
-    if (!array) return [];
-    return array.sort(() => Math.random() - 0.5);
-}
-
-// Datos de referencia por década (se muestran si el backend no responde)
-const DECADE_FALLBACK = {
-    viernes: [
-        {title:"Bzrp Music Sessions Vol.53",artist:"Bizarrap, Shakira",spotify_url:"https://open.spotify.com/search/Shakira%20Bizarrap",year:2023},
-        {title:"Flowers",artist:"Miley Cyrus",spotify_url:"https://open.spotify.com/search/Flowers%20Miley%20Cyrus",year:2023},
-        {title:"As It Was",artist:"Harry Styles",spotify_url:"https://open.spotify.com/search/As%20It%20Was%20Harry%20Styles",year:2022},
-        {title:"Anti-Hero",artist:"Taylor Swift",spotify_url:"https://open.spotify.com/search/Anti%20Hero%20Taylor%20Swift",year:2022},
-        {title:"Quevedo: Bzrp Vol.52",artist:"Bizarrap",spotify_url:"https://open.spotify.com/search/Quevedo%20Bizarrap",year:2022},
-        {title:"Stay",artist:"The Kid LAROI, Justin Bieber",spotify_url:"https://open.spotify.com/search/Stay%20Kid%20Laroi",year:2021},
-        {title:"Blinding Lights",artist:"The Weeknd",spotify_url:"https://open.spotify.com/search/Blinding%20Lights%20The%20Weeknd",year:2020},
-        {title:"Shape of You",artist:"Ed Sheeran",spotify_url:"https://open.spotify.com/search/Shape%20of%20You%20Ed%20Sheeran",year:2017},
-        {title:"Bad Guy",artist:"Billie Eilish",spotify_url:"https://open.spotify.com/search/Bad%20Guy%20Billie%20Eilish",year:2019},
-        {title:"Levitating",artist:"Dua Lipa",spotify_url:"https://open.spotify.com/search/Levitating%20Dua%20Lipa",year:2020}
-    ],
-    "2020s": [
-        {title:"Blinding Lights",artist:"The Weeknd",spotify_url:"https://open.spotify.com/search/Blinding%20Lights%20Weeknd",year:2020},
-        {title:"Flowers",artist:"Miley Cyrus",spotify_url:"https://open.spotify.com/search/Flowers%20Miley%20Cyrus",year:2023},
-        {title:"Anti-Hero",artist:"Taylor Swift",spotify_url:"https://open.spotify.com/search/Anti%20Hero%20Taylor%20Swift",year:2022},
-        {title:"As It Was",artist:"Harry Styles",spotify_url:"https://open.spotify.com/search/As%20It%20Was%20Harry%20Styles",year:2022},
-        {title:"Levitating",artist:"Dua Lipa",spotify_url:"https://open.spotify.com/search/Levitating%20Dua%20Lipa",year:2020},
-        {title:"Stay",artist:"The Kid LAROI",spotify_url:"https://open.spotify.com/search/Stay%20Kid%20Laroi",year:2021},
-        {title:"Montero",artist:"Lil Nas X",spotify_url:"https://open.spotify.com/search/Montero%20Lil%20Nas%20X",year:2021},
-        {title:"Peaches",artist:"Justin Bieber",spotify_url:"https://open.spotify.com/search/Peaches%20Justin%20Bieber",year:2021},
-        {title:"Heat Waves",artist:"Glass Animals",spotify_url:"https://open.spotify.com/search/Heat%20Waves%20Glass%20Animals",year:2020},
-        {title:"Save Your Tears",artist:"The Weeknd",spotify_url:"https://open.spotify.com/search/Save%20Your%20Tears%20Weeknd",year:2020}
-    ],
-    "2010s": [
-        {title:"Shape of You",artist:"Ed Sheeran",spotify_url:"https://open.spotify.com/search/Shape%20of%20You%20Ed%20Sheeran",year:2017},
-        {title:"Uptown Funk",artist:"Mark Ronson ft. Bruno Mars",spotify_url:"https://open.spotify.com/search/Uptown%20Funk%20Bruno%20Mars",year:2014},
-        {title:"Happy",artist:"Pharrell Williams",spotify_url:"https://open.spotify.com/search/Happy%20Pharrell%20Williams",year:2013},
-        {title:"Rolling in the Deep",artist:"Adele",spotify_url:"https://open.spotify.com/search/Rolling%20in%20the%20Deep%20Adele",year:2010},
-        {title:"Thinking Out Loud",artist:"Ed Sheeran",spotify_url:"https://open.spotify.com/search/Thinking%20Out%20Loud%20Ed%20Sheeran",year:2014},
-        {title:"Stay With Me",artist:"Sam Smith",spotify_url:"https://open.spotify.com/search/Stay%20With%20Me%20Sam%20Smith",year:2014},
-        {title:"Royals",artist:"Lorde",spotify_url:"https://open.spotify.com/search/Royals%20Lorde",year:2013},
-        {title:"Titanium",artist:"David Guetta ft. Sia",spotify_url:"https://open.spotify.com/search/Titanium%20David%20Guetta%20Sia",year:2011},
-        {title:"Somebody That I Used to Know",artist:"Gotye",spotify_url:"https://open.spotify.com/search/Somebody%20That%20I%20Used%20to%20Know%20Gotye",year:2011},
-        {title:"Someone Like You",artist:"Adele",spotify_url:"https://open.spotify.com/search/Someone%20Like%20You%20Adele",year:2011}
-    ],
-    "2000s": [
-        {title:"Hips Don't Lie",artist:"Shakira",spotify_url:"https://open.spotify.com/search/Hips%20Don%27t%20Lie%20Shakira",year:2006},
-        {title:"Crazy in Love",artist:"Beyoncé",spotify_url:"https://open.spotify.com/search/Crazy%20in%20Love%20Beyonce",year:2003},
-        {title:"Yeah!",artist:"Usher",spotify_url:"https://open.spotify.com/search/Yeah%20Usher",year:2004},
-        {title:"Beautiful Day",artist:"U2",spotify_url:"https://open.spotify.com/search/Beautiful%20Day%20U2",year:2000},
-        {title:"Poker Face",artist:"Lady Gaga",spotify_url:"https://open.spotify.com/search/Poker%20Face%20Lady%20Gaga",year:2008},
-        {title:"In Da Club",artist:"50 Cent",spotify_url:"https://open.spotify.com/search/In%20Da%20Club%2050%20Cent",year:2003},
-        {title:"Since U Been Gone",artist:"Kelly Clarkson",spotify_url:"https://open.spotify.com/search/Since%20U%20Been%20Gone%20Kelly%20Clarkson",year:2004},
-        {title:"Irreplaceable",artist:"Beyoncé",spotify_url:"https://open.spotify.com/search/Irreplaceable%20Beyonce",year:2006},
-        {title:"Toxic",artist:"Britney Spears",spotify_url:"https://open.spotify.com/search/Toxic%20Britney%20Spears",year:2004},
-        {title:"SexyBack",artist:"Justin Timberlake",spotify_url:"https://open.spotify.com/search/SexyBack%20Justin%20Timberlake",year:2006}
-    ],
-    "90s": [
-        {title:"...Baby One More Time",artist:"Britney Spears",spotify_url:"https://open.spotify.com/search/Baby%20One%20More%20Time%20Britney%20Spears",year:1998},
-        {title:"Macarena",artist:"Los Del Rio",spotify_url:"https://open.spotify.com/search/Macarena%20Los%20Del%20Rio",year:1995},
-        {title:"I Will Always Love You",artist:"Whitney Houston",spotify_url:"https://open.spotify.com/search/I%20Will%20Always%20Love%20You%20Whitney%20Houston",year:1992},
-        {title:"Livin' On a Prayer",artist:"Bon Jovi",spotify_url:"https://open.spotify.com/search/Livin%20On%20a%20Prayer%20Bon%20Jovi",year:1986},
-        {title:"Wonderwall",artist:"Oasis",spotify_url:"https://open.spotify.com/search/Wonderwall%20Oasis",year:1995},
-        {title:"Waterfalls",artist:"TLC",spotify_url:"https://open.spotify.com/search/Waterfalls%20TLC",year:1994},
-        {title:"No Scrubs",artist:"TLC",spotify_url:"https://open.spotify.com/search/No%20Scrubs%20TLC",year:1999},
-        {title:"Smells Like Teen Spirit",artist:"Nirvana",spotify_url:"https://open.spotify.com/search/Smells%20Like%20Teen%20Spirit%20Nirvana",year:1991},
-        {title:"Un-Break My Heart",artist:"Toni Braxton",spotify_url:"https://open.spotify.com/search/Un-Break%20My%20Heart%20Toni%20Braxton",year:1996},
-        {title:"I Want It That Way",artist:"Backstreet Boys",spotify_url:"https://open.spotify.com/search/I%20Want%20It%20That%20Way%20Backstreet%20Boys",year:1999}
-    ],
-    "80s": [
-        {title:"Take On Me",artist:"a-ha",spotify_url:"https://open.spotify.com/search/Take%20On%20Me%20a-ha",year:1985},
-        {title:"Sweet Child O' Mine",artist:"Guns N' Roses",spotify_url:"https://open.spotify.com/search/Sweet%20Child%20O%20Mine%20Guns%20N%20Roses",year:1987},
-        {title:"Like a Prayer",artist:"Madonna",spotify_url:"https://open.spotify.com/search/Like%20a%20Prayer%20Madonna",year:1989},
-        {title:"Don't Stop Believin'",artist:"Journey",spotify_url:"https://open.spotify.com/search/Don%27t%20Stop%20Believin%20Journey",year:1981},
-        {title:"Every Breath You Take",artist:"The Police",spotify_url:"https://open.spotify.com/search/Every%20Breath%20You%20Take%20The%20Police",year:1983},
-        {title:"Billie Jean",artist:"Michael Jackson",spotify_url:"https://open.spotify.com/search/Billie%20Jean%20Michael%20Jackson",year:1982},
-        {title:"Total Eclipse of the Heart",artist:"Bonnie Tyler",spotify_url:"https://open.spotify.com/search/Total%20Eclipse%20of%20the%20Heart%20Bonnie%20Tyler",year:1983},
-        {title:"Livin' On a Prayer",artist:"Bon Jovi",spotify_url:"https://open.spotify.com/search/Livin%20On%20a%20Prayer%20Bon%20Jovi",year:1986},
-        {title:"Girls Just Want to Have Fun",artist:"Cyndi Lauper",spotify_url:"https://open.spotify.com/search/Girls%20Just%20Want%20to%20Have%20Fun%20Cyndi%20Lauper",year:1983},
-        {title:"Africa",artist:"Toto",spotify_url:"https://open.spotify.com/search/Africa%20Toto",year:1982}
-    ],
-    "70s": [
-        {title:"Bohemian Rhapsody",artist:"Queen",spotify_url:"https://open.spotify.com/search/Bohemian%20Rhapsody%20Queen",year:1975},
-        {title:"Hotel California",artist:"Eagles",spotify_url:"https://open.spotify.com/search/Hotel%20California%20Eagles",year:1977},
-        {title:"Stayin' Alive",artist:"Bee Gees",spotify_url:"https://open.spotify.com/search/Stayin%20Alive%20Bee%20Gees",year:1977},
-        {title:"Imagine",artist:"John Lennon",spotify_url:"https://open.spotify.com/search/Imagine%20John%20Lennon",year:1971},
-        {title:"Don't Stop Me Now",artist:"Queen",spotify_url:"https://open.spotify.com/search/Don%27t%20Stop%20Me%20Now%20Queen",year:1978},
-        {title:"Dancing Queen",artist:"ABBA",spotify_url:"https://open.spotify.com/search/Dancing%20Queen%20ABBA",year:1976},
-        {title:"Waterloo",artist:"ABBA",spotify_url:"https://open.spotify.com/search/Waterloo%20ABBA",year:1974},
-        {title:"Sultans of Swing",artist:"Dire Straits",spotify_url:"https://open.spotify.com/search/Sultans%20of%20Swing%20Dire%20Straits",year:1978},
-        {title:"More Than a Feeling",artist:"Boston",spotify_url:"https://open.spotify.com/search/More%20Than%20a%20Feeling%20Boston",year:1976},
-        {title:"Don't You Want Me",artist:"Human League",spotify_url:"https://open.spotify.com/search/Don%27t%20You%20Want%20Me%20Human%20League",year:1981}
-    ],
-    "60s": [
-        {title:"Hey Jude",artist:"The Beatles",spotify_url:"https://open.spotify.com/search/Hey%20Jude%20Beatles",year:1968},
-        {title:"Let It Be",artist:"The Beatles",spotify_url:"https://open.spotify.com/search/Let%20It%20Be%20Beatles",year:1970},
-        {title:"Respect",artist:"Aretha Franklin",spotify_url:"https://open.spotify.com/search/Respect%20Aretha%20Franklin",year:1967},
-        {title:"Gimme Shelter",artist:"The Rolling Stones",spotify_url:"https://open.spotify.com/search/Gimme%20Shelter%20Rolling%20Stones",year:1969},
-        {title:"Like a Rolling Stone",artist:"Bob Dylan",spotify_url:"https://open.spotify.com/search/Like%20a%20Rolling%20Stone%20Bob%20Dylan",year:1965},
-        {title:"Good Vibrations",artist:"The Beach Boys",spotify_url:"https://open.spotify.com/search/Good%20Vibrations%20Beach%20Boys",year:1966},
-        {title:"Johnny B. Goode",artist:"Chuck Berry",spotify_url:"https://open.spotify.com/search/Johnny%20B%20Goode%20Chuck%20Berry",year:1958},
-        {title:"Stand By Me",artist:"Ben E. King",spotify_url:"https://open.spotify.com/search/Stand%20By%20Me%20Ben%20E%20King",year:1961},
-        {title:"(Sittin' On) The Dock of the Bay",artist:"Otis Redding",spotify_url:"https://open.spotify.com/search/Dock%20of%20the%20Bay%20Otis%20Redding",year:1968},
-        {title:"Purple Haze",artist:"Jimi Hendrix",spotify_url:"https://open.spotify.com/search/Purple%20Haze%20Jimi%20Hendrix",year:1967}
-    ]
-};
-
-function renderFallbackDecade(decade) {
-    const tracks = DECADE_FALLBACK[decade] || DECADE_FALLBACK['viernes'];
-    const labels = {viernes:"Novedades (referencia)",  "2020s":"2020s","2010s":"2010s","2000s":"2000s","90s":"90s","80s":"80s","70s":"70s","60s":"60s"};
-    const row = t => `<div class="track-card">
-        <div class="img-container"><span class="track-placeholder">🎵</span></div>
-        <div class="track-info">
-            <div class="track-title">${t.title}</div>
-            <div class="track-artist">${t.artist}</div>
-            <span class="year-badge">${t.year}</span>
-        </div>
-        <div class="actions"><a href="${t.spotify_url}" target="_blank" class="btn-play">Buscar</a></div>
-    </div>`;
-    return `<div style="margin-bottom:1.5rem">
-        <div style="background:rgba(255,165,0,0.06);border:1px solid rgba(255,165,0,0.18);border-radius:10px;padding:0.7rem 1rem;margin-bottom:1.2rem;font-size:0.78rem;color:#9CA3AF">
-            ⚠️ Datos de referencia — el servidor está iniciando. <a href="https://open.spotify.com/search/${encodeURIComponent(labels[decade]||'hits')}" target="_blank" style="color:var(--green)">Ver en Spotify →</a>
-        </div>
-        ${tracks.map(row).join('')}
+function renderSpotifyEmbed(playlistId, title) {
+    return `
+    <div class="spotify-section">
+        <h2 style="text-align:center;font-family:'Outfit';font-size:1.8rem;margin-bottom:0.5rem">${title}</h2>
+        <iframe 
+            src="https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0" 
+            width="100%" height="552" frameBorder="0" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy" style="max-width:800px;min-height:352px">
+        </iframe>
     </div>`;
 }
 
-async function loadData(target, isSearch = false) {
-    const container = document.getElementById('list-container');
-    container.innerHTML = `<div class="loading-box"><div class="spinner"></div><p>Cargando...</p></div>`;
-
-    try {
-        if (target === 'top') {
-            let data;
-            try {
-                const response = await fetchWithTimeout(`${BACKEND_URL}/top-charts?cc=${userCC}`, 25000);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                data = await response.json();
-            } catch(e) {
-                container.innerHTML = `<h2 style="margin-bottom:1.5rem;font-family:'Outfit';text-align:center">Top Charts</h2>` + renderFallbackCharts();
-                return;
-            }
-            
-            let html = `<h2 style="margin-bottom:1.5rem; font-family:'Outfit'; text-align:center">Top 50: ${data.country === 'GLOBAL' ? 'Global' : (data.country + ' 🌍')}</h2>`;
-            
-            const renderList = (tracks, title) => `
-                <div style="margin-bottom:2rem">
-                    <h3 style="color:var(--p); margin-bottom:1rem; border-left:4px solid var(--p); padding-left:10px">${title}</h3>
-                    ${tracks.map((t, i) => `
-                        <div class="track-card">
-                            <div style="font-weight:900; color:var(--m); width:25px">${t.position || (i+1)}</div>
-                            <div class="img-container">
-                                <img src="${t.image}" class="track-img" onerror="this.parentElement.innerHTML='🎵'">
-                            </div>
-                            <div class="track-info">
-                                <div class="track-title">${t.title}</div>
-                                <div class="track-artist">${t.artist}</div>
-                            </div>
-                            <div class="actions">
-                                <a href="${t.spotify_url}" target="_blank" class="btn-play">Oír</a>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-
-            html += renderList(data.local, `Top 50 ${data.country}`);
-            if (data.country !== 'GLOBAL') {
-                html += renderList(data.global, "Top 50 Global");
-            }
-            container.innerHTML = html;
-            return;
-        }
-
-        const url = isSearch 
-            ? `${BACKEND_URL}/search-tracks?q=${encodeURIComponent(target)}&_cb=${Date.now()}`
-            : `${BACKEND_URL}/decade-tracks?decade=${target}&_cb=${Date.now()}`;
-        
-        const response = await fetchWithTimeout(url, 25000);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const data = await response.json();
-
-        if (!data.tracks || data.tracks.length === 0) throw new Error("Vacío");
-
-        const finalTracks = isSearch ? data.tracks : shuffle(data.tracks);
-
-        container.innerHTML = finalTracks.map((t, i) => `
-            <div class="track-card" style="animation-delay: ${i * 0.05}s">
-                <div class="img-container">
-                    ${t.image || t.img 
-                        ? `<img src="${t.image || t.img}" class="track-img" alt="Artist" onerror="this.parentElement.innerHTML='<span class=\'track-placeholder\'>🎵</span>'">`
-                        : `<span class="track-placeholder">🎵</span>`
-                    }
-                </div>
-                <div class="track-info">
-                    <div class="track-title">${t.title || t.name}</div>
-                    <div class="track-artist">${t.artist || t.artists}</div>
-                    <span class="year-badge">${t.year || ''}</span>
-                </div>
-                <div class="actions">
-                    <a href="${t.spotify_url || '#'}" target="_blank" class="btn-play">
-                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                        Oír
-                    </a>
-                </div>
-            </div>
-        `).join('');
-
-    } catch (e) {
-        // Mostrar datos de referencia si el backend no responde
-        if (!isSearch) {
-            container.innerHTML = renderFallbackDecade(target);
-        } else {
-            container.innerHTML = `
-                <div style="text-align:center; padding:3rem; color:var(--m)">
-                    <p style="font-size:1.2rem; margin-bottom:.5rem">⚠️ Sin resultados para esta búsqueda</p>
-                    <p style="font-size:.8rem; color:#9CA3AF">Prueba con otro artista o canción.</p>
-                    <a href="https://open.spotify.com/search/${encodeURIComponent(typeof target === 'string' ? target : '')}" target="_blank" style="display:inline-block;margin-top:1rem;background:var(--green);color:#000;padding:10px 20px;border-radius:10px;font-weight:700;text-decoration:none">Buscar en Spotify →</a>
-                </div>`;
-        }
+function renderTopCharts() {
+    const localId = SPOTIFY_TOP50[userCC] || SPOTIFY_TOP50.GLOBAL;
+    const globalId = SPOTIFY_TOP50.GLOBAL;
+    const names = {
+        ES:"España 🇪🇸",US:"USA 🇺🇸",MX:"México 🇲🇽",AR:"Argentina 🇦🇷",
+        CO:"Colombia 🇨🇴",CL:"Chile 🇨🇱",GB:"UK 🇬🇧",FR:"Francia 🇫🇷",
+        DE:"Alemania 🇩🇪",IT:"Italia 🇮🇹",PT:"Portugal 🇵🇹",BR:"Brasil 🇧🇷",
+        JP:"Japón 🇯🇵",CA:"Canadá 🇨🇦",GLOBAL:"Global 🌍"
+    };
+    const name = names[userCC] || "Global 🌍";
+    let html = '';
+    if (userCC !== "GLOBAL" && localId !== globalId) {
+        html += renderSpotifyEmbed(localId, `🏆 Top 50 ${name}`);
+        html += '<div style="height:2rem"></div>';
+        html += renderSpotifyEmbed(globalId, "🌍 Top 50 Global");
+    } else {
+        html += renderSpotifyEmbed(globalId, "🌍 Top 50 Global");
     }
+    html += `
+    <div style="text-align:center;margin-top:2rem;padding:1.5rem;background:var(--card);border-radius:20px;border:1px solid rgba(255,255,255,0.06)">
+        <p style="color:var(--m);font-size:0.85rem;margin-bottom:1rem;font-weight:700">¿Prefieres otra plataforma?</p>
+        <div class="platform-links">
+            <a href="https://music.apple.com/us/playlist/top-100-global/pl.d25f5d1181894928af76c85c967f8f31" target="_blank" rel="noopener" class="btn-apple">🍎 Apple Music</a>
+            <a href="https://music.amazon.com/playlists/B07FHDC281" target="_blank" rel="noopener" class="btn-amazon">🎵 Amazon Music</a>
+            <a href="https://open.spotify.com/playlist/${SPOTIFY_TOP50.GLOBAL}" target="_blank" rel="noopener" class="btn-spotify">🎧 Abrir en Spotify</a>
+        </div>
+    </div>`;
+    return html;
 }
 
-function changeTab(dec, el) {
+function renderDecade(decade) {
+    const id = SPOTIFY_PLAYLISTS[decade];
+    if (!id) return '<p style="text-align:center;color:var(--m)">Sin datos para esta década.</p>';
+    const titles = {
+        novedades:"🆕 Lo Más Nuevo de 2026",
+        "2020s":"📀 Éxitos 2020s","2010s":"📀 Éxitos 2010s",
+        "2000s":"📀 Éxitos 2000s","90s":"📀 Éxitos 90s",
+        "80s":"📀 Éxitos 80s","70s":"📀 Éxitos 70s","60s":"📀 Éxitos 60s"
+    };
+    return renderSpotifyEmbed(id, titles[decade] || "Éxitos");
+}
+
+function changeTab(tab, el) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
-    document.getElementById('tab-search').style.display = 'none';
-    loadData(dec);
+    const c = document.getElementById('list-container');
+    c.innerHTML = '<div class="loading-box"><div class="spinner"></div><p>Cargando...</p></div>';
+    setTimeout(() => {
+        c.innerHTML = tab === 'top' ? renderTopCharts() : renderDecade(tab);
+    }, 300);
 }
 
-function doSearch() {
-    const q = document.getElementById('search-inp').value.trim();
-    if (q.length < 2) return;
-
-    const sTab = document.getElementById('tab-search');
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    sTab.style.display = 'block';
-    sTab.classList.add('active');
-    loadData(q, true);
-}
-
-// Inicio automático
 window.onload = async () => {
     await detectGeo();
-    loadData('viernes');
+    document.getElementById('list-container').innerHTML = renderTopCharts();
 };
 </script>
 </body>

@@ -69,10 +69,17 @@
         <span class="grad">Harmiq</span>
     </a>
     <div style="display:flex; gap:1rem; align-items:center">
-        <select id="lang-switcher" style="background:var(--glass); border:1px solid var(--glass-border); color:white; border-radius:15px; padding:5px 10px; font-weight:700; cursor:pointer" onchange="changeLanguage(this.value)">
-            <option value="es">🇪🇸</option>
-            <option value="en">🇺🇸</option>
-            <option value="ca">🏴</option>
+        <select id="lang-switcher" style="background:var(--glass); border:1px solid var(--glass-border); color:white; border-radius:15px; padding:5px 10px; font-weight:700; cursor:pointer" onchange="changeLang(this.value)">
+            <option value="es">🇪🇸 ES</option>
+            <option value="en">🇺🇸 EN</option>
+            <option value="ca">🏳️ CAT</option>
+            <option value="fr">🇫🇷 FR</option>
+            <option value="de">🇩🇪 DE</option>
+            <option value="it">🇮🇹 IT</option>
+            <option value="pt">🇧🇷 PT</option>
+            <option value="ja">🇯🇵 JA</option>
+            <option value="ru">🇷🇺 RU</option>
+            <option value="uk">🇺🇦 UK</option>
         </select>
         <a href="/artistas/" style="font-weight:800; color:var(--m); font-size:0.9rem">Artistas</a>
     </div>
@@ -143,7 +150,7 @@
 
         <!-- Tarjeta: Català -->
         <a href="/modul-catala" class="mod-card" style="border-color:rgba(255,215,0,0.3)">
-            <div class="mod-icon">🏴</div>
+            <div class="mod-icon" style="background:linear-gradient(180deg,#FCDD09 20%,#DA121A 20%,#DA121A 40%,#FCDD09 40%,#FCDD09 60%,#DA121A 60%,#DA121A 80%,#FCDD09 80%);font-size:0;border-radius:20px"></div>
             <div>
                 <h3>Mòdul Català</h3>
                 <p>Descobreix els millors artistes i grups de l'escena catalana emergent.</p>
@@ -169,11 +176,21 @@
     <ul class="footer-links">
         <li><a href="/">Inicio</a></li>
         <li><a href="/artistas/">Artistas</a></li>
+        <li><a href="/tipos-de-voz/">Tipos de Voz</a></li>
         <li><a href="/politica-privacidad">Privacidad</a></li>
         <li><a href="/terminos">Términos</a></li>
+        <li><a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener" style="color:var(--a)">☕ Ko-Fi</a></li>
     </ul>
     <p style="color:var(--m); font-size:0.8rem">© 2026 Harmiq — Análisis Vocal Avanzado con Inteligencia Artificial</p>
 </footer>
+
+<!-- Ko-Fi Floating Button (discreet) -->
+<a href="https://ko-fi.com/harmiq" target="_blank" rel="noopener"
+   style="position:fixed;bottom:1.2rem;right:1.2rem;z-index:9999;background:linear-gradient(135deg,#FF5E5B,#FF9F1C);color:#fff;border-radius:50px;padding:0.5rem 1rem;font-weight:800;font-size:0.78rem;box-shadow:0 6px 20px rgba(255,94,91,0.35);display:flex;align-items:center;gap:0.4rem;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none"
+   onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 8px 25px rgba(255,94,91,0.5)'"
+   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 6px 20px rgba(255,94,91,0.35)'"
+   aria-label="Apoya Harmiq en Ko-Fi">☕ Apóyanos</a>
+
 
 <!-- Scripts -->
 <script src="/modul-catala-v3.js"></script>

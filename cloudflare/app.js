@@ -722,9 +722,8 @@ async function preloadImages(names) {
 // 4. INYECTAR UI (upload + era filter + spectrum + tips)
 // ═══════════════════════════════════════════════════════════════════════════════
 function injectUI() {
-  if (document.getElementById("_harmiq_ui_injected")) return;
   const mount = document.getElementById("app-mount");
-  if (!mount) return;
+  if (!mount || mount.getAttribute("data-ui") === "_harmiq_ui_injected") return;
 
   mount.innerHTML = `
     <div id="_drop_zone" style="background:var(--glass); border:2px dashed var(--glass-border); border-radius:32px; padding:3rem 2rem; cursor:pointer; transition:0.3s; position:relative; overflow:hidden">
@@ -773,6 +772,9 @@ function injectUI() {
       if (f) setFile(f);
     });
     fi.addEventListener("change", () => { if (fi.files[0]) setFile(fi.files[0]); });
+    // Conectar botón de subir archivo
+    const uploadBtn = document.getElementById("_upload_btn_trigger");
+    if (uploadBtn) uploadBtn.addEventListener("click", (e) => { e.stopPropagation(); fi.click(); });
   }
 
   if (recBtn) {
