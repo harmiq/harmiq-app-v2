@@ -2054,10 +2054,10 @@ async function renderResults(data) {
         <div style="font-family:'Outfit'; font-weight:900; font-size:1.5rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.8rem">
           <span>🎸</span> ${matches.length} artistas que comparten tu ADN vocal
         </div>
+        ${filtersHTML}
         ${cardsHTML}
       </div>
 
-      ${filtersHTML}
       ${vtOverrideHTML}
       
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin-top:2rem">
