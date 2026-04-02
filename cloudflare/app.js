@@ -1316,17 +1316,27 @@ function getAmazonBox(voiceType) {
  * Muestra el curso de Udemy para aprender a cantar mejor
  */
 function getUdemyBox(voiceType) {
-  const udemyUrl = "https://www.udemy.com/topic/singing/?tag=harmiqapp-20";
+  const vtQuery = {
+    "baritone":    "tecnica vocal baritono canto",
+    "tenor":       "tecnica vocal tenor canto",
+    "bass":        "tecnica vocal bajo canto",
+    "soprano":     "tecnica vocal soprano canto",
+    "mezzo-soprano":"mezzo soprano tecnica vocal",
+    "contralto":   "contralto tecnica vocal canto",
+    "countertenor":"countertenor singing technique"
+  }[voiceType] || "tecnica vocal canto";
+  const udemyUrl = `https://www.udemy.com/courses/search/?q=${encodeURIComponent(vtQuery)}&src=ukw&tag=harmiqapp-20`;
+  const vtName = trV("_vt_names", voiceType);
   return `
     <div style="background:linear-gradient(135deg,rgba(164,53,240,0.1),rgba(124,77,255,0.1));
       border:1px solid rgba(164,53,240,0.2); border-radius:20px; padding:1.5rem; margin-top:1.5rem;
       display:flex; align-items:center; gap:1.2rem; border-left:5px solid #A435F0">
       <div style="font-size:2.2rem">🎓</div>
       <div style="flex:1">
-        <h3 style="font-size:1.1rem; color:#fff; margin-bottom:.3rem">Mejora tu voz de ${trV("_vt_names", voiceType)}</h3>
-        <p style="font-size:.85rem; color:#D1D5DB">Cursos premium para dominar tu rango vocal con expertos en Udemy.</p>
+        <h3 style="font-size:1.1rem; color:#fff; margin-bottom:.3rem">Cursos de técnica vocal para ${vtName}</h3>
+        <p style="font-size:.85rem; color:#D1D5DB">Formación específica para tu tipo de voz con expertos en Udemy.</p>
       </div>
-      <a href="${udemyUrl}" target="_blank" style="background:#A435F0; color:#fff; padding:.7rem 1.2rem; border-radius:10px; text-decoration:none; font-weight:900; font-size:.85rem">Ver Cursos →</a>
+      <a href="${udemyUrl}" target="_blank" style="background:#A435F0; color:#fff; padding:.7rem 1.2rem; border-radius:10px; text-decoration:none; font-weight:900; font-size:.85rem; white-space:nowrap">Ver Cursos →</a>
     </div>
   `;
 }
@@ -2238,7 +2248,7 @@ function buildKaraokeSection(vtName, vtSlug) {
             ].map(v=>`
               <div style="border-radius:12px;overflow:hidden;background:${v.color};border:1px solid ${v.border}">
                 <div style="position:relative;aspect-ratio:16/9;cursor:pointer;background:#000"
-                  onclick="this.innerHTML='<iframe width=\\'100%\\' height=\\'100%\\' src=\\'https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&origin=${window.location.origin}\\' frameborder=\\'0\\' allow=\\'autoplay; encrypted-media\\' allowfullscreen></iframe>'">
+                  onclick="window.open('https://www.youtube.com/watch?v=${v.id}','_blank')">
                   <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" style="width:100%;height:100%;object-fit:cover;opacity:.7">
                   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
                     <div style="width:36px;height:36px;background:rgba(255,0,0,.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px">▶</div>
@@ -3066,7 +3076,7 @@ function renderVozPage(slug) {
       ].map(v=>`
         <div style="border-radius:14px;overflow:hidden;background:#000;
           box-shadow:0 4px 16px rgba(0,0,0,.4);cursor:pointer"
-          onclick="this.innerHTML='<iframe width=\\'100%\\' height=\\'160\\' src=\\'https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&origin=${window.location.origin}\\' frameborder=\\'0\\' allow=\\'autoplay; encrypted-media\\' allowfullscreen></iframe>'">
+          onclick="window.open('https://www.youtube.com/watch?v=${v.id}','_blank')">
           <div style="position:relative;aspect-ratio:16/9">
             <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg"
               alt="${v.title}" style="width:100%;height:100%;object-fit:cover"
@@ -3173,10 +3183,15 @@ function renderVozPage(slug) {
   // Precargar fotos de artistas tras render
   const artistData = ${JSON.stringify(data.artistImgs||{})};
   const monoImgs = typeof MONO_IMGS !== 'undefined' ? MONO_IMGS : {};
-  document.querySelectorAll('img[alt]').forEach(img => {
+  document.querySelectorAll('img[alt]').forEach(async img => {
     const name = img.alt;
     const src = artistData[name] || monoImgs[name];
-    if (src) img.src = src;
+    if (src) {
+      img.src = src;
+    } else if (name && typeof getArtistImage === 'function') {
+      const loaded = await getArtistImage(name);
+      if (loaded) img.src = loaded;
+    }
   });
 </body></html>`;
   return true;
