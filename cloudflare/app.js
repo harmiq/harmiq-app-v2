@@ -460,11 +460,15 @@ function rebuildEraFilter() {
 async function detectCountry() {
   try {
     const controller = new AbortController();
-    const tId = setTimeout(() => controller.abort(), 3500);
-    const r = await fetch("https://ipapi.co/json/", { signal: controller.signal });
+    const tId = setTimeout(() => controller.abort(), 2000); // 2s timeout is enough for UX
+    // 🌍 Fallback: usamos cloudflare edge header si está disponible (CF-IPCountry)
+    // Pero como es cliente, dependemos de APIs. Intentamos ipapi.co y si hay CORS/error, saltamos a ip-api.com
+    const r = await fetch("https://ipapi.co/json/", { signal: controller.signal }).catch(() => fetch("http://ip-api.com/json/", { signal: controller.signal }));
     clearTimeout(tId);
+    if (!r.ok) throw new Error();
     const d = await r.json();
-    userCountry = d.country_code || "ES";
+    userCountry = d.country_code || d.countryCode || "ES";
+    
     // Auto-detectar idioma si no hay preferencia guardada
     const langMap = { ES:"es",MX:"es",AR:"es",CO:"es",CL:"es",PE:"es",VE:"es",
                       CA:"ca",FR:"fr",DE:"de",AT:"de",CH:"de",IT:"it",
@@ -3625,7 +3629,7 @@ function injectNewsBanner() {
     z-index: 10000;
     box-shadow: 0 4px 15px rgba(6,214,160,0.4);
   `;
-  b.innerHTML = `🔥 <span style="text-transform:uppercase; letter-spacing:1px">¡Harmiq v7.2 Live!</span> Ahora con +50 canciones por década — ¡Descubre más éxitos! →`;
+  b.innerHTML = `🔥 <span style="text-transform:uppercase; letter-spacing:1px">¡Harmiq v10.2 Live!</span> Descubre tu ADN Vocal con IA — Ahora con 12.000 artistas y cursos de canto →`;
   
   const style = document.createElement("style");
   style.textContent = `
