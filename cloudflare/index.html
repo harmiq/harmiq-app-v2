@@ -69,18 +69,33 @@
         <span class="grad">Harmiq</span>
     </a>
     <div style="display:flex; gap:1rem; align-items:center">
-        <select id="lang-switcher" style="background:var(--glass); border:1px solid var(--glass-border); color:white; border-radius:15px; padding:5px 10px; font-weight:700; cursor:pointer" onchange="changeLang(this.value)">
-            <option value="es">🇪🇸 ES</option>
-            <option value="en">🇺🇸 EN</option>
-            <option value="ca">🏳️ CAT</option>
-            <option value="fr">🇫🇷 FR</option>
-            <option value="de">🇩🇪 DE</option>
-            <option value="it">🇮🇹 IT</option>
-            <option value="pt">🇧🇷 PT</option>
-            <option value="ja">🇯🇵 JA</option>
-            <option value="ru">🇷🇺 RU</option>
-            <option value="uk">🇺🇦 UK</option>
-        </select>
+        <!-- Custom language dropdown (native select breaks on Windows) -->
+        <div id="lang-dd" style="position:relative; user-select:none">
+          <button id="lang-btn" onclick="toggleLangDD()" style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:15px;padding:6px 12px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+            <span id="lang-flag">🇪🇸</span><span id="lang-code">ES</span><span style="font-size:0.6rem;opacity:0.6">▼</span>
+          </button>
+          <div id="lang-menu" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1730;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:6px;min-width:140px;z-index:2000;box-shadow:0 20px 40px rgba(0,0,0,0.6)">
+            <div onclick="setLang('es','🇪🇸','ES')" class="lang-opt">🇪🇸 Español</div>
+            <div onclick="setLang('en','🇺🇸','EN')" class="lang-opt">🇺🇸 English</div>
+            <div onclick="setLang('ca','🏴','CAT')" class="lang-opt">🏴 Català</div>
+            <div onclick="setLang('fr','🇫🇷','FR')" class="lang-opt">🇫🇷 Français</div>
+            <div onclick="setLang('de','🇩🇪','DE')" class="lang-opt">🇩🇪 Deutsch</div>
+            <div onclick="setLang('it','🇮🇹','IT')" class="lang-opt">🇮🇹 Italiano</div>
+            <div onclick="setLang('pt','🇧🇷','PT')" class="lang-opt">🇧🇷 Português</div>
+            <div onclick="setLang('ja','🇯🇵','JA')" class="lang-opt">🇯🇵 日本語</div>
+            <div onclick="setLang('ru','🇷🇺','RU')" class="lang-opt">🇷🇺 Русский</div>
+            <div onclick="setLang('uk','🇺🇦','UK')" class="lang-opt">🇺🇦 Українська</div>
+          </div>
+        </div>
+        <style>
+          .lang-opt{padding:8px 14px;border-radius:10px;cursor:pointer;font-size:0.85rem;font-weight:700;color:#E5E7EB;transition:background .15s}
+          .lang-opt:hover{background:rgba(124,77,255,0.25);color:#fff}
+        </style>
+        <script>
+          function toggleLangDD(){const m=document.getElementById('lang-menu');m.style.display=m.style.display==='none'?'block':'none';}
+          function setLang(code,flag,label){document.getElementById('lang-flag').textContent=flag;document.getElementById('lang-code').textContent=label;document.getElementById('lang-menu').style.display='none';if(typeof changeLang==='function')changeLang(code);}
+          document.addEventListener('click',function(e){const dd=document.getElementById('lang-dd');if(dd&&!dd.contains(e.target))document.getElementById('lang-menu').style.display='none';});
+        </script>
         <a href="/artistas/" style="font-weight:800; color:var(--m); font-size:0.9rem">Artistas</a>
     </div>
 </nav>

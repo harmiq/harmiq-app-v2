@@ -1970,63 +1970,74 @@ async function renderResults(data) {
     .map(([cc,lbl]) => `<option value="${cc}">${lbl}</option>`).join("");
 
   const filtersHTML = `
-    <div id="_filters_row" style="margin-bottom:1.5rem; padding:1.2rem; background:rgba(255,255,255,.04); border-radius:20px; border:1px solid rgba(255,255,255,.08)">
-      <div style="font-size:.75rem; color:#9CA3AF; font-weight:800; text-transform:uppercase; letter-spacing:.1em; margin-bottom:1rem">🎛️ Refinar resultados por Época o Género</div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:0.8rem">
-        <div><select id="_era_filter" class="filter-sel" style="width:100%; background:#13102a; border:1px solid rgba(255,255,255,.15); color:#E5E7EB; border-radius:10px; padding:0.5rem; font-size:0.85rem"><option value="">Época</option>${eraOptions}</select></div>
-        <div><select id="_genre_filter" class="filter-sel" style="width:100%; background:#13102a; border:1px solid rgba(255,255,255,.15); color:#E5E7EB; border-radius:10px; padding:0.5rem; font-size:0.85rem"><option value="">Género</option>${genreOptions}</select></div>
-        <div><select id="_country_filter" class="filter-sel" style="width:100%; background:#13102a; border:1px solid rgba(255,255,255,.15); color:#E5E7EB; border-radius:10px; padding:0.5rem; font-size:0.85rem"><option value="">Idioma</option>${countryOptions}</select></div>
+    <style>
+      .hm-sel{width:100%;background:#13102a;border:1px solid rgba(255,255,255,.15);color:#E5E7EB;border-radius:12px;padding:.55rem .8rem;font-size:.85rem;font-family:'Outfit',sans-serif;font-weight:600;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239CA3AF'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center;outline:none;transition:border-color .2s}
+      .hm-sel:focus,.hm-sel:hover{border-color:rgba(124,77,255,.6)}
+      .hm-sel option{background:#1a1730;color:#E5E7EB}
+    </style>
+    <div id="_filters_row" style="margin-bottom:1.5rem; padding:1.2rem 1.4rem; background:rgba(255,255,255,.03); border-radius:20px; border:1px solid rgba(255,255,255,.08)">
+      <div style="font-size:.72rem; color:#9CA3AF; font-weight:800; text-transform:uppercase; letter-spacing:.12em; margin-bottom:.9rem">🎛️ Filtrar artistas por época, género o idioma</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:.7rem">
+        <select id="_era_filter" class="hm-sel filter-sel"><option value="">📅 Época</option>${eraOptions}</select>
+        <select id="_genre_filter" class="hm-sel filter-sel"><option value="">🎵 Género</option>${genreOptions}</select>
+        <select id="_country_filter" class="hm-sel filter-sel"><option value="">🌍 Idioma</option>${countryOptions}</select>
       </div>
     </div>`;
 
-  // Cards grid: match[0] ya aparece en storyCard, mostramos match[1..14] en grid 2 cols
-  const cardsHTML = `<div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:.75rem; margin-top:.5rem">` +
+  // Cards grid: verticales estilo Spotify — foto grande arriba, info abajo
+  const cardsHTML = `<div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:1rem; margin-top:.5rem">` +
     matches.slice(1).map((m, i) => {
-    const rank  = i + 2; // posición real (2,3,4...)
-    const pct   = Math.round(m.score);
-    const img   = imgCache[m.name] || getInitialsAvatar(m.name);
-    const vtN   = trV("_vt_names", m.voice_type);
-    const songs = m.reference_songs?.slice(0,3) || [];
-    const medal = sym[rank - 1] || `${rank}°`;
+    const rank   = i + 2;
+    const pct    = Math.round(m.score);
+    const img    = imgCache[m.name] || getInitialsAvatar(m.name);
+    const vtN    = trV("_vt_names", m.voice_type);
+    const songs  = m.reference_songs?.slice(0,3) || [];
+    const medal  = sym[rank - 1] || `${rank}°`;
     const isComp = m.isComparisonMode;
-    const slug  = m.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+    const slug   = m.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+    const cardColor = isComp ? '#FF4FA3' : color;
     return `
-    <div style="background:rgba(255,255,255,.04); border:1px solid ${isComp?'#FF4FA3':'rgba(255,255,255,.09)'}; border-radius:18px; overflow:hidden; position:relative; transition:transform .2s, box-shadow .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.4)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-      ${isComp ? `<div style="position:absolute;top:0;right:0;background:#FF4FA3;color:#fff;font-size:.55rem;font-weight:900;padding:3px 10px;border-radius:0 0 0 10px;letter-spacing:1px;z-index:1">TU COMPARACIÓN</div>` : ""}
-      <div style="display:flex; align-items:stretch">
-        <!-- Foto -->
-        <div style="width:88px; flex-shrink:0; position:relative; overflow:hidden; background:#0d0a1f">
-          <img src="${img}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;display:block;min-height:88px" onerror="this.onerror=null;this.src=getInitialsAvatar('${m.name.replace(/'/g,"\\'")}')">
-          <div style="position:absolute;top:5px;left:5px;background:rgba(0,0,0,.75);color:#fff;font-size:.6rem;font-weight:900;padding:2px 6px;border-radius:12px;line-height:1.4">${medal}</div>
-        </div>
-        <!-- Info -->
-        <div style="flex:1; padding:.8rem .9rem; min-width:0">
-          <a href="/artistas/${slug}/" style="text-decoration:none">
-            <div style="font-family:'Baloo 2',sans-serif; font-size:.95rem; color:#fff; font-weight:800; line-height:1.2; margin-bottom:.3rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">${m.name}</div>
-          </a>
-          <div style="display:flex; gap:.3rem; flex-wrap:wrap; margin-bottom:.5rem">
-            <span style="font-size:.6rem; font-weight:800; padding:.15rem .45rem; border-radius:20px; background:${color}25; color:${color}">${vtN}</span>
-            <span style="font-size:.6rem; padding:.15rem .45rem; border-radius:20px; background:rgba(255,255,255,.07); color:#9CA3AF">${trV("_eras",m.era)||m.era||""}</span>
-          </div>
-          <!-- Barra de similitud -->
-          <div style="display:flex; align-items:center; gap:.5rem">
-            <div style="flex:1; height:3px; background:rgba(255,255,255,.07); border-radius:2px; overflow:hidden">
-              <div style="height:100%; width:${pct}%; background:linear-gradient(90deg,${color},#FF4FA3)"></div>
-            </div>
-            <div style="font-size:.85rem; font-weight:900; color:${color}; white-space:nowrap">${pct}%</div>
+    <div style="background:rgba(255,255,255,.04); border:1px solid ${isComp?'rgba(255,79,163,.4)':'rgba(255,255,255,.08)'}; border-radius:20px; overflow:hidden; position:relative; transition:transform .25s, box-shadow .25s; display:flex; flex-direction:column" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,.5)';this.style.borderColor='${cardColor}66'" onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='${isComp?'rgba(255,79,163,.4)':'rgba(255,255,255,.08)'}'">
+      ${isComp ? `<div style="position:absolute;top:8px;left:8px;background:#FF4FA3;color:#fff;font-size:.5rem;font-weight:900;padding:2px 8px;border-radius:20px;letter-spacing:1px;z-index:3;text-transform:uppercase">Comparación</div>` : ""}
+      <!-- Medalla rank -->
+      <div style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);color:#fff;font-size:.65rem;font-weight:900;padding:3px 8px;border-radius:20px;z-index:3;backdrop-filter:blur(4px)">${medal}</div>
+      <!-- Foto cuadrada grande -->
+      <a href="/artistas/${slug}/" style="display:block;text-decoration:none">
+        <div style="position:relative;padding-top:100%;background:#0d0a1f;overflow:hidden">
+          <img src="${img}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.onerror=null;this.src=getInitialsAvatar('${m.name.replace(/'/g,"\\'")}')">
+          <!-- Gradiente inferior para legibilidad -->
+          <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(13,10,31,.9) 0%,transparent 100%);pointer-events:none"></div>
+          <!-- % similitud sobre foto -->
+          <div style="position:absolute;bottom:8px;left:10px;z-index:2">
+            <div style="font-size:1.3rem;font-weight:900;color:#fff;line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.8)">${pct}%</div>
+            <div style="font-size:.55rem;color:rgba(255,255,255,.6);font-weight:700;text-transform:uppercase;letter-spacing:.5px">similitud</div>
           </div>
         </div>
+      </a>
+      <!-- Info -->
+      <div style="padding:.75rem .85rem; flex:1; display:flex; flex-direction:column; gap:.4rem">
+        <a href="/artistas/${slug}/" style="text-decoration:none">
+          <div style="font-size:.9rem;color:#fff;font-weight:800;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s" onmouseover="this.style.color='${cardColor}'" onmouseout="this.style.color='#fff'">${m.name}</div>
+        </a>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap">
+          <span style="font-size:.6rem;font-weight:800;padding:.15rem .5rem;border-radius:20px;background:${cardColor}22;color:${cardColor};border:1px solid ${cardColor}44">${vtN}</span>
+          ${m.era ? `<span style="font-size:.6rem;padding:.15rem .5rem;border-radius:20px;background:rgba(255,255,255,.06);color:#9CA3AF">${trV("_eras",m.era)||m.era}</span>` : ""}
+        </div>
+        <!-- Barra similitud -->
+        <div style="height:2px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin-top:.1rem">
+          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,${cardColor},#FF4FA3)"></div>
+        </div>
+        <!-- Canciones -->
+        ${songs.length ? `<div style="margin-top:.3rem;display:flex;flex-direction:column;gap:.2rem">
+          ${songs.map(s => {
+            const {karaoke} = getPlatformLinks(m.name, s);
+            return `<a href="${karaoke}" target="_blank" style="display:flex;align-items:center;gap:.4rem;text-decoration:none;padding:.25rem .3rem;border-radius:6px;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.07)'" onmouseout="this.style.background='transparent'">
+              <span style="color:${cardColor};font-size:.6rem;flex-shrink:0">▶</span>
+              <span style="font-size:.65rem;color:#D1D5DB;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s}</span>
+            </a>`;
+          }).join('')}
+        </div>` : ""}
       </div>
-      <!-- Canciones -->
-      ${songs.length ? `<div style="padding:.5rem .7rem .7rem; border-top:1px solid rgba(255,255,255,.05); display:flex; flex-direction:column; gap:.25rem">
-        ${songs.map(s => {
-          const {karaoke} = getPlatformLinks(m.name, s);
-          return `<a href="${karaoke}" target="_blank" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;padding:.3rem .45rem;border-radius:7px;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.07)'" onmouseout="this.style.background='transparent'">
-            <span style="color:#ff4444;font-size:.65rem;flex-shrink:0">▶</span>
-            <span style="font-size:.7rem;color:#D1D5DB;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s}</span>
-          </a>`;
-        }).join('')}
-      </div>` : ""}
     </div>`;
   }).join("") + `</div>`;
 
