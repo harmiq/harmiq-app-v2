@@ -25,9 +25,8 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 const AMAZON_DOMAINS = { ES:"es",US:"com",MX:"com.mx",UK:"co.uk",DE:"de",FR:"fr",IT:"it",CA:"ca",BR:"com.br",JP:"co.jp" };
 const AFFILIATE_ID   = "harmiqapp-20";
-const DB_PATH        = "/harmiq_db_vectores.json";
-const UDEMY_LINK     = "https://www.udemy.com/topic/singing/"; // TODO: REEMPLAZAR POR TU LINK DE AFILIADO
 const HF_API_URL     = "https://hamiq-harmiq-backend1.hf.space"; 
+const APP_VERSION    = "10.2";
 
 // --- SHARED UI COMPONENTS ---
 function getPremiumHeaderHTML() {
@@ -778,6 +777,7 @@ function injectUI() {
 
         <p style="font-size:0.75rem; color:var(--m); margin-top:1.5rem" id="_upload_hint_el">Formatos: MP3, WAV, M4A o Voice Memo</p>
         <div id="_file_name" style="margin-top:1rem; font-weight:800; color:var(--p); font-size:1.1rem"></div>
+        <div style="font-size:0.6rem; color:rgba(255,255,255,0.1); margin-top:2rem">Build v${APP_VERSION}</div>
       </div>
       
       <input type="file" id="_file_inp" accept="audio/*" style="display:none">
@@ -1105,7 +1105,7 @@ function getHomeStudioHTML(voiceType) {
 
   const p = packs[voiceType] || packs["default"];
   
-  const getL = (item) => `https://www.${getAmazonDomain()}/s?k=${encodeURIComponent(shieldAmazonQuery(item.name))}&tag=${tag}`;
+  const getL = (item) => `https://www.${getAmazonDomain()}/s?k=${encodeURIComponent(shieldAmazonQuery(item.name + ' Microphone Recording'))}&tag=${tag}`;
 
   return `
     <div class="hs-packs" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:20px">
@@ -1149,7 +1149,9 @@ function getAmazonHtml(voiceType) {
   if (!profile || !profile.recommended_models || !profile.recommended_models.length) return "";
   
   const micName = profile.recommended_models[0];
-  const clean   = shieldAmazonQuery(micName);
+  // 🎙️ MEJORA: Búsqueda explícita de micrófonos para evitar que aparezca música del artista
+  const micQuery = `${micName} Microphone Recording`;
+  const clean   = shieldAmazonQuery(micQuery);
   const amzLink = `https://www.${getAmazonDomain()}/s?k=${encodeURIComponent(clean)}&tag=harmiqapp-20`;
   
   return `
@@ -1223,18 +1225,38 @@ function getAmazonBox(voiceType) {
     <div class="cta-box" style="border:2px solid var(--gold,#FFD700);margin-top:20px;
       padding:1.1rem;border-radius:16px;background:rgba(255,215,0,.05)">
       <h3 style="color:var(--gold,#FFD700);font-family:'Baloo 2',sans-serif;margin-bottom:.5rem">
-        🎤 Recomendación para tu voz
+        🎙️ Equipo recomendado: ${vtKey}
       </h3>
       <p style="font-size:.88rem;margin-bottom:.75rem">
-        Como ${trV("_vt_names", voiceType) || vtKey}, tu micro ideal es el <b>${micName}</b>.
+        Como ${trV("_vt_names", voiceType) || vtKey}, el micro ideal para tus armónicos es el <b>${micName}</b>.
         <br><span style="color:#9CA3AF;font-size:.8rem">${profile.characteristics}</span>
       </p>
-      <a href="${link}" target="_blank" rel="noopener sponsored"
-        style="display:inline-block;background:#FF9900;color:#fff;font-weight:700;
+      <a href="https://www.${getAmazonDomain()}/s?k=${encodeURIComponent(micName + ' Microphone')}&tag=harmiqapp-20" target="_blank" rel="noopener sponsored"
+        style="display:inline-block;background:#FF9900;color:#000;font-weight:900;
         font-size:.85rem;padding:.5rem 1.1rem;border-radius:10px;text-decoration:none">
         🛒 Ver en Amazon →
       </a>
     </div>`;
+}
+
+/**
+ * getUdemyBox(voiceType)
+ * Muestra el curso de Udemy para aprender a cantar mejor
+ */
+function getUdemyBox(voiceType) {
+  const udemyUrl = "https://www.udemy.com/topic/singing/?tag=harmiqapp-20";
+  return `
+    <div style="background:linear-gradient(135deg,rgba(164,53,240,0.1),rgba(124,77,255,0.1));
+      border:1px solid rgba(164,53,240,0.2); border-radius:20px; padding:1.5rem; margin-top:1.5rem;
+      display:flex; align-items:center; gap:1.2rem; border-left:5px solid #A435F0">
+      <div style="font-size:2.2rem">🎓</div>
+      <div style="flex:1">
+        <h3 style="font-size:1.1rem; color:#fff; margin-bottom:.3rem">Mejora tu voz de ${trV("_vt_names", voiceType)}</h3>
+        <p style="font-size:.85rem; color:#D1D5DB">Cursos premium para dominar tu rango vocal con expertos en Udemy.</p>
+      </div>
+      <a href="${udemyUrl}" target="_blank" style="background:#A435F0; color:#fff; padding:.7rem 1.2rem; border-radius:10px; text-decoration:none; font-weight:900; font-size:.85rem">Ver Cursos →</a>
+    </div>
+  `;
 }
 
 function getEventsModuleHTML(city = "España") {
@@ -1492,9 +1514,9 @@ async function analyzeAudio() {
   const analyzeBtn = document.getElementById("analyze-btn");
   const dropZone   = document.getElementById("_drop_zone");
 
-  if (!gender)    { showStatus(tr("_err_gender"),"err"); return; }
-  if (!audioBlob) { showStatus(tr("_err_short"),"err"); return; }
-  if (!singersDb.length){ showStatus(tr("_err_db"),"err"); return; }
+  if (!gender)    { showStatus(tr("_err_gender"), "error"); return; }
+  if (!audioBlob) { showStatus(tr("_err_short"), "error"); return; }
+  if (!singersDb || !singersDb.length){ showStatus(tr("_err_db"), "error"); return; }
 
   // Estado de carga en el botón
   let oldHtml = "";
@@ -1555,7 +1577,8 @@ async function analyzeAudio() {
 
     // 🚀 ENVÍO AL BACKEND
     const formData = new FormData();
-    formData.append('audio', audioBlob, 'record.wav');
+    const fileName = (audioBlob instanceof File) ? audioBlob.name : 'record.wav';
+    formData.append('audio', audioBlob, fileName);
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 60000); // 60s timeout
@@ -1796,6 +1819,12 @@ async function renderResults(data) {
           <span>💬</span> Chat
         </button>
       </div>
+
+      <!-- Monetización Integrada -->
+      <div style="margin-top:3rem; border-top:1px solid rgba(255,255,255,0.1); padding-top:2rem">
+        ${getUdemyBox(vt)}
+      </div>
+
     </div>
   `;
 
