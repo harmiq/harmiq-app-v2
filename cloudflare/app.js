@@ -1581,7 +1581,7 @@ function classifyVT(pitchMean, pitchRange, gender) {
 // 9. ANÁLISIS
 // ═══════════════════════════════════════════════════════════════════════════════
 async function analyzeAudio() {
-  const gender     = document.getElementById("user-gender")?.value;
+  let gender       = document.getElementById("user-gender")?.value;
   const analyzeBtn = document.getElementById("analyze-btn");
   const dropZone   = document.getElementById("_drop_zone");
 
