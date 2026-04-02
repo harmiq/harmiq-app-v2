@@ -1506,7 +1506,7 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
   if(filters.era) {
       const eraMap = {
         "1970s":"1970s-80s", "1980s":"1970s-80s",
-        "2000s":"2000s+", "2010s":"2010s+", "2020s":"2010s+", "actualidad":"2010s+"
+        "2000s":"2000s+", "2010s":"2010s", "2020s":"2020s+", "actualidad":"2020s+"
       };
     const dbEra  = eraMap[filters.era] || filters.era;
     pool = pool.filter(s => s.era === dbEra || s.era === filters.era);
@@ -1956,7 +1956,7 @@ async function renderResults(data) {
   ];
   const eraOptions = ERA_DISPLAY
     .filter(e => {
-      const dbVal = ({"1970s":"1970s-80s","1980s":"1970s-80s","2000s":"2000s+","2010s":"2010s+","2020s":"2010s+","actualidad":"2010s+"}[e.val]) || e.val;
+      const dbVal = ({"1970s":"1970s-80s","1980s":"1970s-80s","2000s":"2000s+","2010s":"2010s","2020s":"2020s+","actualidad":"2020s+"}[e.val]) || e.val;
       return singersDb.some(s => s.era === dbVal || s.era === e.val);
     })
     .map(e => `<option value="${e.val}">${e.label}</option>`).join("");
@@ -2128,7 +2128,7 @@ function attachFilterEvents(vec, vt, gender) {
     const genre   = document.getElementById("_genre_filter")?.value  || "";
     const country = document.getElementById("_country_filter")?.value|| "";
     
-    const ERA_MAP = { "1970s":"1970s-80s", "1980s":"1970s-80s", "2000s":"2000s+", "2010s":"2010s+", "2020s":"2010s+", "actualidad":"2010s+" };
+    const ERA_MAP = { "1970s":"1970s-80s", "1980s":"1970s-80s", "2000s":"2000s+", "2010s":"2010s", "2020s":"2020s+", "actualidad":"2020s+" };
     const era = ERA_MAP[eraVal] || eraVal;
     
     const filters = {};
