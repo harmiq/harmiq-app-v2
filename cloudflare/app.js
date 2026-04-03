@@ -1539,8 +1539,15 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
   const compareSlug = (new URLSearchParams(window.location.search)).get('compare');
   let compareArtist = null; if (compareSlug) { const target = compareSlug.toLowerCase(); compareArtist = singersDb.find(s => s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') === target || s.name.toLowerCase().includes(target.replace(/-/g, ' '))); }
 
-  // No permitimos fallback automático a otros tipos de voz para mantener la precisión
-  // Si no hay resultados exactos, preferimos mostrar lista vacía o manejarlo en UI.
+  // 3. ELIMINAR ARTISTAS BASURA DEL CSV (sin canciones + género nicho + no verificados)
+  // Ej: Tito Gobbi (ópera 1950s con era "2020s+" y songs vacías por error en datos)
+  const nicheGenres = ['opera','classical','show-tunes','comedy','study','idm','disney','children','Pop/Log'];
+  pool = pool.filter(s => {
+    if (MONO_IMGS[s.name]) return true; // artista verificado, siempre incluir
+    const emptySongs = !s.reference_songs || s.reference_songs.length === 0;
+    const isNiche = nicheGenres.includes(s.genre_category);
+    return !(emptySongs && isNiche); // excluir solo si AMBOS: sin canciones Y género nicho
+  });
 
   // Aplicar filtros adicionales (Época, Género musical, País)
   if(filters.era) {
@@ -1996,7 +2003,7 @@ async function renderResults(data) {
         <div style="position:absolute; inset:-5px; border-radius:50%; background:linear-gradient(135deg, ${color}, #FF4FA3); padding:3px; animation:rotate-glow 4s linear infinite">
           <div style="width:100%; height:100%; background:#0f0820; border-radius:50%"></div>
         </div>
-        <img src="${top1Img}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; position:relative; z-index:2; border:4px solid #0f0820">
+        <img src="${top1Img}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; position:relative; z-index:2; border:4px solid #0f0820" onerror="_imgFallback(this,'${top1.name.replace(/'/g,"\\'")}')" onload="this.style.opacity='1'" style="opacity:0;transition:opacity .3s">
       </div>
 
       <h2 style="font-family:'Baloo 2',sans-serif; font-size:2.8rem; margin-bottom:0.2rem; line-height:1">${vtName}</h2>
