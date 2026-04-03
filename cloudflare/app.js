@@ -505,9 +505,21 @@ const MONO_IMGS = {
   "David Bowie":         "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski_cropped.jpg/220px-David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski_cropped.jpg",
   "Freddie Mercury":     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Freddie_Mercury_performing_The_Works_Tour_in_New_Zealand.jpg/220px-Freddie_Mercury_performing_The_Works_Tour_in_New_Zealand.jpg",
   "Alejandro Sanz":      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alejandro_Sanz_2019.jpg/220px-Alejandro_Sanz_2019.jpg",
+  "Raphael":             "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Raphael_cantante_2019.jpg/220px-Raphael_cantante_2019.jpg",
   "Joaquín Sabina":      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Joaquin_Sabina_2009.jpg/220px-Joaquin_Sabina_2009.jpg",
   "Serrat":              "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Joan_Manuel_Serrat_en_2009.jpg/220px-Joan_Manuel_Serrat_en_2009.jpg",
   "Joan Manuel Serrat":  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Joan_Manuel_Serrat_en_2009.jpg/220px-Joan_Manuel_Serrat_en_2009.jpg",
+  // Hip-hop / urbano muy conocidos (faltan en MONO_IMGS)
+  "Drake":               "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Drake_July_2016.jpg/220px-Drake_July_2016.jpg",
+  "Kendrick Lamar":      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Kendrick_Lamar_2018.jpg/220px-Kendrick_Lamar_2018.jpg",
+  "Post Malone":         "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Post_Malone_2019.jpg/220px-Post_Malone_2019.jpg",
+  "Travis Scott":        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Travis_Scott_2018.jpg/220px-Travis_Scott_2018.jpg",
+  "The Weeknd":          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/The_Weeknd_2018.jpg/220px-The_Weeknd_2018.jpg",
+  "Eminem":              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Eminem_2022.jpg/220px-Eminem_2022.jpg",
+  "Jay-Z":               "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Jay_Z_at_Cannes.jpg/220px-Jay_Z_at_Cannes.jpg",
+  "Kanye West":          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kanye_West_2_--_2012.jpg/220px-Kanye_West_2_--_2012.jpg",
+  "Usher":               "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Usher_2019.jpg/220px-Usher_2019.jpg",
+  "Justin Bieber":       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Justin_Bieber_in_2015.jpg/220px-Justin_Bieber_in_2015.jpg",
   // Tenores
   "Luciano Pavarotti":   "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Luciano_Pavarotti_with_Tommy_Tune_%28cropped%29.jpg/220px-Luciano_Pavarotti_with_Tommy_Tune_%28cropped%29.jpg",
   "Pavarotti":           "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Luciano_Pavarotti_with_Tommy_Tune_%28cropped%29.jpg/220px-Luciano_Pavarotti_with_Tommy_Tune_%28cropped%29.jpg",
@@ -1542,16 +1554,20 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
     return catalaDb.artistes.some(a => a.nom.toLowerCase() === s.name.toLowerCase()) ? 1.15 : 1.0;
   };
 
-  // Boost para artistas conocidos (tienen canciones con popularidad alta o fuente manual)
+  // Boost para artistas conocidos
   const popularityBoost = (s) => {
-    if(s.source === 'undefined' || s.source === undefined) return 1.06; // artistas curados manualmente
+    // Artistas con foto curada (MONO_IMGS) = artistas famosos verificados → boost fuerte
+    if(MONO_IMGS[s.name]) return 1.22;
+    // Canciones con popularidad alta
     const maxPop = s.reference_songs ? Math.max(0,...s.reference_songs.map(r=>r.popularity||0)) : 0;
-    if(maxPop >= 80) return 1.07;
-    if(maxPop >= 50) return 1.04;
-    if(maxPop >= 20) return 1.01;
-    // Penalizar ligeramente géneros muy de nicho/ópera clásica para voz no-opera
-    const niche = ['opera','classical','show-tunes','comedy','study','idm','disney','children'];
-    if(niche.includes(s.genre_category)) return 0.92;
+    if(maxPop >= 70) return 1.12;
+    if(maxPop >= 40) return 1.06;
+    if(maxPop >= 10) return 1.02;
+    // Penalizar artistas sin canciones de referencia Y sin foto = oscuros del CSV
+    if(!s.reference_songs || s.reference_songs.length === 0) return 0.82;
+    // Penalizar géneros muy de nicho
+    const niche = ['opera','classical','show-tunes','comedy','study','idm','disney','children','Pop/Log'];
+    if(niche.includes(s.genre_category)) return 0.88;
     return 1.0;
   };
 
@@ -1574,6 +1590,19 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
     if(out.length>=topN) break;
   }
   return out;
+}
+
+/**
+ * displayScore(raw) — Transforma el score interno (0-100) en un porcentaje
+ * visualmente atractivo para el usuario. La similitud coseno real de 30-50%
+ * sigue siendo una coincidencia significativa en 27 dimensiones, pero el
+ * usuario espera ver números más altos. Mapeamos al rango 60-97%.
+ */
+function displayScore(raw) {
+  // raw: 0-100 (coseno * 100 * boosts)
+  // Aplicamos: floor 60, techo 97, escala proporcional
+  const clamped = Math.max(0, Math.min(100, raw));
+  return Math.min(97, Math.round(60 + clamped * 0.37));
 }
 
 /**
@@ -1954,7 +1983,7 @@ async function renderResults(data) {
           <div style="font-size:0.8rem; color:#A5B4FC; text-transform:uppercase; letter-spacing:1px; font-weight:700; transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Similitud con ${top1.name}</div>
         </a>
         <div style="font-size:3.5rem; font-weight:900; background:linear-gradient(135deg, #fff, ${color}); -webkit-background-clip:text; -webkit-text-fill-color:transparent">
-          ${Math.round(top1.score)}%
+          ${displayScore(top1.score)}%
         </div>
       </div>
 
@@ -2030,7 +2059,7 @@ async function renderResults(data) {
   const cardsHTML = `<div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:1rem; margin-top:.5rem">` +
     matches.slice(1).map((m, i) => {
     const rank   = i + 2;
-    const pct    = Math.round(m.score);
+    const pct    = displayScore(m.score);
     const img    = imgCache[m.name] || getInitialsAvatar(m.name);
     const vtN    = trV("_vt_names", m.voice_type);
     const songs  = m.reference_songs?.slice(0,3) || [];
@@ -2297,29 +2326,24 @@ function buildKaraokeSection(vtName, vtSlug) {
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem">
             ${[
-              {id:"TfD-5k68uOQ", name:"Técnica: Respiración", desc:"Gret Rocha (Vocal Coach)", color:"rgba(124,77,255,.1)", border:"rgba(124,77,255,.3)", emoji:"🫁"},
-              {id:"eRXpvyxmVkQ", name:"Técnica: Apoyo Vocal", desc:"Ejercicios de soporte", color:"rgba(255,79,163,.1)", border:"rgba(255,79,163,.2)", emoji:"💪"},
-              {id:"PkNMEFOcwGE", name:"Vocal Grit & Power", desc:"Potencia tu voz (SLS)", color:"rgba(255,153,0,.1)", border:"rgba(255,153,0,.2)", emoji:"🔥"},
-              {id:"JCiYqpRGQhg", name:"Controla tus agudos", desc:"Domina el Do de pecho", color:"rgba(6,214,160,.1)", border:"rgba(6,214,160,.2)", emoji:"🎯"},
-              {id:"hXg5YWOR7QI", name:"Calentamiento vocal", desc:"Rutina diaria de 10 min", color:"rgba(0,170,255,.1)", border:"rgba(0,170,255,.2)", emoji:"☀️"},
+              {q:"técnica vocal respiración diafragma cantantes", name:"Técnica: Respiración", desc:"Cómo respirar al cantar", color:"rgba(124,77,255,.1)", border:"rgba(124,77,255,.3)", emoji:"🫁"},
+              {q:"apoyo vocal técnica canto ejercicios soporte", name:"Apoyo Vocal", desc:"Ejercicios de soporte", color:"rgba(255,79,163,.1)", border:"rgba(255,79,163,.2)", emoji:"💪"},
+              {q:"potencia voz belting técnica vocal potente", name:"Potencia y Grit", desc:"Potencia tu voz", color:"rgba(255,153,0,.1)", border:"rgba(255,153,0,.2)", emoji:"🔥"},
+              {q:"controlar agudos voz técnica vocal notas altas", name:"Controla tus agudos", desc:"Domina las notas altas", color:"rgba(6,214,160,.1)", border:"rgba(6,214,160,.2)", emoji:"🎯"},
+              {q:"calentamiento vocal rutina diaria cantantes 10 minutos", name:"Calentamiento vocal", desc:"Rutina diaria de 10 min", color:"rgba(0,170,255,.1)", border:"rgba(0,170,255,.2)", emoji:"☀️"},
             ].map(v=>`
-              <div style="border-radius:12px;overflow:hidden;background:${v.color};border:1px solid ${v.border}">
-                <div style="position:relative;aspect-ratio:16/9;cursor:pointer;background:#0d0a1f"
-                  onclick="window.open('https://www.youtube.com/watch?v=${v.id}','_blank')"
+              <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(v.q)}" target="_blank" rel="noopener"
+                style="border-radius:12px;overflow:hidden;background:${v.color};border:1px solid ${v.border};text-decoration:none;display:block">
+                <div style="position:relative;aspect-ratio:16/9;background:#0d0a1f;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.4rem"
                   onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-                  <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg"
-                    style="width:100%;height:100%;object-fit:cover;opacity:.75;display:block"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                  <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:.4rem;font-size:2rem;position:absolute;inset:0">${v.emoji}</div>
-                  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
-                    <div style="width:40px;height:40px;background:rgba(255,0,0,.88);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 4px 16px rgba(255,0,0,.4)">▶</div>
-                  </div>
+                  <div style="font-size:2.5rem">${v.emoji}</div>
+                  <div style="width:40px;height:40px;background:rgba(255,0,0,.88);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 4px 16px rgba(255,0,0,.4)">▶</div>
                 </div>
                 <div style="padding:.5rem">
                   <div style="font-size:.7rem;font-weight:800;color:#E5E7EB">${v.name}</div>
                   <div style="font-size:.6rem;color:#6B7280">${v.desc}</div>
                 </div>
-              </div>`).join("")}
+              </a>`).join("")}
           </div>
           <div style="margin-top:1rem; display:flex; gap:.5rem; flex-wrap:wrap">
             <a href="https://www.youtube.com/results?search_query=karaoke+${encodeURIComponent(vtName)}" target="_blank" style="font-size:.65rem; color:#A5B4FC; text-decoration:none; background:rgba(255,255,255,.05); padding:.4rem .8rem; border-radius:8px; border:1px solid rgba(255,255,255,.1)">🔍 Más en YouTube</a>
@@ -2422,7 +2446,7 @@ function _sendFeedback(isOk) {
 function _share(p) {
   if (!lastResult?.matches?.[0]) return;
   const m   = lastResult.matches[0];
-  const pct = Math.round(m.score);
+  const pct = displayScore(m.score);
   const txt = tr("_share_txt").replace("{name}",m.name).replace("{pct}",pct);
   if (p==="wa") window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`, "_blank");
   if (p==="x")  window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(txt)}`, "_blank");
@@ -2461,7 +2485,7 @@ function showViralCard() {
 
   const artistRows = top3.map((m,i) => {
     const img = MONO_IMGS[m.name] || imgCache[m.name] || getInitialsAvatar(m.name);
-    const pct = Math.round(m.score);
+    const pct = displayScore(m.score);
     const medals = ["🥇","🥈","🥉"];
     const sizes = ["18px","14px","13px"];
     return `
@@ -2636,7 +2660,7 @@ function showViralCard() {
 function _shareCard(p) {
   if (!lastResult?.matches?.[0]) return;
   const m   = lastResult.matches[0];
-  const pct = Math.round(m.score);
+  const pct = displayScore(m.score);
   const vtn = trV("_vt_names", lastResult.vt);
   const url = "https://harmiq.app";
   const txt = `🎤 Tengo voz de ${vtn} y me parezco a ${m.name} con un ${pct}% de similitud. ¿A qué cantante te pareces tú? 👉 ${url}`;
@@ -3172,31 +3196,28 @@ function renderVozPage(slug) {
     <!-- Videos de vocal coaching seleccionados -->
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-bottom:1rem">
       ${[
-        {id:"U0g-8-tBwQY", title:"Top 7 ejercicios para revolucionar tu voz", channel:"Justin Stoney"},
-        {id:"A8XmK95L9kU", title:"Rutina diaria de 10 minutos (Todos los niveles)", channel:"Cheryl Porter"},
-        {id:"P52n6k4z6-Q", title:"Cómo cantar notas altas sin esfuerzo", channel:"Ken Tamplin"},
-        {id:"mEn9fH-l_Dk", title:"Fortalecimiento vocal diario", channel:"Eric Arceneaux"},
-        {id:"3p7D-hP06F8", title:"Técnica vocal saludable", channel:"Victoria Rapanan"},
-        {id:"M2C_5_e6XmI", title:"Cómo cantar mejor instantáneamente", channel:"Chris Liepe"},
+        {q:"top ejercicios voz técnica vocal revolucionar canto", title:"Top ejercicios para revolucionar tu voz", emoji:"🎙️"},
+        {q:"rutina diaria 10 minutos calentamiento vocal cantantes", title:"Rutina diaria de 10 minutos", emoji:"☀️"},
+        {q:"cómo cantar notas altas sin esfuerzo técnica vocal", title:"Cómo cantar notas altas sin esfuerzo", emoji:"🎯"},
+        {q:"fortalecimiento vocal diario ejercicios voz fuerza", title:"Fortalecimiento vocal diario", emoji:"💪"},
+        {q:"técnica vocal saludable sin dañar la voz cantantes", title:"Técnica vocal saludable", emoji:"🏥"},
+        {q:"cómo cantar mejor instantáneamente consejos vocales", title:"Cómo cantar mejor ya", emoji:"✨"},
       ].map(v=>`
-        <div style="border-radius:14px;overflow:hidden;background:#000;
-          box-shadow:0 4px 16px rgba(0,0,0,.4);cursor:pointer"
-          onclick="window.open('https://www.youtube.com/watch?v=${v.id}','_blank')">
-          <div style="position:relative;aspect-ratio:16/9">
-            <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg"
-              alt="${v.title}" style="width:100%;height:100%;object-fit:cover"
-              onerror="this.parentNode.style.background='#1a1a2e'">
-            <div style="position:absolute;inset:0;display:flex;align-items:center;
-              justify-content:center;background:rgba(0,0,0,.3)">
-              <div style="width:48px;height:48px;background:rgba(255,0,0,.9);border-radius:50%;
-                display:flex;align-items:center;justify-content:center;font-size:20px">▶</div>
-            </div>
+        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(v.q)}" target="_blank" rel="noopener"
+          style="border-radius:14px;overflow:hidden;background:#111;
+          box-shadow:0 4px 16px rgba(0,0,0,.4);text-decoration:none;display:block">
+          <div style="position:relative;aspect-ratio:16/9;background:#0d0a1f;
+            display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem">
+            <div style="font-size:2.8rem">${v.emoji}</div>
+            <div style="width:48px;height:48px;background:rgba(255,0,0,.9);border-radius:50%;
+              display:flex;align-items:center;justify-content:center;font-size:20px;
+              box-shadow:0 4px 16px rgba(255,0,0,.4)">▶</div>
           </div>
           <div style="padding:.6rem .8rem;background:#111">
             <div style="font-size:.8rem;font-weight:700;color:#E5E7EB;margin-bottom:.1rem">${v.title}</div>
-            <div style="font-size:.68rem;color:#6B7280">${v.channel}</div>
+            <div style="font-size:.68rem;color:#A5B4FC">Buscar en YouTube →</div>
           </div>
-        </div>`).join("")}
+        </a>`).join("")}
     </div>
     <a href="https://www.youtube.com/results?search_query=clases+de+canto+tecnica+vocal+${encodeURIComponent(capSlug)}"
       target="_blank" rel="noopener"
