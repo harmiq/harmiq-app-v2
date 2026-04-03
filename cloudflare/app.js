@@ -1967,6 +1967,14 @@ async function renderResults(data) {
         </button>
       </div>
 
+      <!-- Feedback + Reiniciar -->
+      <div style="display:flex; gap:.8rem; justify-content:center; align-items:center; margin-top:1.2rem; flex-wrap:wrap">
+        <span style="font-size:.78rem; color:#6B7280; font-weight:700">¿El resultado es correcto?</span>
+        <button id="_fb_ok" onclick="_sendFeedback(true)" style="font-size:1.5rem; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:50px; padding:.35rem .9rem; cursor:pointer; transition:.2s" title="Sí, correcto" onmouseover="this.style.background='rgba(6,214,160,.15)';this.style.borderColor='#06D6A0'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.12)'">👍</button>
+        <button id="_fb_ko" onclick="_sendFeedback(false)" style="font-size:1.5rem; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:50px; padding:.35rem .9rem; cursor:pointer; transition:.2s" title="No, no es correcto" onmouseover="this.style.background='rgba(255,79,163,.15)';this.style.borderColor='#FF4FA3'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.12)'">👎</button>
+        <button onclick="_resetApp()" style="font-size:.82rem; font-weight:800; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:50px; padding:.45rem 1.2rem; cursor:pointer; color:#A5B4FC; transition:.2s; display:flex; align-items:center; gap:.4rem" onmouseover="this.style.background='rgba(124,77,255,.15)';this.style.borderColor='#7C4DFF'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.12)'">🔄 Nueva prueba</button>
+      </div>
+
       <!-- Monetización Integrada (Simplificada en Card) -->
       <div style="margin-top:2rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:1.5rem">
         <div style="font-size:0.75rem; color:#9CA3AF; font-weight:700; text-transform:uppercase; letter-spacing:1px">Sugerencia Profesional</div>
@@ -2366,6 +2374,50 @@ window._overrideVT = function(newVt) {
   lastResult.matches = newMatches;
   preloadImages(newMatches.map(m => m.name)).then(() => renderResults(lastResult));
 };
+
+function _resetApp() {
+  // Limpia estado global
+  lastResult = null;
+  window._audioBlob = null;
+  window._lastFile  = null;
+  // Limpia el div de resultados
+  const resEl = document.getElementById("results");
+  if (resEl) resEl.innerHTML = "";
+  // Re-inyecta la UI inicial (grabar/subir)
+  const mount = document.getElementById("app-mount");
+  if (mount) {
+    mount.removeAttribute("data-ui");
+    mount.innerHTML = '<div style="color:var(--m); font-weight:700">Cargando...</div>';
+    injectUI();
+  }
+  // Scroll suave al analizador
+  const analizador = document.getElementById("analizador") || document.getElementById("app");
+  if (analizador) analizador.scrollIntoView({ behavior:"smooth", block:"start" });
+}
+
+function _sendFeedback(isOk) {
+  const okBtn = document.getElementById("_fb_ok");
+  const koBtn = document.getElementById("_fb_ko");
+  if (!okBtn || !koBtn) return;
+  // Visual: marca el elegido
+  okBtn.style.opacity = isOk ? "1" : "0.3";
+  koBtn.style.opacity = isOk ? "0.3" : "1";
+  okBtn.style.transform = isOk ? "scale(1.3)" : "scale(1)";
+  koBtn.style.transform = isOk ? "scale(1)" : "scale(1.3)";
+  // Guardar en localStorage para aprendizaje futuro
+  try {
+    const vt = lastResult?.vt || "unknown";
+    const top = lastResult?.matches?.[0]?.name || "unknown";
+    const log = JSON.parse(localStorage.getItem("_hm_fb") || "[]");
+    log.push({ ts: Date.now(), ok: isOk, vt, top });
+    if (log.length > 200) log.splice(0, log.length - 200);
+    localStorage.setItem("_hm_fb", JSON.stringify(log));
+  } catch(e) {}
+  // Mensaje de agradecimiento breve
+  const msg = isOk ? "¡Gracias! 🙌" : "¡Gracias! Seguimos mejorando 🔧";
+  showStatus(msg);
+  setTimeout(() => showStatus(""), 2500);
+}
 
 function _share(p) {
   if (!lastResult?.matches?.[0]) return;
