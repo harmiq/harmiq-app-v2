@@ -682,82 +682,6 @@ const MONO_IMGS = {
   "The Tyets":           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/The_Tyets_2021.jpg/220px-The_Tyets_2021.jpg",
   "Rosalía":             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Rosal%C3%ADa_%282019%29.jpg/220px-Rosal%C3%ADa_%282019%29.jpg",
   "Alejandro Sanz":      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alejandro_Sanz_2019.jpg/220px-Alejandro_Sanz_2019.jpg",
-  // 🇪🇸 Artistas españoles (España) — fotos curadas para evitar confusiones
-  "Omar Montes":         "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Omar_Montes_2022.jpg/220px-Omar_Montes_2022.jpg",
-  "Quevedo":             "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Quevedo_%28singer%29_2023.png/220px-Quevedo_%28singer%29_2023.png",
-  "Morad":               "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Morad_2022.jpg/220px-Morad_2022.jpg",
-  "Beret":               "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Beret_2020.jpg/220px-Beret_2020.jpg",
-  "Abhir Hathi":         "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Abhir_Hathi_2022.jpg/220px-Abhir_Hathi_2022.jpg",
-  "Cruz Cafuné":         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cruz_Cafune_2022.jpg/220px-Cruz_Cafune_2022.jpg",
-  "Recycled J":          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Recycled_J_2019.jpg/220px-Recycled_J_2019.jpg",
-  "Dellafuente":         "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dellafuente_2019.jpg/220px-Dellafuente_2019.jpg",
-  "Yung Beef":           "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Yung_Beef_2019.jpg/220px-Yung_Beef_2019.jpg",
-  "El Kanka":            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/El_Kanka_2019.jpg/220px-El_Kanka_2019.jpg",
-  "Melendi":             "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Melendi_2019.jpg/220px-Melendi_2019.jpg",
-  "David Bisbal":        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/David_Bisbal_2014.jpg/220px-David_Bisbal_2014.jpg",
-  "David Bustamante":    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/David_Bustamante_2019.jpg/220px-David_Bustamante_2019.jpg",
-  "Pablo López":         "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Pablo_Lopez_2017.jpg/220px-Pablo_Lopez_2017.jpg",
-  "Manuel Carrasco":     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Manuel_Carrasco_2019.jpg/220px-Manuel_Carrasco_2019.jpg",
-  "Antonio Orozco":      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Antonio_Orozco_2017.jpg/220px-Antonio_Orozco_2017.jpg",
-  "Dani Martín":         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Dani_Mart%C3%ADn_2018.jpg/220px-Dani_Mart%C3%ADn_2018.jpg",
-  "El Canto del Loco":   "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/El_Canto_del_Loco_2007.jpg/220px-El_Canto_del_Loco_2007.jpg",
-  "Mecano":              "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Mecano_1988.jpg/220px-Mecano_1988.jpg",
-  "Alaska":              "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Alaska_y_Mario_2019.jpg/220px-Alaska_y_Mario_2019.jpg",
-  "Fangoria":            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Alaska_y_Mario_2019.jpg/220px-Alaska_y_Mario_2019.jpg",
-  "Peret":               "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Peret_2012.jpg/220px-Peret_2012.jpg",
-  "Camela":              "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Camela_2019.jpg/220px-Camela_2019.jpg",
-  "La Oreja de Van Gogh":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/La_Oreja_de_Van_Gogh_2019.jpg/220px-La_Oreja_de_Van_Gogh_2019.jpg",
-  "Estopa":              "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Estopa_2010.jpg/220px-Estopa_2010.jpg",
-  "Marea":               "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Marea_band.jpg/220px-Marea_band.jpg",
-  "Jarabe de Palo":      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Jarabe_de_Palo_2010.jpg/220px-Jarabe_de_Palo_2010.jpg",
-  "Los Planetas":        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Los_Planetas_2019.jpg/220px-Los_Planetas_2019.jpg",
-  "Vetusta Morla":       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Vetusta_Morla_2018.jpg/220px-Vetusta_Morla_2018.jpg",
-  "Love of Lesbian":     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Love_of_Lesbian_2019.jpg/220px-Love_of_Lesbian_2019.jpg",
-  "Izal":                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Izal_2018.jpg/220px-Izal_2018.jpg",
-  "Los Secretos":        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Los_Secretos_2011.jpg/220px-Los_Secretos_2011.jpg",
-  "El Pescao":           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/El_Pescao_2016.jpg/220px-El_Pescao_2016.jpg",
-  "Loquillo":            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Loquillo_2018.jpg/220px-Loquillo_2018.jpg",
-  "Leiva":               "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Leiva_2018.jpg/220px-Leiva_2018.jpg",
-  "Los Zigarros":        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Los_Zigarros_2018.jpg/220px-Los_Zigarros_2018.jpg",
-  "Fito y Fitipaldis":   "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Fito_y_Fitipaldis_2018.jpg/220px-Fito_y_Fitipaldis_2018.jpg",
-  "Rosendo":             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Rosendo_Mercado_2011.jpg/220px-Rosendo_Mercado_2011.jpg",
-  "Ska-P":               "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Ska-P_2010.jpg/220px-Ska-P_2010.jpg",
-  "Celtas Cortos":       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Celtas_Cortos.jpg/220px-Celtas_Cortos.jpg",
-  "Hombres G":           "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Hombres_G_2010.jpg/220px-Hombres_G_2010.jpg",
-  "Radio Futura":        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Radio_Futura.jpg/220px-Radio_Futura.jpg",
-  "Extremoduro":         "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Extremoduro_2012.jpg/220px-Extremoduro_2012.jpg",
-  "Barón Rojo":          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Bar%C3%B3n_Rojo_2010.jpg/220px-Bar%C3%B3n_Rojo_2010.jpg",
-  "Amaral":              "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Amaral_2019.jpg/220px-Amaral_2019.jpg",
-  "Mägo de Oz":          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Mago_de_Oz_2019.jpg/220px-Mago_de_Oz_2019.jpg",
-  "Dover":               "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dover_2010.jpg/220px-Dover_2010.jpg",
-  "Berri Txarrak":       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Berri_Txarrak_2019.jpg/220px-Berri_Txarrak_2019.jpg",
-  "La Bien Querida":     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/La_Bien_Querida_2016.jpg/220px-La_Bien_Querida_2016.jpg",
-  "Zahara":              "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Zahara_2019.jpg/220px-Zahara_2019.jpg",
-  "Anni B Sweet":        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Anni_B_Sweet_2015.jpg/220px-Anni_B_Sweet_2015.jpg",
-  "Natalia Lacunza":     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Natalia_Lacunza_2022.jpg/220px-Natalia_Lacunza_2022.jpg",
-  "La Húngara":          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/La_H%C3%BAngara_2018.jpg/220px-La_H%C3%BAngara_2018.jpg",
-  "Pitingo":             "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Pitingo_2010.jpg/220px-Pitingo_2010.jpg",
-  "María Jiménez":       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Mar%C3%ADa_Jim%C3%A9nez_2009.jpg/220px-Mar%C3%ADa_Jim%C3%A9nez_2009.jpg",
-  "Rocío Jurado":        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Rocio_Jurado.jpg/220px-Rocio_Jurado.jpg",
-  "Lola Flores":         "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Lola_Flores.jpg/220px-Lola_Flores.jpg",
-  "Antonio Flores":      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Antonio_Flores_1994.jpg/220px-Antonio_Flores_1994.jpg",
-  "Miguel Bosé":         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Miguel_Bose_2011.jpg/220px-Miguel_Bose_2011.jpg",
-  "Nena Daconte":        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Nena_Daconte_2016.jpg/220px-Nena_Daconte_2016.jpg",
-  "Malú":                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Mal%C3%BA_2019.jpg/220px-Mal%C3%BA_2019.jpg",
-  "Soraya":              "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Soraya_Arnelas_2010.jpg/220px-Soraya_Arnelas_2010.jpg",
-  "Bustamante":          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/David_Bustamante_2019.jpg/220px-David_Bustamante_2019.jpg",
-  "Bisbal":              "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/David_Bisbal_2014.jpg/220px-David_Bisbal_2014.jpg",
-  // 💎 Artistas Urbano / Pop Actual (Garantía de Imagen)
-  "Bizarrap":            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Bizarrap_2023.jpg/220px-Bizarrap_2023.jpg",
-  "Karol G":             "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Karol_G_2024.jpg/220px-Karol_G_2024.jpg",
-  "Rauw Alejandro":      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Rauw_Alejandro_2022.jpg/220px-Rauw_Alejandro_2022.jpg",
-  "Myke Towers":         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Myke_Towers_2020.jpg/220px-Myke_Towers_2020.jpg",
-  "Feid":                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Feid_2022.jpg/220px-Feid_2022.jpg",
-  "Anitta":              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Anitta_2024.jpg/220px-Anitta_2024.jpg",
-  "Duki":                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Duki_2023.jpg/220px-Duki_2023.jpg",
-  "Tini":                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tini_Stoessel_2022.jpg/220px-Tini_Stoessel_2022.jpg",
-  "Milo J":              "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Milo_J_2023.jpg/220px-Milo_J_2023.jpg",
-  "Trueno":              "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Trueno_2022.jpg/220px-Trueno_2022.jpg"
 };
 
 // Generar avatar con iniciales si no hay foto
@@ -1601,12 +1525,17 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
 
   // Aplicar filtros adicionales (Época, Género musical, País)
   if(filters.era) {
+    // "actualidad" incluye 2000s+, 2010s, 2010s+, 2020s, 2020s+ para no quedarse sin resultados
+    if(filters.era === 'actualidad') {
+      pool = pool.filter(s => ['2000s+','2010s','2010s+','2020s','2020s+'].includes(s.era));
+    } else {
       const eraMap = {
         "1970s":"1970s-80s", "1980s":"1970s-80s",
-        "2000s":"2000s+", "2010s":"2010s", "2020s":"2020s+", "actualidad":"2020s+"
+        "2000s":"2000s+", "2010s":"2010s", "2020s":"2020s+"
       };
-    const dbEra  = eraMap[filters.era] || filters.era;
-    pool = pool.filter(s => s.era === dbEra || s.era === filters.era);
+      const dbEra = eraMap[filters.era] || filters.era;
+      pool = pool.filter(s => s.era === dbEra || s.era === filters.era);
+    }
   }
   if(filters.genre_category) pool=pool.filter(s=>s.genre_category===filters.genre_category);
   if(filters.country_code) {
@@ -1643,11 +1572,14 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
     if(maxPop >= 70) return 1.12;
     if(maxPop >= 40) return 1.06;
     if(maxPop >= 10) return 1.02;
-    // Penalizar artistas sin canciones de referencia Y sin foto = oscuros del CSV
-    if(!s.reference_songs || s.reference_songs.length === 0) return 0.82;
-    // Penalizar géneros muy de nicho
+    // Géneros muy de nicho
     const niche = ['opera','classical','show-tunes','comedy','study','idm','disney','children','Pop/Log'];
-    if(niche.includes(s.genre_category)) return 0.88;
+    const isNiche = niche.includes(s.genre_category);
+    // Sin canciones de referencia = artista oscuro del CSV (Tito Gobbi, etc.)
+    if(!s.reference_songs || s.reference_songs.length === 0) {
+      return isNiche ? 0.35 : 0.60;  // penalización muy fuerte si además es nicho
+    }
+    if(isNiche) return 0.82;
     return 1.0;
   };
 
