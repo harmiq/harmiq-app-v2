@@ -1518,7 +1518,22 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
     pool = pool.filter(s => s.era === dbEra || s.era === filters.era);
   }
   if(filters.genre_category) pool=pool.filter(s=>s.genre_category===filters.genre_category);
-  if(filters.country_code)   pool=pool.filter(s=>s.country_code===filters.country_code);
+  if(filters.country_code) {
+    const LANG_CC = {
+      "ES":["ES","MX","AR","CO","PR","CL","VE","PE","DO","BO","EC","PY","UY","GT","HN","CR","PA","CU","NI","SV"],
+      "EN":["US","GB","CA","AU","IE","NZ"],
+      "PT":["BR","PT"],
+      "FR":["FR","BE"],
+      "DE":["DE","AT"],
+      "IT":["IT"],
+      "JP":["JP"],
+      "KR":["KR"],
+      "CAT":["CAT"]
+    };
+    const ccList = LANG_CC[filters.country_code];
+    if(ccList) pool=pool.filter(s=>ccList.includes(s.country_code));
+    else       pool=pool.filter(s=>s.country_code===filters.country_code);
+  }
 
   // Score base de popularidad por país del usuario
   const countryBonus = (s) => s.country_code === userCountry ? 1.03 : 1.0;
@@ -1527,10 +1542,23 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
     return catalaDb.artistes.some(a => a.nom.toLowerCase() === s.name.toLowerCase()) ? 1.15 : 1.0;
   };
 
+  // Boost para artistas conocidos (tienen canciones con popularidad alta o fuente manual)
+  const popularityBoost = (s) => {
+    if(s.source === 'undefined' || s.source === undefined) return 1.06; // artistas curados manualmente
+    const maxPop = s.reference_songs ? Math.max(0,...s.reference_songs.map(r=>r.popularity||0)) : 0;
+    if(maxPop >= 80) return 1.07;
+    if(maxPop >= 50) return 1.04;
+    if(maxPop >= 20) return 1.01;
+    // Penalizar ligeramente géneros muy de nicho/ópera clásica para voz no-opera
+    const niche = ['opera','classical','show-tunes','comedy','study','idm','disney','children'];
+    if(niche.includes(s.genre_category)) return 0.92;
+    return 1.0;
+  };
+
   const scored=pool
     .map(s=>({
       ...s,
-      score:Math.round(score(vec,s.vector,vt,s.voice_type)*countryBonus(s)*catalaBonus(s)*10)/10
+      score:Math.round(score(vec,s.vector,vt,s.voice_type)*countryBonus(s)*catalaBonus(s)*popularityBoost(s)*10)/10
     }))
     .sort((a,b)=>b.score-a.score);
 
@@ -2036,10 +2064,11 @@ async function renderResults(data) {
         <!-- Canciones -->
         ${songs.length ? `<div style="margin-top:.3rem;display:flex;flex-direction:column;gap:.2rem">
           ${songs.map(s => {
-            const {karaoke} = getPlatformLinks(m.name, s);
+            const sTitle = typeof s==='object'?(s.title||s.name||''):String(s||'');
+            const {karaoke} = getPlatformLinks(m.name, sTitle);
             return `<a href="${karaoke}" target="_blank" style="display:flex;align-items:center;gap:.4rem;text-decoration:none;padding:.25rem .3rem;border-radius:6px;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.07)'" onmouseout="this.style.background='transparent'">
               <span style="color:${cardColor};font-size:.6rem;flex-shrink:0">▶</span>
-              <span style="font-size:.65rem;color:#D1D5DB;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s}</span>
+              <span style="font-size:.65rem;color:#D1D5DB;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${sTitle}</span>
             </a>`;
           }).join('')}
         </div>` : ""}
@@ -2140,7 +2169,7 @@ function attachFilterEvents(vec, vt, gender) {
     const filters = {};
     if (era)     filters.era            = era;
     if (genre)   filters.genre_category = genre;
-    if (country) filters.country_code   = country;
+    if (country) filters.country_code   = country;  // LANG_CC mapping se aplica en getMatches
 
     const newMatches = getMatches(vec, vt, gender, filters, 15);
     await preloadImages(newMatches.map(m=>m.name));
