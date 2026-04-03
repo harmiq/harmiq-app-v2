@@ -1995,19 +1995,26 @@ async function renderResults(data) {
       <div style="position:absolute; top:-20%; left:-10%; width:200px; height:200px; background:${color}; filter:blur(100px); opacity:0.25; pointer-events:none"></div>
       <div style="position:absolute; bottom:-10%; right:-5%; width:150px; height:150px; background:#FF4FA3; filter:blur(80px); opacity:0.15; pointer-events:none"></div>
 
-      <div style="font-family:'Outfit',sans-serif; text-transform:uppercase; letter-spacing:3px; font-size:0.75rem; color:${color}; font-weight:800; margin-bottom:1rem">
-        Tu Huella Vocal Identificada
+      <div style="font-family:'Outfit',sans-serif; text-transform:uppercase; letter-spacing:3px; font-size:0.72rem; color:${color}; font-weight:800; margin-bottom:0.6rem">
+        Tu voz se parece a
       </div>
 
-      <div style="width:140px; height:140px; margin:0 auto 1.5rem; position:relative;">
+      <a href="/artistas/${top1.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/" style="text-decoration:none">
+        <h2 style="font-family:'Baloo 2',sans-serif; font-size:clamp(2.4rem,9vw,4rem); font-weight:900; margin:0 0 1rem; line-height:1.05; background:linear-gradient(135deg,#fff,${color}); -webkit-background-clip:text; -webkit-text-fill-color:transparent; cursor:pointer" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">${top1.name}</h2>
+      </a>
+
+      <div style="width:130px; height:130px; margin:0 auto 1.2rem; position:relative;">
         <div style="position:absolute; inset:-5px; border-radius:50%; background:linear-gradient(135deg, ${color}, #FF4FA3); padding:3px; animation:rotate-glow 4s linear infinite">
           <div style="width:100%; height:100%; background:#0f0820; border-radius:50%"></div>
         </div>
         <img src="${top1Img}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; position:relative; z-index:2; border:4px solid #0f0820" onerror="_imgFallback(this,'${top1.name.replace(/'/g,"\\'")}')" onload="this.style.opacity='1'" style="opacity:0;transition:opacity .3s">
       </div>
 
-      <h2 style="font-family:'Baloo 2',sans-serif; font-size:2.8rem; margin-bottom:0.2rem; line-height:1">${vtName}</h2>
-      <div style="font-size:1.1rem; color:#D1D5DB; margin-bottom:1.5rem; font-style:italic">"${phrase}"</div>
+      <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:50px; padding:0.4rem 1.1rem; margin-bottom:1rem">
+        <span style="font-size:0.85rem; font-weight:800; color:#fff">${vtName}</span>
+      </div>
+
+      <div style="font-size:1rem; color:#D1D5DB; margin-bottom:1.5rem; font-style:italic">"${phrase}"</div>
 
       <!-- 🎹 PIANO ROLL — rango vocal visual + reproducción -->
       <div style="max-width:380px; margin:0 auto 2rem; background:rgba(255,255,255,0.03); padding:1.5rem 1rem 2rem; border-radius:24px; border:1px solid rgba(255,255,255,0.08)">
@@ -2024,11 +2031,9 @@ async function renderResults(data) {
         </button>
       </div>
 
-      <div style="display:inline-block; background:rgba(255,255,255,0.05); padding:1rem 2rem; border-radius:20px; border:1px solid rgba(255,255,255,0.1); margin-bottom:2rem">
-        <a href="/artistas/${top1.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/" style="text-decoration:none">
-          <div style="font-size:0.8rem; color:#A5B4FC; text-transform:uppercase; letter-spacing:1px; font-weight:700; transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Similitud con ${top1.name}</div>
-        </a>
-        <div style="font-size:3.5rem; font-weight:900; background:linear-gradient(135deg, #fff, ${color}); -webkit-background-clip:text; -webkit-text-fill-color:transparent">
+      <div style="display:inline-block; background:rgba(255,255,255,0.05); padding:0.8rem 2.2rem; border-radius:20px; border:1px solid rgba(255,255,255,0.1); margin-bottom:2rem">
+        <div style="font-size:0.72rem; color:#A5B4FC; text-transform:uppercase; letter-spacing:1.5px; font-weight:700; margin-bottom:0.2rem">Similitud vocal</div>
+        <div style="font-size:3.5rem; font-weight:900; background:linear-gradient(135deg, #fff, ${color}); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1">
           ${displayScore(top1.score)}%
         </div>
       </div>
@@ -3473,17 +3478,17 @@ function getUdemyBannerHTML() {
 }
 
 function getHomeStudioHTML() {
-    const cleanLink = (url) => url.replace(/[^a-zA-Z0-9\s:/.]/g, ''); 
-    
+    const cleanLink = (url) => url.replace(/[<>"'\\]/g, '');
+
     return `
     <div class="home-studio-section" style="margin-top:3rem">
         <h2 style="font-family:'Baloo 2',sans-serif; text-align:center; margin-bottom:2rem; background:linear-gradient(135deg,#fff,#FF9900); -webkit-background-clip:text; -webkit-text-fill-color:transparent">🎙️ Domina tu Home Studio</h2>
         <div class="amazon-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem">
             ${[
-                {name: "Pack Iniciación (Behringer)", url: "https://www.amazon.es/s?k=pack+home+studio+behringer+u-phoria"},
-                {name: "Pack Pro Vocals (Rode)", url: "https://www.amazon.es/s?k=Rode+NT1+5th+Gen+Studio+Pack"},
-                {name: "Pack Podcaster (Shure)", url: "https://www.amazon.es/s?k=Shure+MV7+Podcast+Kit"},
-                {name: "Pack Studio Elite (Neumann)", url: "https://www.amazon.es/s?k=Neumann+TLM+103+Studio+Set"}
+                {name: "Pack Iniciación (Behringer)", url: "https://www.amazon.es/s?k=pack+home+studio+behringer+u-phoria&tag=harmiqapp-21"},
+                {name: "Pack Pro Vocals (Rode)", url: "https://www.amazon.es/s?k=Rode+NT1+5th+Gen+Studio+Pack&tag=harmiqapp-21"},
+                {name: "Pack Podcaster (Shure)", url: "https://www.amazon.es/s?k=Shure+MV7+Podcast+Kit&tag=harmiqapp-21"},
+                {name: "Pack Studio Elite (Neumann)", url: "https://www.amazon.es/s?k=Neumann+TLM+103+Studio+Set&tag=harmiqapp-21"}
             ].map(p => `
                 <div class="amazon-card" style="background:rgba(255,255,255,0.03); padding:1.2rem; border-radius:20px; text-align:center; border:1px solid rgba(255,255,255,0.05); transition:all 0.3s">
                     <div style="font-size:2rem; margin-bottom:0.5rem">📦</div>
