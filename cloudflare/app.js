@@ -505,7 +505,7 @@ const MONO_IMGS = {
   "David Bowie":         "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski_cropped.jpg/220px-David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski_cropped.jpg",
   "Freddie Mercury":     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Freddie_Mercury_performing_The_Works_Tour_in_New_Zealand.jpg/220px-Freddie_Mercury_performing_The_Works_Tour_in_New_Zealand.jpg",
   "Alejandro Sanz":      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alejandro_Sanz_2019.jpg/220px-Alejandro_Sanz_2019.jpg",
-  "Raphael":             "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Raphael_cantante_2019.jpg/220px-Raphael_cantante_2019.jpg",
+  // "Raphael" — eliminado de MONO_IMGS (URL Wikipedia incorrecta bloqueaba iTunes)
   "Joaquín Sabina":      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Joaquin_Sabina_2009.jpg/220px-Joaquin_Sabina_2009.jpg",
   "Serrat":              "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Joan_Manuel_Serrat_en_2009.jpg/220px-Joan_Manuel_Serrat_en_2009.jpg",
   "Joan Manuel Serrat":  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Joan_Manuel_Serrat_en_2009.jpg/220px-Joan_Manuel_Serrat_en_2009.jpg",
@@ -683,6 +683,25 @@ const MONO_IMGS = {
   "Rosalía":             "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Rosal%C3%ADa_%282019%29.jpg/220px-Rosal%C3%ADa_%282019%29.jpg",
   "Alejandro Sanz":      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Alejandro_Sanz_2019.jpg/220px-Alejandro_Sanz_2019.jpg",
 };
+
+// Fallback de imagen: cuando una URL falla (ej. Wikipedia 404), intenta iTunes antes de iniciales
+function _imgFallback(imgEl, name) {
+  imgEl.onerror = null;
+  // Si ya intentamos iTunes, mostrar iniciales
+  if (imgEl.dataset.itTried) { imgEl.src = getInitialsAvatar(name); return; }
+  imgEl.dataset.itTried = "1";
+  const q = encodeURIComponent(name);
+  fetch(`https://itunes.apple.com/search?term=${q}&entity=song&limit=8&attribute=artistTerm`)
+    .then(r => r.json())
+    .then(d => {
+      const key = name.toLowerCase().split(' ')[0];
+      const best = (d.results||[]).find(r => r.artistName?.toLowerCase().startsWith(key)) || d.results?.[0];
+      const url = best?.artworkUrl100?.replace('100x100bb','600x600bb');
+      imgEl.src = url || getInitialsAvatar(name);
+      if (url) imgCache[name] = url;
+    })
+    .catch(() => { imgEl.src = getInitialsAvatar(name); });
+}
 
 // Generar avatar con iniciales si no hay foto
 function getInitialsAvatar(name) {
@@ -1525,8 +1544,9 @@ function getMatches(vec,vt,gender,filters={},topN=5) {
 
   // Aplicar filtros adicionales (Época, Género musical, País)
   if(filters.era) {
-    // "actualidad" incluye 2000s+, 2010s, 2010s+, 2020s, 2020s+ para no quedarse sin resultados
-    if(filters.era === 'actualidad') {
+    // "actualidad"/"2020s+" → incluye 2000s+, 2010s, 2010s+, 2020s, 2020s+
+    // (applyFilters convierte "actualidad"→"2020s+" antes de llegar aquí, por eso chequeamos ambos)
+    if(filters.era === 'actualidad' || filters.era === '2020s+') {
       pool = pool.filter(s => ['2000s+','2010s','2010s+','2020s','2020s+'].includes(s.era));
     } else {
       const eraMap = {
@@ -2108,7 +2128,7 @@ async function renderResults(data) {
       <!-- Foto cuadrada grande -->
       <a href="/artistas/${slug}/" style="display:block;text-decoration:none">
         <div style="position:relative;padding-top:100%;background:#0d0a1f;overflow:hidden">
-          <img src="${img}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.onerror=null;this.src=getInitialsAvatar('${m.name.replace(/'/g,"\\'")}')">
+          <img src="${img}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="_imgFallback(this,'${m.name.replace(/'/g,"\\'")}')">
           <!-- Gradiente inferior para legibilidad -->
           <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(13,10,31,.9) 0%,transparent 100%);pointer-events:none"></div>
           <!-- % similitud sobre foto -->
@@ -2121,7 +2141,7 @@ async function renderResults(data) {
       <!-- Info -->
       <div style="padding:.75rem .85rem; flex:1; display:flex; flex-direction:column; gap:.4rem">
         <a href="/artistas/${slug}/" style="text-decoration:none">
-          <div style="font-size:.9rem;color:#fff;font-weight:800;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s" onmouseover="this.style.color='${cardColor}'" onmouseout="this.style.color='#fff'">${m.name}</div>
+          <div style="font-size:1.05rem;color:#fff;font-weight:800;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s" onmouseover="this.style.color='${cardColor}'" onmouseout="this.style.color='#fff'">${m.name}</div>
         </a>
         <div style="display:flex;gap:.3rem;flex-wrap:wrap">
           <span style="font-size:.6rem;font-weight:800;padding:.15rem .5rem;border-radius:20px;background:${cardColor}22;color:${cardColor};border:1px solid ${cardColor}44">${vtN}</span>
