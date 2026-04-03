@@ -4,189 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    <title>Análisis Vocal de Coldplay | Barítono | Harmiq IA</title>
-    <meta name="description" content="Descubre el perfil vocal y afinación biomecánica de Coldplay, Barítono. Escucha sus top canciones y análisis de Harmiq.">
-    <link rel="canonical" href="https://harmiq.app/artistas/coldplay/">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Perfil Vocal Pro: Coldplay | Barítono | Harmiq IA</title>
+    <meta name="description" content="Análisis técnico de la voz de Coldplay. Descubre su equipo recomendado, tesitura Barítono y cursos para cantar como los mejores.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#0A0818;--card:#130F2A;--t:#E5E7EB;--m:#6B7280;}
+        :root{--p:#7C4DFF;--a:#FF4FA3;--dark:#05050A;--card:#101018;--t:#FFFFFF;--m:#94A3B8;--bg-grad:radial-gradient(circle at 50% 0%, #1A1A2E 0%, #05050A 100%);}
         *{margin:0;padding:0;box-sizing:border-box;}
-        body{background:var(--dark);color:var(--t);font-family:'Outfit',sans-serif;line-height:1.6;}
-        nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 4%;background:rgba(10,8,24,.95);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:100;}
-        .logo{font-size:1.7rem;font-weight:900;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
-        .container{max-width:1100px;margin:0 auto;padding:3rem 5%;}
-        
-        /* NEW HERO REDESIGN */
-        .hero {text-align:center;margin-bottom:4rem;display:flex;flex-direction:column;align-items:center;position:relative;}
-        .hero::before {content:'';position:absolute;width:250px;height:250px;background:var(--p);filter:blur(100px);opacity:0.3;border-radius:50%;z-index:-1;top:-20px;}
-        
-        .artist-avatar {
-            width:180px;height:180px;border-radius:50%;object-fit:cover;
-            border:4px solid rgba(255,255,255,0.1);
-            box-shadow:0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(124,77,255,0.4);
-            margin-bottom:1.5rem;
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float { 0%{transform:translateY(0px)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0px)} }
-        
-        h1{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:1rem;line-height:1;font-weight:900;letter-spacing:-1px;}
-        .badge{background:rgba(124,77,255,.15);color:var(--a);padding:0.5rem 1rem;border-radius:20px;font-weight:700;display:inline-block;margin-bottom:1rem;border:1px solid rgba(124,77,255,.3);text-transform:uppercase;letter-spacing:1px;font-size:0.85rem;}
-        .verified-badge {display:inline-flex;align-items:center;gap:5px;background:rgba(6,214,160,0.15);color:#06D6A0;padding:6px 12px;border-radius:20px;font-size:0.75rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem;border:1px solid rgba(6,214,160,0.3);}
-        
-        /* DATA DASHBOARD */
-        .dashboard{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;margin-bottom:2rem;}
-        @media(max-width:768px){ .dashboard{grid-template-columns:1fr;} }
-        .card{background:rgba(255,255,255,0.03);padding:1.8rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,.08);height:100%;backdrop-filter:blur(10px);}
-        
-        .technical-bio {margin-bottom:2rem; padding:2rem; background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(124,77,255,0.05)); border-radius:1.5rem; border:1px solid rgba(124,77,255,0.15);position:relative;overflow:hidden;}
-        .technical-bio::before {content:'\201C';position:absolute;font-size:10rem;color:rgba(255,255,255,0.03);top:-40px;left:-10px;font-family:serif;}
-        .bio-text {font-size:1.1rem; color:#D1D5DB; line-height:1.7;position:relative;z-index:2;}
-
-        /* TOP SONGS WIDGET */
-        .songs-grid {display:grid;gap:0.8rem;margin-top:1rem;}
-        .song-card {display:flex;align-items:center;background:rgba(255,255,255,0.04);padding:0.8rem 1.2rem;border-radius:12px;border:1px solid rgba(255,255,255,0.05);text-decoration:none;color:white;transition:all 0.2s;animation:slideIn 0.5s ease-out backwards;}
-        .song-card:hover {background:rgba(255,79,163,0.1);border-color:rgba(255,79,163,0.3);transform:translateX(5px);}
-        @keyframes slideIn { from{opacity:0;transform:translateX(-20px)} to{opacity:1;transform:translateX(0)} }
-        .song-num {color:var(--a);font-weight:800;width:30px;font-size:1.2rem;opacity:0.7;}
-        .song-title {flex-grow:1;font-weight:600;font-size:1.05rem;}
-        .song-icon {color:#A5B4FC;font-size:0.8rem;opacity:0.5;}
-
-        .metric-wrap {margin-bottom:1.2rem;}
-        .metric-head {display:flex;justify-content:space-between;font-weight:700;margin-bottom:0.4rem;font-size:0.85rem;color:#A5B4FC;}
-        .progress-bg {background:rgba(255,255,255,0.08);border-radius:10px;height:12px;overflow:hidden;}
-        .progress-fill {height:100%;border-radius:10px;transition:width 1s ease-in-out;}
-
-        .cta-box{text-align:center;margin-top:4rem;padding:4rem 2rem;background:linear-gradient(135deg,rgba(124,77,255,0.1),rgba(255,79,163,0.1));border-radius:2rem;border:1px solid rgba(124,77,255,0.3);position:relative;}
-        .cta-box::after {content:''; position:absolute; inset:0; border-radius:2rem; background:radial-gradient(circle at center, rgba(124,77,255,0.2), transparent 70%); z-index:-1;}
-        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1.2rem 2.8rem;background:linear-gradient(135deg,#7C4DFF,#FF4FA3);color:#fff;text-decoration:none;border-radius:50px;font-weight:900;font-size:1.2rem;box-shadow:0 15px 40px rgba(124,77,255,0.4);transition:all 0.3s;margin-bottom:1.2rem;width:100%;max-width:420px;}
-        .btn:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 20px 50px rgba(124,77,255,0.6);}
-        .btn-amazon{background:rgba(255,255,255,0.05);color:var(--t);box-shadow:none;border:1px solid rgba(255,255,255,0.15);font-size:0.95rem;}
+        body{background:var(--dark);background-image:var(--bg-grad);color:var(--t);font-family:'Outfit',sans-serif;line-height:1.6;overflow-x:hidden;}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 5%;background:rgba(5,5,10,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);position:sticky;top:0;z-index:100;}
+        .logo{font-size:1.8rem;font-weight:900;text-decoration:none;color:#fff;letter-spacing:-1px;}
+        .logo span{background:linear-gradient(135deg, #7C4DFF, #FF4FA3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .container{max-width:1200px;margin:0 auto;padding:4rem 5%;}
+        .hero{text-align:center;margin-bottom:6rem;position:relative;}
+        .hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:var(--p);filter:blur(150px);opacity:0.2;z-index:-1;}
+        .artist-img {width:220px;height:220px;border-radius:50%;object-fit:cover;border:8px solid rgba(255,255,255,0.03);box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);margin-bottom:2rem;transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+        .artist-img:hover {transform:scale(1.05) rotate(2deg);}
+        h1{font-size:clamp(3rem,8vw,5rem);font-weight:900;letter-spacing:-2px;line-height:0.9;margin-bottom:1.5rem;background:linear-gradient(to bottom, #fff, #94A3B8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .vocal-badge{display:inline-block;padding:0.6rem 1.5rem;background:rgba(124,77,255,0.1);border:1px solid rgba(124,77,255,0.2);border-radius:100px;color:var(--p);font-weight:700;text-transform:uppercase;font-size:0.9rem;letter-spacing:1px;margin-bottom:1rem;}
+        .grid-main {display:grid;grid-template-columns:1.6fr 1fr;gap:2.5rem;margin-bottom:4rem;}
+        @media(max-width:968px){.grid-main{grid-template-columns:1fr;}}
+        .card{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:2rem;padding:2.5rem;position:relative;overflow:hidden;}
+        .card h3{font-weight:900;font-size:1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;}
+        .bio-text {font-size:1.2rem;color:var(--m);line-height:1.8;}
+        .hw-grid {display:grid;grid-template-columns:repeat(3, 1fr);gap:1rem;margin-top:1rem;}
+        .hw-item {background:rgba(255,255,255,0.03);padding:1.2rem;border-radius:1.2rem;border:1px solid rgba(255,255,255,0.05);text-align:center;}
+        .hw-label {display:block;font-size:0.7rem;color:var(--p);font-weight:800;text-transform:uppercase;margin-bottom:0.4rem;}
+        .hw-name {display:block;font-weight:700;font-size:0.95rem;}
+        .hw-desc {margin-top:1.5rem;font-size:0.9rem;color:var(--m);font-style:italic;text-align:center;}
+        .academy-section {margin-top:6rem;}
+        .academy-header {text-align:center;margin-bottom:3rem;}
+        .academy-grid {display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:2rem;}
+        .course-card {background:linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%); border:1px solid rgba(255,255,255,0.08); border-radius:1.5rem; padding:2rem; display:flex; gap:1.5rem; transition:0.3s;}
+        .course-card:hover {transform:translateY(-10px); border-color:var(--p);}
+        .course-icon {font-size:2.5rem;}
+        .course-info h4{font-size:1.2rem;margin-bottom:0.5rem;}
+        .course-info p{font-size:0.9rem;color:var(--m);margin-bottom:1.2rem;}
+        .course-btn{text-decoration:none;color:var(--p);font-weight:800;font-size:0.85rem;text-transform:uppercase;border:1px solid var(--p);padding:0.5rem 1.2rem;border-radius:50px;transition:0.2s;}
+        .course-btn:hover{background:var(--p);color:#fff;}
+        .song-card{display:flex;align-items:center;padding:1rem;background:rgba(255,255,255,0.03);border-radius:1rem;text-decoration:none;color:#fff;margin-bottom:0.8rem;transition:0.2s;}
+        .song-card:hover{background:rgba(124,77,255,0.1);padding-left:1.5rem;}
+        .song-num{color:var(--p);font-weight:900;width:30px;}
+        .song-title{flex:1;font-weight:600;}
+        .cta-footer{text-align:center;padding:6rem 2rem;background:var(--p);border-radius:3rem;margin-top:6rem;position:relative;overflow:hidden;}
+        .cta-footer h2{font-size:3rem;font-weight:900;margin-bottom:1.5rem;}
+        .btn-main {display:inline-block;padding:1.5rem 3.5rem;background:#fff;color:var(--p);text-decoration:none;border-radius:100px;font-weight:900;font-size:1.2rem;box-shadow:0 20px 40px rgba(0,0,0,0.2);transition:0.3s;}
+        .btn-main:hover {transform:scale(1.05);box-shadow:0 30px 60px rgba(0,0,0,0.3);}
     </style>
 </head>
 <body>
     <nav>
-        <a href="/" class="logo">Harmiq</a>
-        <a href="/" style="color:#fff;text-decoration:none;font-weight:800;background:linear-gradient(90deg,#7C4DFF,#FF4FA3);padding:0.5rem 1rem;border-radius:30px;font-size:0.85rem;transition:transform 0.2s;">IA Gratis</a>
+        <a href="/" class="logo">HARMIQ<span>PRO</span></a>
+        <div style="display:flex;gap:20px;">
+            <a href="/artistas" style="color:#fff;text-decoration:none;font-weight:600;">Explorar</a>
+            <a href="https://harmiq.app/academy" style="color:var(--a);text-decoration:none;font-weight:700;">ACADEMIA</a>
+        </div>
     </nav>
     <div class="container">
         <div class="hero">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/65/29/e265299b-2fa0-a627-7254-352ec8c73e0a/5059460487185.jpg/600x600bb.jpg" alt="Coldplay" class="artist-avatar" loading="lazy">
-            <div class="verified-badge">✓ Análisis Verificado por IA</div>
-            <div class="badge">Barítono • Pop</div>
+            <div class="hero-glow"></div>
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/65/29/e265299b-2fa0-a627-7254-352ec8c73e0a/5059460487185.jpg/600x600bb.jpg" class="artist-img" alt="Coldplay">
+            <div class="vocal-badge">Barítono</div>
             <h1>Coldplay</h1>
-            <p style="color:var(--m);font-size:1.1rem;max-width:600px;">Análisis biomecánico y acústico de la voz e interpretación.</p>
+            <p style="color:var(--m);font-size:1.3rem;font-weight:600;">Análisis Biomecánico Harmiq Pro AI</p>
         </div>
-
-        <div class="technical-bio">
-            <h3 style="margin-bottom:1rem; color:var(--a); font-size:1.3rem; font-family:'Baloo 2',sans-serif;display:flex;align-items:center;gap:10px;">
-                🧬 Perfil Técnico Vocal
-            </h3>
-            <p class="bio-text">Chris Martin (Coldplay) posee una voz de barítono ligero con capacidad de falsete emotivo. Su perfil acústico en Harmiq revela una huella vocal distintiva en el espectro musical, adaptada perfectamente a su repertorio iconico.</p>
-        </div>
-
-        <div class="dashboard">
-            <div class="card" style="height:350px;">
-                <h3 style="margin-bottom:1.5rem; color:#fff; font-size:1.2rem;display:flex;align-items:center;gap:8px;">🎧 Métricas clave</h3>
-                <div class="metric-wrap">
-                    <div class="metric-head"><span>Potencia Base (RMS)</span><span>40%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:40%;background:linear-gradient(90deg,#F59E0B,#EF4444);"></div></div>
-                </div>
-                <div class="metric-wrap">
-                    <div class="metric-head"><span>Brillo Vocal (Rolloff)</span><span>37%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:37%;background:linear-gradient(90deg,#3B82F6,#8B5CF6);"></div></div>
-                </div>
-                <div class="metric-wrap">
-                    <div class="metric-head"><span>Centroide Resonante</span><span>26%</span></div>
-                    <div class="progress-bg"><div class="progress-fill" style="width:26%;background:linear-gradient(90deg,#10B981,#3B82F6);"></div></div>
-                </div>
-                <p style="font-size:0.8rem;color:#6B7280;margin-top:1.5rem;text-align:center;">Estimación de la huella acústica sobre la onda base.</p>
-            </div>
-            
-            <div class="card" style="height:350px; display:flex; flex-direction:column;">
-                <h3 style="margin-bottom:1rem; color:#fff; font-size:1.2rem;display:flex;align-items:center;gap:8px;">🎵 Temas Esenciales</h3>
-                <div class="songs-grid">
+        <div class="grid-main">
+            <div class="card">
+                <h3>🧬 Perfil Bio-Acústico</h3>
+                <p class="bio-text">Chris Martin (Coldplay) posee una voz de barítono ligero con capacidad de falsete emotivo. Su huella vocal revela un control técnico excepcional dentro del registro de Barítono.</p>
+                <div style="margin-top:2.5rem;">
+                    <h3 style="font-size:1.1rem;color:var(--p);">🎙️ Equipamiento Recomendado</h3>
                     
-                    <a href="https://www.youtube.com/results?search_query=Coldplay%20Yellow" target="_blank" class="song-card" style="animation-delay:0.0s">
-                        <span class="song-num">1</span>
-                        <span class="song-title">Yellow</span>
-                        <span class="song-icon">▶</span>
-                    </a>
-                    <a href="https://www.youtube.com/results?search_query=Coldplay%20Viva%20La%20Vida" target="_blank" class="song-card" style="animation-delay:0.1s">
-                        <span class="song-num">2</span>
-                        <span class="song-title">Viva La Vida</span>
-                        <span class="song-icon">▶</span>
-                    </a>
-                    <a href="https://www.youtube.com/results?search_query=Coldplay%20Fix%20You" target="_blank" class="song-card" style="animation-delay:0.2s">
-                        <span class="song-num">3</span>
-                        <span class="song-title">Fix You</span>
-                        <span class="song-icon">▶</span>
-                    </a>
-                    <a href="https://www.youtube.com/results?search_query=Coldplay%20The%20Scientist" target="_blank" class="song-card" style="animation-delay:0.30000000000000004s">
-                        <span class="song-num">4</span>
-                        <span class="song-title">The Scientist</span>
-                        <span class="song-icon">▶</span>
-                    </a>
-                    <a href="https://www.youtube.com/results?search_query=Coldplay%20A%20Sky%20Full%20of%20Stars" target="_blank" class="song-card" style="animation-delay:0.4s">
-                        <span class="song-num">5</span>
-                        <span class="song-title">A Sky Full of Stars</span>
-                        <span class="song-icon">▶</span>
-                    </a>
+        <div class="hw-grid">
+            <div class="hw-item">
+                <span class="hw-label">Recomendación Pro</span>
+                <span class="hw-name">Shure SM7B</span>
+            </div>
+            <div class="hw-item">
+                <span class="hw-label">Versátil</span>
+                <span class="hw-name">Warm Audio WA-87 R2</span>
+            </div>
+            <div class="hw-item">
+                <span class="hw-label">Económico</span>
+                <span class="hw-name">Rode NT1 5th Gen</span>
+            </div>
+        </div>
+        <p class="hw-desc">Excelente para dar calidez y cuerpo a los registros medios y graves.</p>
+    
+                </div>
+            </div>
+            <div class="card">
+                <h3>📊 Huella Armónica</h3>
+                <div style="height:280px;"><canvas id="chromaChart"></canvas></div>
+                <div style="margin-top:2rem;">
+                    <h3>🎵 Temas Destacados</h3>
+                    <a href="https://www.youtube.com/results?search_query=Coldplay%20Yellow" target="_blank" class="song-card"><span class="song-num">1</span><span class="song-title">Yellow</span><span class="song-icon">▶</span></a><a href="https://www.youtube.com/results?search_query=Coldplay%20Viva%20La%20Vida" target="_blank" class="song-card"><span class="song-num">2</span><span class="song-title">Viva La Vida</span><span class="song-icon">▶</span></a><a href="https://www.youtube.com/results?search_query=Coldplay%20Fix%20You" target="_blank" class="song-card"><span class="song-num">3</span><span class="song-title">Fix You</span><span class="song-icon">▶</span></a><a href="https://www.youtube.com/results?search_query=Coldplay%20The%20Scientist" target="_blank" class="song-card"><span class="song-num">4</span><span class="song-title">The Scientist</span><span class="song-icon">▶</span></a><a href="https://www.youtube.com/results?search_query=Coldplay%20A%20Sky%20Full%20of%20Stars" target="_blank" class="song-card"><span class="song-num">5</span><span class="song-title">A Sky Full of Stars</span><span class="song-icon">▶</span></a>
                 </div>
             </div>
         </div>
-
-        <div class="dashboard">
-            <div class="card" style="height:320px; padding:1.5rem;">
-                <h3 style="margin-bottom:0.8rem; font-size:1.1rem;text-align:center;color:#A5B4FC;">Mapa Armónico (Chroma)</h3>
-                <div style="height:230px"><canvas id="chromaChart"></canvas></div>
+        <div class="academy-section">
+            <div class="academy-header">
+                <h2 style="font-size:2.5rem;font-weight:900;">Harmiq <span style="color:var(--p)">Academy</span></h2>
+                <p style="color:var(--m)">Aprende las técnicas de los artistas más grandes del mundo</p>
             </div>
-            <div class="card" style="height:320px; padding:1.5rem;">
-                <h3 style="margin-bottom:0.8rem; font-size:1.1rem;text-align:center;color:#A5B4FC;">Análisis de Timbre (MFCC)</h3>
-                <div style="height:230px"><canvas id="mfccChart"></canvas></div>
+            <div class="academy-grid">
+                
+            <div class="course-card">
+                <div class="course-icon">🎓</div>
+                <div class="course-info">
+                    <h4>Domina tu Tipo Vocal: Barítono</h4>
+                    <p>Aprende las técnicas que usan los profesionales para potenciar su tesitura natural.</p>
+                    <a href="https://harmiq.app/academy/domina-vocal" class="course-btn">Ver curso gratis</a>
+                </div>
+            </div>
+        
+            <div class="course-card">
+                <div class="course-icon">🎚️</div>
+                <div class="course-info">
+                    <h4>Producción y Mezcla de Voces</h4>
+                    <p>Secretos de estudio para que tus grabaciones suenen al nivel de Coldplay.</p>
+                    <a href="https://harmiq.app/academy/mezcla-vocal" class="course-btn">Ver curso gratis</a>
+                </div>
+            </div>
+        
             </div>
         </div>
-
-        <div class="cta-box">
-            <h2 style="font-size:2.8rem; margin-bottom:1rem; font-weight:900;line-height:1.2;">🎤 ¿Tu voz es como la de Coldplay?</h2>
-            <p style="margin-bottom:3rem; font-size:1.25rem; color:#A5B4FC;max-width:700px;margin-left:auto;margin-right:auto;">Usa la Inteligencia Artificial de Harmiq para compararte en tiempo real con más de 12.000 voces de la industria musical.</p>
-            <a href="https://harmiq.app/?compare=coldplay#app" class="btn">🚀 Iniciar Comparación de Voz</a>
-            <br><br>
-            <a href="https://www.amazon.es/s?k=Coldplay%20Microfono%20Profesional%20Bar%C3%ADtono&tag=harmiqapp-20" target="_blank" rel="nofollow noopener" class="btn btn-amazon">🛒 Equipamiento recomendado para Barítono</a>
+        <div class="cta-footer">
+            <h2>¿Quieres cantar como Coldplay?</h2>
+            <p style="font-size:1.3rem;margin-bottom:3rem;opacity:0.9;">Descubre si tu tipo de voz coincide con el de las estrellas.</p>
+            <a href="https://harmiq.app#analizar" class="btn-main">ANALIZAR MI VOZ</a>
         </div>
     </div>
-
     <script>
-        new Chart(document.getElementById('chromaChart'), {
+        const ctx = document.getElementById('chromaChart');
+        new Chart(ctx, {
             type: 'radar',
             data: {
                 labels: ['Do', 'Do#', 'Re', 'Re#', 'Mi', 'Fa', 'Fa#', 'Sol', 'Sol#', 'La', 'La#', 'Si'],
                 datasets: [{
                     label: 'Armónicos',
                     data: [0.2943, 0.6776, 0.472, 0.3209, 0.4617, 0.6504, 0.5653, 0.6304, 0.3542, 0.3737, 0.8812, 0.0505],
-                    backgroundColor: 'rgba(255, 79, 163, 0.25)',
-                    borderColor: '#FF4FA3',
-                    pointRadius: 0,
-                    borderWidth: 2
-                }]
-            },
-            options: { maintainAspectRatio:false, scales:{ r:{ ticks:{display:false}, grid:{color:'rgba(255,255,255,0.08)'}, angleLines:{color:'rgba(255,255,255,0.08)'} } } }
-        });
-
-        new Chart(document.getElementById('mfccChart'), {
-            type: 'line',
-            data: {
-                labels: Array.from({length:20}, (_,i)=>i+1),
-                datasets: [{
-                    label: 'Coeficientes',
-                    data: [0.2943, 0.6776, 0.472, 0.3209, 0.4617, 0.6504, 0.5653, 0.6304, 0.3542, 0.3737, 0.8812, 0.0505],
+                    backgroundColor: 'rgba(124, 77, 255, 0.2)',
                     borderColor: '#7C4DFF',
-                    tension: 0.4,
-                    fill: true,
-                    backgroundColor: 'rgba(124,77,255,0.15)'
+                    pointRadius: 0,
+                    borderWidth: 3
                 }]
             },
-            options: { maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(255,255,255,0.05)'}}, x:{grid:{display:false}} } }
+            options: {
+                maintainAspectRatio:false,
+                scales: { r: { grid: { color: 'rgba(255,255,255,0.05)' }, angleLines: { color: 'rgba(255,255,255,0.05)' }, ticks: { display: false } } },
+                plugins: { legend: { display: false } }
+            }
         });
     </script>
 </body>
