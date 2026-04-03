@@ -2016,21 +2016,6 @@ async function renderResults(data) {
 
       <div style="font-size:1rem; color:#D1D5DB; margin-bottom:1.5rem; font-style:italic">"${phrase}"</div>
 
-      <!-- 🎹 PIANO ROLL — rango vocal visual + reproducción -->
-      <div style="max-width:380px; margin:0 auto 2rem; background:rgba(255,255,255,0.03); padding:1.5rem 1rem 2rem; border-radius:24px; border:1px solid rgba(255,255,255,0.08)">
-        <div style="font-size:0.72rem; color:#9CA3AF; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem">🎹 Tu rango vocal detectado</div>
-        <div style="display:flex; justify-content:center; align-items:flex-end; gap:3px; padding-bottom:20px; overflow-x:auto">
-          ${["C2","D2","E2","F2","G2","A2","B2","C3","D3","E3","F3","G3","A3","B3","C4","D4","E4","F4","G4","A4","B4","C5"].map(n => {
-            const isRange = (VOCAL_RANGES_PIANO[vt]||[]).includes(n);
-            const isC = n.startsWith("C");
-            return "<div id='pk-"+n+"' style='flex-shrink:0; width:"+(isC?"13px":"9px")+"; height:"+(isRange?"52px":"34px")+"; background:"+(isRange ? color : "rgba(255,255,255,0.1)")+"; border-radius:3px; transition:all 0.3s; position:relative; box-shadow:"+(isRange ? "0 4px 10px "+color+"55" : "none")+"'>"+(isC?"<span style='position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font-size:7px;color:#6B7280;white-space:nowrap'>"+n+"</span>":"")+"</div>";
-          }).join("")}
-        </div>
-        <button onclick="playVocalSequence('${vt}')" style="background:linear-gradient(135deg,${color},#FF4FA3); color:#fff; border:none; padding:.75rem 2rem; border-radius:30px; font-weight:800; cursor:pointer; font-size:.82rem; display:flex; align-items:center; gap:.5rem; margin:0 auto; transition:.2s; box-shadow:0 8px 20px ${color}44" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">
-          🎹 Escuchar mi rango vocal
-        </button>
-      </div>
-
       <div style="display:inline-block; background:rgba(255,255,255,0.05); padding:0.8rem 2.2rem; border-radius:20px; border:1px solid rgba(255,255,255,0.1); margin-bottom:2rem">
         <div style="font-size:0.72rem; color:#A5B4FC; text-transform:uppercase; letter-spacing:1.5px; font-weight:700; margin-bottom:0.2rem">Similitud vocal</div>
         <div style="font-size:3.5rem; font-weight:900; background:linear-gradient(135deg, #fff, ${color}); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1">
@@ -2197,7 +2182,23 @@ async function renderResults(data) {
       <div style="text-align:center; padding: 0 1rem 2rem; border-bottom:1px solid rgba(255,255,255,.1)">
         <p style="color:#D1D5DB; font-size:1.1rem; line-height:1.6; max-width:800px; margin:0 auto">${explanation}</p>
       </div>
-      
+
+      <!-- 🎹 PIANO ROLL — sección independiente -->
+      <div style="margin:2.5rem auto; max-width:520px; background:rgba(255,255,255,0.03); padding:2rem 1.5rem 2.2rem; border-radius:28px; border:1px solid rgba(255,255,255,0.08); text-align:center">
+        <div style="font-size:0.7rem; color:${color}; font-weight:800; text-transform:uppercase; letter-spacing:2px; margin-bottom:0.3rem">Tu rango vocal</div>
+        <div style="font-size:1.35rem; font-weight:900; color:#fff; margin-bottom:1.4rem">${vtName}</div>
+        <div style="display:flex; justify-content:center; align-items:flex-end; gap:4px; padding-bottom:24px; overflow-x:auto">
+          ${["C2","D2","E2","F2","G2","A2","B2","C3","D3","E3","F3","G3","A3","B3","C4","D4","E4","F4","G4","A4","B4","C5"].map(n => {
+            const isRange = (VOCAL_RANGES_PIANO[vt]||[]).includes(n);
+            const isC = n.startsWith("C");
+            return "<div id='pk-"+n+"' style='flex-shrink:0; width:"+(isC?"16px":"11px")+"; height:"+(isRange?"64px":"40px")+"; background:"+(isRange ? color : "rgba(255,255,255,0.1)")+"; border-radius:4px; transition:all 0.3s; position:relative; box-shadow:"+(isRange ? "0 6px 16px "+color+"66" : "none")+"'>"+(isC?"<span style='position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:8px;color:#6B7280;white-space:nowrap'>"+n+"</span>":"")+"</div>";
+          }).join("")}
+        </div>
+        <button onclick="playVocalSequence('${vt}')" style="background:linear-gradient(135deg,${color},#FF4FA3); color:#fff; border:none; padding:.85rem 2.4rem; border-radius:50px; font-weight:800; cursor:pointer; font-size:.88rem; display:inline-flex; align-items:center; gap:.6rem; transition:.2s; box-shadow:0 8px 24px ${color}55" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">
+          🎹 Escuchar mi rango vocal
+        </button>
+      </div>
+
       <div style="margin:2.5rem 0 1.5rem">
         <div style="font-family:'Outfit'; font-weight:900; font-size:1.5rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.8rem">
           <span>🎸</span> ${matches.length} artistas que comparten tu ADN vocal
