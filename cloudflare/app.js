@@ -1888,6 +1888,32 @@ const PIANO_FREQS = {
   "C5":523.25,"D5":587.33,"E5":659.25
 };
 
+// ── Descripción del tipo de voz para el resultado ────────────────────────────
+function getVoiceTypeDescription(vt, conf, lang) {
+  const desc = {
+    es: {
+      "baritone":      "Tu voz de barítono es la más versátil del espectro vocal masculino. Warm, oscura y expresiva, es el tipo de voz más común entre cantantes profesionales. Freddie Mercury, Elvis Presley y Frank Sinatra eran barítonos.",
+      "bass":          "La voz de bajo es la más grave y poderosa de todas. Aporta una profundidad única que pocas voces pueden alcanzar. Johnny Cash y Barry White son ejemplos icónicos de este registro incomparable.",
+      "tenor":         "El tenor es el tipo de voz masculina más agudo y brillante. Su capacidad para alcanzar el Do de pecho lo convierte en el protagonista de óperas y baladas épicas. Pavarotti y Freddie Mercury (en sus agudos) eran tenores.",
+      "soprano":       "La soprano posee el registro más agudo de las voces femeninas. Clara, luminosa y poderosa en los agudos, es la voz protagonista de la ópera y los grandes musicales. Celine Dion y Ariana Grande son sopranos.",
+      "mezzo-soprano": "La mezzo-soprano combina la potencia de las graves con la brillantez de los agudos. Es la voz femenina más común, con un timbre cálido e intensamente expresivo. Adele y Amy Winehouse son mezzos.",
+      "contralto":     "La contralto es la voz femenina más grave y una verdadera rareza vocal. Oscura, poderosa y con una profundidad hipnótica, es un regalo musical extraordinario. Nina Simone y Tracy Chapman son contraltos.",
+      "countertenor":  "El contratenor es la voz masculina más aguda, que utiliza la voz de cabeza o falsetto para alcanzar registros de soprano o mezzo. Una rareza extraordinaria con un sonido único e inconfundible.",
+    },
+    en: {
+      "baritone":      "Your baritone voice is the most versatile in the male vocal spectrum. Warm, dark and expressive, it's the most common voice type among professional singers. Freddie Mercury, Elvis Presley and Frank Sinatra were all baritones.",
+      "bass":          "The bass is the deepest and most powerful of all voices. It brings a unique depth that few voices can reach. Johnny Cash and Barry White are iconic examples of this incomparable register.",
+      "tenor":         "The tenor is the highest and brightest male voice type. Its ability to hit the chest high C makes it the protagonist of operas and epic ballads.",
+      "soprano":       "The soprano has the highest register of female voices. Clear, luminous and powerful in the high notes, it's the leading voice of opera and great musicals.",
+      "mezzo-soprano": "The mezzo-soprano combines the power of lower notes with the brilliance of the upper range. It's the most common female voice, with a warm and intensely expressive timbre.",
+      "contralto":     "The contralto is the lowest female voice and a true vocal rarity. Dark, powerful and with a hypnotic depth, it's an extraordinary musical gift.",
+      "countertenor":  "The countertenor is the highest male voice, using head voice or falsetto to reach soprano or mezzo-soprano ranges. An extraordinary rarity with a unique and unmistakable sound.",
+    }
+  };
+  const d = desc[lang] || desc.es;
+  return d[vt] || d["baritone"];
+}
+
 const VOCAL_RANGES_PIANO = {
   "bass":          ["C2","E2","G2","C3"],
   "bass-baritone": ["E2","G2","B2","E3"],
@@ -2258,10 +2284,7 @@ async function renderResults(data) {
   } catch (renderErr) {
     console.error("Error in renderResults:", renderErr);
     const resEl = document.getElementById("results");
-    if (resEl) resEl.innerHTML = `<div style="padding:2rem; text-align:center; color:#9CA3AF">
-      <div style="color:#FF4FA3; font-size:0.8rem; font-family:monospace; margin-bottom:1rem; word-break:break-all">[DEBUG] ${renderErr?.message || renderErr}</div>
-      Hubo un problema al generar la tarjeta de resultados. Por favor, intenta analizar de nuevo.
-    </div>`;
+    if (resEl) resEl.innerHTML = `<div style="padding:2rem; text-align:center; color:#9CA3AF">Hubo un problema al generar la tarjeta de resultados. Por favor, intenta analizar de nuevo.</div>`;
   }
 }
 
