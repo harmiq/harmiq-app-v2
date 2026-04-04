@@ -3478,6 +3478,18 @@ async function loadStaticPage(url, title) {
 
 // ── Comunidad (Disqus) ────────────────────────────────────────────────────────
 // ── Comunidad (Disqus + Eventos + Mapa) ──────────────────────────────────────
+
+// ── Links de plataformas para canciones de artistas ──────────────────────────
+function getPlatformLinks(artist, song) {
+  const q = encodeURIComponent(`${artist} ${song} karaoke`);
+  const qs = encodeURIComponent(`${artist} ${song}`);
+  return {
+    karaoke:  `https://www.youtube.com/results?search_query=${q}`,
+    spotify:  `https://open.spotify.com/search/${qs}`,
+    youtube:  `https://www.youtube.com/results?search_query=${qs}`
+  };
+}
+
 // --- MONETIZACIÓN Y AFILIADOS ---
 function getUdemyBannerHTML() {
     return `
