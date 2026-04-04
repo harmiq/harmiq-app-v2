@@ -2258,7 +2258,10 @@ async function renderResults(data) {
   } catch (renderErr) {
     console.error("Error in renderResults:", renderErr);
     const resEl = document.getElementById("results");
-    if (resEl) resEl.innerHTML = `<div style="padding:2rem; text-align:center; color:#9CA3AF">Hubo un problema al generar la tarjeta de resultados. Por favor, intenta analizar de nuevo.</div>`;
+    if (resEl) resEl.innerHTML = `<div style="padding:2rem; text-align:center; color:#9CA3AF">
+      <div style="color:#FF4FA3; font-size:0.8rem; font-family:monospace; margin-bottom:1rem; word-break:break-all">[DEBUG] ${renderErr?.message || renderErr}</div>
+      Hubo un problema al generar la tarjeta de resultados. Por favor, intenta analizar de nuevo.
+    </div>`;
   }
 }
 
