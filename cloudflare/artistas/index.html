@@ -174,12 +174,17 @@
         })
         .catch(function(){ document.getElementById('resultCount').textContent = 'Error cargando artistas'; });
 
+    function stripAccents(s){
+        return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    }
+
     function applyFilters(){
-        var q = (document.getElementById('artistSearch') ? document.getElementById('artistSearch').value : '').toLowerCase().trim();
+        var q = stripAccents((document.getElementById('artistSearch') ? document.getElementById('artistSearch').value : '').toLowerCase().trim());
+        var cvt = stripAccents(currentVType);
         filtered = ALL.filter(function(a){
-            var nm = a.n.toLowerCase();
-            var vt = (a.v||'').toLowerCase();
-            return (!q || nm.includes(q)) && (!currentVType || vt === currentVType);
+            var nm = stripAccents(a.n.toLowerCase());
+            var vt  = stripAccents((a.v||'').toLowerCase());
+            return (!q || nm.includes(q)) && (!cvt || vt === cvt);
         });
         page = 0;
         document.getElementById('artistGrid').innerHTML = '';
