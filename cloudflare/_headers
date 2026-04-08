@@ -8,3 +8,8 @@
 
 /*
   X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Permissions-Policy: microphone=(self), camera=(), payment=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data: blob:; connect-src 'self' https://hamiq-harmiq-backend1.hf.space https://en.wikipedia.org https://itunes.apple.com https://ipapi.co https://ip-api.com https://i.scdn.co; media-src 'self' blob:; frame-src https://www.youtube.com https://open.spotify.com; object-src 'none'; base-uri 'self';
