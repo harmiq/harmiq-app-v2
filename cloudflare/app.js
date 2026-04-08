@@ -29,6 +29,17 @@ const HF_API_URL     = "https://hamiq-harmiq-backend1.hf.space";
 const APP_VERSION    = "10.3";
 const DB_PATH        = "/harmiq_db_vectores.json";
 
+// ── Security: HTML escaping to prevent XSS when inserting external data into innerHTML ──
+function escHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
 // --- SHARED UI COMPONENTS ---
 function getPremiumHeaderHTML() {
     return `
@@ -2044,14 +2055,14 @@ async function renderResults(data) {
       </div>
 
       <a href="/artistas/${top1.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}/" style="text-decoration:none">
-        <h2 style="font-family:'Baloo 2',sans-serif; font-size:clamp(2.4rem,9vw,4rem); font-weight:900; margin:0 0 1rem; line-height:1.05; background:linear-gradient(135deg,#fff,${color}); -webkit-background-clip:text; -webkit-text-fill-color:transparent; cursor:pointer" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">${top1.name}</h2>
+        <h2 style="font-family:'Baloo 2',sans-serif; font-size:clamp(2.4rem,9vw,4rem); font-weight:900; margin:0 0 1rem; line-height:1.05; background:linear-gradient(135deg,#fff,${color}); -webkit-background-clip:text; -webkit-text-fill-color:transparent; cursor:pointer" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">${escHtml(top1.name)}</h2>
       </a>
 
       <div style="width:130px; height:130px; margin:0 auto 1.2rem; position:relative;">
         <div style="position:absolute; inset:-5px; border-radius:50%; background:linear-gradient(135deg, ${color}, #FF4FA3); padding:3px; animation:rotate-glow 4s linear infinite">
           <div style="width:100%; height:100%; background:#0f0820; border-radius:50%"></div>
         </div>
-        <img src="${top1Img}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; position:relative; z-index:2; border:4px solid #0f0820" onerror="_imgFallback(this,'${top1.name.replace(/'/g,"\\'")}')" onload="this.style.opacity='1'" style="opacity:0;transition:opacity .3s">
+        <img src="${escHtml(top1Img)}" style="width:100%; height:100%; border-radius:50%; object-fit:cover; position:relative; z-index:2; border:4px solid #0f0820" onerror="_imgFallback(this,'${escHtml(top1.name)}')" onload="this.style.opacity='1'" style="opacity:0;transition:opacity .3s">
       </div>
 
       <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:50px; padding:0.4rem 1.1rem; margin-bottom:1rem">
@@ -2169,7 +2180,7 @@ async function renderResults(data) {
       <!-- Foto cuadrada grande -->
       <a href="/artistas/${slug}/" style="display:block;text-decoration:none">
         <div style="position:relative;padding-top:100%;background:#0d0a1f;overflow:hidden">
-          <img src="${img}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="_imgFallback(this,'${m.name.replace(/'/g,"\\'")}')">
+          <img src="${escHtml(img)}" alt="${escHtml(m.name)}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="_imgFallback(this,'${escHtml(m.name)}')">
           <!-- Gradiente inferior para legibilidad -->
           <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(13,10,31,.9) 0%,transparent 100%);pointer-events:none"></div>
           <!-- % similitud sobre foto -->
@@ -2182,7 +2193,7 @@ async function renderResults(data) {
       <!-- Info -->
       <div style="padding:.75rem .85rem; flex:1; display:flex; flex-direction:column; gap:.4rem">
         <a href="/artistas/${slug}/" style="text-decoration:none">
-          <div style="font-size:1.05rem;color:#fff;font-weight:800;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s" onmouseover="this.style.color='${cardColor}'" onmouseout="this.style.color='#fff'">${m.name}</div>
+          <div style="font-size:1.05rem;color:#fff;font-weight:800;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .15s" onmouseover="this.style.color='${cardColor}'" onmouseout="this.style.color='#fff'">${escHtml(m.name)}</div>
         </a>
         <div style="display:flex;gap:.3rem;flex-wrap:wrap">
           <span style="font-size:.6rem;font-weight:800;padding:.15rem .5rem;border-radius:20px;background:${cardColor}22;color:${cardColor};border:1px solid ${cardColor}44">${vtN}</span>
