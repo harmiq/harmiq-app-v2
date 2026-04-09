@@ -47,9 +47,9 @@ function getPremiumHeaderHTML() {
         <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:0.8rem 1rem">
             <a class="logo" href="/" style="font-size:1.4rem; text-decoration:none; display:flex; align-items:center; gap:0.5rem">🎙️ <span style="font-family:'Baloo 2',sans-serif; font-weight:800; color:#fff">Harmiq</span></a>
             <ul class="nav-links" style="display:flex; list-style:none; gap:0.8rem; margin:0; padding:0; align-items:center">
-                <li><a href="/voz/soprano" style="color:#FF4FA3; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(255,79,163,0.1)">Soprano</a></li>
-                <li><a href="/voz/mezzo-soprano" style="color:#7C4DFF; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(124,77,255,0.1)">Mezzo</a></li>
-                <li><a href="/voz/tenor" style="color:#1DB954; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(29,185,84,0.1)">Tenor</a></li>
+                <li><a href="/tipo-de-voz/soprano/" style="color:#FF4FA3; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(255,79,163,0.1)">Soprano</a></li>
+                <li><a href="/tipo-de-voz/mezzosoprano/" style="color:#7C4DFF; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(124,77,255,0.1)">Mezzo</a></li>
+                <li><a href="/tipo-de-voz/tenor/" style="color:#1DB954; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(29,185,84,0.1)">Tenor</a></li>
                 <li><a href="/artistas/" style="color:#A5B4FC; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 0.8rem; border-radius:10px; background:rgba(124,77,255,0.1)">Artistas</a></li>
                 <li><a href="/comunidad" style="color:#FF9900; font-weight:700; font-size:0.85rem; text-decoration:none; padding:0.4rem 1.2rem; border-radius:10px; background:rgba(255,153,0,0.1); border:1px solid rgba(255,153,0,0.2)">Comunidad</a></li>
             </ul>
@@ -3245,12 +3245,12 @@ function renderVozPage(slug) {
 <nav>
   <a class="logo" href="/">🎙️ Harmiq</a>
   <ul class="nav-links">
-    <li><a href="/voz/baritono">Barítono</a></li>
-    <li><a href="/voz/tenor">Tenor</a></li>
-    <li><a href="/voz/soprano">Soprano</a></li>
-    <li><a href="/voz/mezzo-soprano">Mezzo</a></li>
-    <li><a href="/voz/contralto">Contralto</a></li>
-    <li><a href="/voz/bajo">Bajo</a></li>
+    <li><a href="/tipo-de-voz/baritono/">Barítono</a></li>
+    <li><a href="/tipo-de-voz/tenor/">Tenor</a></li>
+    <li><a href="/tipo-de-voz/soprano/">Soprano</a></li>
+    <li><a href="/tipo-de-voz/mezzosoprano/">Mezzo</a></li>
+    <li><a href="/tipo-de-voz/contralto/">Contralto</a></li>
+    <li><a href="/tipo-de-voz/bajo/">Bajo</a></li>
   </ul>
   <a class="btn" href="/#app" style="padding:.5rem 1.2rem;font-size:.85rem">🎤 Analizar mi voz</a>
 </nav>
@@ -3429,12 +3429,12 @@ function renderVozPage(slug) {
 <footer>
   <div class="fl">
     <a href="/">Inicio</a>
-    <a href="/voz/baritono">Barítono</a>
-    <a href="/voz/tenor">Tenor</a>
-    <a href="/voz/soprano">Soprano</a>
-    <a href="/voz/mezzo-soprano">Mezzo</a>
-    <a href="/voz/contralto">Contralto</a>
-    <a href="/voz/bajo">Bajo</a>
+    <a href="/tipo-de-voz/baritono/">Barítono</a>
+    <a href="/tipo-de-voz/tenor/">Tenor</a>
+    <a href="/tipo-de-voz/soprano/">Soprano</a>
+    <a href="/tipo-de-voz/mezzosoprano/">Mezzo</a>
+    <a href="/tipo-de-voz/contralto/">Contralto</a>
+    <a href="/tipo-de-voz/bajo/">Bajo</a>
     <a href="/comunidad" style="color:#FF5E5B; font-weight:700">Comunidad</a>
   </div>
   <p>© 2026 Harmiq · Análisis vocal con IA · <a href="mailto:info@harmiq.app">info@harmiq.app</a> · <a href="/politica-privacidad.html">Privacidad</a></p>
@@ -3634,7 +3634,7 @@ function loadComunidadPage() {
                 <div style="font-size:2rem; margin-bottom:.8rem">🏆</div>
                 <h3 style="font-size:1.1rem; margin-bottom:.5rem">Montar Home Studio</h3>
                 <p style="font-size:.85rem; color:#6B7280; margin-bottom:1.5rem">Packs de equipo profesional para tu tipo de voz.</p>
-                <a href="/voz/baritono" style="display:inline-block; background:rgba(255,153,0,.2); color:#FF9900; border:1px solid rgba(255,153,0,.3); padding:.6rem 1.2rem; border-radius:12px; font-weight:700; text-decoration:none">
+                <a href="/tipo-de-voz/baritono/" style="display:inline-block; background:rgba(255,153,0,.2); color:#FF9900; border:1px solid rgba(255,153,0,.3); padding:.6rem 1.2rem; border-radius:12px; font-weight:700; text-decoration:none">
                     Ver Equipos
                 </a>
             </div>
@@ -4008,11 +4008,11 @@ function inicializarSEO() {
   const nav = document.createElement("div");
   nav.id = "_nav_seo";
   nav.innerHTML = `
-    <a href="/voz/soprano"      class="btn-vocal v-soprano">🎶 Soprano</a>
-    <a href="/voz/mezzosoprano" class="btn-vocal v-mezzo">🎵 Mezzo</a>
-    <a href="/voz/tenor"        class="btn-vocal v-tenor">🎤 Tenor</a>
-    <a href="/voz/baritono"     class="btn-vocal v-baritono">🎸 Barítono</a>
-    <a href="/voz/bajo"         class="btn-vocal v-bajo">🔊 Bajo</a>
+    <a href="/tipo-de-voz/soprano/"      class="btn-vocal v-soprano">🎶 Soprano</a>
+    <a href="/tipo-de-voz/mezzosoprano/" class="btn-vocal v-mezzo">🎵 Mezzo</a>
+    <a href="/tipo-de-voz/tenor/"        class="btn-vocal v-tenor">🎤 Tenor</a>
+    <a href="/tipo-de-voz/baritono/"     class="btn-vocal v-baritono">🎸 Barítono</a>
+    <a href="/tipo-de-voz/bajo/"         class="btn-vocal v-bajo">🔊 Bajo</a>
   `;
   document.body.insertAdjacentElement("afterbegin", nav);
 }
