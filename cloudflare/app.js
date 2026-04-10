@@ -761,26 +761,35 @@ async function getArtistImage(name) {
   const backendImg = await getSpotifyImageFromBackend(name);
   if (backendImg) { imgCache[name] = backendImg; return backendImg; }
 
-  // 3. iTunes Search API pública (CORS friendly, rápido y alta calidad)
-  // attribute=artistTerm → filtra por artista principal, evita collabs donde el artista buscado no es el principal
+  // 3. Wikipedia Summary API (CORS-free, fotos reales de artistas, en/es)
+  for (const wiki of ["en", "es"]) {
+    for (const wn of [name, name.split(/[(&]/)[0].trim()]) {
+      try {
+        const slug = encodeURIComponent(wn.replace(/\s+/g, '_'));
+        const r = await fetch(`https://${wiki}.wikipedia.org/api/rest_v1/page/summary/${slug}`);
+        if (r.ok) {
+          const d = await r.json();
+          if (d.thumbnail?.source) {
+            const img = d.thumbnail.source.replace(/\/\d+px-/, '/300px-');
+            imgCache[name] = img; return img;
+          }
+        }
+      } catch(_) {}
+    }
+  }
+
+  // 4. iTunes musicArtist (retrato del artista, no carátula de álbum)
   try {
     const q = encodeURIComponent(name);
-    const r = await fetch(`https://itunes.apple.com/search?term=${q}&entity=song&limit=8&attribute=artistTerm`);
+    const r = await fetch(`https://itunes.apple.com/search?term=${q}&entity=musicArtist&limit=1`);
     const d = await r.json();
-    if (d.results && d.results.length > 0) {
-      // Preferir el resultado cuyo artistName empiece por el mismo nombre
-      const nameKey = name.toLowerCase().split(' ')[0];
-      const best = d.results.find(r => r.artistName?.toLowerCase().startsWith(nameKey)) || d.results[0];
-      const art = best?.artworkUrl100;
-      if (art) {
-        const img = art.replace('100x100bb', '600x600bb');
-        imgCache[name] = img;
-        return img;
-      }
+    if (d.results?.[0]?.artworkUrl100) {
+      const img = d.results[0].artworkUrl100.replace('100x100bb', '600x600bb');
+      imgCache[name] = img; return img;
     }
-  } catch(e) { console.error("iTunes Error:", e); }
+  } catch(_) {}
 
-  // 4. Fallback: avatar con iniciales coloreadas
+  // 5. Fallback: avatar con iniciales coloreadas
   const initImg = getInitialsAvatar(name);
   imgCache[name] = initImg;
   return initImg;
@@ -947,12 +956,14 @@ function startSpectrum(stream) {
   wrap.style.display = "block";
 
   const dpr = window.devicePixelRatio || 1;
-  canvas.width  = canvas.offsetWidth  * dpr || 300 * dpr;
-  canvas.height = canvas.offsetHeight * dpr || 72  * dpr;
+  const cw = wrap.getBoundingClientRect().width || 300;
+  canvas.width  = Math.round(cw * dpr);
+  canvas.height = Math.round(72 * dpr);
   const ctx = canvas.getContext("2d");
   const W = canvas.width, H = canvas.height;
 
   actx    = new (window.AudioContext || window.webkitAudioContext)();
+  if (actx.state === "suspended") actx.resume();
   const src = actx.createMediaStreamSource(stream);
   analyser = actx.createAnalyser();
   analyser.fftSize = 256;
@@ -1703,7 +1714,7 @@ function classifyVT(pitchMean, pitchRange, gender) {
     // Barítono: 110-180 Hz  (subido de 165 a 180: zona alta del barítono E3-G3)
     // Tenor:    175-215 Hz
     // Contra:   >215 Hz
-    if      (pm < 115) { vt = "bass";          conf = 85; }
+    if      (pm < 100) { vt = "bass";          conf = 85; }
     else if (pm < 180) { vt = "baritone";      conf = 95; } // Barítono es el centro, máxima confianza
     else if (pm < 215) { vt = "tenor";         conf = 88; }
     else               { vt = "countertenor";  conf = 80; }
@@ -1790,8 +1801,9 @@ async function analyzeAudio() {
       feat._local = true;
       const vec  = featuresToVector(feat);
       const {vt, conf} = classifyVT(feat.pitchMean, feat.pitchRange, gender);
-      const matches = getMatches(vec, vt, gender, {}, 15);
-      lastResult = {feat, vec, vt, conf, matches, gender};
+      const _g1 = (gender==="auto"||!gender) ? (["soprano","mezzo-soprano","contralto"].includes(vt)?"female":"male") : gender;
+      const matches = getMatches(vec, vt, _g1, {}, 15);
+      lastResult = {feat, vec, vt, conf, matches, gender: _g1};
       try {
         const toSave = {
           feat: lastResult.feat, vt: lastResult.vt, conf: lastResult.conf,
@@ -1841,8 +1853,9 @@ async function analyzeAudio() {
       feat._local = true;
       const vec  = featuresToVector(feat);
       const {vt, conf} = classifyVT(feat.pitchMean, feat.pitchRange, gender);
-      const matches = getMatches(vec, vt, gender, {}, 15);
-      lastResult = {feat, vec, vt, conf, matches, gender};
+      const _g2 = (gender==="auto"||!gender) ? (["soprano","mezzo-soprano","contralto"].includes(vt)?"female":"male") : gender;
+      const matches = getMatches(vec, vt, _g2, {}, 15);
+      lastResult = {feat, vec, vt, conf, matches, gender: _g2};
       await preloadImages(matches.slice(0,5).map(m=>m.name));
       if (dropZone) dropZone.style.display = "none";
       renderResults(lastResult);
@@ -1857,9 +1870,10 @@ async function analyzeAudio() {
     const feat = data.features;
     
     const {vt,conf} = classifyVT(feat.pitchMean, feat.pitchRange, gender);
-    const matches = getMatches(vec, vt, gender, {}, 5);
-    
-    lastResult = {feat, vec, vt, conf, matches, gender};
+    const _g3 = (gender==="auto"||!gender) ? (["soprano","mezzo-soprano","contralto"].includes(vt)?"female":"male") : gender;
+    const matches = getMatches(vec, vt, _g3, {}, 15);
+
+    lastResult = {feat, vec, vt, conf, matches, gender: _g3};
     await preloadImages(matches.slice(0,5).map(m=>m.name));
 
     // TRANSICIÓN DE UI: Ocultar zona de grabación para mostrar resultados
