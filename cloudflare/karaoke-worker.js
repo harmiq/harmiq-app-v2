@@ -152,30 +152,39 @@ async function handleTranscribe(request, env) {
   const body = await request.json();
   const { audioBase64, audioUrl, language } = body;
 
-  if (!env.HF_TOKEN) return json({ error: 'HF_TOKEN no configurado' }, 500);
-
-  let audioData;
-  if (audioBase64) {
-    audioData = base64ToBuffer(audioBase64);
-  } else if (audioUrl) {
-    const res = await fetch(audioUrl);
-    audioData = await res.arrayBuffer();
-  } else {
-    return json({ error: 'Se necesita audioBase64 o audioUrl' }, 400);
+  if (!env.HF_TOKEN) {
+    return json({ error: 'HF_TOKEN no configurado' }, 500);
   }
 
-  // Whisper large-v3 con timestamps de palabras
+  let base64Audio;
+
+  try {
+    if (audioBase64) {
+      base64Audio = audioBase64;
+    } else if (audioUrl) {
+      const res = await fetch(audioUrl);
+      if (!res.ok) throw new Error('No se pudo descargar el audio');
+
+      const buffer = await res.arrayBuffer();
+      base64Audio = bufferToBase64(buffer);
+    } else {
+      return json({ error: 'Se necesita audioBase64 o audioUrl' }, 400);
+    }
+  } catch (err) {
+    return json({ error: 'Error preparando audio: ' + err.message }, 500);
+  }
+
+  // Llamada correcta a Whisper (JSON + base64)
   const hfRes = await fetch(
     'https://api-inference.huggingface.co/models/openai/whisper-large-v3',
     {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${env.HF_TOKEN}`,
-        'Content-Type': 'audio/wav',
-        'X-Use-Cache': 'false',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        inputs: audioBase64 || await blobToBase64(audioData),
+        inputs: base64Audio,
         parameters: {
           return_timestamps: 'word',
           language: language || null,
@@ -187,15 +196,19 @@ async function handleTranscribe(request, env) {
 
   if (!hfRes.ok) {
     if (hfRes.status === 503) {
-      return json({ status: 'loading', message: 'Whisper cargando, reintenta en 30s', retryAfter: 30 });
+      return json({
+        status: 'loading',
+        message: 'Whisper cargando, reintenta en 30s',
+        retryAfter: 30
+      });
     }
+
     const err = await hfRes.text();
     return json({ error: `Whisper error: ${err}` }, 500);
   }
 
   const result = await hfRes.json();
 
-  // result.chunks = [{text, timestamp: [start, end]}, ...]
   const lines = buildKaraokeLines(result.chunks || []);
 
   return json({
@@ -205,7 +218,7 @@ async function handleTranscribe(request, env) {
     karaokeLines: lines,
     language: result.language,
   });
-}
+}}
 
 // ── 4. ANALYZE: detecta coros, voces (hombre/mujer), estructura ───────────
 async function handleAnalyze(request, env) {
